@@ -1737,7 +1737,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #22911b;
+  background: #ff6254;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2047,6 +2047,14 @@ pre .javascript .function {
   50%, 70% {
     transform: scale(1.1);
   }
+}
+.gt-header a,
+.gt-comments a,
+.gt-popup a {
+  border-bottom: none;
+}
+.gt-container .gt-popup .gt-action.is--active::before {
+  top: 0.7em;
 }
 .local-search-pop-overlay {
   background-color: rgba(0,0,0,0.3);
