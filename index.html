@@ -20,6 +20,7 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 <script id="hexo-configurations">
@@ -29,10 +30,10 @@
     scheme: 'Gemini',
     version: '7.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     save_scroll: false,
-    copycode: {"enable":false,"show_result":false,"style":null},
-    fancybox: false,
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    fancybox: true,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
@@ -155,6 +156,8 @@
         <li class="menu-item menu-item-home">
       
     
+      
+    
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
@@ -166,8 +169,10 @@
         <li class="menu-item menu-item-tags">
       
     
+      
+    
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">4</span></a>
 
   </li>
       
@@ -177,8 +182,10 @@
         <li class="menu-item menu-item-categories">
       
     
+      
+    
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">4</span></a>
 
   </li>
       
@@ -188,8 +195,10 @@
         <li class="menu-item menu-item-archives">
       
     
+      
+    
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">3</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -245,6 +254,133 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/child/2019/08/08/补码一位乘法代码实现（Python）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+              
+              <a href="/2019/08/08/补码一位乘法代码实现（Python）/" class="post-title-link" itemprop="url">补码一位乘法代码实现（Python）</a>
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-08 17:53:50" itemprop="dateCreated datePublished" datetime="2019-08-08T17:53:50+08:00">2019-08-08</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/计算机组成原理/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>4.2k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              # -*- coding:utf-8 -*-"""@author:SiriYang@file:Complement_one_multiplication.py@time:2018/9/29 17:06"""def tostring(list):    str = ''    for i in ran
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/08/补码一位乘法代码实现（Python）/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/child/2019/08/08/阅读的逻辑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -277,12 +413,8 @@
                 
               
 
-              <time title="创建时间：2019-08-08 11:53:45 / 修改时间：17:19:01" itemprop="dateCreated datePublished" datetime="2019-08-08T11:53:45+08:00">2019-08-08</time>
+              <time title="创建时间：2019-08-08 11:53:45" itemprop="dateCreated datePublished" datetime="2019-08-08T11:53:45+08:00">2019-08-08</time>
             </span>
-          
-            
-
-            
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -314,7 +446,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>12k</span>
+              <span>13k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -337,25 +469,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>
-              
+          <img src="/2019/08/08/阅读的逻辑/face.png" title="阅读的逻辑">
 
-十大黄金法则
-细节服从主旨
-先题干后文章
-时间相反，一切相反
-阅读逻辑精确到词
-阅读的答案不是选出来的，而是比较出来的
-正确选项拒绝推理
-转折之后的内容是重点
-小词有大智慧
-反复强调的是重点，重点是考点
-干扰选项的典型特征是信息的拼凑
-
-第一章 阅读的本质：逻辑关系一、句间逻辑——相同或相反&e
-              ...
-            </p>
+<h2 id="十大黄金法则"><a href="#十大黄金法则" class="headerlink" title="十大黄金法则"></a>十大黄金法则</h2><ol>
+<li><a href="#细节服从主旨">细节服从主旨</a></li>
+<li><a href="#先题干后文章">先题干后文章</a></li>
+<li><a href="#时间相反，一切相反">时间相反，一切相反</a></li>
+<li>阅读逻辑精确到词</li>
+<li><a href="#阅读的答案不是选出来的，而是比较出来的">阅读的答案不是选出来的，而是比较出来的</a></li>
+<li><a href="#正确选项拒绝推理">正确选项拒绝推理</a></li>
+<li><a href="#转折之后的内容是重点">转折之后的内容是重点</a></li>
+<li><a href="#小词有大智慧">小词有大智慧</a></li>
+<li><a href="#反复强调的是重点，重点是考点">反复强调的是重点，重点是考点</a></li>
+<li><a href="#干扰选项的典型特征是信息的拼凑">干扰选项的典型特征是信息的拼凑</a></li></ol>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -527,7 +653,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -546,7 +672,11 @@
         
           
         
-        <span class="site-state-item-count">2</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -563,7 +693,13 @@
         
           
         
-        <span class="site-state-item-count">1</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -609,11 +745,26 @@
           <a href="http://bdongs.com" title="http://bdongs.com" rel="noopener" target="_blank">Bdongs</a>
         </li>
       
+        <li class="links-of-blogroll-item">
+          <a href="http://theme-next.iissnan.com" title="http://theme-next.iissnan.com" rel="noopener" target="_blank">NexT</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://hexo.io/zh-cn/" title="https://hexo.io/zh-cn/" rel="noopener" target="_blank">Hexo</a>
+        </li>
+      
     </ul>
   </div>
 
         </div>
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -627,19 +778,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">SiriYang</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">13k</span>
+    <span title="站点总字数">17k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11 分钟</span>
+    <span title="站点阅读时长">16 分钟</span>
 </div>
 
         
@@ -673,16 +824,18 @@
         
       </div>
     </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-      </div>
 
     
 
   </div>
 
   
+    
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
@@ -736,6 +889,8 @@
   
 
   
+    
+      
     
       
     
