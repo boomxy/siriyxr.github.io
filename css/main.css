@@ -1779,7 +1779,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffff70;
+  background: #2ed1d0;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2206,6 +2206,25 @@ pre .javascript .function {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.popular-posts-header {
+  border-bottom: 1px solid #eee;
+  display: block;
+  font-size: 1.125em;
+  margin-bottom: 10px;
+  margin-top: 60px;
+}
+ul.popular-posts {
+  padding: 0;
+}
+ul.popular-posts .popular-posts-item {
+  margin-left: 2em;
+}
+ul.popular-posts .popular-posts-item .popular-posts-title {
+  font-size: 0.875em;
+  font-weight: normal;
+  line-height: 2.4;
+  margin: 0;
 }
 .has-jax {
   overflow-x: auto;
@@ -2967,4 +2986,12 @@ ul.breadcrumb li+li:last-child {
   .pagination {
     margin: 8px 0 0;
   }
+}
+.siri-blue {
+  background-color: #70f3ff;
+  color: #666;
+}
+.siri-red {
+  background-color: #ffe4e1;
+  color: #f00;
 }
