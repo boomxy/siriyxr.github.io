@@ -4,7 +4,7 @@
 
 
 
-<html class="theme-next mist use-motion" lang="zh-CN">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="generator" content="Hexo 3.9.0">
@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
   <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
@@ -27,10 +27,10 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     save_scroll: false,
     copycode: {"enable":true,"show_result":true,"style":"mac"},
     fancybox: true,
@@ -213,8 +213,6 @@
     
   </ul>
 
-    
-
     <div class="site-search">
       
   <div class="popup search-popup local-search-popup">
@@ -248,6 +246,8 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+            
+
           <div id="content" class="content page-post-detail">
             
 
@@ -576,8 +576,8 @@
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/08/补码一位乘法（Python实现）/" rel="prev" title="补码一位乘法（Python实现）">
-                <i class="fa fa-chevron-left"></i> 补码一位乘法（Python实现）
+              <a href="/2019/08/07/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -585,8 +585,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/08/07/hello-world/" rel="next" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/08/补码一位乘法（Python实现）/" rel="prev" title="补码一位乘法（Python实现）">
+                补码一位乘法（Python实现） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -773,6 +773,13 @@
         </div>
       <!--/noindex-->
       
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -832,11 +839,6 @@
         
       </div>
     </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
 
     
 
@@ -856,7 +858,8 @@
   <script src="/js/motion.js?v=7.3.0"></script>
 
 
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
 
@@ -989,50 +992,6 @@
 
 
   <script async src="/js/cursor/fireworks.js"></script>
-
-
-
-
-  <script src="/js/wobblewindow.js"></script>
-  <script>
-    //只在桌面版网页启用特效
-    if( window.innerWidth > 768  ){
-      $(document).ready(function () {
-        
-          $('#header').wobbleWindow({
-            radius: 50,
-            movementTop: false,
-            movementLeft: false,
-            movementRight: false,
-            debug: false,
-          });
-        
-
-        
-          $('#sidebar').wobbleWindow({
-            radius: 50,
-            movementLeft: false,
-            movementTop: false,
-            movementBottom: false,
-            position: 'fixed',
-            debug: false,
-          });
-        
-
-        
-          $('#footer').wobbleWindow({
-            radius: 50,
-            movementBottom: false,
-            movementLeft: false,
-            movementRight: false,
-            offsetX: ,
-            position: 'absolute',
-            debug: false,
-          });
-        
-      });
-    }
-  </script>
 
 </body>
 </html>
