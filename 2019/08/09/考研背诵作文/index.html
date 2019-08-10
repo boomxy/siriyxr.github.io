@@ -4,7 +4,7 @@
 
 
 
-<html class="theme-next gemini use-motion" lang="zh-CN">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="generator" content="Hexo 3.9.0">
@@ -27,12 +27,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Muse',
     version: '7.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
     save_scroll: false,
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
     fancybox: true,
     mediumzoom: false,
     lazyload: false,
@@ -214,6 +214,8 @@
     
   </ul>
 
+    
+
     <div class="site-search">
       
   <div class="popup search-popup local-search-popup">
@@ -247,8 +249,6 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-            
-
           <div id="content" class="content page-post-detail">
             
 
@@ -479,6 +479,21 @@
   
   
   
+  
+   
+    <div>
+      <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+    </div>
+  
+
   </article>
 
   </div>
@@ -658,13 +673,6 @@
         </div>
       <!--/noindex-->
       
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
 
     </div>
   </aside>
@@ -676,7 +684,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -724,6 +732,11 @@
         
       </div>
     </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
 
     
 
@@ -743,9 +756,7 @@
   <script src="/js/motion.js?v=7.3.0"></script>
 
 
-  <script src="/js/affix.js?v=7.3.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
-
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
 
 
 <script src="/js/next-boot.js?v=7.3.0"></script>
