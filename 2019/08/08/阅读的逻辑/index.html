@@ -64,7 +64,7 @@
 <meta property="og:description" content="十大黄金法则 细节服从主旨 先题干后文章 时间相反，一切相反 阅读逻辑精确到词 阅读的答案不是选出来的，而是比较出来的 正确选项拒绝推理 转折之后的内容是重点 小词有大智慧 反复强调的是重点，重点是考点 干扰选项的典型特征是信息的拼凑">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.siriyang.cn/2019/08/08/阅读的逻辑/face.png">
-<meta property="og:updated_time" content="2019-08-11T03:37:07.816Z">
+<meta property="og:updated_time" content="2019-08-11T04:12:43.181Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阅读的逻辑">
 <meta name="twitter:description" content="十大黄金法则 细节服从主旨 先题干后文章 时间相反，一切相反 阅读逻辑精确到词 阅读的答案不是选出来的，而是比较出来的 正确选项拒绝推理 转折之后的内容是重点 小词有大智慧 反复强调的是重点，重点是考点 干扰选项的典型特征是信息的拼凑">
@@ -202,7 +202,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
 
   </li>
       
@@ -314,7 +314,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-11 11:37:07" itemprop="dateModified" datetime="2019-08-11T11:37:07+08:00">2019-08-11</time>
+                <time title="修改时间：2019-08-11 12:12:43" itemprop="dateModified" datetime="2019-08-11T12:12:43+08:00">2019-08-11</time>
               </span>
             
           
@@ -587,18 +587,6 @@
             <a href="/tags/阅读/" rel="tag"><i class="fa fa-tag"></i> 阅读</a>
           
         </div>
-        <div class="post-widgets">
-        
-          <div class="wp_rating">
-            <div id="wpac-rating"></div>
-          </div>
-        
-
-        
-
-        
-        </div>
-      
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
               <a href="/2019/08/08/补码一位乘法（Python实现）/" rel="prev" title="补码一位乘法（Python实现）">
@@ -714,7 +702,9 @@
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1033,26 +1023,6 @@
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: 20285:siriyang.cn,
-      el: 'wpac-rating',
-      color: 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
 
 
 
@@ -1107,6 +1077,13 @@
 
   
   
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
@@ -1123,9 +1100,14 @@
       div.innerHTML = `已运行 ${ages}`;
     }
     var div = document.createElement("div");
+
     //插入到copyright之后
     var copyright = document.querySelector(".copyright");
     document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
     timer();
     setInterval("timer()",1000)
   </script>
@@ -1153,6 +1135,31 @@
 
 
   <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
 
 </body>
 </html>
