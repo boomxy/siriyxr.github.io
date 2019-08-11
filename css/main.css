@@ -1793,7 +1793,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffff2b;
+  background: #8a536c;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2607,6 +2607,9 @@ embed {
 }
 #menu .menu-item .fa {
   font-size: 16px;
+}
+.posts-expand .post-body img {
+  border: none;
 }
 .links-of-author a:before,
 .links-of-author .exturl:before {
