@@ -1793,7 +1793,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff46c1;
+  background: #9eb0ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2608,6 +2608,10 @@ embed {
 #menu .menu-item .fa {
   font-size: 16px;
 }
+.site-author-image {
+  border: 3px solid #00a0ff;
+  box-shadow: 0px 0px 100px #3f51b5;
+}
 .local-search-pop-overlay {
   z-index: -1;
 }
@@ -2620,9 +2624,9 @@ embed {
   border-bottom: 1px solid #0593d3;
 }
 .post-body p a:hover {
-  color: #fc6423;
+  color: #83a;
   border-bottom: none;
-  border-bottom: 1px solid #fc6423;
+  border-bottom: 1px solid #83a;
 }
 .posts-expand .post-body img {
   border: none;
