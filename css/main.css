@@ -1793,7 +1793,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #47ffec;
+  background: #ff46c1;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2610,6 +2610,9 @@ embed {
 }
 .local-search-pop-overlay {
   z-index: -1;
+}
+.local-search-popup .local-search-header {
+  background: #ddd;
 }
 .post-body p a {
   color: #0593d3;
