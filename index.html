@@ -350,6 +350,10 @@
               <span class="leancloud-visitors-count"></span>
             </span>
           
+            
+  
+  
+          
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -499,6 +503,10 @@
               <span class="leancloud-visitors-count"></span>
             </span>
           
+            
+  
+  
+          
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -645,6 +653,10 @@
               <span class="leancloud-visitors-count"></span>
             </span>
           
+            
+  
+  
+          
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -787,6 +799,10 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
             </span>
+          
+            
+  
+  
           
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -942,6 +958,10 @@
               <span class="leancloud-visitors-count"></span>
             </span>
           
+            
+  
+  
+          
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -1088,6 +1108,10 @@
               <span class="leancloud-visitors-count"></span>
             </span>
           
+            
+  
+  
+          
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -1225,6 +1249,10 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
             </span>
+          
+            
+  
+  
           
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -1760,6 +1788,30 @@
 
   
     
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
 
   
   
