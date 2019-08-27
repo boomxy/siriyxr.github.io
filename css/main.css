@@ -931,6 +931,12 @@ pre .javascript .function {
   border-bottom: 1px solid #84333f;
   color: #84333f;
 }
+.pdfobject-container {
+  height: 1000px;
+  overflow: auto;
+  position: relative;
+  width: 100%;
+}
 .btn {
   background: #222;
   border: 2px solid #222;
@@ -1730,7 +1736,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f53c8b;
+  background: #e2c238;
   border-radius: 50%;
   content: ' ';
   display: inline-block;

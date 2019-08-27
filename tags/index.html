@@ -189,7 +189,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">16</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">17</span></a>
 
   </li>
       
@@ -202,7 +202,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
 
   </li>
       
@@ -215,7 +215,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">10</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">12</span></a>
 
   </li>
       
@@ -390,11 +390,15 @@
                   
                 
               
-              目前共计 16 个标签
+                
+                  
+                
+              
+              目前共计 17 个标签
             </div>
             <div class="tag-cloud-tags">
               
-                <a href="/tags/Python/" style="font-size: 12px; color: #ccc">Python</a> <a href="/tags/代码/" style="font-size: 12px; color: #ccc">代码</a> <a href="/tags/余数定理/" style="font-size: 12px; color: #ccc">余数定理</a> <a href="/tags/作文/" style="font-size: 12px; color: #ccc">作文</a> <a href="/tags/因式分解/" style="font-size: 12px; color: #ccc">因式分解</a> <a href="/tags/复数/" style="font-size: 12px; color: #ccc">复数</a> <a href="/tags/微分方程/" style="font-size: 12px; color: #ccc">微分方程</a> <a href="/tags/数学/" style="font-size: 25.5px; color: #404040">数学</a> <a href="/tags/理论/" style="font-size: 21px; color: #6f6f6f">理论</a> <a href="/tags/真题/" style="font-size: 12px; color: #ccc">真题</a> <a href="/tags/绘画/" style="font-size: 12px; color: #ccc">绘画</a> <a href="/tags/综合除法/" style="font-size: 16.5px; color: #9d9d9d">综合除法</a> <a href="/tags/考研/" style="font-size: 30px; color: #111">考研</a> <a href="/tags/英语/" style="font-size: 16.5px; color: #9d9d9d">英语</a> <a href="/tags/阅读/" style="font-size: 12px; color: #ccc">阅读</a> <a href="/tags/高次多项式/" style="font-size: 16.5px; color: #9d9d9d">高次多项式</a>
+                <a href="/tags/Python/" style="font-size: 12px; color: #ccc">Python</a> <a href="/tags/余数定理/" style="font-size: 12px; color: #ccc">余数定理</a> <a href="/tags/作文/" style="font-size: 12px; color: #ccc">作文</a> <a href="/tags/因式分解/" style="font-size: 12px; color: #ccc">因式分解</a> <a href="/tags/复数/" style="font-size: 12px; color: #ccc">复数</a> <a href="/tags/微分方程/" style="font-size: 12px; color: #ccc">微分方程</a> <a href="/tags/数学/" style="font-size: 21px; color: #6f6f6f">数学</a> <a href="/tags/理论/" style="font-size: 25.5px; color: #404040">理论</a> <a href="/tags/真题/" style="font-size: 12px; color: #ccc">真题</a> <a href="/tags/离散数学/" style="font-size: 12px; color: #ccc">离散数学</a> <a href="/tags/绘画/" style="font-size: 12px; color: #ccc">绘画</a> <a href="/tags/综合除法/" style="font-size: 16.5px; color: #9d9d9d">综合除法</a> <a href="/tags/考研/" style="font-size: 30px; color: #111">考研</a> <a href="/tags/英语/" style="font-size: 16.5px; color: #9d9d9d">英语</a> <a href="/tags/计算机组成原理/" style="font-size: 16.5px; color: #9d9d9d">计算机组成原理</a> <a href="/tags/阅读/" style="font-size: 12px; color: #ccc">阅读</a> <a href="/tags/高次多项式/" style="font-size: 16.5px; color: #9d9d9d">高次多项式</a>
               
             </div>
           </div>
@@ -446,7 +450,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -475,7 +479,9 @@
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -522,7 +528,9 @@
         
           
         
-        <span class="site-state-item-count">16</span>
+          
+        
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -805,6 +813,25 @@
 
 
 
+<script>
+if ($('body').find('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', function() {
+    $('body').find('div.pdf').each(function(i, o) {
+      PDFObject.embed($(o).attr('target'), $(o), {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: $(o).attr('height') || '1000px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
 
 
 
