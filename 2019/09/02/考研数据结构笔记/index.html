@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="2020考研数据结构笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-02T14:36:57.318Z">
+<meta property="og:updated_time" content="2019-09-03T14:58:34.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="考研数据结构笔记">
 <meta name="twitter:description" content="2020考研数据结构笔记">
@@ -314,11 +314,19 @@
                 
               
 
-              <time title="创建时间：2019-09-02 22:34:28 / 修改时间：22:36:57" itemprop="dateCreated datePublished" datetime="2019-09-02T22:34:28+08:00">2019-09-02</time>
+              <time title="创建时间：2019-09-02 22:34:28" itemprop="dateCreated datePublished" datetime="2019-09-02T22:34:28+08:00">2019-09-02</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-03 22:58:34" itemprop="dateModified" datetime="2019-09-03T22:58:34+08:00">2019-09-03</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -377,7 +385,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>1.6k</span>
+              <span>2.7k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -387,7 +395,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
           
             <div class="post-description">2020考研数据结构笔记</div>
@@ -459,6 +467,26 @@
 </ol>
 <h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><h2 id="线性表的定义和基本操作"><a href="#线性表的定义和基本操作" class="headerlink" title="线性表的定义和基本操作"></a>线性表的定义和基本操作</h2><h3 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h3><p>&emsp;&emsp;<strong>线性表</strong>是具有相同数据类型的 $n(n\ge 0)$ 个数据元素的有限序列，当 $n=0$ 时该线性表是一个空表。</p>
 <p>&emsp;&emsp;<strong>注意：</strong>线性表是一种逻辑结构，表示元素之间一对一的相邻关系。顺序表和链表是指存储结构，两者属于不同层面的概念。</p>
+<h2 id="线性表的顺序表示"><a href="#线性表的顺序表示" class="headerlink" title="线性表的顺序表示"></a>线性表的顺序表示</h2><h3 id="顺序表的定义"><a href="#顺序表的定义" class="headerlink" title="顺序表的定义"></a>顺序表的定义</h3><p>&emsp;&emsp;线性表的顺序表示又称顺序表。<br>&emsp;&emsp;顺序表的特点是表中元素的逻辑顺序与其物理顺序相同。<br>&emsp;&emsp;<strong>注意：</strong>线性表中元素的位序是从1开始的，而数组中元素的下表是从0开始的。</p>
+<p>&emsp;&emsp;顺序表最主要的特点是随机访问，即通过首地址和元素序号可在时间 $O(1)$ 内找到制定的元素。<br>&emsp;&emsp;顺序表的存储密度高，每个结点只存储数据元素。<br>&emsp;&emsp;顺序表逻辑上相邻的元素物理上也相邻。</p>
+<h3 id="顺序表上操作的实现"><a href="#顺序表上操作的实现" class="headerlink" title="顺序表上操作的实现"></a>顺序表上操作的实现</h3><p>&emsp;&emsp;线性表插入算法的平均时间复杂度为 $O(n)$ 。<br>&emsp;&emsp;线性表删除算法的平均时间复杂度为 $O(n)$ 。<br>&emsp;&emsp;线性表查找算法的平均时间复杂度为 $O(n)$ 。</p>
+<h2 id="线性表的链式表示"><a href="#线性表的链式表示" class="headerlink" title="线性表的链式表示"></a>线性表的链式表示</h2><h3 id="单链表的定义"><a href="#单链表的定义" class="headerlink" title="单链表的定义"></a>单链表的定义</h3><p>&emsp;&emsp;线性表的链式存储又称单链表。<br>&emsp;&emsp;单链表是非随机存取的存储结构。</p>
+<p>&emsp;&emsp;头结点的数据域可以不设任何信息，也可以记录表长等相关信息。</p>
+<p><strong>头结点和头指针的区分：</strong><br>&emsp;&emsp;不管带不带头结点，头指针始终指向链表的第一个结点，而头结点是带头结点的链表中的第一个结点，结点内通常不存储信息。</p>
+<p><strong>引入头结点的优势：</strong></p>
+<ol>
+<li>在链表的第一个位置上操作和在表其他位置上的操作一致，无需进行特殊处理。</li>
+<li>空表和非空表的处理也就得到了统一。</li>
+</ol>
+<h3 id="单链表上基本操作的实现"><a href="#单链表上基本操作的实现" class="headerlink" title="单链表上基本操作的实现"></a>单链表上基本操作的实现</h3><p><strong>对一结点进行前插操作</strong><br>&emsp;&emsp;当要将结点 <code>*s</code> 插入结点 <code>*p</code> 的前面时，可以先将 <code>*s</code> 插入结点 <code>*p</code> 的后面，然后交换 <code>p-&gt;date</code> 和 <code>s-&gt;data</code> ，这样既满足了逻辑关系，又能使插入操作的时间复杂度为 $O(1)$ 。</p>
+<p><strong>删除结点<code>*p</code></strong><br>&emsp;&emsp;将其后继结点的值赋予其自身，然后删除后继结点，也能使的时间复杂度为 $O(1)$ 。</p>
+<h3 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h3><p><strong>循环单链表</strong><br>&emsp;&emsp;循环单链表的判空条件不是头结点的指针是否为空，而是它是否等于头指针。</p>
+<p>&emsp;&emsp;有时，对单链表常做的操作是在表头和表尾进行的，此时对循环单链表不舍头指针而仅设尾指针，从而使的操作效率更高。</p>
+<h3 id="顺序表和链表的比较"><a href="#顺序表和链表的比较" class="headerlink" title="顺序表和链表的比较"></a>顺序表和链表的比较</h3><p><strong>空间分配</strong><br>&emsp;&emsp;基于存储的考虑…链式存储结构存储密度是小于1的。</p>
+<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>插入删除元素后要记得修改线性表长度。</li>
+<li>顺序表为随机存取的存储结构，链表为非随机存取。</li>
+</ol>
 
     </div>
 
@@ -756,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#绪论"><span class="nav-text">绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构的基本概念"><span class="nav-text">数据结构的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念和术语"><span class="nav-text">基本概念和术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构三要素"><span class="nav-text">数据结构三要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法和算法评价"><span class="nav-text">算法和算法评价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法的基本概念"><span class="nav-text">算法的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法效率的度量"><span class="nav-text">算法效率的度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性表"><span class="nav-text">线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性表的定义和基本操作"><span class="nav-text">线性表的定义和基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性表的定义"><span class="nav-text">线性表的定义</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#绪论"><span class="nav-text">绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构的基本概念"><span class="nav-text">数据结构的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念和术语"><span class="nav-text">基本概念和术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构三要素"><span class="nav-text">数据结构三要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法和算法评价"><span class="nav-text">算法和算法评价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法的基本概念"><span class="nav-text">算法的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法效率的度量"><span class="nav-text">算法效率的度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性表"><span class="nav-text">线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性表的定义和基本操作"><span class="nav-text">线性表的定义和基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性表的定义"><span class="nav-text">线性表的定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性表的顺序表示"><span class="nav-text">线性表的顺序表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表的定义"><span class="nav-text">顺序表的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表上操作的实现"><span class="nav-text">顺序表上操作的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性表的链式表示"><span class="nav-text">线性表的链式表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单链表的定义"><span class="nav-text">单链表的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单链表上基本操作的实现"><span class="nav-text">单链表上基本操作的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环链表"><span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表和链表的比较"><span class="nav-text">顺序表和链表的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结-2"><span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -783,12 +811,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">135k</span>
+    <span title="站点总字数">141k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:08</span>
 </div>
 
         
