@@ -1730,7 +1730,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f9d5ff;
+  background: #ffff71;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2536,6 +2536,9 @@ embed {
 }
 #menu .menu-item .fa {
   font-size: 16px;
+}
+.nav-level-3 > .nav-child {
+  display: none !important;
 }
 #comments .vsys {
   display: none;
