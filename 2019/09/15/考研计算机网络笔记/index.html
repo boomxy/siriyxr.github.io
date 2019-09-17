@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="2020考研计算机网络笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-15T15:05:00.009Z">
+<meta property="og:updated_time" content="2019-09-17T14:57:09.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="考研计算机网络笔记">
 <meta name="twitter:description" content="2020考研计算机网络笔记">
@@ -314,11 +314,19 @@
                 
               
 
-              <time title="创建时间：2019-09-15 23:03:45 / 修改时间：23:05:00" itemprop="dateCreated datePublished" datetime="2019-09-15T23:03:45+08:00">2019-09-15</time>
+              <time title="创建时间：2019-09-15 23:03:45" itemprop="dateCreated datePublished" datetime="2019-09-15T23:03:45+08:00">2019-09-15</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-17 22:57:09" itemprop="dateModified" datetime="2019-09-17T22:57:09+08:00">2019-09-17</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -377,7 +385,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>1.4k</span>
+              <span>2.8k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -387,7 +395,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
           
             <div class="post-description">2020考研计算机网络笔记</div>
@@ -441,6 +449,112 @@
 <li>后退N帧（Go-Back-N）ARQ</li>
 <li>选择重传（Selective Repeat）ARQ</li>
 </ol>
+<p><a id="MAC"></a></p>
+<h2 id="3-5-介质访问控制"><a href="#3-5-介质访问控制" class="headerlink" title="3.5 介质访问控制"></a>3.5 介质访问控制</h2><h3 id="3-5-2随机访问介质访问控制"><a href="#3-5-2随机访问介质访问控制" class="headerlink" title="3.5.2随机访问介质访问控制"></a>3.5.2随机访问介质访问控制</h3><p><a id="CSMA"></a><br><strong>CSMA协议</strong></p>
+<p><a id="CSMA/CD"></a><br><strong>CSMA/CD协议</strong><br>&emsp;&emsp;工作流程：先听后发，边听边发（区别于<a href="#CSMA">CSMA</a>协议），冲突停发，随机重发</p>
+<p><a id="LAN"></a></p>
+<h2 id="3-6-局域网"><a href="#3-6-局域网" class="headerlink" title="3.6 局域网"></a>3.6 局域网</h2><h3 id="3-6-1-局域网的基本概念和体系结构"><a href="#3-6-1-局域网的基本概念和体系结构" class="headerlink" title="3.6.1 局域网的基本概念和体系结构"></a>3.6.1 局域网的基本概念和体系结构</h3><p><strong>三种特殊的局域网拓扑实现</strong></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>逻辑拓扑</th>
+<th>物理拓扑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>以太网（目前使用最广泛的局域网）</td>
+<td>总线形结构</td>
+<td>星形或拓展星形</td>
+</tr>
+<tr>
+<td>令牌环（Token Ring，IEEE 802.5）</td>
+<td>环形结构</td>
+<td>星形结构</td>
+</tr>
+<tr>
+<td>FDDI（光纤分布数字接口，IEEE 802.8）</td>
+<td>环形结构</td>
+<td>双环结构</td>
+</tr>
+</tbody></table>
+<h3 id="3-6-2-以太网与IEEE-802-3"><a href="#3-6-2-以太网与IEEE-802-3" class="headerlink" title="3.6.2 以太网与IEEE 802.3"></a>3.6.2 以太网与IEEE 802.3</h3><p>&emsp;&emsp;以太网采用两项措施简化通信：</p>
+<ol>
+<li>采用无连接的工作方式</li>
+<li>不对发送的数据帧编号，也不要求接收方发送确认</li>
+</ol>
+<p>&emsp;&emsp;即以太网尽最大努力交付数据，提供的是不可靠服务，对于差错的纠正则由高层完成。</p>
+<p><strong>各种传输介质的适用情况</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>10BASE5</th>
+<th>10BASE2</th>
+<th>10BASE-T</th>
+<th>10BASE-FL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>传输媒体</td>
+<td>基带同轴电缆（粗缆）</td>
+<td>基带同轴电缆（细缆）</td>
+<td>非屏蔽双绞线</td>
+<td>光纤对（850m）</td>
+</tr>
+<tr>
+<td>编码</td>
+<td>曼切斯特编码</td>
+<td>曼切斯特编码</td>
+<td>曼切斯特编码</td>
+<td>曼切斯特编码</td>
+</tr>
+<tr>
+<td>拓扑结构</td>
+<td>总线形</td>
+<td>总线形</td>
+<td>星形</td>
+<td>点对点</td>
+</tr>
+<tr>
+<td>最大段长</td>
+<td>500m</td>
+<td>185m</td>
+<td>100m</td>
+<td>2000m</td>
+</tr>
+<tr>
+<td>最多结点数目</td>
+<td>100</td>
+<td>30</td>
+<td>2</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>在使用静态地址的系统中，如果有重复的硬件地址，那么这两个设备都不能正常工作。</li>
+</ol>
+<h2 id="3-7-广域网"><a href="#3-7-广域网" class="headerlink" title="3.7 广域网"></a>3.7 广域网</h2><h3 id="3-7-1-广域网的基本概念"><a href="#3-7-1-广域网的基本概念" class="headerlink" title="3.7.1 广域网的基本概念"></a>3.7.1 广域网的基本概念</h3><p>&emsp;&emsp;广域网不等于互联网，互联网可以连接不同类型的网络。</p>
+<p>&emsp;&emsp;广域网使用的协议主要在网络层</p>
+<p><a id="PPP"></a></p>
+<h3 id="3-7-2-PPP协议"><a href="#3-7-2-PPP协议" class="headerlink" title="3.7.2 PPP协议"></a>3.7.2 PPP协议</h3><p>&emsp;&emsp;PPP是面向字符的，因而所有PPP帧的长度都是整数个字符。</p>
+<p><a id="HDLC"></a></p>
+<h3 id="3-7-3-HDLC协议"><a href="#3-7-3-HDLC协议" class="headerlink" title="3.7.3 HDLC协议"></a>3.7.3 HDLC协议</h3><p><strong>站</strong><br>&emsp;&emsp;HDLC有三种站类型：主站、从站、复合站</p>
+<p><strong>数据操作方式</strong><br>&emsp;&emsp;HDLC有三种数据操作方式：</p>
+<ol>
+<li>正常响应方式</li>
+<li>异步平衡方式</li>
+<li>异步响应方式</li>
+</ol>
+<p><strong>帧</strong><br>&emsp;&emsp;可将HDLC帧划分为三类：信息帧（I帧）、监督帧（S帧）、无编号帧（U帧）</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>PPP与HDLC的区别：<ol>
+<li>PPP协议是面向字节的，HDLC协议是面向比特的。</li>
+<li>PPP帧比HDLC帧多一个2字节的协议字段。当协议字段值为0x0021时，表示信息字段是IP数据报。</li>
+<li>PPP协议不使用序号和确认机制，只保证无差错接收（通过硬件进行<a href="#CRC">CRC检验</a>），而端到端差错检测由高层协议负责。HDLC协议的信息帧使用了编号和确认机制，能够提供可靠传输。</li>
+</ol>
+</li>
+</ol>
 <br>
 
 <hr>
@@ -478,6 +592,16 @@
 <ol>
 <li><a href="#CRC">CRC</a>：循环冗余校验（Cyclic Redundancy Code）</li>
 <li><a href="#ARQ">ARQ</a>：自动重传请求（Automatic Repeat reQuest）</li>
+<li><a href="#MAC">MAC</a>: 介质访问控制（Medium Access Control）</li>
+<li><a href="#FDM">FDM</a>： 频分多路复用</li>
+<li><a href="#TDM">TDM</a>：时分多路复用</li>
+<li><a href="#STDM">STDM</a>：统计时分多路复用（异步时分多路复用）</li>
+<li><a href="#WDM">WDM</a>：波分多路复用</li>
+<li><a href="#CDM">CDM</a>：码分多路复用</li>
+<li><a href="#CDMA">CDMA</a>：码分多址（Code Division Multiple Access）</li>
+<li><a href="#CSMA/CD">CSMA/CD</a>：载波帧听多路访问/碰撞检测（Carrier Sense Multiple Access with Collision Detection）</li>
+<li><a href="#PPP">PPP</a>：点对点协议（Point-to-Point Protocol）</li>
+<li><a href="#HDLC">HDLC</a>：高级数据链路控制（High-level Data Link Control）</li>
 </ol>
 <p><strong>网络层</strong></p>
 <p><strong>传输层</strong></p>
@@ -795,7 +919,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络体系结构"><span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-计算机网络概述"><span class="nav-text">1.1 计算机网络概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-计算机网络的标准化工作及相关组织"><span class="nav-text">1.1.5 计算机网络的标准化工作及相关组织</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-计算机网络体系结构及参考模型"><span class="nav-text">1.2 计算机网络体系结构及参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-ISO-OSI-参考模型和-TCP-IP-模型"><span class="nav-text">1.2.3 ISO/OSI 参考模型和 TCP/IP 模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物理层"><span class="nav-text">物理层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-传输介质"><span class="nav-text">2.2 传输介质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-双绞线、同轴电缆、光纤与无线传输介质"><span class="nav-text">2.2.1 双绞线、同轴电缆、光纤与无线传输介质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-物理层设备"><span class="nav-text">2.3 物理层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-集线器"><span class="nav-text">2.3.2 集线器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据链路层"><span class="nav-text">数据链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-数据链路层的功能"><span class="nav-text">3.1 数据链路层的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-差错控制"><span class="nav-text">3.1.5 差错控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-差错控制"><span class="nav-text">3.3 差错控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-流量控制与可靠传输机制"><span class="nav-text">3.4 流量控制与可靠传输机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-流量控制、可靠传输与滑动窗口机制"><span class="nav-text">3.4.1 流量控制、可靠传输与滑动窗口机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络层"><span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传输层"><span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用层"><span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名词解释"><span class="nav-text">名词解释</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络体系结构"><span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-计算机网络概述"><span class="nav-text">1.1 计算机网络概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-计算机网络的标准化工作及相关组织"><span class="nav-text">1.1.5 计算机网络的标准化工作及相关组织</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-计算机网络体系结构及参考模型"><span class="nav-text">1.2 计算机网络体系结构及参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-ISO-OSI-参考模型和-TCP-IP-模型"><span class="nav-text">1.2.3 ISO/OSI 参考模型和 TCP/IP 模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物理层"><span class="nav-text">物理层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-传输介质"><span class="nav-text">2.2 传输介质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-双绞线、同轴电缆、光纤与无线传输介质"><span class="nav-text">2.2.1 双绞线、同轴电缆、光纤与无线传输介质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-物理层设备"><span class="nav-text">2.3 物理层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-集线器"><span class="nav-text">2.3.2 集线器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据链路层"><span class="nav-text">数据链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-数据链路层的功能"><span class="nav-text">3.1 数据链路层的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-差错控制"><span class="nav-text">3.1.5 差错控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-差错控制"><span class="nav-text">3.3 差错控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-流量控制与可靠传输机制"><span class="nav-text">3.4 流量控制与可靠传输机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-流量控制、可靠传输与滑动窗口机制"><span class="nav-text">3.4.1 流量控制、可靠传输与滑动窗口机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-介质访问控制"><span class="nav-text">3.5 介质访问控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2随机访问介质访问控制"><span class="nav-text">3.5.2随机访问介质访问控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-局域网"><span class="nav-text">3.6 局域网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-1-局域网的基本概念和体系结构"><span class="nav-text">3.6.1 局域网的基本概念和体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-2-以太网与IEEE-802-3"><span class="nav-text">3.6.2 以太网与IEEE 802.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-广域网"><span class="nav-text">3.7 广域网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-1-广域网的基本概念"><span class="nav-text">3.7.1 广域网的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-2-PPP协议"><span class="nav-text">3.7.2 PPP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-3-HDLC协议"><span class="nav-text">3.7.3 HDLC协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络层"><span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传输层"><span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用层"><span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名词解释"><span class="nav-text">名词解释</span></a></li></ol></div>
             
 
           </div>
@@ -822,12 +946,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">207k</span>
+    <span title="站点总字数">211k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:08</span>
+    <span title="站点阅读时长">3:11</span>
 </div>
 
         
