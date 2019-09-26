@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="重庆邮电大学2020年硕士研究生入学 《计算机网络（803）》考试大纲">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-25T15:09:37.957Z">
+<meta property="og:updated_time" content="2019-09-26T14:50:21.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2020重庆邮电计算机网络803大纲">
 <meta name="twitter:description" content="重庆邮电大学2020年硕士研究生入学 《计算机网络（803）》考试大纲">
@@ -325,7 +325,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-25 23:09:37" itemprop="dateModified" datetime="2019-09-25T23:09:37+08:00">2019-09-25</time>
+                <time title="修改时间：2019-09-26 22:50:21" itemprop="dateModified" datetime="2019-09-26T22:50:21+08:00">2019-09-26</time>
               </span>
             
           
@@ -385,7 +385,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>1.2k</span>
+              <span>8.3k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -395,7 +395,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>8 分钟</span>
             </span>
           
             <div class="post-description">重庆邮电大学2020年硕士研究生入学 《计算机网络（803）》考试大纲</div>
@@ -410,25 +410,73 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ol>
-<li>计算机网络的定义 </li>
-<li>计算机网络的功能</li>
-<li>计算机网络的拓扑结构的类型 </li>
-<li>OSI/RM及其了解各层的功能 </li>
-<li>TCP/IP参考模型 </li>
-<li>计算机网络协议、接口和服务的概念 </li>
-<li>计算机网络的主要性能指标:<br>1)带宽 2)时延 3)时延带宽积 4)往返时延 </li>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="1-计算机网络的定义"><a href="#1-计算机网络的定义" class="headerlink" title="1. 计算机网络的定义"></a>1. 计算机网络的定义</h3><p>&emsp;&emsp;计算机网络是一个将分散的、具有独立功能的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。</p>
+<h3 id="2-计算机网络的功能"><a href="#2-计算机网络的功能" class="headerlink" title="2. 计算机网络的功能"></a>2. 计算机网络的功能</h3><ol>
+<li>数据通信——计算机网络的最基本的功能</li>
+<li>资源共享——计算机网络的主要目的</li>
+<li>分布式处理</li>
+<li>提高可靠性</li>
+<li>负载均衡    </li>
 </ol>
-<h1 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h1><ol>
-<li>物理层特性 </li>
-<li>奈奎斯特定理和香农定理 </li>
-<li>光纤的优点及其两种模式 </li>
-<li>三种基本的调制方法 </li>
-<li>曼彻斯特编码和差分曼彻斯特编码 </li>
-<li>两种数字传输系统（T1，E1） </li>
-<li>PCM的缺点 </li>
+<h3 id="3-计算机网络的拓扑结构的类型"><a href="#3-计算机网络的拓扑结构的类型" class="headerlink" title="3. 计算机网络的拓扑结构的类型"></a>3. 计算机网络的拓扑结构的类型</h3><ol>
+<li>星型（优点：网络结构简单，便于控制，建网容易，易于扩展；缺点：中心结点的可靠性问题是网络可靠性的瓶颈）</li>
+<li>环型（优点：结构简单，实现容易，数据传输延迟确定；缺点：每两个结点之间的通信线路都是网络可靠性的瓶颈。常用于局域网）</li>
+<li>总线型（优点：结构简单灵活，可扩充，设备投入量少，成本低，安装使用方便；缺点：某个工作站点出现故障时，对整个网络系统影响较大，另外实时性差，当结点通信量增加时，性能会急剧下降）</li>
+<li>树型（树型结构适用于相邻层通信较多的情况）</li>
+<li>全互联型（优点：无需路由选择，通信方便；缺点：网络连接复杂，仅在结点少。距离很近的环境中使用）</li>
+<li>网状拓扑结构（又称无规则型结构，常在结点数较多且地域范围大的环境使用。优点：系统可靠性高；缺点：结构复杂，必须采用路由选择算法与流量控制方法）</li>
 </ol>
-<h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><ol>
+<h3 id="4-OSI-RM及其了解各层的功能"><a href="#4-OSI-RM及其了解各层的功能" class="headerlink" title="4. OSI/RM及其了解各层的功能"></a>4. OSI/RM及其了解各层的功能</h3><p><strong>物理层</strong><br>&emsp;&emsp;最底层，是整个开放系统的基础，为设备之间的数据通信提供传输媒体及互连设备，为数据传输提供可靠的环境。是osi中唯一涉及通信介质的一层，定义了硬件接口的一系列标准。</p>
+<p><strong>数据链路层</strong><br>&emsp;&emsp;在不可靠的物理线路上实现数据可靠的传输，即数据链路层提供网络中相邻结点之间可靠的数据通信。其中介质访问控制层（MAC）、逻辑链路控制层（LLC）属于该层。</p>
+<p><strong>网络层</strong><br>&emsp;&emsp;为通信子网的最高层，完成网络中任意主机间数据传输。</p>
+<p><strong>传输层</strong><br>&emsp;&emsp;面向通信的层次中的最高层，面向应用的层次中的最底层，在源主机进程与目标主机进程之间提供可靠的端到端通信。</p>
+<p><strong>会话层</strong><br>&emsp;&emsp;允许在不同机器上的两个应用建立、使用和结束会话。</p>
+<p><strong>表示层</strong><br>&emsp;&emsp;表示层下面的各层中关注的事如何传递数据位，而表示层关注的是所传递的信息的语法和语义。</p>
+<p><strong>应用层</strong><br>&emsp;&emsp;为应用进程提供了访问OSI环境的手段，是应用进程使用OSI功能的唯一窗口。</p>
+<h3 id="5-TCP-IP参考模型"><a href="#5-TCP-IP参考模型" class="headerlink" title="5. TCP/IP参考模型"></a>5. TCP/IP参考模型</h3><p>应用层—传输层—网际层—网络接口层</p>
+<h3 id="6-计算机网络协议、接口和服务的概念"><a href="#6-计算机网络协议、接口和服务的概念" class="headerlink" title="6. 计算机网络协议、接口和服务的概念"></a>6. 计算机网络协议、接口和服务的概念</h3><p><strong>网络协议：</strong></p>
+<ol>
+<li>语义—指对构成协议的协议元素含义的解释；</li>
+<li>语法—用于规定将若干个协议元素和数据组合在一起来表达一个完整的内容时所应遵循的格式，即对信息的数据结构做一种规定；</li>
+<li>时序/同步/规则—指通信中各事件实现顺序的详细说明。</li>
+</ol>
+<p><strong>接口：</strong><br>&emsp;&emsp;同一结点网络协议内相邻层之间交换信息的连接点。</p>
+<p><strong>服务：</strong><br>&emsp;&emsp;服务是指某一层向它上一层提供的一组操作。</p>
+<h3 id="7-计算机网络的主要性能指标"><a href="#7-计算机网络的主要性能指标" class="headerlink" title="7. 计算机网络的主要性能指标:"></a>7. 计算机网络的主要性能指标:</h3><ol>
+<li>带宽 </li>
+<li>时延 </li>
+<li>时延带宽积 </li>
+<li>往返时延 </li>
+</ol>
+<h2 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h2><h3 id="1-物理层特性"><a href="#1-物理层特性" class="headerlink" title="1. 物理层特性"></a>1. 物理层特性</h3><ol>
+<li>机械特性</li>
+<li>电气特性 </li>
+<li>功能特性 </li>
+<li>规程特性</li>
+</ol>
+<h3 id="2-奈奎斯特定理和香农定理"><a href="#2-奈奎斯特定理和香农定理" class="headerlink" title="2. 奈奎斯特定理和香农定理"></a>2. 奈奎斯特定理和香农定理</h3><p><strong>奈奎斯特定理：</strong><br>&emsp;&emsp;理论上在理想低通信道下的最高码元传输速率为 $B = 2W Baud$，其中 $Baud(波特)$ 是码元传输速率单位，$W$ 是理想低通信道下的带宽，单位是赫兹（Hz）。</p>
+<p><strong>香农定理：</strong></p>
+<ol>
+<li>模拟信道的极限信息传输速率：$C = W\log_2(1+S/N) bit/s$ ，$dB = 10\log_{10}S/N$ 其中 $W$ 为信道的带宽（Hz），$S$ 为信道内所传信号的平均功率，$N$ 为信道内部的高斯噪声功率。</li>
+<li>数字信道的极限信息传输速率：$D = 2W\log_2M$ ，$M$ 为码元符号所能取的离散值的个数，即 $M$ 进制。</li>
+</ol>
+<h3 id="3-光纤的优点及其两种模式"><a href="#3-光纤的优点及其两种模式" class="headerlink" title="3. 光纤的优点及其两种模式"></a>3. 光纤的优点及其两种模式</h3><p><strong>优点：</strong><br>&emsp;&emsp;光纤具有传输距离远、传输速度高、频带宽、信号衰减小、不受电磁与噪音的干扰等优点，并且具有很好的保密性能。</p>
+<p><strong>两种模式：</strong></p>
+<ol>
+<li>LED(发光二极管)—-多模光纤—-频带较窄，传输特性较差；</li>
+<li>ILD（激光）—-单模光纤—-频带较宽，传输特性好，光在其中沿直线传播。</li>
+</ol>
+<h3 id="4-三种基本的调制方法"><a href="#4-三种基本的调制方法" class="headerlink" title="4. 三种基本的调制方法"></a>4. 三种基本的调制方法</h3><p>&emsp;&emsp;公有的调制方法名称：一是模拟调制法，二是键控法。</p>
+<ol>
+<li>幅移键控法（ASK)：通过改变载波信号振幅来表示数字信号1、0；ASK信号实现容易，技术简单，但容易受增益变化的影响，抗干扰能力差；可用相干检测法进行解调。</li>
+<li>频移键控法（FSK）:通过改变载波信号角频率来表示数字信号1、0；FSK实现容易，技术简单，抗干扰能力强，是目前最常用的调制技术；可用相干检测法、鉴频法等进行解调。</li>
+<li>相移键控法（PSK）：通过改变载波信号相位值来表示数字信号1、0；PSK有较强的抗干扰能力，且比FSK更有效；解调原理类似于ASK解调。</li>
+</ol>
+<h3 id="5-曼彻斯特编码和差分曼彻斯特编码"><a href="#5-曼彻斯特编码和差分曼彻斯特编码" class="headerlink" title="5. 曼彻斯特编码和差分曼彻斯特编码"></a>5. 曼彻斯特编码和差分曼彻斯特编码</h3><p><strong>曼彻斯特编码：</strong><br>&emsp;&emsp;目前应用最广泛的编码方式之一，其编码规则是每一位的中间有一个跳变，从低到高表示0，从高到低表示1。优点是位中间的跳变既可以作为数据，又可以作为时钟，无需另发同步信号，不含直流分量；缺点是效率较低。</p>
+<p><strong>差分曼彻斯特编码：</strong><br>&emsp;&emsp;是前者的改进。不同在于每比特中间的跳变仅仅作为同步用，每比特的值根据其边界是否发生跳变来决定，发生跳变是1，否则是0。抗干扰能力更强，但需要更复杂的设备，且同样有效率低的问题。</p>
+<h3 id="6-两种数字传输系统（T1，E1）"><a href="#6-两种数字传输系统（T1，E1）" class="headerlink" title="6. 两种数字传输系统（T1，E1）"></a>6. 两种数字传输系统（T1，E1）</h3><p>&emsp;&emsp;脉冲编码调制（PCM），北美的24路PCM（T1）和欧洲的30/32路PCM(E1)。我国采用后者标准，T1的速率是1.544Mbit/s,E1的速率是2.048Mbit/s。</p>
+<h3 id="7-PCM的缺点"><a href="#7-PCM的缺点" class="headerlink" title="7. PCM的缺点"></a>7. PCM的缺点</h3><p> &emsp;&emsp;PCM数字传输系统缺点：速率标准不统一；不是同步传输。</p>
+<h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><ol>
 <li>数据链路层的功能 </li>
 <li>常见的组帧的方法 </li>
 <li>循环冗余校验码的原理 </li>
@@ -450,7 +498,7 @@
 <li>VLAN的概念 </li>
 <li>划分VLAN的方法 </li>
 </ol>
-<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><ol>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><ol>
 <li>网络的异构性表现在哪些方面 </li>
 <li>中继系统的种类 </li>
 <li>拥塞控制算法 </li>
@@ -466,56 +514,154 @@
 <li>转交地址的分类 </li>
 <li>路由器的优缺点 </li>
 </ol>
-<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><ol>
-<li>传输层寻址与端口 </li>
-<li>无连接服务与面向连接服务 </li>
-<li>传输连接的建立与释放 </li>
-<li>UDP的优点 </li>
-<li>UDP和TCP报文段报头格式 </li>
-<li>TCP的流量控制 </li>
-<li>TCP的拥塞控制 </li>
-<li>TCP传送连接的管理 </li>
+<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><h3 id="1-传输层寻址与端口"><a href="#1-传输层寻址与端口" class="headerlink" title="1. 传输层寻址与端口"></a>1. 传输层寻址与端口</h3><p>&emsp;&emsp;数据链路层按MAC地址寻址，网络层按IP地址来寻址的，而传输层是按端口号来寻址的。<br>&emsp;&emsp;端口就是传输层服务访问点。不同的应用进程的报文可以通过不同的端口向下交付给传输层，再往下由传输层统一处理交给网络层，这一过程称为复用。相反，传输层从网络层收到数据统一处理后再根据不同的端口号向上交付给不同的应用进程，这一过程称为分用。从这个意义上讲，端口就是用来标志应用层的进程。<br>&emsp;&emsp;端口用一个16 bit 端口号进行标志，共允许有64k个端口号。端口号只具有本地意义，即端口号只是为了标志本计算机应用层中的各进程。根据端口号范围可将端口分为两类：</p>
+<ol>
+<li>一般端口，用来随时分配给请求通信的客户进程</li>
+<li>熟知端口，其数值一般为 0~1023</li>
 </ol>
-<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><ol>
-<li>C/S结构的优点 </li>
-<li>DNS的层次结构 </li>
-<li>域名服务器的类型 </li>
-<li>Internet的应用协议:FTP，MIME，HTTP </li>
-<li>Web页面文档的分类 </li>
-<li>生成动态文档的方法 </li>
-<li>生成活动文档的方法 </li>
-<li>URL的格式 </li>
-<li>网络管理系统逻辑模型 </li>
-<li>网络管理的主要功能 </li>
-<li>被管对象的特性 </li>
-<li>SNMP的基本元素 </li>
-<li>SNMPv3的安全模式 </li>
+<h3 id="2-无连接服务与面向连接服务"><a href="#2-无连接服务与面向连接服务" class="headerlink" title="2. 无连接服务与面向连接服务"></a>2. 无连接服务与面向连接服务</h3><p><strong>面向连接服务：</strong><br>&emsp;&emsp;基于电话系统模型，用户首先要建立一个连接，然后使用该链接，最后释放链接。</p>
+<p><strong>无连接服务：</strong><br>&emsp;&emsp;基于邮政系统模型，每一条报文都携带了完整的目标地址，所以每条报文都可以被系统独立地路由。</p>
+<h3 id="3-传输连接的建立与释放"><a href="#3-传输连接的建立与释放" class="headerlink" title="3. 传输连接的建立与释放"></a>3. 传输连接的建立与释放</h3><p>&emsp;&emsp;建立连接是个复杂的问题，实际上网络上可能会发生丢失、存储和重复分组的情况。<br>&emsp;&emsp;释放链接较前者稍简单一点。终止连接有两种方式，即非对称释放和对称释放，非对称释放很突然，可能会丢失数据。更好的一个方法可采用3次握手方法。</p>
+<h3 id="4-UDP的优点"><a href="#4-UDP的优点" class="headerlink" title="4. UDP的优点"></a>4. UDP的优点</h3><p>&emsp;&emsp;用户数据报协议（UDP），无连接协议。<br><strong>优点：</strong></p>
+<ol>
+<li>发送数据之前不需要建立连接，发送数据完后不需要释放连接，因此减少了开销和发送数据之前的时延；</li>
+<li>UDP不使用拥塞控制，不保证可靠交付，因此主机不需要维持具有许多参数的复杂的连接状态表；</li>
+<li>UDP用户数据报只有8字节的首部开销，比TCP的20字节的首部要短；</li>
+<li>由于UDP没有拥塞控制，因此网罗出现的拥塞不会使源主机的发送速率降低。</li>
 </ol>
-<h1 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h1><ol>
-<li>网络面临的4种威胁:截获、中断、篡改、伪造 </li>
-<li>替代加密和置换加密 </li>
-<li>秘密密钥加密算法：DES（明文位数，密钥位数，分组密码） </li>
-<li>公开密钥算法的特点 </li>
-<li>公开密钥加密算法：RSA </li>
-<li>数字签名 </li>
+<h3 id="5-UDP和TCP报文段报头格式"><a href="#5-UDP和TCP报文段报头格式" class="headerlink" title="5. UDP和TCP报文段报头格式"></a>5. UDP和TCP报文段报头格式</h3><h3 id="6-TCP的流量控制"><a href="#6-TCP的流量控制" class="headerlink" title="6. TCP的流量控制"></a>6. TCP的流量控制</h3><p>&emsp;&emsp;如果发送方把数据发送得过快，接收方可能会来不及接收，这就会造成数据的丢失。所谓流量控制就是让发送方的发送速率不要太快，要让接收方来得及接收。利用滑动窗口机制可以很方便地在TCP连接上实现对发送方的流量控制。</p>
+<h3 id="7-TCP的拥塞控制"><a href="#7-TCP的拥塞控制" class="headerlink" title="7. TCP的拥塞控制"></a>7. TCP的拥塞控制</h3><p><strong>拥塞：</strong><br>&emsp;&emsp;即对资源的需求超过了可用的资源。若网络中许多资源同时供应不足，网络的性能就要明显变坏，整个网络的吞吐量随之负荷的增大而下降。<br><strong>拥塞控制：</strong><br>&emsp;&emsp;防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素。<br><strong>流量控制：</strong><br>&emsp;&emsp;指点对点通信量的控制，是端到端的问题。流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收。</p>
+<h3 id="8-TCP传送连接的管理"><a href="#8-TCP传送连接的管理" class="headerlink" title="8. TCP传送连接的管理"></a>8. TCP传送连接的管理</h3><h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><h3 id="1-C-S结构的优点"><a href="#1-C-S结构的优点" class="headerlink" title="1. C/S结构的优点"></a>1. C/S结构的优点</h3><ol>
+<li>具有灵活的硬件系统构成</li>
+<li>提高程序的可维护性</li>
+<li>利于变更和维护应用技术规范</li>
+<li>进行严密的安全管理</li>
 </ol>
-<h1 id="视频、音频与无线网络"><a href="#视频、音频与无线网络" class="headerlink" title="视频、音频与无线网络"></a>视频、音频与无线网络</h1><ol>
-<li>RTP、RTCP、Qos等的概念</li>
-<li>时延、时延抖动等的处理 </li>
-<li>WLan、WPan、WMan、WLL的概念  </li>
-<li>无线局域网的DCF和PCF </li>
-<li>CSMA/CA协议的原理 </li>
+<h3 id="2-DNS的层次结构"><a href="#2-DNS的层次结构" class="headerlink" title="2. DNS的层次结构"></a>2. DNS的层次结构</h3><p>&emsp;&emsp;DNS 是一个分层级的分散式名称对应系统，有点像电脑的目录树结构：在最顶端的是一个“root”，然后其下分为好几个基本类别名称，如：com、org、edu 等；再下面是组织名称，如：ibm、microsoft、intel 等；继而是主机名称，如：www、mail、ftp 等。因为当初 internet 是从美国发展起的，所以当时并没有国域名称，但随着后来 internet 的蓬勃发展，DNS 也加进了诸如 tw、hk、cn 等国域名称。所以一个完整的 dns 名称就好象是这样的：<a href="http://www.xyz.com.tw，而整个名称对应的就是一个(或多个)" target="_blank" rel="noopener">www.xyz.com.tw，而整个名称对应的就是一个(或多个)</a> IP 位址了</p>
+<h3 id="3-域名服务器的类型"><a href="#3-域名服务器的类型" class="headerlink" title="3. 域名服务器的类型"></a>3. 域名服务器的类型</h3><ol>
+<li>本地域名服务器 </li>
+<li>根域名服务器 </li>
+<li>授权域名服务器</li>
 </ol>
-<h1 id="下一代因特网"><a href="#下一代因特网" class="headerlink" title="下一代因特网"></a>下一代因特网</h1><ol>
-<li>IPv6的特点 </li>
-<li>P2P技术的特点 </li>
-<li>标记交换原理 </li>
-<li>MPLS的封装 </li>
-<li>标记分配的方式 </li>
-<li>与以路由器作为核心网络平台的技术相比，MPLS的主要优点 </li>
-<li>Intserv的局限性 </li>
-<li>DiffServ的体系结构 </li>
-<li>DiffServ的技术特点 </li>
+<h3 id="4-Internet的应用协议-FTP，MIME，HTTP"><a href="#4-Internet的应用协议-FTP，MIME，HTTP" class="headerlink" title="4. Internet的应用协议:FTP，MIME，HTTP"></a>4. Internet的应用协议:FTP，MIME，HTTP</h3><p>&emsp;&emsp;HTTP是一种为了将位于全球各个地方的Web服务器中的内容发送给不特定多数用户而制订的协议。也就是说，可以把HTTP看作是旨在向不特定多数的用户“发放”文件的协议。<br>而FTP是为了在特定主机之间“传输”文件而开发的协议。<br>&emsp;&emsp;MIME（Multipurpose Internet Mail Extensions，多用途Internet邮件扩展）。MIME被用在电子邮件系统中，也应用到HTTP中。详情见P275/281</p>
+<h3 id="5-Web页面文档的分类"><a href="#5-Web页面文档的分类" class="headerlink" title="5. Web页面文档的分类"></a>5. Web页面文档的分类</h3><ol>
+<li>静态文档 </li>
+<li>动态文档 </li>
+<li>活动文档</li>
+</ol>
+<h3 id="6-生成动态文档的方法"><a href="#6-生成动态文档的方法" class="headerlink" title="6. 生成动态文档的方法"></a>6. 生成动态文档的方法</h3><ol>
+<li>CGI程序 </li>
+<li>内嵌的PHP  </li>
+<li>JSP  </li>
+<li>ASP</li>
+</ol>
+<h3 id="7-生成活动文档的方法"><a href="#7-生成活动文档的方法" class="headerlink" title="7. 生成活动文档的方法"></a>7. 生成活动文档的方法</h3><ol>
+<li>用java技术创建活动文档  </li>
+<li>用javascript技术创建活动文档</li>
+</ol>
+<h3 id="8-URL的格式"><a href="#8-URL的格式" class="headerlink" title="8. URL的格式"></a>8. URL的格式</h3><p>&emsp;&emsp;URL由三部分组成：资源类型、存放资源的主机域名、资源文件名。<br>&emsp;&emsp;URL的一般语法格式为(带方括号[]的为可选项)：<br>&emsp;&emsp;protocol :// hostname[:port] / path / [;parameters][?query]#fragment or file<br>其中，</p>
+<ol>
+<li>protocol（协议）：指定使用的传输协议（各种Internet应用协议）</li>
+<li>hostname（主机名）：是指存放资源的服务器的域名系统 (DNS) 主机名或 IP 地址。</li>
+<li>:port（端口号）：整数，可选，省略时使用方案的默认端口，各种传输协议都有默认的端口号，如http的默认端口为80。如果输入时省略，则使用默认端口号。有时候出于安全或其他考虑，可以在服务器上对端口进行重定义，即采用非标准端口 号，此时URL中就不能省略端口号这一项。</li>
+<li>path（路径）：由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</li>
+<li>;parameters（参数）：这是用于指定特殊参数的可选项。</li>
+<li>?query(查询)：可选，用于给动态网页（如使用CGI、ISAPI、PHP/JSP/ASP/ASP.NET等技术制作的网页）传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</li>
+<li>fragment（信息片断）：字符串，用于指定网络资源中的片断。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。</li>
+<li>file是资源文件名</li>
+</ol>
+<h3 id="9-网络管理系统逻辑模型"><a href="#9-网络管理系统逻辑模型" class="headerlink" title="9. 网络管理系统逻辑模型"></a>9. 网络管理系统逻辑模型</h3><p>&emsp;&emsp;通常一个网络管理系统在逻辑上由被管对象、管理进程和管理协议组成。</p>
+<h3 id="10-网络管理的主要功能"><a href="#10-网络管理的主要功能" class="headerlink" title="10. 网络管理的主要功能"></a>10. 网络管理的主要功能</h3><ol>
+<li>配置管理 </li>
+<li>性能管理 </li>
+<li>故障管理 </li>
+<li>计费管理 </li>
+<li>安全管理</li>
+</ol>
+<h3 id="11-被管对象的特性"><a href="#11-被管对象的特性" class="headerlink" title="11. 被管对象的特性"></a>11. 被管对象的特性</h3><ol>
+<li>类。表明被管对象拥有的属于哪个对象类。</li>
+<li>属性。被管对象拥有的特性参量。</li>
+<li>管理操作。可对被管对象施加的操作。</li>
+<li>行为。被管对象对管理操作所做出的反应。</li>
+<li>通报。被管对象可能主动发出的报告类信息。</li>
+</ol>
+<h3 id="12-SNMP的基本元素"><a href="#12-SNMP的基本元素" class="headerlink" title="12. SNMP的基本元素"></a>12. SNMP的基本元素</h3><ol>
+<li>管理者（管理进程） </li>
+<li>代理 </li>
+<li>MIB</li>
+</ol>
+<h3 id="13-SNMPv3的安全模式"><a href="#13-SNMPv3的安全模式" class="headerlink" title="13. SNMPv3的安全模式"></a>13. SNMPv3的安全模式</h3><ol>
+<li>基于用户的安全模式（USM）</li>
+<li>基于视图的访问控制模式（VACM）</li>
+</ol>
+<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><h3 id="1-网络面临的4种威胁-截获、中断、篡改、伪造"><a href="#1-网络面临的4种威胁-截获、中断、篡改、伪造" class="headerlink" title="1. 网络面临的4种威胁:截获、中断、篡改、伪造"></a>1. 网络面临的4种威胁:截获、中断、篡改、伪造</h3><p><strong>被动攻击：</strong> 截获<br><strong>主动攻击：</strong> 中断、篡改、伪造</p>
+<h3 id="2-替代加密和置换加密"><a href="#2-替代加密和置换加密" class="headerlink" title="2. 替代加密和置换加密"></a>2. 替代加密和置换加密</h3><h3 id="3-秘密密钥加密算法：DES（明文位数，密钥位数，分组密码）"><a href="#3-秘密密钥加密算法：DES（明文位数，密钥位数，分组密码）" class="headerlink" title="3. 秘密密钥加密算法：DES（明文位数，密钥位数，分组密码）"></a>3. 秘密密钥加密算法：DES（明文位数，密钥位数，分组密码）</h3><p><strong>明文位数</strong><br>&emsp;&emsp;加密前对整个明文进行分组，每个分组位64位长的二进制数据。</p>
+<p><strong>密钥位数</strong><br>&emsp;&emsp;密钥占有64位，实际长度为56位，外加8位用于奇偶校验。</p>
+<h3 id="4-公开密钥算法的特点"><a href="#4-公开密钥算法的特点" class="headerlink" title="4. 公开密钥算法的特点"></a>4. 公开密钥算法的特点</h3><p>&emsp;&emsp;公钥密码体制使用不同的加密密钥与解密密钥。</p>
+<p>&emsp;&emsp;在公钥密码体制中，加密密钥PK是向公众公开的，而解密密钥SK则是需要保密的。加密算法E和解密算法D也都是用开的。</p>
+<p>&emsp;&emsp;使用公开密钥时，在通信信道上可以是多对一的单向保密通信。</p>
+<h3 id="5-公开密钥加密算法：RSA"><a href="#5-公开密钥加密算法：RSA" class="headerlink" title="5. 公开密钥加密算法：RSA"></a>5. 公开密钥加密算法：RSA</h3><p>&emsp;&emsp;RSA体制基于数论中的大数分解问题</p>
+<h3 id="6-数字签名"><a href="#6-数字签名" class="headerlink" title="6. 数字签名"></a>6. 数字签名</h3><p><strong>功能</strong></p>
+<ol>
+<li><p>报文鉴别：接受者能够核实发送这对报文的签名</p>
+</li>
+<li><p>报文的完整性：接收者确信所受到的数据和发送者发送的完全一样而没有被篡改过</p>
+</li>
+<li><p>不可否认：发送者时候不能抵赖对报文的签名</p>
+<p>&emsp;&emsp;采用公钥算法要比采用对称密钥算法更容易实现。</p>
+</li>
+</ol>
+<h2 id="视频、音频与无线网络"><a href="#视频、音频与无线网络" class="headerlink" title="视频、音频与无线网络"></a>视频、音频与无线网络</h2><h3 id="1-RTP、RTCP、Qos等的概念"><a href="#1-RTP、RTCP、Qos等的概念" class="headerlink" title="1. RTP、RTCP、Qos等的概念"></a>1. RTP、RTCP、Qos等的概念</h3><p><strong>RTP</strong><br>&emsp;&emsp;为实时应用提供端到端的运输，但不提供任何服务质量的保证。<br>&emsp;&emsp;基于UDP协议。<br>&emsp;&emsp;RTP分组只包含RTP数据，而控制是由另一个配套使用的RTCP协议提供的。<br>&emsp;&emsp;RTP在端口号1025到65535之间选择一个未使用的偶数UDP端口号，而RTCP则使用下一个奇数端口号。5004和5005分别为RTP和RTCP的默认端口号。</p>
+<p><strong>RTCP</strong><br>  &emsp;&emsp;与RTP配合使用的协议，两者不可分割。<br> &emsp;&emsp;主要功能是：服务质量的、媒体间的同步以及多播组中成员的标志。</p>
+<p><strong>QoS</strong><br> &emsp;&emsp;服务质量。</p>
+<h3 id="2-时延、时延抖动等的处理"><a href="#2-时延、时延抖动等的处理" class="headerlink" title="2. 时延、时延抖动等的处理"></a>2. 时延、时延抖动等的处理</h3><p> &emsp;&emsp;通过缓冲区缓存后再以恒定速率读出，就变成了等时的分组，很大程度上消除了时延的抖动，但增加了时延。<br>  &emsp;&emsp;使用UDP协议，允许丢失少量分组来保证时延。</p>
+<h3 id="3-WLan、WPan、WMan、WLL的概念"><a href="#3-WLan、WPan、WMan、WLL的概念" class="headerlink" title="3. WLan、WPan、WMan、WLL的概念"></a>3. WLan、WPan、WMan、WLL的概念</h3><p><strong>WLan</strong><br>&emsp;&emsp;无线局域网（Wireless Local Area Network）</p>
+<p><strong>WPan</strong><br>&emsp;&emsp;无线个人区域网（Wireless Personal Area Network）就是在个人工作地方把属于个人使用的电子设备用无线技术连接起来自组网络，不需要使用接入点AP（Access Point），整个网络范围约为10m。</p>
+<p><strong>WMan</strong><br>&emsp;&emsp;无线城域网（Wireless Metropolitan Area Network）</p>
+<h3 id="4-无线局域网的DCF和PCF"><a href="#4-无线局域网的DCF和PCF" class="headerlink" title="4. 无线局域网的DCF和PCF"></a>4. 无线局域网的DCF和PCF</h3><h3 id="5-CSMA-CA协议的原理"><a href="#5-CSMA-CA协议的原理" class="headerlink" title="5. CSMA/CA协议的原理"></a>5. CSMA/CA协议的原理</h3><h2 id="下一代因特网"><a href="#下一代因特网" class="headerlink" title="下一代因特网"></a>下一代因特网</h2><h3 id="1-IPv6的特点"><a href="#1-IPv6的特点" class="headerlink" title="1. IPv6的特点"></a>1. IPv6的特点</h3><h3 id="2-P2P技术的特点"><a href="#2-P2P技术的特点" class="headerlink" title="2. P2P技术的特点"></a>2. P2P技术的特点</h3><ol>
+<li>非中心化 </li>
+<li>可扩展性 </li>
+<li>健壮性 </li>
+<li>高性价比 </li>
+<li>隐私保护 </li>
+<li>负载均衡</li>
+</ol>
+<h3 id="3-标记交换原理"><a href="#3-标记交换原理" class="headerlink" title="3. 标记交换原理"></a>3. 标记交换原理</h3><p>&emsp;&emsp;标记交换就是根据分组中的“标记”检索交换机内部的转发信息库，使用转发消息库给定的出口信息完成该分组的转发。</p>
+<h3 id="4-MPLS的封装"><a href="#4-MPLS的封装" class="headerlink" title="4. MPLS的封装"></a>4. MPLS的封装</h3><p>&emsp;&emsp;MPLS 独立于第二和第三层协议，诸如ATM 和IP。它提供了一种方式，将IP地址映射为简单的具有固定长度的标签，用于不同的包转发和包交换技术。它是现有路由和交换协议的接口，如IP、ATM、帧中继、资源预留协议（RSVP）、开放最短路径优先（OSPF）等等。<br>&emsp;&emsp;在MPLS 中，数据传输发生在标签交换路径（LSP）上。LSP 是每一个沿着从源端到终端的路径上的结点的标签序列。现今使用着一些标签分发协议，如标签分发协议（LDP）、RSVP 或者建于路由协议之上的一些协议，如边界网关协议（BGP）及OSPF。因为固定长度标签被插入每一个包或信元的开始处，并且可被硬件用来在两个链接间快速交换包，所以使数据的快速交换成为可能。MPLS 主要设计来解决网路问题，通用MPLS封装包括标记栈、TTL和CoS(业务等级)等。</p>
+<h3 id="5-标记分配的方式"><a href="#5-标记分配的方式" class="headerlink" title="5. 标记分配的方式"></a>5. 标记分配的方式</h3><ol>
+<li>上游分配 </li>
+<li>下游分配 </li>
+<li>按需下游分配</li>
+</ol>
+<h3 id="6-与以路由器作为核心网络平台的技术相比，MPLS的主要优点"><a href="#6-与以路由器作为核心网络平台的技术相比，MPLS的主要优点" class="headerlink" title="6. 与以路由器作为核心网络平台的技术相比，MPLS的主要优点"></a>6. 与以路由器作为核心网络平台的技术相比，MPLS的主要优点</h3><ol>
+<li>转发处理简单</li>
+<li>提供显式路由功能</li>
+<li>能够进行业务量规划</li>
+<li>提供QoS保证</li>
+<li>入口一次完成业务流分类</li>
+<li>提供多种分类细度</li>
+<li>用一种转发方式实现各种业务的转发（包括单播、组播和有特定质量要求的单播等）</li>
+</ol>
+<h3 id="7-Intserv的局限性"><a href="#7-Intserv的局限性" class="headerlink" title="7. Intserv的局限性"></a>7. Intserv的局限性</h3><ol>
+<li>状态信息的数量与流的数目成正比，不具有扩展性</li>
+<li>对路由器的要求高，所有的路由器必须实现RSVP、接纳控制、MF分类和分组调度</li>
+<li>该服务不适合于短生存期的数据流</li>
+<li>许多应用需要某种形式的QoS,但是无法使用intserv模型来表达QoS请求</li>
+<li>必要的策略控制和价格机制尚处于发展阶段，无法付诸应用</li>
+<li>IntServ体系结构复杂</li>
+<li>综合服务IntServ所定义的服务质量等级数量太少，不够灵活</li>
+</ol>
+<h3 id="8-DiffServ的体系结构"><a href="#8-DiffServ的体系结构" class="headerlink" title="8. DiffServ的体系结构"></a>8. DiffServ的体系结构</h3><ol>
+<li>DS区域与DS区</li>
+<li>区分服务表记域与区分服务表记DSCP</li>
+<li>边界结点的传输分类与调节机制</li>
+<li>每条行为PHB、PHB组与PHB组簇</li>
+</ol>
+<h3 id="9-DiffServ的技术特点"><a href="#9-DiffServ的技术特点" class="headerlink" title="9. DiffServ的技术特点"></a>9. DiffServ的技术特点</h3><ol>
+<li>层次化结构</li>
+<li>总体集中控制策略</li>
+<li>利用面向对象的模块化思想与封装思想，增强了灵活性与通用性</li>
+<li>不影响路由</li>
 </ol>
 <div class="reference-linking">参考书目 </div>
 * 《计算机网络》（第六版)，谢希仁，电子工业出版社,2013年。 
@@ -831,7 +977,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物理层"><span class="nav-text">物理层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据链路层"><span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络层"><span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传输层"><span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用层"><span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络安全"><span class="nav-text">网络安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视频、音频与无线网络"><span class="nav-text">视频、音频与无线网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下一代因特网"><span class="nav-text">下一代因特网</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-计算机网络的定义"><span class="nav-text">1. 计算机网络的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-计算机网络的功能"><span class="nav-text">2. 计算机网络的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-计算机网络的拓扑结构的类型"><span class="nav-text">3. 计算机网络的拓扑结构的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-OSI-RM及其了解各层的功能"><span class="nav-text">4. OSI/RM及其了解各层的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-TCP-IP参考模型"><span class="nav-text">5. TCP/IP参考模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-计算机网络协议、接口和服务的概念"><span class="nav-text">6. 计算机网络协议、接口和服务的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-计算机网络的主要性能指标"><span class="nav-text">7. 计算机网络的主要性能指标:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理层"><span class="nav-text">物理层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-物理层特性"><span class="nav-text">1. 物理层特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-奈奎斯特定理和香农定理"><span class="nav-text">2. 奈奎斯特定理和香农定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-光纤的优点及其两种模式"><span class="nav-text">3. 光纤的优点及其两种模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-三种基本的调制方法"><span class="nav-text">4. 三种基本的调制方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-曼彻斯特编码和差分曼彻斯特编码"><span class="nav-text">5. 曼彻斯特编码和差分曼彻斯特编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-两种数字传输系统（T1，E1）"><span class="nav-text">6. 两种数字传输系统（T1，E1）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-PCM的缺点"><span class="nav-text">7. PCM的缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据链路层"><span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层"><span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层"><span class="nav-text">传输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-传输层寻址与端口"><span class="nav-text">1. 传输层寻址与端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-无连接服务与面向连接服务"><span class="nav-text">2. 无连接服务与面向连接服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-传输连接的建立与释放"><span class="nav-text">3. 传输连接的建立与释放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-UDP的优点"><span class="nav-text">4. UDP的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-UDP和TCP报文段报头格式"><span class="nav-text">5. UDP和TCP报文段报头格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-TCP的流量控制"><span class="nav-text">6. TCP的流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-TCP的拥塞控制"><span class="nav-text">7. TCP的拥塞控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-TCP传送连接的管理"><span class="nav-text">8. TCP传送连接的管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层"><span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-C-S结构的优点"><span class="nav-text">1. C/S结构的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DNS的层次结构"><span class="nav-text">2. DNS的层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-域名服务器的类型"><span class="nav-text">3. 域名服务器的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Internet的应用协议-FTP，MIME，HTTP"><span class="nav-text">4. Internet的应用协议:FTP，MIME，HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Web页面文档的分类"><span class="nav-text">5. Web页面文档的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-生成动态文档的方法"><span class="nav-text">6. 生成动态文档的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-生成活动文档的方法"><span class="nav-text">7. 生成活动文档的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-URL的格式"><span class="nav-text">8. URL的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-网络管理系统逻辑模型"><span class="nav-text">9. 网络管理系统逻辑模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-网络管理的主要功能"><span class="nav-text">10. 网络管理的主要功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-被管对象的特性"><span class="nav-text">11. 被管对象的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-SNMP的基本元素"><span class="nav-text">12. SNMP的基本元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-SNMPv3的安全模式"><span class="nav-text">13. SNMPv3的安全模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络安全"><span class="nav-text">网络安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-网络面临的4种威胁-截获、中断、篡改、伪造"><span class="nav-text">1. 网络面临的4种威胁:截获、中断、篡改、伪造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-替代加密和置换加密"><span class="nav-text">2. 替代加密和置换加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-秘密密钥加密算法：DES（明文位数，密钥位数，分组密码）"><span class="nav-text">3. 秘密密钥加密算法：DES（明文位数，密钥位数，分组密码）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-公开密钥算法的特点"><span class="nav-text">4. 公开密钥算法的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-公开密钥加密算法：RSA"><span class="nav-text">5. 公开密钥加密算法：RSA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-数字签名"><span class="nav-text">6. 数字签名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视频、音频与无线网络"><span class="nav-text">视频、音频与无线网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-RTP、RTCP、Qos等的概念"><span class="nav-text">1. RTP、RTCP、Qos等的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-时延、时延抖动等的处理"><span class="nav-text">2. 时延、时延抖动等的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-WLan、WPan、WMan、WLL的概念"><span class="nav-text">3. WLan、WPan、WMan、WLL的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-无线局域网的DCF和PCF"><span class="nav-text">4. 无线局域网的DCF和PCF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-CSMA-CA协议的原理"><span class="nav-text">5. CSMA/CA协议的原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下一代因特网"><span class="nav-text">下一代因特网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-IPv6的特点"><span class="nav-text">1. IPv6的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-P2P技术的特点"><span class="nav-text">2. P2P技术的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-标记交换原理"><span class="nav-text">3. 标记交换原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-MPLS的封装"><span class="nav-text">4. MPLS的封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-标记分配的方式"><span class="nav-text">5. 标记分配的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-与以路由器作为核心网络平台的技术相比，MPLS的主要优点"><span class="nav-text">6. 与以路由器作为核心网络平台的技术相比，MPLS的主要优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Intserv的局限性"><span class="nav-text">7. Intserv的局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-DiffServ的体系结构"><span class="nav-text">8. DiffServ的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-DiffServ的技术特点"><span class="nav-text">9. DiffServ的技术特点</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -858,12 +1004,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">227k</span>
+    <span title="站点总字数">237k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:26</span>
+    <span title="站点阅读时长">3:36</span>
 </div>
 
         
