@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="2020考研计算机网络笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-27T14:55:31.204Z">
+<meta property="og:updated_time" content="2019-09-28T14:38:48.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="考研计算机网络笔记">
 <meta name="twitter:description" content="2020考研计算机网络笔记">
@@ -215,7 +215,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">27</span></a>
 
   </li>
       
@@ -325,7 +325,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-27 22:55:31" itemprop="dateModified" datetime="2019-09-27T22:55:31+08:00">2019-09-27</time>
+                <time title="修改时间：2019-09-28 22:38:48" itemprop="dateModified" datetime="2019-09-28T22:38:48+08:00">2019-09-28</time>
               </span>
             
           
@@ -385,7 +385,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>13k</span>
+              <span>17k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -395,7 +395,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>12 分钟</span>
+              <span>15 分钟</span>
             </span>
           
             <div class="post-description">2020考研计算机网络笔记</div>
@@ -691,17 +691,98 @@
 <hr>
 <br>
 
-<h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><h2 id="3-1-数据链路层的功能"><a href="#3-1-数据链路层的功能" class="headerlink" title="3.1 数据链路层的功能"></a>3.1 数据链路层的功能</h2><h3 id="3-1-5-差错控制"><a href="#3-1-5-差错控制" class="headerlink" title="3.1.5 差错控制"></a>3.1.5 差错控制</h3><p>&emsp;&emsp;用以是发送方确定接收方是否正确收到由其发送的数据的方法称为<strong>差错控制</strong>。这些错误可分为位错和帧错。</p>
+<h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><h2 id="3-1-数据链路层的功能"><a href="#3-1-数据链路层的功能" class="headerlink" title="3.1 数据链路层的功能"></a>3.1 数据链路层的功能</h2><p>&emsp;&emsp;其主要作用是加强物理层传输原始比特流的功能，将物理层提供的可能出错的物理连接改造为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
+<h3 id="3-1-1-为网络层提供服务"><a href="#3-1-1-为网络层提供服务" class="headerlink" title="3.1.1 为网络层提供服务"></a>3.1.1 为网络层提供服务</h3><ol>
+<li>无确认的无连接服务：适用于实时通信或误码率较低的通信信道，如以太网。</li>
+<li>有确认的无连接服务：源机器发送数据帧时不需先建立链路连接，但目的机器收到数据是必须发回确认。适用于误码率较高的通信信道，如无线通信。</li>
+<li>有确认的面向连接服务：目的机器对收到的每一帧都要给出确认，源机器收到确认后才能发送下一帧，因而该服务的可靠性最高。适用于通信要求（可靠性，实时性）较高的场合。</li>
+</ol>
+<p><strong>注意：</strong>有连接就一定要确认，即不存在无确认的面向连接的服务。</p>
+<h3 id="3-1-3-帧定界、帧同步于透明传输"><a href="#3-1-3-帧定界、帧同步于透明传输" class="headerlink" title="3.1.3 帧定界、帧同步于透明传输"></a>3.1.3 帧定界、帧同步于透明传输</h3><p>&emsp;&emsp;首部和尾部中含有很多控制信息，他们的一个重要作用是确定帧的界限，即帧定界。如在HDLC通信归程中，用标识位F（01111110）来标识帧的开始和结束。</p>
+<table>
+<thead>
+<tr>
+<th>比特</th>
+<th>8</th>
+<th>8</th>
+<th>8</th>
+<th>可变</th>
+<th>16</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标志F</td>
+<td>地址A</td>
+<td>控制C</td>
+<td>信息I</td>
+<td>帧校验序列FCS</td>
+<td>标志F</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;透明传输就是不管所传数据是什么样的比特组合，都应当能在链路上传送。</p>
+<h3 id="3-1-4-流量控制"><a href="#3-1-4-流量控制" class="headerlink" title="3.1.4 流量控制"></a>3.1.4 流量控制</h3><p>&emsp;&emsp;流量控制实际上就是控制发送方的数据流量，使其发送的速率不超过接收方的接收能力。</p>
+<p>&emsp;&emsp;流量控制并不是数据链路层特有的功能，许多高层协议中也提供此功能，只不过控制的对象不同而已。对于数据链路层来说，控制的事想另两结点之间数据链路上的流量，而对于运输层来说，控制的是源端到目的端之间的流量。</p>
+<h3 id="3-1-5-差错控制"><a href="#3-1-5-差错控制" class="headerlink" title="3.1.5 差错控制"></a>3.1.5 差错控制</h3><p>&emsp;&emsp;用以是发送方确定接收方是否正确收到由其发送的数据的方法称为<strong>差错控制</strong>。这些错误可分为位错和帧错。</p>
 <p>&emsp;&emsp;位错指某些位出现了差错。通常采用<strong>循环冗余校验（CRC）</strong>方式发现错位，通过<strong>自动重传请求（Automatic Repeat reQuest，ARQ）</strong>方式来重传出错的帧。</p>
 <p>&emsp;&emsp;帧错指帧的丢失、重复或失序等错误。在数据链路层引入<strong>定时器和编号机制</strong>，能保证每一帧最终都能有且仅有一次正确的交付给目的地。</p>
-<h2 id="3-3-差错控制"><a href="#3-3-差错控制" class="headerlink" title="3.3 差错控制"></a>3.3 差错控制</h2><p><a id="CRC"></a><br><strong>循环冗余码</strong><br>&emsp;&emsp;<strong>循环冗余码（Cyclic Redundancy Code，CRC）</strong>又称为多项式码。</p>
-<h2 id="3-4-流量控制与可靠传输机制"><a href="#3-4-流量控制与可靠传输机制" class="headerlink" title="3.4 流量控制与可靠传输机制"></a>3.4 流量控制与可靠传输机制</h2><h3 id="3-4-1-流量控制、可靠传输与滑动窗口机制"><a href="#3-4-1-流量控制、可靠传输与滑动窗口机制" class="headerlink" title="3.4.1 流量控制、可靠传输与滑动窗口机制"></a>3.4.1 流量控制、可靠传输与滑动窗口机制</h3><p><strong>可靠传输机制</strong> </p>
+<h2 id="组帧"><a href="#组帧" class="headerlink" title="组帧"></a>组帧</h2><p>&emsp;&emsp;数据链路层之所以把比特组合成帧为单位传输，是为了在出错时只重发出错的帧，而不必重发全部数据，从而提高效率。</p>
+<h3 id="3-2-1-字符计数法"><a href="#3-2-1-字符计数法" class="headerlink" title="3.2.1 字符计数法"></a>3.2.1 字符计数法</h3><p>&emsp;&emsp;计数字段提供的字节数包含自身所占用的一个字节。这种方法最大的问题在于，如果计数字段出错，即失去了帧边界划分的依据。</p>
+<h3 id="3-2-2-字符填充的首尾定界符法"><a href="#3-2-2-字符填充的首尾定界符法" class="headerlink" title="3.2.2 字符填充的首尾定界符法"></a>3.2.2 字符填充的首尾定界符法</h3><p>&emsp;&emsp;使用一些特殊的字符来定界一帧的开始和结束。可以在特殊字符前面填充一个转义字符（DLE）来加以区分（转义字符是ASCII码中的控制字符，是一个字符，而非“DLE”三个字符的组合）。接收方收到数据后会自己删除这个插入的DLE字符。</p>
+<h3 id="3-2-3-比特填充的首尾标志法"><a href="#3-2-3-比特填充的首尾标志法" class="headerlink" title="3.2.3 比特填充的首尾标志法"></a>3.2.3 比特填充的首尾标志法</h3><p>&emsp;&emsp;01111110来标志一帧的开始和结束。发送方的数据链路层在信息位中遇到5个连续的“1”时，将自动在其后插入一个“0”；而接收方做该过程的逆操作，即每收到5个连续的“1”时，自动删除后面紧跟的“0”，以恢复原信息。<br>&emsp;&emsp;比特填充法很容易由硬件来实现，性能优于字符填充法。</p>
+<h3 id="3-2-4-违规编码法"><a href="#3-2-4-违规编码法" class="headerlink" title="3.2.4 违规编码法"></a>3.2.4 违规编码法</h3><p>&emsp;&emsp;“高-高”电平对和“低-低”电平对在数据比特中是违规的。可以借用这些违规编码序列来定界帧的起始和终止。局域网IEEE8.2标准就采用了这种方法。<br>&emsp;&emsp;违规编码法不需要采用任何填充技术，便能实现数据的透明传输，但它只适用于采用冗余编码的特殊编码环境。</p>
+<p>&emsp;&emsp;目前较常用的组帧方法是比特填充法和违规编码法。</p>
+<h2 id="3-3-差错控制"><a href="#3-3-差错控制" class="headerlink" title="3.3 差错控制"></a>3.3 差错控制</h2><p>&emsp;&emsp;噪声的两大类：</p>
+<ul>
+<li>一类是信道所固有的、持续存在的随机热噪声</li>
+<li>另一类是由外界特定的短暂原因所造成的冲击噪声。<br>&emsp;&emsp;前者可以通过提高信噪比来减少或避免干扰，而后者不可能靠提高信号幅度来避免干扰造成的差错，是产生差错的重要原因。</li>
+</ul>
+<p>&emsp;&emsp;差错控制又可分为：检错编码和纠错编码</p>
+<h3 id="3-3-1-检错编码"><a href="#3-3-1-检错编码" class="headerlink" title="3.3.1 检错编码"></a>3.3.1 检错编码</h3><p><strong>奇偶校验码</strong><br>&emsp;&emsp;奇偶校验码是奇校验码和偶校验码的统称，是一种最基本的检错码。它由n-1位信息元和1位校验元组成。又分为垂直奇偶校验、水平奇偶校验和水平垂直奇偶校验。</p>
+<p><a id="CRC"></a><br><strong>循环冗余码</strong><br>&emsp;&emsp;<strong>循环冗余码（Cyclic Redundancy Code，CRC）</strong>又称为多项式码。</p>
+<p>&emsp;&emsp;假设一个帧有 $m$ 位，其对应的多项式为 $M(x)$ ，计算冗余码的步骤如下：</p>
+<ol>
+<li>加0 。假设 $G(x)$ 的阶为 $r$，在帧的低位端加上 $r$ 个0 。</li>
+<li>模2除。利用模2除法，用$G(x)$对用的数据串去除第一步中计算出的数据串，得到的余数即为冗余码（共 $r$ 位，前面的0不可省略）。</li>
+<li>循环直到余数小于除数时，该余数为最终余数。<br>&emsp;&emsp;加法不进位，减法不借位，它刚好是异或操作。</li>
+</ol>
+<h3 id="3-3-2-纠错编码"><a href="#3-3-2-纠错编码" class="headerlink" title="3.3.2 纠错编码"></a>3.3.2 纠错编码</h3><p>&emsp;&emsp;最常见的纠错编码是海明码，它能发现双比特错，但只能纠正但比特错。</p>
+<p>&emsp;&emsp;海明码“纠错” $d$ 位，需要码距为 $2d+1$ 的编码方案；“检错” $d$ 位，则只需码距为 $d+1$<br>&emsp;&emsp;在 $k$ 比特信息位上附加 $r$ 比特冗余信息，构成 $k+r$ 比特的码字，必须满足 $2^r\ge k+r+1$</p>
+<h3 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>热噪声一般是信道固有的，引起的差错是随机差错，可以通过提高信噪比来降低他对数据传输的影响。</li>
+<li>奇偶校验码只能发现奇数个比特的错误。</li>
+</ol>
+<h2 id="3-4-流量控制与可靠传输机制"><a href="#3-4-流量控制与可靠传输机制" class="headerlink" title="3.4 流量控制与可靠传输机制"></a>3.4 流量控制与可靠传输机制</h2><h3 id="3-4-1-流量控制、可靠传输与滑动窗口机制"><a href="#3-4-1-流量控制、可靠传输与滑动窗口机制" class="headerlink" title="3.4.1 流量控制、可靠传输与滑动窗口机制"></a>3.4.1 流量控制、可靠传输与滑动窗口机制</h3><p><strong>停止-等待流量控制基本原理</strong><br>&emsp;&emsp;每次只允许发送一帧，然后就陷入等待接收方确认信息的过程，因而传输效率很低。</p>
+<p><strong>滑动窗口流量控制机制基本原理</strong><br>&emsp;&emsp;若接收到的数据帧落在接收窗口之外，则一律将其丢弃。</p>
+<p>&emsp;&emsp;重要特性：</p>
+<ol>
+<li>只有接收窗口向前滑动时，发送窗口才有可能向前滑动。</li>
+<li>窗口大小差别<ol>
+<li>停止等待：发送窗口大小$=1$，接收窗口大小$=1$ 。</li>
+<li>后退N帧协议：发送窗口大小$&gt;1$，接收窗口大小$=1$ 。</li>
+<li>选择重传协议：发送窗口大小$&gt;1$，接收窗口大小$&gt;1$ 。</li>
+</ol>
+</li>
+<li>接收窗口大小为1时，可保证帧的有序接收。</li>
+<li>数据链路层的滑动窗口协议中，窗口大小在传输过程中是固定的。</li>
+</ol>
+<p><strong>可靠传输机制</strong> </p>
 <p><a id="ARQ"></a><br>&emsp;&emsp;<strong>自动重传请求（Automatic Repeat reQuest，ARQ）</strong>通过接收方请求发送方重传出错的数据帧来回复出错的帧，是通信中用于处理信道所带来差错的方法之一。</p>
 <ol>
 <li>停止-等待（Stop-and-Wait）ARQ</li>
 <li>后退N帧（Go-Back-N）ARQ</li>
 <li>选择重传（Selective Repeat）ARQ</li>
 </ol>
+<p>&emsp;&emsp;在数据链路层中流量控制和可靠传输机制是交织在一起的。</p>
+<h3 id="3-4-2-单帧滑动窗口与停止-等待协议"><a href="#3-4-2-单帧滑动窗口与停止-等待协议" class="headerlink" title="3.4.2 单帧滑动窗口与停止-等待协议"></a>3.4.2 单帧滑动窗口与停止-等待协议</h3><p><a id="ACK"></a><br>&emsp;&emsp;为了超时重发和判定重复帧的需要，发送方和接收方都必须设置一个帧缓冲区。只有在收到接收方发来的确认帧ACK时，放可清除此副本。<br>&emsp;&emsp;停止等待协议的通信信道利用率很低。</p>
+<h3 id="3-4-3-多帧滑动窗口与后退N帧协议（GBN）"><a href="#3-4-3-多帧滑动窗口与后退N帧协议（GBN）" class="headerlink" title="3.4.3 多帧滑动窗口与后退N帧协议（GBN）"></a>3.4.3 多帧滑动窗口与后退N帧协议（GBN）</h3><p>&emsp;&emsp;当接收方检测出失序的信息帧后，要求发送方发送最后一个正确接收的信息帧之后的所有未被确认的帧；或者当发送方发送了N个帧后，若发现现该N个帧的前一个帧在计时器超时后仍未返回确认信息，则该帧被判为出错或丢失，此时发送方就不得不重传该出错帧及随后的N个帧。换句话说，接收方只允许按顺序接收帧。</p>
+<p>&emsp;&emsp;对某一数据的确认就表明该数据帧和此前所有的数据帧均已正确无误地收到。</p>
+<p>&emsp;&emsp;后退N帧协议的接收窗口为1可保证按序接收数据帧。若采用n比特对帧编号，则其发送窗口的尺寸 $W_T$ 应满足 $1\le W_T \le 2^n-1$。</p>
+<p>&emsp;&emsp;后退N帧协议不一定就优于停止等待协议。</p>
+<h3 id="3-4-4-多帧滑动窗口与选择重传协议"><a href="#3-4-4-多帧滑动窗口与选择重传协议" class="headerlink" title="3.4.4 多帧滑动窗口与选择重传协议"></a>3.4.4 多帧滑动窗口与选择重传协议</h3><p>&emsp;&emsp;$接收窗口W_R+发送窗口W_T\le 2^n$，接收窗口尺寸不应该超过序号范围的一半，即$W_R\le2^{(n-1)}$<br>&emsp;&emsp;接收窗口为最大值时，$W_{Tmax}=W_{Rmax}=2^{(n-1)}$。一般情况下，在SR协议中，接收窗口的大小和发送窗口的大小时相同的。</p>
+<p>&emsp;&emsp;缓冲区的数目等于窗口的大小，而不是序号数目。</p>
+<p>&emsp;&emsp;信道的效率，也称信道利用率。信道利用率是对发送方而言的，是指发送方在一个发送周期的时间内，有效的发送数据所需要的时间占整个发送周期的比率。发送方从开始发送数据到收到第一个确认帧位置，称为一个发送周期。<br>&emsp;&emsp;信道利用率为 $（L/C）/T$。<br>$$信道吞吐量=信道利用率\times 发送方的发送速率$$</p>
 <p><a id="MAC"></a></p>
 <h2 id="3-5-介质访问控制"><a href="#3-5-介质访问控制" class="headerlink" title="3.5 介质访问控制"></a>3.5 介质访问控制</h2><h3 id="3-5-2随机访问介质访问控制"><a href="#3-5-2随机访问介质访问控制" class="headerlink" title="3.5.2随机访问介质访问控制"></a>3.5.2随机访问介质访问控制</h3><p><a id="CSMA"></a><br><strong>CSMA协议</strong></p>
 <p><a id="CSMA/CD"></a><br><strong>CSMA/CD协议</strong><br>&emsp;&emsp;工作流程：先听后发，边听边发（区别于<a href="#CSMA">CSMA</a>协议），冲突停发，随机重发</p>
@@ -784,7 +865,7 @@
 <td>2</td>
 </tr>
 </tbody></table>
-<h3 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h3><ol>
+<h3 id="总结-6"><a href="#总结-6" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>在使用静态地址的系统中，如果有重复的硬件地址，那么这两个设备都不能正常工作。</li>
 </ol>
 <h2 id="3-7-广域网"><a href="#3-7-广域网" class="headerlink" title="3.7 广域网"></a>3.7 广域网</h2><h3 id="3-7-1-广域网的基本概念"><a href="#3-7-1-广域网的基本概念" class="headerlink" title="3.7.1 广域网的基本概念"></a>3.7.1 广域网的基本概念</h3><p>&emsp;&emsp;广域网不等于互联网，互联网可以连接不同类型的网络。</p>
@@ -800,7 +881,7 @@
 <li>异步响应方式</li>
 </ol>
 <p><strong>帧</strong><br>&emsp;&emsp;可将HDLC帧划分为三类：信息帧（I帧）、监督帧（S帧）、无编号帧（U帧） </p>
-<h3 id="总结-6"><a href="#总结-6" class="headerlink" title="总结"></a>总结</h3><ol>
+<h3 id="总结-7"><a href="#总结-7" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>PPP与HDLC的区别：<ol>
 <li>PPP协议是面向字节的，HDLC协议是面向比特的。</li>
 <li>PPP帧比HDLC帧多一个2字节的协议字段。当协议字段值为0x0021时，表示信息字段是IP数据报。</li>
@@ -810,7 +891,7 @@
 </ol>
 <h2 id="3-8-数据链路层设备"><a href="#3-8-数据链路层设备" class="headerlink" title="3.8 数据链路层设备"></a>3.8 数据链路层设备</h2><h3 id="3-8-2-局域网交换机及其工作原理"><a href="#3-8-2-局域网交换机及其工作原理" class="headerlink" title="3.8.2 局域网交换机及其工作原理"></a>3.8.2 局域网交换机及其工作原理</h3><p><a id="交换机"></a><br><strong>局域网交换机</strong><br>&emsp;&emsp;桥接器的主要限制是在任意一时刻通常只能执行一个帧的转发操作，由此出现了局域网交换机，又称以太网交换机。<br>&emsp;&emsp;本质上来说，以太网交换机是一个多端口的网桥。</p>
 <p><a id="VLAN"></a><br>&emsp;&emsp;<strong>虚拟局域网（Virtual LAN，VLAN）</strong>不仅可以隔离冲突域，而且可以隔离广播域。</p>
-<h4 id="总结-7"><a href="#总结-7" class="headerlink" title="总结"></a>总结</h4><ol>
+<h4 id="总结-8"><a href="#总结-8" class="headerlink" title="总结"></a>总结</h4><ol>
 <li>路由表通常包含目的网络和到达该目的网络路径上的下一个路由器的IP地址。</li>
 </ol>
 <br>
@@ -819,7 +900,7 @@
 <br>
 
 <h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><h2 id="4-1-网络层的功能"><a href="#4-1-网络层的功能" class="headerlink" title="4.1 网络层的功能"></a>4.1 网络层的功能</h2><h3 id="异构网络互联"><a href="#异构网络互联" class="headerlink" title="异构网络互联"></a>异构网络互联</h3><p><a id="IP"></a><br>&emsp;&emsp;<strong>网际协议（Internet Protocol，IP）</strong></p>
-<h2 id="4-3-IPv4"><a href="#4-3-IPv4" class="headerlink" title="4.3 IPv4"></a>4.3 IPv4</h2><h3 id="总结-8"><a href="#总结-8" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="4-3-IPv4"><a href="#4-3-IPv4" class="headerlink" title="4.3 IPv4"></a>4.3 IPv4</h2><h3 id="总结-9"><a href="#总结-9" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>IP分组的校验字段仅检查分组的首部信息，不包括数据部分。</li>
 <li>分片最终只有在目的主机才会被重组。</li>
 <li>CIDR中，选择最长的匹配结果的网络路由。</li>
@@ -829,7 +910,7 @@
 <li>0.0.0.0/32可作为本主机在网络上的源地址，但不能作为目的地址。</li>
 <li>NAT的表项需要管理员添加，NAT表中如果找不到对应条目，则不转发该分组。</li>
 </ol>
-<h2 id="4-4-IPv6"><a href="#4-4-IPv6" class="headerlink" title="4.4 IPv6"></a>4.4 IPv6</h2><h3 id="总结-9"><a href="#总结-9" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="4-4-IPv6"><a href="#4-4-IPv6" class="headerlink" title="4.4 IPv6"></a>4.4 IPv6</h2><h3 id="总结-10"><a href="#总结-10" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>IPv6没有校验和字段。</li>
 <li>IPv6不允许分片。</li>
 </ol>
@@ -880,7 +961,7 @@
 </tr>
 </tbody></table>
 <h2 id="4-6-组播"><a href="#4-6-组播" class="headerlink" title="4.6 组播"></a>4.6 组播</h2><p>&emsp;&emsp;以太网组播地址范围：01-00-5E-00-00-00 到 01-00-5E-7F-FF-FF<br>&emsp;&emsp;IP组播地址范围：224.0.0.0 - 239.255.255.255</p>
-<h2 id="4-8-网络层设备"><a href="#4-8-网络层设备" class="headerlink" title="4.8 网络层设备"></a>4.8 网络层设备</h2><h3 id="总结-10"><a href="#总结-10" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="4-8-网络层设备"><a href="#4-8-网络层设备" class="headerlink" title="4.8 网络层设备"></a>4.8 网络层设备</h2><h3 id="总结-11"><a href="#总结-11" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>路由器只能根据IP地址进行转发。</li>
 <li>路由表中默认路由的目的地址和子网掩码都是0.0.0.0</li>
 </ol>
@@ -889,12 +970,12 @@
 <hr>
 <br>
 
-<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><h2 id="5-1-传输层提供的服务"><a href="#5-1-传输层提供的服务" class="headerlink" title="5.1 传输层提供的服务"></a>5.1 传输层提供的服务</h2><h3 id="总结-11"><a href="#总结-11" class="headerlink" title="总结"></a>总结</h3><ol>
+<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><h2 id="5-1-传输层提供的服务"><a href="#5-1-传输层提供的服务" class="headerlink" title="5.1 传输层提供的服务"></a>5.1 传输层提供的服务</h2><h3 id="总结-12"><a href="#总结-12" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>主机与主机之间的通信称为点到点的通信，进程与进程之间的通信称为端到端的通信。</li>
 <li>当一个层级是不可靠传输，要最终实现可靠传输，至少由该层以上的一层来实现可靠性方面的全部工作。</li>
 </ol>
 <p><a id="UDP"></a></p>
-<h2 id="5-2-UDP协议"><a href="#5-2-UDP协议" class="headerlink" title="5.2 UDP协议"></a>5.2 UDP协议</h2><h3 id="总结-12"><a href="#总结-12" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="5-2-UDP协议"><a href="#5-2-UDP协议" class="headerlink" title="5.2 UDP协议"></a>5.2 UDP协议</h2><h3 id="总结-13"><a href="#总结-13" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>UDP的校验和不是必需的，如果不使用校验和，那么将校验和字段置为0，而如果校验和的计算恰好为0，那么将校验和置为全1。</li>
 <li>传输层分用的定义是，接收方的传输层剥去报文首部后，能把这些数据正确交付到目的的进程。</li>
 </ol>
@@ -903,19 +984,19 @@
 <hr>
 <br>
 
-<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><h2 id="6-1-网络应用模型"><a href="#6-1-网络应用模型" class="headerlink" title="6.1 网络应用模型"></a>6.1 网络应用模型</h2><h3 id="总结-13"><a href="#总结-13" class="headerlink" title="总结"></a>总结</h3><ol>
+<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><h2 id="6-1-网络应用模型"><a href="#6-1-网络应用模型" class="headerlink" title="6.1 网络应用模型"></a>6.1 网络应用模型</h2><h3 id="总结-14"><a href="#总结-14" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>客户机是面向用户的，服务器是面向任务的。</li>
 </ol>
 <p><a id="DNS"></a></p>
-<h2 id="6-2-域名系统"><a href="#6-2-域名系统" class="headerlink" title="6.2 域名系统"></a>6.2 域名系统</h2><h3 id="总结-14"><a href="#总结-14" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="6-2-域名系统"><a href="#6-2-域名系统" class="headerlink" title="6.2 域名系统"></a>6.2 域名系统</h2><h3 id="总结-15"><a href="#总结-15" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>每台主机都必须在授权域名服务器处注册登记，授权域名服务器一定能够将其管辖的主机转换为该主机的IP地址。</li>
 </ol>
 <p><a id="FTP"></a></p>
-<h2 id="6-3-文件传输协议"><a href="#6-3-文件传输协议" class="headerlink" title="6.3 文件传输协议"></a>6.3 文件传输协议</h2><h3 id="总结-15"><a href="#总结-15" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="6-3-文件传输协议"><a href="#6-3-文件传输协议" class="headerlink" title="6.3 文件传输协议"></a>6.3 文件传输协议</h2><h3 id="总结-16"><a href="#总结-16" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>针对文件传输FTP，系统管理员建立了一个特殊的用户ID，名为anonymous，即匿名用户。该用户ID的密码可以是任何字符串。</li>
 </ol>
 <p><a id="WWW"></a></p>
-<h2 id="6-5-万维网"><a href="#6-5-万维网" class="headerlink" title="6.5 万维网"></a>6.5 万维网</h2><h3 id="总结-16"><a href="#总结-16" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="6-5-万维网"><a href="#6-5-万维网" class="headerlink" title="6.5 万维网"></a>6.5 万维网</h2><h3 id="总结-17"><a href="#总结-17" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>使用HEAD方法时服务器可对HTTP报文进行响应，但不会返回请求对象，其作用主要是调试。</li>
 <li>Connection：连接方式，Close表明为非持续连接方式，keep-alive表示持续连接方式。</li>
 </ol>
@@ -1130,6 +1211,7 @@
 <ol>
 <li><a href="#CRC">CRC</a>：循环冗余校验（Cyclic Redundancy Code）</li>
 <li><a href="#ARQ">ARQ</a>：自动重传请求（Automatic Repeat reQuest）</li>
+<li><a href="#FEC">FEC</a>：前向纠错（Forward Error Correction）</li>
 <li><a href="#ACK">ACK</a>：确认帧</li>
 <li><a href="#MAC">MAC</a>: 介质访问控制（Medium Access Control）</li>
 <li><a href="#FDM">FDM</a>： 频分多路复用</li>
@@ -1216,6 +1298,13 @@
     <li class="popular-posts-item">
       
       
+      <div class="popular-posts-title"><a href="\2019\09\28\考研计算机网络知识框架\" rel="bookmark">考研计算机网络知识框架</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
       <div class="popular-posts-title"><a href="\2019\09\18\2019重邮计算机网络（803）真题\" rel="bookmark">2019重邮计算机网络（803）真题</a></div>
       
     </li>
@@ -1238,13 +1327,6 @@
       
       
       <div class="popular-posts-title"><a href="\2019\09\18\2020重庆邮电计算机网络803大纲\" rel="bookmark">2020重庆邮电计算机网络803大纲</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\2019\09\02\考研数据结构笔记\" rel="bookmark">考研数据结构笔记</a></div>
       
     </li>
   
@@ -1337,7 +1419,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1506,7 +1588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络体系结构"><span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-计算机网络概述"><span class="nav-text">1.1 计算机网络概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-计算机网络的概念"><span class="nav-text">1.1.1 计算机网络的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-计算机网络的组成"><span class="nav-text">1.1.2 计算机网络的组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-计算机网络的功能"><span class="nav-text">1.1.3 计算机网络的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-计算机网络的分类"><span class="nav-text">1.1.4 计算机网络的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-计算机网络的标准化工作及相关组织"><span class="nav-text">1.1.5 计算机网络的标准化工作及相关组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-6-计算机网络的性能指标"><span class="nav-text">1.1.6 计算机网络的性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-计算机网络体系结构及参考模型"><span class="nav-text">1.2 计算机网络体系结构及参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-计算机网络分层结构"><span class="nav-text">1.2.1 计算机网络分层结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-计算机网络协议、接口、服务的概念"><span class="nav-text">1.2.2 计算机网络协议、接口、服务的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-ISO-OSI-参考模型和-TCP-IP-模型"><span class="nav-text">1.2.3 ISO/OSI 参考模型和 TCP/IP 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物理层"><span class="nav-text">物理层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-通信基础"><span class="nav-text">2.1 通信基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-基本概念"><span class="nav-text">2.1.1 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-奈奎斯特定理与香农定理"><span class="nav-text">2.1.2 奈奎斯特定理与香农定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-编码与调制"><span class="nav-text">2.1.3 编码与调制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-电路交换、报文交换与分组交换"><span class="nav-text">2.1.4 电路交换、报文交换与分组交换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-数据报与虚电路"><span class="nav-text">2.1.5 数据报与虚电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-2"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-传输介质"><span class="nav-text">2.2 传输介质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-双绞线、同轴电缆、光纤与无线传输介质"><span class="nav-text">2.2.1 双绞线、同轴电缆、光纤与无线传输介质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-物理层接口的特性"><span class="nav-text">2.2.2 物理层接口的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-3"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-物理层设备"><span class="nav-text">2.3 物理层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-中继器"><span class="nav-text">2.3.1 中继器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-集线器"><span class="nav-text">2.3.2 集线器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-4"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据链路层"><span class="nav-text">数据链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-数据链路层的功能"><span class="nav-text">3.1 数据链路层的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-差错控制"><span class="nav-text">3.1.5 差错控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-差错控制"><span class="nav-text">3.3 差错控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-流量控制与可靠传输机制"><span class="nav-text">3.4 流量控制与可靠传输机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-流量控制、可靠传输与滑动窗口机制"><span class="nav-text">3.4.1 流量控制、可靠传输与滑动窗口机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-介质访问控制"><span class="nav-text">3.5 介质访问控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2随机访问介质访问控制"><span class="nav-text">3.5.2随机访问介质访问控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-局域网"><span class="nav-text">3.6 局域网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-1-局域网的基本概念和体系结构"><span class="nav-text">3.6.1 局域网的基本概念和体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-2-以太网与IEEE-802-3"><span class="nav-text">3.6.2 以太网与IEEE 802.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-5"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-广域网"><span class="nav-text">3.7 广域网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-1-广域网的基本概念"><span class="nav-text">3.7.1 广域网的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-2-PPP协议"><span class="nav-text">3.7.2 PPP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-3-HDLC协议"><span class="nav-text">3.7.3 HDLC协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-6"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-数据链路层设备"><span class="nav-text">3.8 数据链路层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-2-局域网交换机及其工作原理"><span class="nav-text">3.8.2 局域网交换机及其工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-7"><span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络层"><span class="nav-text">网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-网络层的功能"><span class="nav-text">4.1 网络层的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异构网络互联"><span class="nav-text">异构网络互联</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-IPv4"><span class="nav-text">4.3 IPv4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-8"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-IPv6"><span class="nav-text">4.4 IPv6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-9"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-路由协议"><span class="nav-text">4.5 路由协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-组播"><span class="nav-text">4.6 组播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-网络层设备"><span class="nav-text">4.8 网络层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-10"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传输层"><span class="nav-text">传输层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-传输层提供的服务"><span class="nav-text">5.1 传输层提供的服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-11"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-UDP协议"><span class="nav-text">5.2 UDP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-12"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用层"><span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-网络应用模型"><span class="nav-text">6.1 网络应用模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-13"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-域名系统"><span class="nav-text">6.2 域名系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-14"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-文件传输协议"><span class="nav-text">6.3 文件传输协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-15"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-万维网"><span class="nav-text">6.5 万维网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-16"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线索串联"><span class="nav-text">线索串联</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件设备"><span class="nav-text">硬件设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议头部长度"><span class="nav-text">协议头部长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各层级数据类型名称"><span class="nav-text">各层级数据类型名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见应用层协议"><span class="nav-text">常见应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用8位二进制数"><span class="nav-text">常用8位二进制数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名词解释"><span class="nav-text">名词解释</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络体系结构"><span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-计算机网络概述"><span class="nav-text">1.1 计算机网络概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-计算机网络的概念"><span class="nav-text">1.1.1 计算机网络的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-计算机网络的组成"><span class="nav-text">1.1.2 计算机网络的组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-计算机网络的功能"><span class="nav-text">1.1.3 计算机网络的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-计算机网络的分类"><span class="nav-text">1.1.4 计算机网络的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-计算机网络的标准化工作及相关组织"><span class="nav-text">1.1.5 计算机网络的标准化工作及相关组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-6-计算机网络的性能指标"><span class="nav-text">1.1.6 计算机网络的性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-计算机网络体系结构及参考模型"><span class="nav-text">1.2 计算机网络体系结构及参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-计算机网络分层结构"><span class="nav-text">1.2.1 计算机网络分层结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-计算机网络协议、接口、服务的概念"><span class="nav-text">1.2.2 计算机网络协议、接口、服务的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-ISO-OSI-参考模型和-TCP-IP-模型"><span class="nav-text">1.2.3 ISO/OSI 参考模型和 TCP/IP 模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物理层"><span class="nav-text">物理层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-通信基础"><span class="nav-text">2.1 通信基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-基本概念"><span class="nav-text">2.1.1 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-奈奎斯特定理与香农定理"><span class="nav-text">2.1.2 奈奎斯特定理与香农定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-编码与调制"><span class="nav-text">2.1.3 编码与调制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-电路交换、报文交换与分组交换"><span class="nav-text">2.1.4 电路交换、报文交换与分组交换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-数据报与虚电路"><span class="nav-text">2.1.5 数据报与虚电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-2"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-传输介质"><span class="nav-text">2.2 传输介质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-双绞线、同轴电缆、光纤与无线传输介质"><span class="nav-text">2.2.1 双绞线、同轴电缆、光纤与无线传输介质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-物理层接口的特性"><span class="nav-text">2.2.2 物理层接口的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-3"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-物理层设备"><span class="nav-text">2.3 物理层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-中继器"><span class="nav-text">2.3.1 中继器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-集线器"><span class="nav-text">2.3.2 集线器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-4"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据链路层"><span class="nav-text">数据链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-数据链路层的功能"><span class="nav-text">3.1 数据链路层的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-为网络层提供服务"><span class="nav-text">3.1.1 为网络层提供服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-帧定界、帧同步于透明传输"><span class="nav-text">3.1.3 帧定界、帧同步于透明传输</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-流量控制"><span class="nav-text">3.1.4 流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-差错控制"><span class="nav-text">3.1.5 差错控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组帧"><span class="nav-text">组帧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-字符计数法"><span class="nav-text">3.2.1 字符计数法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-字符填充的首尾定界符法"><span class="nav-text">3.2.2 字符填充的首尾定界符法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-比特填充的首尾标志法"><span class="nav-text">3.2.3 比特填充的首尾标志法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-违规编码法"><span class="nav-text">3.2.4 违规编码法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-差错控制"><span class="nav-text">3.3 差错控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-检错编码"><span class="nav-text">3.3.1 检错编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-纠错编码"><span class="nav-text">3.3.2 纠错编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-5"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-流量控制与可靠传输机制"><span class="nav-text">3.4 流量控制与可靠传输机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-流量控制、可靠传输与滑动窗口机制"><span class="nav-text">3.4.1 流量控制、可靠传输与滑动窗口机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-单帧滑动窗口与停止-等待协议"><span class="nav-text">3.4.2 单帧滑动窗口与停止-等待协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-多帧滑动窗口与后退N帧协议（GBN）"><span class="nav-text">3.4.3 多帧滑动窗口与后退N帧协议（GBN）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-4-多帧滑动窗口与选择重传协议"><span class="nav-text">3.4.4 多帧滑动窗口与选择重传协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-介质访问控制"><span class="nav-text">3.5 介质访问控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2随机访问介质访问控制"><span class="nav-text">3.5.2随机访问介质访问控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-局域网"><span class="nav-text">3.6 局域网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-1-局域网的基本概念和体系结构"><span class="nav-text">3.6.1 局域网的基本概念和体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-2-以太网与IEEE-802-3"><span class="nav-text">3.6.2 以太网与IEEE 802.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-6"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-广域网"><span class="nav-text">3.7 广域网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-1-广域网的基本概念"><span class="nav-text">3.7.1 广域网的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-2-PPP协议"><span class="nav-text">3.7.2 PPP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-3-HDLC协议"><span class="nav-text">3.7.3 HDLC协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-7"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-数据链路层设备"><span class="nav-text">3.8 数据链路层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-2-局域网交换机及其工作原理"><span class="nav-text">3.8.2 局域网交换机及其工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-8"><span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络层"><span class="nav-text">网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-网络层的功能"><span class="nav-text">4.1 网络层的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异构网络互联"><span class="nav-text">异构网络互联</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-IPv4"><span class="nav-text">4.3 IPv4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-9"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-IPv6"><span class="nav-text">4.4 IPv6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-10"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-路由协议"><span class="nav-text">4.5 路由协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-组播"><span class="nav-text">4.6 组播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-网络层设备"><span class="nav-text">4.8 网络层设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-11"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传输层"><span class="nav-text">传输层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-传输层提供的服务"><span class="nav-text">5.1 传输层提供的服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-12"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-UDP协议"><span class="nav-text">5.2 UDP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-13"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用层"><span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-网络应用模型"><span class="nav-text">6.1 网络应用模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-14"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-域名系统"><span class="nav-text">6.2 域名系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-15"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-文件传输协议"><span class="nav-text">6.3 文件传输协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-16"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-万维网"><span class="nav-text">6.5 万维网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-17"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线索串联"><span class="nav-text">线索串联</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件设备"><span class="nav-text">硬件设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议头部长度"><span class="nav-text">协议头部长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各层级数据类型名称"><span class="nav-text">各层级数据类型名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见应用层协议"><span class="nav-text">常见应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用8位二进制数"><span class="nav-text">常用8位二进制数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#名词解释"><span class="nav-text">名词解释</span></a></li></ol></div>
             
 
           </div>
@@ -1533,12 +1615,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">241k</span>
+    <span title="站点总字数">247k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:39</span>
+    <span title="站点阅读时长">3:44</span>
 </div>
 
         
