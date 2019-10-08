@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="2020考研计算机网络笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-07T14:33:59.928Z">
+<meta property="og:updated_time" content="2019-10-08T15:06:45.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="考研计算机网络笔记">
 <meta name="twitter:description" content="2020考研计算机网络笔记">
@@ -325,7 +325,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-07 22:33:59" itemprop="dateModified" datetime="2019-10-07T22:33:59+08:00">2019-10-07</time>
+                <time title="修改时间：2019-10-08 23:06:45" itemprop="dateModified" datetime="2019-10-08T23:06:45+08:00">2019-10-08</time>
               </span>
             
           
@@ -1228,6 +1228,7 @@
 <p><a id="CIDR"></a><br><strong>无分类域间路由选择（CIDR）</strong><br> &emsp;&emsp;IP::={&lt;网络前缀&gt;,&lt;主机号&gt;}<br> &emsp;&emsp;斜杠记法：IP地址/网络前缀所占比特数</p>
 <p>  &emsp;&emsp;CIDR地址块中的地址数一定是2的整数次幂，实际可指派的地址数通常为$2^N-2$,N表示主机号的位数，主机号全0代表网络号，主机号全1为广播地址。</p>
 <p>   &emsp;&emsp;应当从匹配结果中选择具有最长网络前缀的路由，因为网络前缀越长，其地址块就越小，因而路由就越具体。这里最常用的数据结构就是二叉线索。</p>
+<p><strong>注意：</strong>RFC 950规定对分类的IPv4地址进行子网划分时，子网号不能为全1和全0，而CIDR则可以支持全0和全1的子网号。做题时注意区分题目是否指明地址类别。</p>
 <h3 id="4-3-4-ARP、DHCP与ICMP"><a href="#4-3-4-ARP、DHCP与ICMP" class="headerlink" title="4.3.4 ARP、DHCP与ICMP"></a>4.3.4 ARP、DHCP与ICMP</h3><p><strong>IP地址与硬件地址</strong><br> &emsp;&emsp;IP地址是网络层使用的地址，它是分层次等级的。硬件地址是数据链路层使用的地址（如MAC地址），它是平面式的。在网络层及网络层之上使用IP地址，IP地址放在IP数据报的首部，而MAC地址放在MAC帧的首部。通过数据封装，把IP数据报分组封装为MAC帧后，数据链路层看不见数据报分组中的IP地址。</p>
 <p>&emsp;&emsp;IP数据报在被路由器转发时，其数据链路层封装所使用的MAC地址是不断改变的。这也决定了不发使用MAC地址跨网络通信。</p>
 <p><strong>注意：</strong>路由器由于互联多个网络，因此它不仅有多个IP地址，也有多个硬件地址。<br><a id="ARP"></a><br><strong>地址解析协议（ARP）</strong><br>&emsp;&emsp;ARP由于“看到了”IP地址，所以他工作在网络层，而NAT路由器由于“看到了”端口，所以他工作在传输层。</p>
@@ -2271,12 +2272,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">277k</span>
+    <span title="站点总字数">282k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:12</span>
+    <span title="站点阅读时长">4:17</span>
 </div>
 
         
