@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="2020考研计算机网络笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-18T15:21:19.201Z">
+<meta property="og:updated_time" content="2019-10-19T14:45:09.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="考研计算机网络笔记">
 <meta name="twitter:description" content="2020考研计算机网络笔记">
@@ -325,7 +325,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-18 23:21:19" itemprop="dateModified" datetime="2019-10-18T23:21:19+08:00">2019-10-18</time>
+                <time title="修改时间：2019-10-19 22:45:09" itemprop="dateModified" datetime="2019-10-19T22:45:09+08:00">2019-10-19</time>
               </span>
             
           
@@ -712,13 +712,13 @@
 </tr>
 </thead>
 <tbody><tr>
+<td></td>
 <td>标志F</td>
 <td>地址A</td>
 <td>控制C</td>
 <td>信息I</td>
 <td>帧校验序列FCS</td>
 <td>标志F</td>
-<td></td>
 </tr>
 </tbody></table>
 <p>&emsp;&emsp;透明传输就是不管所传数据是什么样的比特组合，都应当能在链路上传送。</p>
@@ -816,13 +816,13 @@
 <td>空闲</td>
 <td>立即发送数据</td>
 <td>立即发送数据</td>
-<td>以概率p发送数据，以概率1-p推迟到下一个时隙</td>
+<td>以概率p发送数据， 以概率1-p推迟到下一个时隙</td>
 </tr>
 <tr>
 <td>忙</td>
 <td>继续坚持侦听</td>
-<td>放弃侦听，等待一个随机的时间后再侦听</td>
-<td>持续侦听，等待下一个时隙在侦听</td>
+<td>放弃侦听， 等待一个随机的时间后再侦听</td>
+<td>持续侦听， 等待下一个时隙在侦听</td>
 </tr>
 </tbody></table>
 <p><a id="CSMA/CD"></a><br><strong>CSMA/CD协议</strong><br>&emsp;&emsp;载波侦听多路访问/碰撞检测（Carrier Sense Multiple Access with Collision Detection，CSMA/CD）</p>
@@ -865,7 +865,26 @@
 <td>双环结构</td>
 </tr>
 </tbody></table>
-<h3 id="3-6-2-以太网与IEEE-802-3"><a href="#3-6-2-以太网与IEEE-802-3" class="headerlink" title="3.6.2 以太网与IEEE 802.3"></a>3.6.2 以太网与IEEE 802.3</h3><p>&emsp;&emsp;以太网采用两项措施简化通信：</p>
+<h3 id="3-6-2-以太网与IEEE-802-3"><a href="#3-6-2-以太网与IEEE-802-3" class="headerlink" title="3.6.2 以太网与IEEE 802.3"></a>3.6.2 以太网与IEEE 802.3</h3><p>&emsp;&emsp;<strong>MAC帧结构：</strong></p>
+<table>
+<thead>
+<tr>
+<th>目的地址</th>
+<th>源地址</th>
+<th>类型</th>
+<th>数据</th>
+<th>FCS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6B</td>
+<td>6B</td>
+<td>2B</td>
+<td>46～1500B</td>
+<td>4B</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;以太网采用两项措施简化通信：</p>
 <ol>
 <li>采用无连接的工作方式</li>
 <li>不对发送的数据帧编号，也不要求接收方发送确认</li>
@@ -1097,9 +1116,9 @@
 <p><strong>特点：</strong></p>
 <ol>
 <li>以太网交换机的每个端口都直接与单台主机相连（普通网桥的端口往往连接到以太网的一个网段），并且议案都工作在全双工方式。</li>
-<li>以太网交换机能同时连通多个端口，切勿碰撞。</li>
+<li>以太网交换机能同时连通多个端口，且无碰撞。</li>
 </ol>
-<p>&emsp;&emsp;对于普通10Mb/s的共享式以太网，拥有<strong>N对</strong>端口的交换机的总容量为 $N\times 10Mb/s$ 。这正是交换机最大的优点。</p>
+<p>&emsp;&emsp;对于普通10Mb/s的共享式以太网，拥有<strong>N个</strong>端口的交换机的总容量为 $N\times 10Mb/s$ 。这正是交换机最大的优点。<br>&emsp;&emsp;$全双工交换机端口总带宽=端口个数\times 单个端口带宽 \times 2$<br>&emsp;&emsp;谢希仁和王道的说法都是“N对”，但很多教材都不赞同，清华大学计算机网络的老师和四级网络工程师真题说法都是“N个”。</p>
 <br>
 
 <hr>
@@ -1711,10 +1730,18 @@
 <thead>
 <tr>
 <th>协议名称</th>
-<th>首部长度</th>
+<th>首部/封装信息长度</th>
 </tr>
 </thead>
 <tbody><tr>
+<td>MAC帧</td>
+<td>18B</td>
+</tr>
+<tr>
+<td>HDLC</td>
+<td>6B</td>
+</tr>
+<tr>
 <td>IP</td>
 <td>20B</td>
 </tr>
@@ -1921,6 +1948,7 @@
 <li><a href="#HTTP">HTTP</a>：超文本传输协议</li>
 <li><a href="#URL">URL</a>：统一资源定位符</li>
 <li><a href="#HTML">HTML</a>：超文本标记语言（HyperText Markup Language）</li>
+<li>SNMP：简单网络管理协议（Simple Network Management Protocol ）</li>
 </ol>
 <p><strong>视频、音频与无线网络</strong></p>
 <ol>
@@ -2025,7 +2053,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2019年10月18日 - 23时10分
+    2019年10月19日 - 22时10分
   </li>
 
   <!-- 引用链接 -->
@@ -2338,7 +2366,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">293k</span>
+    <span title="站点总字数">294k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
