@@ -65,18 +65,18 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="前言  &amp;emsp;&amp;emsp;高次多项式的因式分解一直都是一个比较头疼的事，在考研数学中在有理函数不定积分中将真分式拆解、线性代数中求高阶矩阵的特征值和常系数微分方程求解的过程中都可能会需要高次多项式因式分解。&amp;emsp;&amp;emsp;虽然考研题的次项一般不会超过四次，很多时候也能用巧妙方法求解，但也有不能一眼看出答案的时候,所以有必要掌握一种比较通用且高效的因式分解方法。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解/img1.jpg">
-<meta property="og:image" content="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解/img2.jpg">
-<meta property="og:image" content="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解/img3.jpg">
-<meta property="og:image" content="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解/img4.jpg">
-<meta property="og:image" content="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解/img5.jpg">
-<meta property="og:image" content="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解/img6.jpg">
-<meta property="og:image" content="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解/img7.jpg">
-<meta property="og:updated_time" content="2019-10-18T15:21:48.801Z">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img1.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img2.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img3.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img4.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img5.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img6.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img7.jpg">
+<meta property="og:updated_time" content="2019-10-24T15:23:29.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="考研数学相关知识点：高次多项式因式分解">
 <meta name="twitter:description" content="前言  &amp;emsp;&amp;emsp;高次多项式的因式分解一直都是一个比较头疼的事，在考研数学中在有理函数不定积分中将真分式拆解、线性代数中求高阶矩阵的特征值和常系数微分方程求解的过程中都可能会需要高次多项式因式分解。&amp;emsp;&amp;emsp;虽然考研题的次项一般不会超过四次，很多时候也能用巧妙方法求解，但也有不能一眼看出答案的时候,所以有必要掌握一种比较通用且高效的因式分解方法。">
-<meta name="twitter:image" content="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解/img1.jpg">
+<meta name="twitter:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img1.jpg">
   <link rel="canonical" href="https://blog.siriyang.cn/posts/考研数学相关知识点：高次多项式因式分解">
 
 
@@ -333,7 +333,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-18 23:21:48" itemprop="dateModified" datetime="2019-10-18T23:21:48+08:00">2019-10-18</time>
+                <time title="修改时间：2019-10-24 23:23:29" itemprop="dateModified" datetime="2019-10-24T23:23:29+08:00">2019-10-24</time>
               </span>
             
           
@@ -438,27 +438,22 @@
 <ol>
 <li>设 $a_1a_2=a, \quad e_1e_2=e$ ,且</li>
 </ol>
-<img src="/posts/考研数学相关知识点：高次多项式因式分解/img1.jpg">
-
-<ol start="2">
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img1.jpg" alt></p>
+<ol>
 <li>设</li>
 </ol>
-<img src="/posts/考研数学相关知识点：高次多项式因式分解/img2.jpg">
-
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img2.jpg" alt></p>
 <p>&emsp;&emsp;则有： $ax^4+bx^3+cx^2+dx+e=(a_1x^2+c1x+e_1)(a_2x^2+c2x+e_2)$ 。实际计算我们可以把上述过程归结为下图：</p>
-<img src="/posts/考研数学相关知识点：高次多项式因式分解/img3.jpg">
-
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img3.jpg" alt></p>
 <p>&emsp;&emsp;<strong>证</strong>： $ (a_1x^2+c_1x+e_1)$$(a_2x^2+c_2x+e_2)$$=a_1a_2x^4+$$(a_1c_2+c_1a_2)x^3+$$(a_1e_2+c_1c_2+e_1a_2)x^2+$$(c_1e_2+$$e_1c_2)x+e_1e_2 $</p>
 <p>&emsp;&emsp;注意到： $a_1a_2=a,$$a_1c_2+c_1a_2=b,$$a_1e_2+c_1c_2+e_1a_2=(c-\overline c)+\overline c=c,$$c_1e_2+e_1c_2=d,e_1e_2=e$,故有分解式$ax^4+bx^3+cx^2+dx+e=(a_1x^2+c1x+e_1)(a_2x^2+c2x+e_2)$ 。</p>
 <p>&emsp;&emsp;由于四次整系数多项式总可以分解成二个二次整系数多项式。因此上述步骤总是可实现的。</p>
 <p>&emsp;&emsp;<strong>例1</strong>、分解： $2x^4-x^3+2x^2+3x-2$<br>&emsp;&emsp;<strong>解</strong>：</p>
-<img src="/posts/考研数学相关知识点：高次多项式因式分解/img4.jpg">
-
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img4.jpg" alt></p>
 <p>&emsp;&emsp;&emsp;&emsp;所以 $2x^4-x^3+2x^2+3x-2$<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $=(x^2-x+2)(2x^2+x-1)$<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $=(x^2-x+2)(x+1)(2x-1)$</p>
 <p>&emsp;&emsp;而对于三次多项式，我们可视其四次项系数为零即可，同样其他情况缺少某一次项就将该次项系数置零带入计算。</p>
 <p>&emsp;&emsp;<strong>例2</strong>、分解： $2x^3-3x^2+5x-2$<br>&emsp;&emsp;<strong>解</strong>：</p>
-<img src="/posts/考研数学相关知识点：高次多项式因式分解/img5.jpg">
-
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img5.jpg" alt></p>
 <p>&emsp;&emsp;&emsp;&emsp;所以 $2x^3-3x^2+5x-2$<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $=(2x-1)(x^2-x+2)$</p>
 <hr>
 <br>
@@ -481,16 +476,14 @@
 <p>&emsp;&emsp;<strong>例1</strong> 把 $6x^3-5x^2+5x-2$ 因式分解<br>&emsp;&emsp;<strong>解</strong>: 我们先把它转化为求 $f(x) = 6x^3 - 5x^2+5x - 2$ 的有理根。由 <strong>定理 1</strong> 知: f (x)的常数项 $-2$ 的全部因数是: $\pm1,\pm2$ ;其中首项系数 $6$ 的全部因数是: $\pm1, \pm2,\pm3,\pm6$ 。因此要进行检验的有理数为: $\pm1,\pm2,\pm1/2,\pm1/3, \pm2/3,\pm1/6$ 。<br>&emsp;&emsp;&emsp;&emsp;但易知 $f(1) = 4 , f (-1) =18 $,故 $\pm 1$ 都不是 $f(x)$ 的根,再由 <strong>定理 2</strong>,由于:<br>$$-1- 2 \dagger f (1), 3+1\dagger f (-1), 3 + 2 \dagger f (-1)$$<br>$$-3- 2 \dagger f (1), 1+ 6 \dagger f (-1), -6 -1\dagger f (1),$$</p>
 <p>&emsp;&emsp;&emsp;&emsp;故 $-2,1/3,\pm 2/3,\pm 1/6$ 都不是 $f(x)$ 的根,因此剩下只需检验 $2,1/2,-1/3$ 这三个数了。由 <a href="/posts/考研数学相关知识点：综合除法与余数定理.html" title="综合除法">综合除法</a>易知,只有$1/2$ 是它的根。<br>&emsp;&emsp;&emsp;&emsp;$\therefore 6x^3-5x^2+5x-2 $<br>&emsp;&emsp;&emsp;&emsp;$ =(x-1/2)(6x^2-2x+4)$<br>&emsp;&emsp;&emsp;&emsp;$ =(2x-1)(3x^2-x+2)$</p>
 <p>&emsp;&emsp;<strong>例2</strong> 把 $4x^4+7x^3+10x^2+5x-2$ 因式分解<br>&emsp;&emsp;<strong>解</strong>: 先把它转化成求 $f(x)=4x^4+7x^3+10x^2+5x-2$ 的有理根。<br>&emsp;&emsp;&emsp;&emsp; $\because f(x)$常数项和首项系数的全部因数分别为: $\pm1,\pm2$ 与 $\pm1, \pm2,\pm4$ 。需要检验的有理数为: $\pm1,\pm2,\pm1/2,\pm1 / 4$ 。<br>&emsp;&emsp;&emsp;&emsp;由于 $f (-1) = 0$ 故 $-1$ 是 $f (x)$ 的根,且易知,<br>$$f(x)=(x+1)(4x^3+3x^2+7x-2)$$<br>&emsp;&emsp;&emsp;&emsp;按照同样方法可求 $g(x)=4x^3+3x^2+7x-2$ 有理根,易知 $g(x)$ 的有理根为: $1/4$ ,由<a href="/posts/考研数学相关知识点：综合除法与余数定理.html" title="综合除法">综合除法</a>:</p>
-<img src="/posts/考研数学相关知识点：高次多项式因式分解/img6.jpg">
-
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img6.jpg" alt></p>
 <p>&emsp;&emsp;&emsp;&emsp; $\therefore 4x^4+7x^3+10x^2+5x-2$<br>&emsp;&emsp;&emsp;&emsp; $=(x+1)(x-1/4)(4x^2+4x+8)$<br>&emsp;&emsp;&emsp;&emsp; $=(x+1)(4x-1)(x^2+x+2)$</p>
 <p>&emsp;&emsp; 下面介绍两种特殊的高次多项式因式分解。</p>
 <h3 id="与首末两项等距离的项的系数相等的高次多项式的因式分解的方法"><a href="#与首末两项等距离的项的系数相等的高次多项式的因式分解的方法" class="headerlink" title="与首末两项等距离的项的系数相等的高次多项式的因式分解的方法"></a>与首末两项等距离的项的系数相等的高次多项式的因式分解的方法</h3><h4 id="最高次数是偶次的多项式"><a href="#最高次数是偶次的多项式" class="headerlink" title="最高次数是偶次的多项式"></a>最高次数是偶次的多项式</h4><p>&emsp;&emsp;<strong>例3</strong> 把 $2x^4+3x^3-16x^2+3x+2$ 因式分解<br>&emsp;&emsp;<strong>解</strong>: 把多项式的各项除以中间项 $x^2$ ,经整理,转化为方程得:<br>$$2(x^2+1/x^2)+3(x+1/x)-16=0$$<br>&emsp;&emsp;&emsp;&emsp;用换元法：<br>&emsp;&emsp;&emsp;&emsp;令 $x+1/x=y$ 有， $x^2+1/x^2=y^2-2$,<br>&emsp;&emsp;&emsp;&emsp;代入得 $2(y^2-2)+3y-16=0$,<br>&emsp;&emsp;&emsp;&emsp;即 $2y^2+3y-20=0$。<br>&emsp;&emsp;&emsp;&emsp;解之得： $y_1=5/2,y_2=-4$。<br>&emsp;&emsp;&emsp;&emsp;于是确定 $x$ 的两个方程:<br>&emsp;&emsp;&emsp;&emsp;$\therefore x+1/x=5/2 $,<br>&emsp;&emsp;&emsp;&emsp;$ x+1/x=-4 $。<br>&emsp;&emsp;&emsp;&emsp;解之得<br>&emsp;&emsp;&emsp;&emsp;$x_1=2,x_2=1/2,x_3=-2+\sqrt{3},x_4=-2-\sqrt{3}$,<br>&emsp;&emsp;&emsp;&emsp;$\therefore 2x^4+3x^3-16x^2+3x+2 $<br>&emsp;&emsp;&emsp;&emsp;$=2(x-2)(x-1/2)(x+2-\sqrt{3})(x+2+\sqrt{3})$<br>&emsp;&emsp;&emsp;&emsp;$=(x-2)(2x-1)(x+2-\sqrt{3})(x+2+\sqrt{3})$</p>
 <h4 id="最高次数是奇数的多项式"><a href="#最高次数是奇数的多项式" class="headerlink" title="最高次数是奇数的多项式"></a>最高次数是奇数的多项式</h4><p>&emsp;&emsp;<strong>例4</strong> 把 $x^5+2x^4-x^3+x^2-2x-1$ 因式分解<br>&emsp;&emsp;<strong>分析</strong>:这是与首末两项等距离的项的系数成相反数,必然有系数和等于 $0$ ,所以 $1$ 是 $x^5+2x^4-x^3+x^2-2x-1=0$的根,所以多项式可以化为:<br>$$(x-1)(x^4+3x^3+2x^2+3x+1)$$<br>&emsp;&emsp;而 $x^4+3x^3+2x^2+3x+1$ 又是与 <strong>例3</strong> 同样的解法。</p>
 <p>&emsp;&emsp;<strong>例5</strong> 把 $2x^5+5x^4-13x^3-13x^2+5x+2$ 因式分解<br>&emsp;&emsp;<strong>分析</strong>: 这是与首末两项等距离的项的系数相等而最高次数为奇数，所以 $x = -1$ 是 $2x^5+5x^4-13x^3-13x^2+5x+2=0$ 的根,从而原多项式可以化为:<br>$$(x+1)(2x^4+3x^3-16x^2+3x+2)$$<br>&emsp;&emsp;而 $2x^4+3x^3-16x^2+3x+2$ 又是与 <strong>例3</strong> 同样的解法。</p>
 <h3 id="各项系数和等于零的高次多项式"><a href="#各项系数和等于零的高次多项式" class="headerlink" title="各项系数和等于零的高次多项式"></a>各项系数和等于零的高次多项式</h3><p>&emsp;&emsp;<strong>例6</strong> 把 $x^4+2x^3+5x^2+4x-12$ 因式分解<br>&emsp;&emsp;<strong>解</strong>: 多项式的各项系数和:<br>$$1+2+5+4-12=0$$<br>&emsp;&emsp;&emsp;&emsp;因此 $x=1$ 必为 $x^4+2x^3+5x^2+4x-12=0$ 的根,因此由综合除法可得:</p>
-<img src="/posts/考研数学相关知识点：高次多项式因式分解/img7.jpg">
-
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img7.jpg" alt></p>
 <p>&emsp;&emsp;&emsp;&emsp;所以多项式可化为:<br>$$(x-1)(x^3+3x^2+8x+12)$$<br>&emsp;&emsp;&emsp;&emsp;接着对 $x^3+3x^2+8x+12$ 进行因式分解,按之前最开始的方法可以求出:<br>&emsp;&emsp;&emsp;&emsp; $x^3+3x^2+8x+12=(x-2)(x^2+x+6)$<br>&emsp;&emsp;&emsp;&emsp;$\therefore x^4+2x^3+5x^2+4x-12 $<br>&emsp;&emsp;&emsp;&emsp;$=(x-1)(x-2)(x^2+x+6)$</p>
 <hr>
 <br>
@@ -596,7 +589,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2019年10月18日 - 23时10分
+    2019年10月24日 - 23时10分
   </li>
 
   <!-- 引用链接 -->
@@ -917,12 +910,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">296k</span>
+    <span title="站点总字数">298k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:29</span>
+    <span title="站点阅读时长">4:31</span>
 </div>
 
         
