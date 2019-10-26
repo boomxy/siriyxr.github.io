@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.siriyang.cn/posts/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%8E%8B%E6%B1%9F%E6%B6%9B%E5%BF%85%E8%83%8C%E4%BD%9C%E6%96%87.html</loc>
+    <lastmod>2019-10-26</lastmod>
+  </url>  <url>
+    <loc>https://blog.siriyang.cn/posts/2020%E9%87%8D%E5%BA%86%E9%82%AE%E7%94%B5%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C803%E5%A4%A7%E7%BA%B2.html</loc>
+    <lastmod>2019-10-26</lastmod>
+  </url>  <url>
     <loc>https://blog.siriyang.cn/posts/2019%E9%87%8D%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88803%EF%BC%89%E7%9C%9F%E9%A2%98.html</loc>
     <lastmod>2019-10-25</lastmod>
   </url>  <url>
@@ -29,9 +35,6 @@
     <lastmod>2019-10-25</lastmod>
   </url>  <url>
     <loc>https://blog.siriyang.cn/posts/2017%E9%87%8D%E9%82%AE%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88803%EF%BC%89%E7%9C%9F%E9%A2%98.html</loc>
-    <lastmod>2019-10-25</lastmod>
-  </url>  <url>
-    <loc>https://blog.siriyang.cn/posts/2020%E9%87%8D%E5%BA%86%E9%82%AE%E7%94%B5%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C803%E5%A4%A7%E7%BA%B2.html</loc>
     <lastmod>2019-10-25</lastmod>
   </url>  <url>
     <loc>https://blog.siriyang.cn/posts/VSCode%E4%B8%8BMarkdown%E5%86%99%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html</loc>
@@ -65,9 +68,6 @@
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>https://blog.siriyang.cn/posts/SketchBook%E7%94%BB%E5%86%8C.html</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
-    <loc>https://blog.siriyang.cn/posts/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%8E%8B%E6%B1%9F%E6%B6%9B%E5%BF%85%E8%83%8C%E4%BD%9C%E6%96%87.html</loc>
     <lastmod>2019-10-24</lastmod>
   </url>  <url>
     <loc>https://blog.siriyang.cn/posts/%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A.html</loc>
