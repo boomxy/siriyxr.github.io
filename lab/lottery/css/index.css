@@ -1,0 +1,39 @@
+* {
+  padding: 0;
+  margin: 0;
+	text-align: center;
+}
+.box {
+  margin: 2rem auto;
+  text-align: center;
+  
+}
+.Key {
+  font-size: 4rem;
+  text-align: center;
+}
+.btn {
+  width: 8rem;
+  height: 3rem;
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+.showBox {
+  font-size: 1.25rem;
+  padding: 1rem;
+  width: 600px;
+  margin: 0 auto;
+}
+.inputBox {
+  font-size: 1.0rem;
+  padding: 1rem;
+  width: 600px;
+  margin: 0 auto;
+	text-align: left;
+}
+.answerBox{
+  font-size: 2.0rem;
+  padding: 1rem;
+  width: 600px;
+  margin: 0 auto;
+}

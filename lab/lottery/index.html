@@ -57,18 +57,19 @@
   };
 </script>
 
-  <meta name="description" content="苦逼的考研党">
+  <meta name="description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		开始 		  	 	  	 var nextbtn = document.getElementById(&apos;next&apos;); var startbtn =">
 <meta name="keywords" content="siriyang,SiriBlog,编程,考研">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SiriBlog">
-<meta property="og:url" content="https://blog.siriyang.cn/archives/2019/page/2/index.html">
+<meta property="og:title" content="随机抽签">
+<meta property="og:url" content="https://blog.siriyang.cn/lab/lottery/index.html">
 <meta property="og:site_name" content="SiriBlog">
-<meta property="og:description" content="苦逼的考研党">
+<meta property="og:description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		开始 		  	 	  	 var nextbtn = document.getElementById(&apos;next&apos;); var startbtn =">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-27T15:03:50.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SiriBlog">
-<meta name="twitter:description" content="苦逼的考研党">
-  <link rel="canonical" href="https://blog.siriyang.cn/archives/2019/page/2/">
+<meta name="twitter:title" content="随机抽签">
+<meta name="twitter:description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		开始 		  	 	  	 var nextbtn = document.getElementById(&apos;next&apos;); var startbtn =">
+  <link rel="canonical" href="https://blog.siriyang.cn/lab/lottery/">
 
 
 <script id="page-configurations">
@@ -77,12 +78,12 @@
     sidebar: "",
     isHome: false,
     isPost: false,
-    isPage: false,
-    isArchive: true
+    isPage: true,
+    isArchive: false
   };
 </script>
 
-  <title>归档 | SiriBlog</title>
+  <title>随机抽签 | SiriBlog</title>
   
 
 
@@ -311,378 +312,227 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content page-archive">
+          <div id="content" class="content page-post-detail">
             
 
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">随机抽签
+
+</h1>
+
+<div class="post-meta">
   
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-      <span class="archive-page-counter">
-        
-        
+  <ul class="breadcrumb">
+      
+      
         
           
+            
+          
+          
+            <li><a href="/lab/">LAB</a></li>
+          
         
-        嗯..! 目前共计 30 篇日志。 继续努力。
-      </span>
       
-
-      
-
-  
-  
-  
-
-  
     
-    <div class="collection-title">
-      <h1 class="archive-year" id="archive-year-2019">2019</h1>
+      
+      
+        
+          <li>LOTTERY</li>
+        
+      
+    
+      
+      
+    
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>随机抽签</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+	<div id="showDiv" hidden="hide" class="box">
+		<h1 id="headLine2" class="headLine">谁是下一个幸运儿</h1>
+   	<br> 
+		<h1 id="Key" class="Key">XXX</h1>
+		<br>
+		<div id="answerBox" class="answerBox">
+    
+  		</div>
+		<br>
+		<div class="box">
+		<button id="next" class="btn">随机抽取</button>
+		<button id="answer" class="btn">答案</button>
+		<button id="reset" class="btn">重置</button>
+		<div id="showBox" class="showBox">
     </div>
+  		</div>
+	</div>
+	<div id="inputDiv" class="box">
+		<h1 id="headLine1" class="headLine">请输入数据</h1>
+		<div class="box">
+		<textarea id="inputBox" class="inputBox" rows="20" cols="80" placeholder="数据项格式为 ' 键 : 值 ; '，最后一个数据项不用分号结尾，注意只能使用英文字符。示例：1:2;3:4;5:6"></textarea>
+		<br>
+		<button id="start" class="btn">开始</button>
+		 </div>
+	</div>
+	 <script>
+	 var nextbtn = document.getElementById('next');
+var startbtn = document.getElementById('start');
+var answerbtn = document.getElementById('answer');
+var resetbtn = document.getElementById('reset');
+var Key = document.getElementById('Key');
+var showBox = document.getElementById('showBox');
+var inputBox = document.getElementById('inputBox');
+var answerBox = document.getElementById('answerBox');
+
+var showDiv = document.getElementById('showDiv');
+var inputDiv = document.getElementById('inputDiv');
+
+var data;
+var list=new Array();
+
+var mark = false;
+var timer = 0;
+var num = -1;
+
+startbtn.onclick=function(){
+
+	showDiv.style.display="inline";
+	inputDiv.style.display="none";
+		
+	data = inputBox.value.split(';');
+	
+	for(var i=0;i< data.length; i++){
+		list[i]=data[i].split(':');
+	}
+	
+	mark = false;
+	timer = 0;
+	num = -1;
+
+	showBox.innerHTML = '';
+	Key.innerHTML = 'XXX';
+	answerBox.innerHTML='';
   
-  
+}
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+resetbtn.onclick=function(){
 
-      <h2 class="post-title">
+	showDiv.style.display="none";
+	inputDiv.style.display="inline";
+
+}
+
+nextbtn.onclick = function () {
+  if(list.length == 0) {
+    alert("没有啦～～～～");
+    return;
+  }
+  mark = !mark;
+
+  if(mark) {
+    // 为true　第一次点击
+    timer = setInterval(function(){
+      num = random(list.length,0);
+      Key.innerText = ClearBr(list[num][0]);
+		answerBox.innerHTML=list[num][1];
+		answerBox.style.display="none";
+    },100)
+  }else {
+		clearInterval(timer);
+		list.splice(num, 1);
+		var keys=new Array();
+		for(var i=0;i< list.length; i++){
+			keys[i]=list[i][0];
+		}				
+		showBox.innerHTML = `剩余个数：${list.length}</br> ${keys.toString()}`;
+  }
+}
+
+answerbtn.onclick = function(){
+	answerBox.style.display="inline";
+
+}
+
+function random (min,max){
+  return Math.floor(Math.random()*(max-min))+min;
+}
+
+去除换行
+function ClearBr(key) {
+    key = key.replace(/<\/?.+?>/g,"");
+    key = key.replace(/[\r\n]/g, "");
+    return key;
+}
+	 </script>
+</body>
+</html>
         
-          <a class="post-title-link" href="/posts/考研计算机网络笔记.html" itemprop="url">
-            
-              <span itemprop="name">考研计算机网络笔记</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-15T23:03:45+08:00"
-              content="2019-09-15">
-          09-15
-        </time>
       </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/考研英语王江涛必背作文.html" itemprop="url">
-            
-              <span itemprop="name">考研英语王江涛必背作文</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-07T22:40:31+08:00"
-              content="2019-09-07">
-          09-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/2012数二真题.html" itemprop="url">
-            
-              <span itemprop="name">2012数二真题</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-05T23:31:51+08:00"
-              content="2019-09-05">
-          09-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/VSCode下Markdown写作环境搭建.html" itemprop="url">
-            
-              <span itemprop="name">VSCode下Markdown写作环境搭建</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-04T21:53:58+08:00"
-              content="2019-09-04">
-          09-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/考研数据结构笔记.html" itemprop="url">
-            
-              <span itemprop="name">考研数据结构笔记</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-02T22:34:28+08:00"
-              content="2019-09-02">
-          09-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/桌面壁纸.html" itemprop="url">
-            
-              <span itemprop="name">桌面壁纸</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-31T19:58:47+08:00"
-              content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/考研政治笔记.html" itemprop="url">
-            
-              <span itemprop="name">考研政治笔记</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-28T22:09:05+08:00"
-              content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/2011数二真题.html" itemprop="url">
-            
-              <span itemprop="name">2011数二真题</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-28T21:57:16+08:00"
-              content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/计算机组成原理期末复习知识点.html" itemprop="url">
-            
-              <span itemprop="name">计算机组成原理期末复习知识点</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-27T21:56:19+08:00"
-              content="2019-08-27">
-          08-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-  
-
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/posts/离散数学知识点.html" itemprop="url">
-            
-              <span itemprop="name">离散数学知识点</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-08-27T21:38:52+08:00"
-              content="2019-08-27">
-          08-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-
+      
+      
+      
     </div>
+    
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/lab/">LAB</a></li>
+          
+        
+      
+    
+      
+      
+        
+          <li>LOTTERY</li>
+        
+      
+    
+      
+      
+    
+  </ul>
+
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2019/page/3/">3</a><a class="extend next" rel="next" href="/archives/2019/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
 
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
 
         </div>
           
@@ -1119,6 +969,11 @@
 
 
   
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
     
 
 <script>
