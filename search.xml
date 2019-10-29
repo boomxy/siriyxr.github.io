@@ -1,9 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Pythonista下Pythonista Tools Installer安装教程]]></title>
+    <url>%2Fposts%2FPythonista%E4%B8%8BPythonista-Tools-Installer%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html</url>
+    <content type="text"><![CDATA[前言&emsp;&emsp;“A front-end UI program to browse and/or download scripts listed on Pythonista-Tools.”&emsp;&emsp;Pythonista Tools Installer就相当于是一个python脚本的下载市场，其作者就是stash的作者。 正文&emsp;&emsp;Pythonista Tools Installer的安装相较stash更为简单，甚至都称不上是安装，就是下载一个python脚本而已，粗暴一点甚至可以直接复制粘贴进去，代码过长就不提供源码了。 下载脚本 1import requests as r; o=open('ptinstaller.py','w'); o.write(r.get('http://j.mp/pt-i').text); o.close() &emsp;&emsp;和stash安装一样，创建一个脚本复制进去运行或者直接在控制台运行都可以，下载好以后会在当前工作目录下获得ptinstaller.py。 配置安装目录 &emsp;&emsp;这个安装目录是指对你在Pythonista Tools Installer中下载的程序所安装的目录，其默认路径是~/Documents/bin/，用户可以根据自己需求自行配置。 &emsp;&emsp;创建在ptinstaller.py同级目录下创建ptinstaller.conf： 123&#123; &quot;install_path&quot;: &quot;bin&quot;&#125; 使用&emsp;&emsp;直接运行ptinstaller.py就行啦，然后操作UI界面进行安装和删除。 运行效果 参考资料 Pythonista-Tools-Installer GitHub仓库]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>环境</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>环境搭建</tag>
+        <tag>Pythonista</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pythonista下stash安装教程]]></title>
+    <url>%2Fposts%2FPythonista%E4%B8%8Bstash%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html</url>
+    <content type="text"><![CDATA[前言&emsp;&emsp;“StaSh is a serious attempt to implement a Bash-like shell for Pythonista.”&emsp;StaSh是一个Pythonista环境下的仿shell程序，Sta来自于Pythonista的后三个字母，Sh即shell缩写。除了能完成shell的基本功能外，最主要的功能还有实现pip安装第三方库和git操作。&emsp;&emsp;更多详情请参照官方GitHub仓库。 正文&emsp;&emsp;首先你需要具有Pythonista，目前App Store售价68¥。不过既然你选择点开了这篇文，相信你已经具备这个初始条件了(/≧▽≦)/。 第一步：准备安装脚本 1import requests as r;exec(r.get('https://raw.githubusercontent.com/ywangd/stash/master/getstash.py').text) **第二步：安装** &emsp;&emsp;可以创建一个`install_stash.py`文件把代码写进去运行，也可以直接把代码复制到控制台运行。 &emsp;&emsp;运行结束后即安装完成。 &emsp;&emsp;安装完成后会得到一个`launch_stash.py`的文件，这个文件就是stash的启动器，点击右上角的运行按钮即可启动stash。 &emsp;&emsp;另外，stash的系统文件都存在Python Modules/site-packages/stash/文件夹下,有兴趣的话可以研究一下源码。 运行效果 参考资料 PYTHONISTA安装STASH 如何用pythonista完成YouTube视频下载和搭建FTP直接观看视频的一条龙服务]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>环境</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>环境搭建</tag>
+        <tag>Pythonista</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[考研数学公式定理证明]]></title>
+    <url>%2Fposts%2F%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E5%AE%9A%E7%90%86%E8%AF%81%E6%98%8E.html</url>
+    <content type="text"><![CDATA[罗尔中值定理&emsp;&emsp;$f(x)\in C [a,b] \Rightarrow \exists m,M$(1) $m=M,f(x)\equiv C$&emsp;&emsp;$\forall \xi \in (a,b),f’(\xi)=0 $;(2) $m&lt;M$&emsp;&emsp;$\because f(a)=f(b) \therefore m,M$至少一个在 $(a,b)$ 内&emsp;&emsp;设 $\exists \xi \in (a,b),f(\xi)=M \Rightarrow f’(\xi)=0$ 或不存在&emsp;&emsp;$\because f(x)$ 在 $(a,b)$ 内可导 $\therefore f’(\xi)=0$ 拉格朗日中值定理&emsp;&emsp;令 $\varphi(x)=f(x)-f(a)-\frac{f(b)-f(a)}{b-a}(x-a)$,&emsp;&emsp;显然 $\varphi(x)$ 在 $[a,b]$ 上连续，在 $(a,b)$ 内可导，&emsp;&emsp;又 $\varphi(a)=\varphi(b)=0$ ，所以由罗尔定理，存在 $\xi\in (a,b)$，使得 $\varphi’(\xi)=0$。&emsp;&emsp;而 $\varphi’(x)=f’(x)-\frac{f(b)-f(a)}{b-a}$，所以 $f’(\xi)-\frac{f(b)-f(a)}{b-a}=0$，即$$f(b)-f(a)=f’(\xi)(b-a)$$ 柯西中值定理&emsp;&emsp;令 $\varphi(x)=f(x)-f(a)-\frac{f(b)-f(a)}{g(b)-g(a)}[g(x)-g(a)]$,&emsp;&emsp;$\varphi (a)=\varphi (b)=0 ；\exists \xi \in (a,b),\varphi’(\xi)=0$&emsp;&emsp;而$\varphi’(x)=f’(x)-\frac{f(b)-f(a)}{g(b)-g(a)}g’(x)$&emsp;&emsp;$\therefore f’(x)-\frac{f(b)-f(a)}{g(b)-g(a)}g’(x)=0$$$\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f’(x)}{g’(x)} $$ 积分中值定理&emsp;&emsp;因为 $f(x)$ 在 $[a,b]$ 上连续，所以$f(x)$ 在 $[a,b]$ 上取到最小值 $m$ 和最大值 $M$，由 $m(b-a)\le \int^b_a f(x)dx\le M(b-a)$。&emsp;&emsp;于是$m\le \frac{1}{b-a}\int^b_a f(x)dx \le M$。&emsp;&emsp;由介值定理，存在 $\eta \in [a,b]$ ，使得 $f(\eta)=\frac{1}{b-a}\int^b_a f(x)dx$ ，即$$\int^b_a f(x)dx=f(\eta)(b-a)$$]]></content>
+      <categories>
+        <category>考研</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>考研</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[考研计网名词抽背数据]]></title>
     <url>%2Fposts%2F%E8%80%83%E7%A0%94%E8%AE%A1%E7%BD%91%E5%90%8D%E8%AF%8D%E6%8A%BD%E8%83%8C%E6%95%B0%E6%8D%AE.html</url>
-    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283WAN : 广域网（Wide Area Network）;MAN : 城域网（Metropolitan Area Network）;LAN : 局域网（Local Area Network）;PAN : 个人区域网（Personal Area Network）;PDN : 公用数据网络（Public Data Network）;RFC : 请求评论（Request For Comments）;SAP : 服务访问点（Service Access Point）;PON : 无源光网络（Passive Optical Network）;VPN : 虚拟专用网络（Virtual Private Network）;ADSL : 非对称数字用户线（Asymmetric Digital Subscriber Line）;STP : 屏蔽双绞线（Shielded Twisted Pair）;UTP : 非屏蔽双绞线（Unshielded Twisted Pair）;Hub : 集线器;CRC : 循环冗余校验（Cyclic Redundancy Code）;ARQ : 自动重传请求（Automatic Repeat reQuest）;FEC : 前向纠错（Forward Error Correction）;ACK : 确认帧（ACKnowledgement）;MAC : 介质访问控制（Medium Access Control）;FDM : 频分多路复用（Frequency Division Multiplexing）;TDM : 时分多路复用（Time Division Multiplexing）;STDM : 统计时分多路复用/异步时分多路复用（Statistic TDM）;WDM : 波分多路复用（Wavelength Division Multiplexing）;CDM : 码分多路复用（Code Division Multiplexing）;CDMA : 码分多址（Code Division Multiple Access）;ALOHA : ALOHA协议（Additive Link On-line HAwaii system）;CSMA/CD : 载波帧听多路访问/碰撞检测（Carrier Sense Multiple Access with Collision Detection）;PPP : 点对点协议（Point-to-Point Protocol）;HDLC : 高级数据链路控制（High-level Data Link Control）;VLAN : 虚拟局域网（Virtual LAN）;FDDI : 光纤分布数字接口（Fiber Distributed Data Interface）;IP : 网际协议（Internet Protocol）;TTL : 生存时间（Time To Live）;MTU : 最大传送单元（Maximum Transfer Unit）;NAT : 网络地址转换（Network Address Translation）;CIDR : 无分类域间路由选择（Classless InterDomain Routing）;ARP : 地址解析协议（Address Resolution Protocol）;RARP : 逆地址解析协议（Reverse Address Resolution Protocol）;DHCP : 动态主机配置协议（Dynamic Host Configuration Protocol）;ICMP : 网际控制报文协议（Internet Control Message Protocol）;AS : 自治系统（Autonomous System）;IGP : 内部网关协议（Interior Gateway Protocol）;EGP : 外部网关协议（External Gateway Protocol）;IGMP : 因特网组管理协议（Internet Group Management Protocol）;CGI : 通用网关接口（Common Gateway Interface）;UDP : 用户数据报协议（User Datagram Protocol）;TCP : 传输控制协议（Transmission Control Protocol）;MSS : 最大报文段长度（Maximum Segment Size）;RTT : 往返时间（Round-Trip Time）;RTO : 超时重传时间（Retransmission Time-Out）;OSPF : 开放最短路径优先（Open Shortest Path First）;C/S : 客户/服务器（Client/Server）;DNS : 域名系统（Domain Name System）;FTP : 文件传输协议（File Transfer Protocol）;NFS : 网络文件系统（Network File System）;MIME : 多用途网络邮件扩充（Multipurpose Internet Mail Extensions）;SMTP : 简单邮件传输协议（Simple Mail Transfer Protocol）;POP : 邮局协议（Post Office Protocol）;WWW : 万维网（World Wide Web）;HTTP : 超文本传输协议（HyperText Transfer Protocol）;HTTPS : 超文本传输安全协议（Hypertext Transfer Protocol Secure）;URL : 统一资源定位符（Uniform Resource Locator）;HTML : 超文本标记语言（HyperText Markup Language）;SNMP : 简单网络管理协议（Simple Network Management Protocol ）;RIP : 路由信息协议（Routing Information Protocol）;BGP : 边界网关协议（Border Gateway Protocol）;RTP : 实时运输协议（Real-Time Transport Protocol）;RTCP : 实时运输控制协议（RTP Control Protocol）;QoS : 服务质量（Quality of Service）;IntServ : 综合服务（Integrate Service）;DiffServ : 区分服务（Difference Service）;Wi-Fi : 无线保真度（无线局域网同义词）（Wireless-Fidelity）;PAP : 密码认证协议（Password Authentication Protocol）;DES : 数据加密标准（Data Encryption Standard）;Replay Atack : 重放攻击;ESP : 封装安全有效载荷（Encapsulating Security Payload）]]></content>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283WAN : 广域网（Wide Area Network）;MAN : 城域网（Metropolitan Area Network）;LAN : 局域网（Local Area Network）;PAN : 个人区域网（Personal Area Network）;PDN : 公用数据网络（Public Data Network）;RFC : 请求评论（Request For Comments）;SAP : 服务访问点（Service Access Point）;PON : 无源光网络（Passive Optical Network）;VPN : 虚拟专用网络（Virtual Private Network）;STP : 屏蔽双绞线（Shielded Twisted Pair）;UTP : 非屏蔽双绞线（Unshielded Twisted Pair）;Hub : 集线器;ADSL : 非对称数字用户线（Asymmetric Digital Subscriber Line）;CRC : 循环冗余校验（Cyclic Redundancy Code）;ARQ : 自动重传请求（Automatic Repeat reQuest）;FEC : 前向纠错（Forward Error Correction）;ACK : 确认帧（ACKnowledgement）;MAC : 介质访问控制（Medium Access Control）;FDM : 频分多路复用（Frequency Division Multiplexing）;TDM : 时分多路复用（Time Division Multiplexing）;STDM : 统计时分多路复用/异步时分多路复用（Statistic TDM）;WDM : 波分多路复用（Wavelength Division Multiplexing）;CDM : 码分多路复用（Code Division Multiplexing）;CDMA : 码分多址（Code Division Multiple Access）;ALOHA : ALOHA协议（Additive Link On-line HAwaii system）;CSMA/CD : 载波帧听多路访问/碰撞检测（Carrier Sense Multiple Access with Collision Detection）;PPP : 点对点协议（Point-to-Point Protocol）;HDLC : 高级数据链路控制（High-level Data Link Control）;VLAN : 虚拟局域网（Virtual LAN）;FDDI : 光纤分布数字接口（Fiber Distributed Data Interface）;IP : 网际协议（Internet Protocol）;TTL : 生存时间（Time To Live）;MTU : 最大传送单元（Maximum Transfer Unit）;NAT : 网络地址转换（Network Address Translation）;CIDR : 无分类域间路由选择（Classless InterDomain Routing）;ARP : 地址解析协议（Address Resolution Protocol）;RARP : 逆地址解析协议（Reverse Address Resolution Protocol）;DHCP : 动态主机配置协议（Dynamic Host Configuration Protocol）;ICMP : 网际控制报文协议（Internet Control Message Protocol）;AS : 自治系统（Autonomous System）;IGP : 内部网关协议（Interior Gateway Protocol）;EGP : 外部网关协议（External Gateway Protocol）;IGMP : 因特网组管理协议（Internet Group Management Protocol）;CGI : 通用网关接口（Common Gateway Interface）;UDP : 用户数据报协议（User Datagram Protocol）;TCP : 传输控制协议（Transmission Control Protocol）;MSS : 最大报文段长度（Maximum Segment Size）;RTT : 往返时间（Round-Trip Time）;RTO : 超时重传时间（Retransmission Time-Out）;OSPF : 开放最短路径优先（Open Shortest Path First）;C/S : 客户/服务器（Client/Server）;DNS : 域名系统（Domain Name System）;FTP : 文件传输协议（File Transfer Protocol）;NFS : 网络文件系统（Network File System）;MIME : 多用途网络邮件扩充（Multipurpose Internet Mail Extensions）;SMTP : 简单邮件传输协议（Simple Mail Transfer Protocol）;POP : 邮局协议（Post Office Protocol）;WWW : 万维网（World Wide Web）;HTTP : 超文本传输协议（HyperText Transfer Protocol）;HTTPS : 超文本传输安全协议（Hypertext Transfer Protocol Secure）;URL : 统一资源定位符（Uniform Resource Locator）;HTML : 超文本标记语言（HyperText Markup Language）;SNMP : 简单网络管理协议（Simple Network Management Protocol ）;RIP : 路由信息协议（Routing Information Protocol）;BGP : 边界网关协议（Border Gateway Protocol）;RTP : 实时运输协议（Real-Time Transport Protocol）;RTCP : 实时运输控制协议（RTP Control Protocol）;QoS : 服务质量（Quality of Service）;IntServ : 综合服务（Integrate Service）;DiffServ : 区分服务（Difference Service）;Wi-Fi : 无线保真度（无线局域网同义词）（Wireless-Fidelity）;PAP : 密码认证协议（Password Authentication Protocol）;DES : 数据加密标准（Data Encryption Standard）;Replay Atack : 重放攻击;ESP : 封装安全有效载荷（Encapsulating Security Payload）]]></content>
       <categories>
         <category>考研</category>
         <category>计算机网络</category>
@@ -197,8 +238,8 @@
         <category>环境</category>
       </categories>
       <tags>
-        <tag>Markdown</tag>
         <tag>环境搭建</tag>
+        <tag>Markdown</tag>
         <tag>VSCode</tag>
       </tags>
   </entry>
@@ -395,9 +436,9 @@
         <category>计算机组成原理</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>理论</tag>
         <tag>计算机组成原理</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
