@@ -1,5 +1,6 @@
-var nextbtn = document.getElementById('next');
 var startbtn = document.getElementById('start');
+var datatypebtn = document.getElementById('datatype');
+var nextbtn = document.getElementById('next');
 var answerbtn = document.getElementById('answer');
 var resetbtn = document.getElementById('reset');
 var Key = document.getElementById('Key');
@@ -16,21 +17,14 @@ var list=new Array();
 var mark = false;
 var timer = 0;
 var num = -1;
+var normaltype=true;
 
 startbtn.onclick=function(){
 
 	showDiv.style.display="inline";
 	inputDiv.style.display="none";
 		
-	data = inputBox.value.split(';');
-	
-	for(var i=0;i< data.length; i++){
-		list[i]=data[i].split(':');
-	}
-	
-	mark = false;
-	timer = 0;
-	num = -1;
+	splitData();
 
 	showBox.innerHTML = '';
 	Key.innerHTML = 'XXX';
@@ -38,11 +32,27 @@ startbtn.onclick=function(){
   
 }
 
+datatypebtn.onclick=function(){
+	if(normaltype){
+		datatypebtn.textContent="Excel"
+		inputBox.placeholder ="直接从Excel中复制粘贴两列数据，每项数据占一行，不得有空白行"
+	}
+	else{
+		datatypebtn.textContent="标准"
+		inputBox.placeholder ="数据项格式为: [ 键 : 值 ; ]，最后一个数据项不用分号结尾，注意只能使用英文字符。示例：1:2;3:4;5:6"
+	}
+	normaltype=!normaltype;
+}
+
 resetbtn.onclick=function(){
 
 	showDiv.style.display="none";
 	inputDiv.style.display="inline";
 
+	mark = false;
+	timer = 0;
+	num = -1;
+	list.splice(0,list.length)
 }
 
 nextbtn.onclick = function () {
@@ -72,12 +82,29 @@ nextbtn.onclick = function () {
 }
 
 answerbtn.onclick = function(){
-	answerBox.style.display="inline";
-
+	if(!mark)
+		answerBox.style.display="inline";
 }
 
 function random (min,max){
   return Math.floor(Math.random()*(max-min))+min;
+}
+
+function splitData(){
+
+	if(normaltype){
+		data = inputBox.value.split(';');
+	
+		for(var i=0;i< data.length; i++){
+			list[i]=data[i].split(':');
+		}
+	}
+	else{
+		data = inputBox.value.split('\n');
+		for(var i=0;i< data.length-1; i++){
+			list[i]=data[i].split('\t');
+		}
+	}
 }
 
 去除换行
