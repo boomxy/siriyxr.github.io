@@ -2,23 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.siriyang.cn/posts/Pythonista%E4%B8%8BPythonista-Tools-Installer%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html</loc>
+    <loc>https://blog.siriyang.cn/posts/%E8%80%83%E7%A0%94%E8%83%8C%E8%AF%B5%E4%BD%9C%E6%96%87.html</loc>
     
-    <lastmod>2019-11-12T14:58:15.583Z</lastmod>
+    <lastmod>2019-11-15T14:45:26.485Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.siriyang.cn/posts/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E5%BD%A2%E8%BF%91%E5%8D%95%E8%AF%8D%E8%BE%A8%E6%9E%90.html</loc>
+    
+    <lastmod>2019-11-15T14:39:30.422Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.siriyang.cn/about/index.html</loc>
+    
+    <lastmod>2019-11-15T14:37:11.229Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.siriyang.cn/posts/Pythonista%E4%B8%8Bstash%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html</loc>
     
-    <lastmod>2019-11-12T14:54:47.092Z</lastmod>
+    <lastmod>2019-11-12T14:58:41.106Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.siriyang.cn/posts/%E8%80%83%E7%A0%94%E8%83%8C%E8%AF%B5%E4%BD%9C%E6%96%87.html</loc>
+    <loc>https://blog.siriyang.cn/posts/Pythonista%E4%B8%8BPythonista-Tools-Installer%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html</loc>
     
-    <lastmod>2019-11-12T14:54:08.733Z</lastmod>
+    <lastmod>2019-11-12T14:58:15.583Z</lastmod>
     
   </url>
   
@@ -33,13 +47,6 @@
     <loc>https://blog.siriyang.cn/posts/%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A.html</loc>
     
     <lastmod>2019-11-05T14:34:58.408Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.siriyang.cn/posts/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E5%BD%A2%E8%BF%91%E5%8D%95%E8%AF%8D%E8%BE%A8%E6%9E%90.html</loc>
-    
-    <lastmod>2019-11-05T14:33:55.839Z</lastmod>
     
   </url>
   
@@ -208,13 +215,6 @@
     <loc>https://blog.siriyang.cn/posts/SketchBook%E7%94%BB%E5%86%8C.html</loc>
     
     <lastmod>2019-10-24T14:56:04.634Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.siriyang.cn/about/index.html</loc>
-    
-    <lastmod>2019-10-21T14:42:21.189Z</lastmod>
     
   </url>
   
