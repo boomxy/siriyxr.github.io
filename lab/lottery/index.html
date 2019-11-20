@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		数据格式： 		标准 &amp;emsp; 		开始&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; 		  	 	  	var st">
+  <meta name="description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		数据格式： 		标准 &amp;emsp; 		开始&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; 		  	 	  var sta">
 <meta name="keywords" content="siriyang,SiriBlog,编程,考研">
 <meta property="og:type" content="website">
 <meta property="og:title" content="随机抽签">
 <meta property="og:url" content="https://blog.siriyang.cn/lab/lottery/index.html">
 <meta property="og:site_name" content="SiriBlog">
-<meta property="og:description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		数据格式： 		标准 &amp;emsp; 		开始&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; 		  	 	  	var st">
+<meta property="og:description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		数据格式： 		标准 &amp;emsp; 		开始&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; 		  	 	  var sta">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-02T16:24:31.322Z">
+<meta property="og:updated_time" content="2019-11-20T15:23:47.613Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随机抽签">
-<meta name="twitter:description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		数据格式： 		标准 &amp;emsp; 		开始&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; 		  	 	  	var st">
+<meta name="twitter:description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		数据格式： 		标准 &amp;emsp; 		开始&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; 		  	 	  var sta">
   <link rel="canonical" href="https://blog.siriyang.cn/lab/lottery/">
 
 
@@ -401,7 +401,7 @@
 		 </div>
 	</div>
 	 <script>
-	var startbtn = document.getElementById('start');
+var startbtn = document.getElementById('start');
 var datatypebtn = document.getElementById('datatype');
 var nextbtn = document.getElementById('next');
 var answerbtn = document.getElementById('answer');
@@ -458,7 +458,8 @@ resetbtn.onclick=function(){
 	list.splice(0,list.length)
 }
 
-nextbtn.onclick = function () {
+
+nextbtn.onclick = function next() {
   if(list.length == 0) {
     alert("没有啦～～～～");
     return;
@@ -468,10 +469,15 @@ nextbtn.onclick = function () {
   if(mark) {
     // 为true　第一次点击
     timer = setInterval(function(){
-      num = random(list.length,0);
-      Key.innerText = ClearBr(list[num][0]);
+    	num = random(list.length,0);
+		Key.innerText = ClearBr(list[num][0]);
+		if(list[num][0].length>10)
+			Key.style.fontSize=20;
+		else
+			Key.style.fontSize=80;
 		answerBox.innerHTML=list[num][1];
 		answerBox.style.display="none";
+
     },100)
   }else {
 		clearInterval(timer);
@@ -484,10 +490,57 @@ nextbtn.onclick = function () {
   }
 }
 
-answerbtn.onclick = function(){
+
+answerbtn.onclick = function answer() {
 	if(!mark)
 		answerBox.style.display="inline";
 }
+
+document.onkeydown = function(event) {
+
+	var e = event || window.event || arguments.callee.caller.arguments[0];
+
+
+	if (e && e.keyCode == 32) { 
+
+		if(list.length == 0) {
+			alert("没有啦～～～～");
+			return;
+		  }
+		  mark = !mark;
+		
+		  if(mark) {
+			// 为true　第一次点击
+			timer = setInterval(function(){
+				num = random(list.length,0);
+				Key.innerText = ClearBr(list[num][0]);
+				if(list[num][0].length>10)
+					Key.style.fontSize=20;
+				else
+					Key.style.fontSize=80;
+				answerBox.innerHTML=list[num][1];
+				answerBox.style.display="none";
+		
+			},100)
+		  }else {
+				clearInterval(timer);
+				list.splice(num, 1);
+				var keys=new Array();
+				for(var i=0;i< list.length; i++){
+					keys[i]=list[i][0];
+				}				
+				showBox.innerHTML = `剩余个数：${list.length}</br> ${keys.toString()}`;
+		  }
+
+	}
+
+	if (e && e.keyCode == 65 ) { 
+
+		if(!mark)
+		answerBox.style.display="inline";
+	}
+
+};
 
 function random (min,max){
   return Math.floor(Math.random()*(max-min))+min;

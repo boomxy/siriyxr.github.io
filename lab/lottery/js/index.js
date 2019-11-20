@@ -55,7 +55,8 @@ resetbtn.onclick=function(){
 	list.splice(0,list.length)
 }
 
-nextbtn.onclick = function () {
+
+nextbtn.onclick = function next() {
   if(list.length == 0) {
     alert("没有啦～～～～");
     return;
@@ -65,10 +66,15 @@ nextbtn.onclick = function () {
   if(mark) {
     // 为true　第一次点击
     timer = setInterval(function(){
-      num = random(list.length,0);
-      Key.innerText = ClearBr(list[num][0]);
+    	num = random(list.length,0);
+		Key.innerText = ClearBr(list[num][0]);
+		if(list[num][0].length>10)
+			Key.style.fontSize=20;
+		else
+			Key.style.fontSize=80;
 		answerBox.innerHTML=list[num][1];
 		answerBox.style.display="none";
+
     },100)
   }else {
 		clearInterval(timer);
@@ -81,10 +87,57 @@ nextbtn.onclick = function () {
   }
 }
 
-answerbtn.onclick = function(){
+
+answerbtn.onclick = function answer() {
 	if(!mark)
 		answerBox.style.display="inline";
 }
+
+document.onkeydown = function(event) {
+
+	var e = event || window.event || arguments.callee.caller.arguments[0];
+
+
+	if (e && e.keyCode == 32) { 
+
+		if(list.length == 0) {
+			alert("没有啦～～～～");
+			return;
+		  }
+		  mark = !mark;
+		
+		  if(mark) {
+			// 为true　第一次点击
+			timer = setInterval(function(){
+				num = random(list.length,0);
+				Key.innerText = ClearBr(list[num][0]);
+				if(list[num][0].length>10)
+					Key.style.fontSize=20;
+				else
+					Key.style.fontSize=80;
+				answerBox.innerHTML=list[num][1];
+				answerBox.style.display="none";
+		
+			},100)
+		  }else {
+				clearInterval(timer);
+				list.splice(num, 1);
+				var keys=new Array();
+				for(var i=0;i< list.length; i++){
+					keys[i]=list[i][0];
+				}				
+				showBox.innerHTML = `剩余个数：${list.length}<br> ${keys.toString()}`;
+		  }
+
+	}
+
+	if (e && e.keyCode == 65 ) { 
+
+		if(!mark)
+		answerBox.style.display="inline";
+	}
+
+};
 
 function random (min,max){
   return Math.floor(Math.random()*(max-min))+min;
