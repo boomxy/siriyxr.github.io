@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		数据格式： 		标准 &amp;emsp; 		开始&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; 		  	 	  var sta">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-20T15:26:41.158Z">
+<meta property="og:updated_time" content="2019-11-21T15:17:30.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随机抽签">
 <meta name="twitter:description" content="随机抽签      	 		谁是下一个幸运儿    	  		XXX 		 		        		 		 		 		随机抽取 		答案 		重置 		        		 	 	 		请输入数据 		 		 		 		数据格式： 		标准 &amp;emsp; 		开始&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp; 		  	 	  var sta">
@@ -215,7 +215,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">35</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">37</span></a>
 
   </li>
       
@@ -471,7 +471,7 @@ nextbtn.onclick = function next() {
     timer = setInterval(function(){
     	num = random(list.length,0);
 		Key.innerText = ClearBr(list[num][0]);
-		if(list[num][0].length>10)
+		if(list[num][0].length>20)
 			Key.style.fontSize=12;
 		else
 			Key.style.fontSize=80;
@@ -501,7 +501,7 @@ document.onkeydown = function(event) {
 	var e = event || window.event || arguments.callee.caller.arguments[0];
 
 
-	if (e && e.keyCode == 32) { 
+	if (e && e.keyCode == 81) { 
 
 		if(list.length == 0) {
 			alert("没有啦～～～～");
@@ -514,7 +514,7 @@ document.onkeydown = function(event) {
 			timer = setInterval(function(){
 				num = random(list.length,0);
 				Key.innerText = ClearBr(list[num][0]);
-				if(list[num][0].length>10)
+				if(list[num][0].length>20)
 					Key.style.fontSize=12;
 				else
 					Key.style.fontSize=80;
@@ -644,7 +644,7 @@ function ClearBr(key) {
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -826,12 +826,12 @@ function ClearBr(key) {
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">314k</span>
+    <span title="站点总字数">339k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:46</span>
+    <span title="站点阅读时长">5:09</span>
 </div>
 
         
