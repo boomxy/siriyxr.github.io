@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="2020考研计算机网络笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T14:57:06.759Z">
+<meta property="og:updated_time" content="2019-12-09T14:51:20.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="考研计算机网络笔记">
 <meta name="twitter:description" content="2020考研计算机网络笔记">
@@ -338,7 +338,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 22:57:06" itemprop="dateModified" datetime="2019-12-08T22:57:06+08:00">2019-12-08</time>
+                <time title="修改时间：2019-12-09 22:51:20" itemprop="dateModified" datetime="2019-12-09T22:51:20+08:00">2019-12-09</time>
               </span>
             
           
@@ -408,7 +408,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>37 分钟</span>
+              <span>38 分钟</span>
             </span>
           
             <div class="post-description">2020考研计算机网络笔记</div>
@@ -438,7 +438,8 @@
 <li>提高可靠性</li>
 <li>负载均衡</li>
 </ol>
-<h3 id="1-1-4-计算机网络的分类"><a href="#1-1-4-计算机网络的分类" class="headerlink" title="1.1.4 计算机网络的分类"></a>1.1.4 计算机网络的分类</h3><p><strong>按分布范围分类</strong><br><a id="WAN"></a><br>&emsp;&emsp;1.广域网：其覆盖范围通常为几十千米到几千千米的区域，因而有时也称远程网。<br><a id="MAN"></a><br>&emsp;&emsp;2.城域网：覆盖范围可以跨越几个街区甚至整个城市，覆盖范围约为5～50km。<br><a id="LAN"></a><br>&emsp;&emsp;3.局域网：一般用微机或工作站通过高速线路相连，覆盖范围较小，通常为几十米到几千米的区域。<br><a id="PAN"></a><br>&emsp;&emsp;4.个人网域</p>
+<h3 id="1-1-4-计算机网络的分类"><a href="#1-1-4-计算机网络的分类" class="headerlink" title="1.1.4 计算机网络的分类"></a>1.1.4 计算机网络的分类</h3><p><strong>按分布范围分类</strong><br><a id="WAN"></a><br>&emsp;&emsp;1.广域网：其覆盖范围通常为几十千米到几千千米的区域，因而有时也称远程网。<br><a id="MAN"></a><br>&emsp;&emsp;2.城域网：覆盖范围可以跨越几个街区甚至整个城市，覆盖范围约为5～50km。<br><a id="LAN"></a><br>&emsp;&emsp;3.局域网：一般用微机或工作站通过高速线路相连，覆盖范围较小，通常为几十米到几千米的区域。<br><a id="PAN"></a><br>&emsp;&emsp;4.个人网域：其覆盖的区域直径约为10m。</p>
+<p>&emsp;&emsp;<strong>注意：若中央处理器之间的距离非常近（如仅1m的数量级或甚至更小），则一般就称之为多处理器系统，而不称他为计算机网络。</strong></p>
 <p><strong>按传输技术分类</strong></p>
 <ol>
 <li>广播式网络</li>
@@ -472,7 +473,7 @@
 <ol>
 <li>因特网草案（Internet Draft）：这个阶段还不是RFC文档。</li>
 <li>建议标准（Proposed Standard）：从这个阶段开始就称为RFC。</li>
-<li>草案标准（Draft Stannard）</li>
+<li>草案标准（Draft Stannard）：这个阶段已经被取消，不再使用。</li>
 <li>因特网标准（Internet Standard）</li>
 </ol>
 <h3 id="1-1-6-计算机网络的性能指标"><a href="#1-1-6-计算机网络的性能指标" class="headerlink" title="1.1.6 计算机网络的性能指标"></a>1.1.6 计算机网络的性能指标</h3><p><strong>带宽</strong><br>&emsp;&emsp;本来表示通信线路允许通过的信号频带范围，单位是赫兹（Hz）。在计算机网络中，带宽表示网络的通信线路所能传送数据的能力，是数字信道所能传送的“最高数据率”的同义语，单位是比特/秒（b/s）。</p>
@@ -492,13 +493,14 @@
 <p><a id="RTT"></a><br><strong>往返时间</strong><br>&emsp;&emsp;发送端发送数据开始到发送端收到来自接收端的确认（接收端收到数据后立即发送确认）总共经历的时延。</p>
 <p><strong>吞吐量</strong><br>&emsp;&emsp;单位时间内通过某个网络（或信道、接口）的数据量。</p>
 <p><strong>速率</strong><br>&emsp;&emsp;连接到计算机网络的主机在数字信道上传送数据的速率，也称数据率或比特率，单位b/s（或bit/s，有时也写为bps）。通常把最高数据率称为带宽。</p>
+<p><strong>信道利用率</strong><br>&emsp;&emsp;信道利用率=$\frac{数据发送时间}{数据发送时间+数据传播时间+…}$</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>星型拓扑结构使用一个结点作为中心结点，其他n-1个结点直接与中心结点相连构成的网络。中心结点可以是文件服务器，也可以是连接设备。常见的中心结点位集线器。</li>
 <li>广播式网络共享广播信道（如总线），通常是局域网的一种通信方式（局域网工作在数据链路层），故不需要网络层，因而也不存在路由选择问题。但数据链路层使用物理层的服务必须通过服务访问点实现。</li>
 </ol>
 <h2 id="1-2-计算机网络体系结构及参考模型"><a href="#1-2-计算机网络体系结构及参考模型" class="headerlink" title="1.2 计算机网络体系结构及参考模型"></a>1.2 计算机网络体系结构及参考模型</h2><h3 id="1-2-1-计算机网络分层结构"><a href="#1-2-1-计算机网络分层结构" class="headerlink" title="1.2.1 计算机网络分层结构"></a>1.2.1 计算机网络分层结构</h3><p>&emsp;&emsp;不同机器上的同一层称为对等层，同一层的实体称为对等实体。n层实体实现的服务为n+1层所利用。在这种情况下，n层被称为服务提供者，n+1层则服务于用户。</p>
 <p>&emsp;&emsp;物理层的PDU称为比特，数据链路层的PDU称为帧，网络层的PDU称为分组，传输层的PDU称为报文。</p>
-<p>$$n-SDU+n-PCI=n-PDU=(n-1)-SDU$$</p>
+<p>$$SDU_n+PCI_n=PDU_n=SDU_{n-1}$$</p>
 <h3 id="1-2-2-计算机网络协议、接口、服务的概念"><a href="#1-2-2-计算机网络协议、接口、服务的概念" class="headerlink" title="1.2.2 计算机网络协议、接口、服务的概念"></a>1.2.2 计算机网络协议、接口、服务的概念</h3><p><strong>协议</strong><br>&emsp;&emsp;协议就是规则的集合。</p>
 <p><a id="SAP"></a><br><strong>接口</strong><br>&emsp;&emsp;接口是同一结点内相邻两层之间交换信息的连接点，是一个系统内部的规定。同一结点相邻两层的实体通过服务访问点（Service Access Point，SAP）进行交互。</p>
 <p><strong>服务</strong><br>服务原语：</p>
@@ -697,7 +699,7 @@
 <p>&emsp;&emsp;10BASE5以太网规范中，相互串联的中继器个数不能超过4个，而且用4个中继器串联的5段通信介质中只有3段可以挂接计算机，其余两段只能用作扩展通信范围的链路段，不能挂接计算机。</p>
 <h3 id="2-3-2-集线器"><a href="#2-3-2-集线器" class="headerlink" title="2.3.2 集线器"></a>2.3.2 集线器</h3><p><a id="Hub"></a><br>&emsp;&emsp;集线器（Hub）实质上是一个多端口的中继器。<br>&emsp;&emsp;由Hub组成的网络是共享式网络，但逻辑上仍是一个总线网。Hub只能在半双工状态下工作。<br>&emsp;&emsp;集线器在一个时钟周期中只能传输一组信息。连接在其上的多台设备均分带宽。</p>
 <h3 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h3><ol>
-<li>本层基本层以下的协议必须相同，本层以上协议可以不同</li>
+<li>本层及本层以下的协议必须相同，本层以上协议可以不同</li>
 </ol>
 <br>
 
@@ -951,13 +953,14 @@
 </tr>
 </tbody></table>
 <p><strong>以太网的MAC帧</strong><br>&emsp;&emsp;MAC地址长6字节，一般由连字符分隔的6个十六进制数表示。有两种标准：DIX Ethernet V2标准和IEEE802.3标准。</p>
-<p>&emsp;&emsp;MAC帧并不需要帧结束符，但仍要加首、尾部。规定最大字节是1500B。</p>
+<p>&emsp;&emsp;MAC帧并不需要帧结束符，但仍要加首、尾部。规定数据最大字节是1500B，即最大帧长1518B。</p>
 <p><strong>高速以太网</strong><br>&emsp;&emsp;速率达到或超过100Mb/s的以太网称为高速以太网。</p>
 <ol>
 <li>100BASE-T：既支持全双工，又支持半双工，可在全双工方式下工作而无冲突发生。因此，在全双工方式下不使用CSMA/CD。</li>
 <li>吉比特以太网：既支持全双工，又支持半双工，仅在半双工工作方式下使用CSMA/CD。</li>
 <li>10吉比特以太网：不使用铜线而使用光纤作为传输媒介。只工作在全双工方式，没有征用问题，也不使用CSMA/CD。</li>
 </ol>
+<p><strong>10Mb/s以太网：</strong><br>征用期：512微秒；<br>帧间间隔：9.2微秒；</p>
 <h3 id="3-6-3-IEEE-802-11"><a href="#3-6-3-IEEE-802-11" class="headerlink" title="3.6.3 IEEE 802.11"></a>3.6.3 IEEE 802.11</h3><p>&emsp;&emsp;IEEE 802.11是无线局域网的一系列协议标准。MAC层采用CSMA/CA协议进行介质访问控制。</p>
 <h3 id="总结-8"><a href="#总结-8" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>在使用静态地址的系统中，如果有重复的硬件地址，那么这两个设备都不能正常工作。</li>
@@ -2070,7 +2073,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2019年12月08日 - 22时12分
+    2019年12月09日 - 22时12分
   </li>
 
   <!-- 引用链接 -->
@@ -2385,12 +2388,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">413k</span>
+    <span title="站点总字数">414k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:16</span>
+    <span title="站点阅读时长">6:17</span>
 </div>
 
         
