@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="2020考研计算机网络笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-10T14:51:58.935Z">
+<meta property="og:updated_time" content="2019-12-11T14:23:28.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="考研计算机网络笔记">
 <meta name="twitter:description" content="2020考研计算机网络笔记">
@@ -338,7 +338,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-10 22:51:58" itemprop="dateModified" datetime="2019-12-10T22:51:58+08:00">2019-12-10</time>
+                <time title="修改时间：2019-12-11 22:23:28" itemprop="dateModified" datetime="2019-12-11T22:23:28+08:00">2019-12-11</time>
               </span>
             
           
@@ -398,7 +398,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>41k</span>
+              <span>42k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -489,8 +489,7 @@
 <li>排队时延和处理时延一般可忽略不计（除非题目另有说明）。</li>
 <li>对于高速链路，提高的仅是数据发送速率而非比特在链路上传播的速率。提高数据的发送速率只是为了减少数据的发送时延。</li>
 </ol>
-<p><strong>时延带宽积</strong><br>&emsp;&emsp;发送端连续发送数据且发送的第一个比特即将到达终点时，发送端已经发出的比特。<br>$$时延带宽积=传播时延\times 信道带宽 $$</p>
-<p><a id="RTT"></a><br><strong>往返时间</strong><br>&emsp;&emsp;发送端发送数据开始到发送端收到来自接收端的确认（接收端收到数据后立即发送确认）总共经历的时延。</p>
+<p><strong>时延带宽积</strong><br>&emsp;&emsp;发送端连续发送数据且发送的第一个比特即将到达终点时，发送端已经发出的比特。<br>$$时延带宽积=传播时延\times 信道带宽 $$<br><a id="RTT"></a><br><strong>往返时间</strong><br>&emsp;&emsp;发送端发送数据开始到发送端收到来自接收端的确认（接收端收到数据后立即发送确认）总共经历的时延。</p>
 <p><strong>吞吐量</strong><br>&emsp;&emsp;单位时间内通过某个网络（或信道、接口）的数据量。</p>
 <p><strong>速率</strong><br>&emsp;&emsp;连接到计算机网络的主机在数字信道上传送数据的速率，也称数据率或比特率，单位b/s（或bit/s，有时也写为bps）。通常把最高数据率称为带宽。</p>
 <p><strong>信道利用率</strong><br>&emsp;&emsp;信道利用率=$\frac{数据发送时间}{数据发送时间+数据传播时间+…}$</p>
@@ -501,8 +500,7 @@
 <h2 id="1-2-计算机网络体系结构及参考模型"><a href="#1-2-计算机网络体系结构及参考模型" class="headerlink" title="1.2 计算机网络体系结构及参考模型"></a>1.2 计算机网络体系结构及参考模型</h2><h3 id="1-2-1-计算机网络分层结构"><a href="#1-2-1-计算机网络分层结构" class="headerlink" title="1.2.1 计算机网络分层结构"></a>1.2.1 计算机网络分层结构</h3><p>&emsp;&emsp;不同机器上的同一层称为对等层，同一层的实体称为对等实体。n层实体实现的服务为n+1层所利用。在这种情况下，n层被称为服务提供者，n+1层则服务于用户。</p>
 <p>&emsp;&emsp;物理层的PDU称为比特，数据链路层的PDU称为帧，网络层的PDU称为分组，传输层的PDU称为报文。</p>
 <p>$$SDU_n+PCI_n=PDU_n=SDU_{n-1}$$</p>
-<h3 id="1-2-2-计算机网络协议、接口、服务的概念"><a href="#1-2-2-计算机网络协议、接口、服务的概念" class="headerlink" title="1.2.2 计算机网络协议、接口、服务的概念"></a>1.2.2 计算机网络协议、接口、服务的概念</h3><p><strong>协议</strong><br>&emsp;&emsp;协议就是规则的集合。</p>
-<p><a id="SAP"></a><br><strong>接口</strong><br>&emsp;&emsp;接口是同一结点内相邻两层之间交换信息的连接点，是一个系统内部的规定。同一结点相邻两层的实体通过服务访问点（Service Access Point，SAP）进行交互。</p>
+<h3 id="1-2-2-计算机网络协议、接口、服务的概念"><a href="#1-2-2-计算机网络协议、接口、服务的概念" class="headerlink" title="1.2.2 计算机网络协议、接口、服务的概念"></a>1.2.2 计算机网络协议、接口、服务的概念</h3><p><strong>协议</strong><br>&emsp;&emsp;协议就是规则的集合。<br><a id="SAP"></a><br><strong>接口</strong><br>&emsp;&emsp;接口是同一结点内相邻两层之间交换信息的连接点，是一个系统内部的规定。同一结点相邻两层的实体通过服务访问点（Service Access Point，SAP）进行交互。</p>
 <p><strong>服务</strong><br>服务原语：</p>
 <ol>
 <li>请求（Request）。由服务用户发往服务提供者，请求完成某项工作。</li>
@@ -710,32 +708,11 @@
 <h3 id="3-1-1-为网络层提供服务"><a href="#3-1-1-为网络层提供服务" class="headerlink" title="3.1.1 为网络层提供服务"></a>3.1.1 为网络层提供服务</h3><ol>
 <li>无确认的无连接服务：适用于实时通信或误码率较低的通信信道，如以太网。</li>
 <li>有确认的无连接服务：源机器发送数据帧时不需先建立链路连接，但目的机器收到数据是必须发回确认。适用于误码率较高的通信信道，如无线通信。</li>
-<li>有确认的面向连接服务：目的机器对收到的每一帧都要给出确认，源机器收到确认后才能发送下一帧，因而该服务的可靠性最高。适用于通信要求（可靠性，实时性）较高的场合。</li>
+<li>有确认的面向连接服务：目的机器对收到的每一帧都要给出确认，源机器收到确认后才能发送下一帧，因而该服务的可靠性最高。适用于通信要求（可靠性）较高的场合。</li>
 </ol>
 <p><strong>注意：</strong>有连接就一定要确认，即不存在无确认的面向连接的服务。</p>
-<h3 id="3-1-3-帧定界、帧同步于透明传输"><a href="#3-1-3-帧定界、帧同步于透明传输" class="headerlink" title="3.1.3 帧定界、帧同步于透明传输"></a>3.1.3 帧定界、帧同步于透明传输</h3><p>&emsp;&emsp;首部和尾部中含有很多控制信息，他们的一个重要作用是确定帧的界限，即帧定界。如在HDLC通信归程中，用标识位F（01111110）来标识帧的开始和结束。</p>
-<table>
-<thead>
-<tr>
-<th>比特</th>
-<th>8</th>
-<th>8</th>
-<th>8</th>
-<th>可变</th>
-<th>16</th>
-<th>8</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td>标志F</td>
-<td>地址A</td>
-<td>控制C</td>
-<td>信息I</td>
-<td>帧校验序列FCS</td>
-<td>标志F</td>
-</tr>
-</tbody></table>
+<h3 id="3-1-3-帧定界、帧同步于透明传输"><a href="#3-1-3-帧定界、帧同步于透明传输" class="headerlink" title="3.1.3 帧定界、帧同步于透明传输"></a>3.1.3 帧定界、帧同步于透明传输</h3><p>&emsp;&emsp;首部和尾部中含有很多控制信息，他们的一个重要作用是确定帧的界限，即帧定界。如在HDLC通信归程中，用标识位F（01111110）来标识帧的开始和结束。（HDLC主要用于广域网）</p>
+<p>HDLC标准帧格式：<br>|比特|8|8|8|可变|16|8|<br>|—|—|—|—|—|—|—|<br>| |标志F|地址A|控制C|信息I|帧校验序列FCS|标志F|</p>
 <p>&emsp;&emsp;透明传输就是不管所传数据是什么样的比特组合，都应当能在链路上传送。</p>
 <h3 id="3-1-4-流量控制"><a href="#3-1-4-流量控制" class="headerlink" title="3.1.4 流量控制"></a>3.1.4 流量控制</h3><p>&emsp;&emsp;流量控制实际上就是控制发送方的数据流量，使其发送的速率不超过接收方的接收能力。</p>
 <p>&emsp;&emsp;流量控制并不是数据链路层特有的功能，许多高层协议中也提供此功能，只不过控制的对象不同而已。对于数据链路层来说，控制的事想另两结点之间数据链路上的流量，而对于运输层来说，控制的是源端到目的端之间的流量。</p>
@@ -746,7 +723,7 @@
 <h3 id="3-2-1-字符计数法"><a href="#3-2-1-字符计数法" class="headerlink" title="3.2.1 字符计数法"></a>3.2.1 字符计数法</h3><p>&emsp;&emsp;计数字段提供的字节数包含自身所占用的一个字节。这种方法最大的问题在于，如果计数字段出错，即失去了帧边界划分的依据。</p>
 <h3 id="3-2-2-字符填充的首尾定界符法"><a href="#3-2-2-字符填充的首尾定界符法" class="headerlink" title="3.2.2 字符填充的首尾定界符法"></a>3.2.2 字符填充的首尾定界符法</h3><p>&emsp;&emsp;使用一些特殊的字符来定界一帧的开始和结束。可以在特殊字符前面填充一个转义字符（DLE）来加以区分（转义字符是ASCII码中的控制字符，是一个字符，而非“DLE”三个字符的组合）。接收方收到数据后会自己删除这个插入的DLE字符。</p>
 <h3 id="3-2-3-比特填充的首尾标志法"><a href="#3-2-3-比特填充的首尾标志法" class="headerlink" title="3.2.3 比特填充的首尾标志法"></a>3.2.3 比特填充的首尾标志法</h3><p>&emsp;&emsp;01111110来标志一帧的开始和结束。发送方的数据链路层在信息位中遇到5个连续的“1”时，将自动在其后插入一个“0”；而接收方做该过程的逆操作，即每收到5个连续的“1”时，自动删除后面紧跟的“0”，以恢复原信息。<br>&emsp;&emsp;比特填充法很容易由硬件来实现，性能优于字符填充法。</p>
-<h3 id="3-2-4-违规编码法"><a href="#3-2-4-违规编码法" class="headerlink" title="3.2.4 违规编码法"></a>3.2.4 违规编码法</h3><p>&emsp;&emsp;“高-高”电平对和“低-低”电平对在数据比特中是违规的。可以借用这些违规编码序列来定界帧的起始和终止。局域网IEEE8.2标准就采用了这种方法。<br>&emsp;&emsp;违规编码法不需要采用任何填充技术，便能实现数据的透明传输，但它只适用于采用冗余编码的特殊编码环境。</p>
+<h3 id="3-2-4-违规编码法"><a href="#3-2-4-违规编码法" class="headerlink" title="3.2.4 违规编码法"></a>3.2.4 违规编码法</h3><p>&emsp;&emsp;“高-高”电平对和“低-低”电平对在数据比特中是违规的。可以借用这些违规编码序列来定界帧的起始和终止。局域网IEEE802标准就采用了这种方法。<br>&emsp;&emsp;违规编码法不需要采用任何填充技术，便能实现数据的透明传输，但它只适用于采用冗余编码的特殊编码环境。</p>
 <p>&emsp;&emsp;目前较常用的组帧方法是比特填充法和违规编码法。</p>
 <h2 id="3-3-差错控制"><a href="#3-3-差错控制" class="headerlink" title="3.3 差错控制"></a>3.3 差错控制</h2><p>&emsp;&emsp;噪声的两大类：</p>
 <ul>
@@ -754,15 +731,14 @@
 <li>另一类是由外界特定的短暂原因所造成的冲击噪声。<br>&emsp;&emsp;前者可以通过提高信噪比来减少或避免干扰，而后者不可能靠提高信号幅度来避免干扰造成的差错，是产生差错的重要原因。</li>
 </ul>
 <p>&emsp;&emsp;差错控制又可分为：检错编码和纠错编码</p>
-<h3 id="3-3-1-检错编码"><a href="#3-3-1-检错编码" class="headerlink" title="3.3.1 检错编码"></a>3.3.1 检错编码</h3><p><strong>奇偶校验码</strong><br>&emsp;&emsp;奇偶校验码是奇校验码和偶校验码的统称，是一种最基本的检错码。它由n-1位信息元和1位校验元组成。又分为垂直奇偶校验、水平奇偶校验和水平垂直奇偶校验。</p>
-<p><a id="CRC"></a><br><strong>循环冗余码</strong><br>&emsp;&emsp;<strong>循环冗余码（Cyclic Redundancy Code，CRC）</strong>又称为多项式码。</p>
+<h3 id="3-3-1-检错编码"><a href="#3-3-1-检错编码" class="headerlink" title="3.3.1 检错编码"></a>3.3.1 检错编码</h3><p><strong>奇偶校验码</strong><br>&emsp;&emsp;奇偶校验码是奇校验码和偶校验码的统称，是一种最基本的检错码。它由n-1位信息元和1位校验元组成。又分为垂直奇偶校验、水平奇偶校验和水平垂直奇偶校验。<br><a id="CRC"></a><br><strong>循环冗余码</strong><br>&emsp;&emsp;<strong>循环冗余码（Cyclic Redundancy Code，CRC）</strong>又称为多项式码。</p>
 <p>&emsp;&emsp;假设一个帧有 $m$ 位，其对应的多项式为 $M(x)$ ，计算冗余码的步骤如下：</p>
 <ol>
-<li>加0 。假设 $G(x)$ 的阶为 $r$，在帧的低位端加上 $r$ 个0 。</li>
+<li>加0 。假设 $G(x)$ 的阶（即最高幂次）为 $r$，在帧的低位端加上 $r$ 个0 。</li>
 <li>模2除。利用模2除法，用$G(x)$对用的数据串去除第一步中计算出的数据串，得到的余数即为冗余码（共 $r$ 位，前面的0不可省略）。</li>
 <li>循环直到余数小于除数时，该余数为最终余数。<br>&emsp;&emsp;加法不进位，减法不借位，它刚好是异或操作。</li>
 </ol>
-<h3 id="3-3-2-纠错编码"><a href="#3-3-2-纠错编码" class="headerlink" title="3.3.2 纠错编码"></a>3.3.2 纠错编码</h3><p>&emsp;&emsp;最常见的纠错编码是海明码，它能发现双比特错，但只能纠正但比特错。</p>
+<h3 id="3-3-2-纠错编码"><a href="#3-3-2-纠错编码" class="headerlink" title="3.3.2 纠错编码"></a>3.3.2 纠错编码</h3><p>&emsp;&emsp;最常见的纠错编码是海明码，它能发现双比特错，但只能纠正单比特错。</p>
 <p>&emsp;&emsp;海明码“纠错” $d$ 位，需要码距为 $2d+1$ 的编码方案；“检错” $d$ 位，则只需码距为 $d+1$<br>&emsp;&emsp;在 $k$ 比特信息位上附加 $r$ 比特冗余信息，构成 $k+r$ 比特的码字，必须满足 $2^r\ge k+r+1$</p>
 <h3 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>热噪声一般是信道固有的，引起的差错是随机差错，可以通过提高信噪比来降低他对数据传输的影响。</li>
@@ -782,8 +758,7 @@
 <li>接收窗口大小为1时，可保证帧的有序接收。</li>
 <li>数据链路层的滑动窗口协议中，窗口大小在传输过程中是固定的。</li>
 </ol>
-<p><strong>可靠传输机制</strong> </p>
-<p><a id="ARQ"></a><br>&emsp;&emsp;<strong>自动重传请求（Automatic Repeat reQuest，ARQ）</strong>通过接收方请求发送方重传出错的数据帧来回复出错的帧，是通信中用于处理信道所带来差错的方法之一。</p>
+<p><strong>可靠传输机制</strong><br><a id="ARQ"></a><br>&emsp;&emsp;<strong>自动重传请求（Automatic Repeat reQuest，ARQ）</strong>通过接收方请求发送方重传出错的数据帧来回复出错的帧，是通信中用于处理信道所带来差错的方法之一。</p>
 <ol>
 <li>停止-等待（Stop-and-Wait）ARQ</li>
 <li>后退N帧（Go-Back-N）ARQ</li>
@@ -797,7 +772,7 @@
 <p>&emsp;&emsp;后退N帧协议不一定就优于停止等待协议。</p>
 <h3 id="3-4-4-多帧滑动窗口与选择重传协议（SR）"><a href="#3-4-4-多帧滑动窗口与选择重传协议（SR）" class="headerlink" title="3.4.4 多帧滑动窗口与选择重传协议（SR）"></a>3.4.4 多帧滑动窗口与选择重传协议（SR）</h3><p>&emsp;&emsp;$接收窗口W_R+发送窗口W_T\le 2^n$，接收窗口尺寸不应该超过序号范围的一半，即$W_R\le2^{(n-1)}$<br>&emsp;&emsp;接收窗口为最大值时，$W_{Tmax}=W_{Rmax}=2^{(n-1)}$。一般情况下，在SR协议中，接收窗口的大小和发送窗口的大小时相同的。</p>
 <p>&emsp;&emsp;缓冲区的数目等于窗口的大小，而不是序号数目。</p>
-<p>&emsp;&emsp;信道的效率，也称信道利用率。信道利用率是对发送方而言的，是指发送方在一个发送周期的时间内，有效的发送数据所需要的时间占整个发送周期的比率。发送方从开始发送数据到收到第一个确认帧位置，称为一个发送周期。<br>&emsp;&emsp;信道利用率为 $（L/C）/T$。<br>$$信道吞吐量=信道利用率\times 发送方的发送速率$$</p>
+<p>&emsp;&emsp;信道的效率，也称信道利用率。信道利用率是对发送方而言的，是指发送方在一个发送周期的时间内，有效的发送数据所需要的时间占整个发送周期的比率。发送方从开始发送数据到收到第一个确认帧位置，称为一个发送周期。<br>$$信道利用率=(数据长度/数据传输率)/发送周期$$<br>$$信道吞吐量=信道利用率\times 发送方的发送速率$$</p>
 <h3 id="总结-6"><a href="#总结-6" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>在后退N帧的协议中，序列号个数不小于MAX_SEQ+1</li>
 <li>选择重传协议中的ACK分组不再具有累积确认的效果</li>
@@ -806,15 +781,12 @@
 </ol>
 <p><a id="MAC"></a></p>
 <h2 id="3-5-介质访问控制"><a href="#3-5-介质访问控制" class="headerlink" title="3.5 介质访问控制"></a>3.5 介质访问控制</h2><p>&emsp;&emsp;常见的介质访问控制方法有：信道划分介质访问控制、随机访问介质访问控制、轮询访问介质访问控制。其中前者是静态划分信道的方法，后两者是动态分配信道的方法。</p>
-<h3 id="3-5-1-信道划分介质访问控制"><a href="#3-5-1-信道划分介质访问控制" class="headerlink" title="3.5.1 信道划分介质访问控制"></a>3.5.1 信道划分介质访问控制</h3><p><a id="FDM"></a><br><strong>频分多路复用（FDM）</strong><br>&emsp;&emsp;频分多路复用是一种将多路基带信号调制到不同频段上，再叠加形成一个复合信号的多路复用技术。每个子信道分配的带宽可以不同，但他们的总和不可以超过信道的总带宽。相邻信道之间要加入“保护频带”。<br>&emsp;&emsp;频分多路复用的优点在于充分利用了传输介质的带宽，系统效率高；由于技术比较成熟实现也比较容易。</p>
-<p><a id="TDM"></a><br><strong>时分多路复用（TDM）</strong><br>&emsp;&emsp;时分多路复用是将一条物理信道按时间分成若干时间片，轮流地分配给多个信号使用。<br><a id="STDM"></a><br>&emsp;&emsp;统计时分多路复用（STDM，又称异步时分多路复用），STDM帧并不是固定分配时隙，而是按需动态地分配时隙。</p>
-<p><a id="WDM"></a><br><strong>波分多路复用（WDM）</strong><br>&emsp;&emsp;波分多路复用即光的频分多路复用，他在一根光纤中传播多种不同波长（频率）的光信号，由于波长（频率）不同，各路光信号互不干扰，最后再用波长分解复用器将各路波长分解出来。</p>
-<p><a id="CDM"></a><br><strong>码分多路复用（CDM）</strong><br>&emsp;&emsp;码分多路复用是采用不同的编码来区分各路原始信号的一种复用方式。它既共享信道频率，有共享时间。<br><a id="CDMA"></a><br>&emsp;&emsp;码分多址（Code Division Multiple Access，CDMA）是码分复用的一种方式。<br>&emsp;&emsp;将多个正交的码片向量混合在一起进行传输，收到数据序列的机器使用对应数据源机器的码片序列进行内积得出想要的数据。</p>
+<h3 id="3-5-1-信道划分介质访问控制"><a href="#3-5-1-信道划分介质访问控制" class="headerlink" title="3.5.1 信道划分介质访问控制"></a>3.5.1 信道划分介质访问控制</h3><p><a id="FDM"></a><br><strong>频分多路复用（FDM）</strong><br>&emsp;&emsp;频分多路复用是一种将多路基带信号调制到不同频段上，再叠加形成一个复合信号的多路复用技术。每个子信道分配的带宽可以不同，但他们的总和不可以超过信道的总带宽。相邻信道之间要加入“保护频带”。<br>&emsp;&emsp;频分多路复用的优点在于充分利用了传输介质的带宽，系统效率高；由于技术比较成熟实现也比较容易。<br><a id="TDM"></a><br><strong>时分多路复用（TDM）</strong><br>&emsp;&emsp;时分多路复用是将一条物理信道按时间分成若干时间片，轮流地分配给多个信号使用。<br><a id="STDM"></a><br>&emsp;&emsp;统计时分多路复用（STDM，又称异步时分多路复用），STDM帧并不是固定分配时隙，而是按需动态地分配时隙。<br><a id="WDM"></a><br><strong>波分多路复用（WDM）</strong><br>&emsp;&emsp;波分多路复用即光的频分多路复用，他在一根光纤中传播多种不同波长（频率）的光信号，由于波长（频率）不同，各路光信号互不干扰，最后再用波长分解复用器将各路波长分解出来。<br><a id="CDM"></a><br><strong>码分多路复用（CDM）</strong><br>&emsp;&emsp;码分多路复用是采用不同的编码来区分各路原始信号的一种复用方式。它既共享信道频率，有共享时间。<br><a id="CDMA"></a><br>&emsp;&emsp;码分多址（Code Division Multiple Access，CDMA）是码分复用的一种方式。<br>&emsp;&emsp;将多个正交的码片向量混合在一起进行传输，收到数据序列的机器使用对应数据源机器的码片序列进行内积得出想要的数据。</p>
+<p>&emsp;&emsp;令向量S表示A站的码片向量，令T表示B站的码片向量。两个不同站的码片序列正交，即向量S和T的规格化内积为0:<br>$$S\cdot T =\frac{1}{m}\sum_{i=1}^{m}S_iT_i=0$$<br>&emsp;&emsp;任何一个码片自己的规格化内积为1，和自己反码的规格化内积为-1</p>
+<p>&emsp;&emsp;由此，不管是在正交的码片中还是在内积结果中，我们用“1”代表“1”，“-1”代表“0”，若内积结果为0则代表该站没有发送数据。</p>
 <p>&emsp;&emsp;码分多路复用技术具有频谱利用率高、抗干扰能力强、保密性强、语音质量好等优点，还可以减少投资和降低运行成本，主要用于无线通信系统，特别是移动通信系统。</p>
-<h3 id="3-5-2-随机访问介质访问控制"><a href="#3-5-2-随机访问介质访问控制" class="headerlink" title="3.5.2 随机访问介质访问控制"></a>3.5.2 随机访问介质访问控制</h3><p>&emsp;&emsp;随机访问介质控制协议又称征用型协议。随机介质访问控制实质上是一种将广播信道转化为点到点信道的行为。</p>
-<p><a id="ALOHA"></a><br><strong>ALOHA协议</strong><br>&emsp;&emsp;<strong>纯ALOHA协议</strong><br>&emsp;&emsp;当网络中的任何一个站点需要发送数据时，可以不进行任何检测就发送数据。如果在一段时间内未收到确认，那么该站点就认为传输过程中发生了冲突。发送站点需要等待一段随机时间后再发送数据，直至发送成功。</p>
-<p>&emsp;&emsp;<strong>时隙ALOHA协议</strong><br>&emsp;&emsp;把所有各站点在时间上同步起来，并将时间划分为一段段等长的时隙，规定只能在每个时隙开始是才能发送一帧。从而避免了用户发送数据的任意性，减少了数据产生冲突的可能性，提高了信道利用率。在一个时隙内有两个或两个以上的帧到达时，在下一个时隙将产生碰撞。</p>
-<p><a id="CSMA"></a><br><strong>CSMA协议</strong><br>&emsp;&emsp;载波侦听多路访问（Carrier Sense Multiple Access，CSMA）</p>
+<h3 id="3-5-2-随机访问介质访问控制"><a href="#3-5-2-随机访问介质访问控制" class="headerlink" title="3.5.2 随机访问介质访问控制"></a>3.5.2 随机访问介质访问控制</h3><p>&emsp;&emsp;随机访问介质控制协议又称征用型协议。随机介质访问控制实质上是一种将广播信道转化为点到点信道的行为。<br><a id="ALOHA"></a><br><strong>ALOHA协议</strong><br>&emsp;&emsp;<strong>纯ALOHA协议</strong><br>&emsp;&emsp;当网络中的任何一个站点需要发送数据时，可以不进行任何检测就发送数据。如果在一段时间内未收到确认，那么该站点就认为传输过程中发生了冲突。发送站点需要等待一段随机时间后再发送数据，直至发送成功。</p>
+<p>&emsp;&emsp;<strong>时隙ALOHA协议</strong><br>&emsp;&emsp;把所有各站点在时间上同步起来，并将时间划分为一段段等长的时隙，规定只能在每个时隙开始是才能发送一帧。从而避免了用户发送数据的任意性，减少了数据产生冲突的可能性，提高了信道利用率。在一个时隙内有两个或两个以上的帧到达时，在下一个时隙将产生碰撞。<br><a id="CSMA"></a><br><strong>CSMA协议</strong><br>&emsp;&emsp;载波侦听多路访问（Carrier Sense Multiple Access，CSMA）</p>
 <p>&emsp;&emsp;<strong>1-坚持CSMA：</strong>侦听到信道忙后，继续坚持侦听信道；帧听到信道空闲后，发送帧的概率为1，即立刻发送数据。传播延迟对1-坚持CSMA协议的性能影响较大。</p>
 <p>&emsp;&emsp;<strong>非坚持CSMA：</strong>一个结点要发送数据时，首先侦听信道；如果信道空闲，那么立即发送数据；如果信道忙，那么放弃侦听，等待一个随机的时间后再重复上述过程。信道利用率的提高可以是以增加数据在网络中的延迟时间为代价的。</p>
 <p>&emsp;&emsp;<strong>p-坚持CSMA：</strong>一个结点要发送数据时，首先侦听信道；如果信道忙，那么等待下一个时隙再侦听；如果信道空闲，那么以概率p发送数据，以概率1-p推迟到下一个时隙。</p>
@@ -839,15 +811,31 @@
 <td>放弃侦听， 等待一个随机的时间后再侦听</td>
 <td>持续侦听， 等待下一个时隙在侦听</td>
 </tr>
+<tr>
+<td><a id="CSMA/CD"></a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CSMA/CD协议</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&emsp;&emsp;载波侦听多路访问/碰撞检测（Carrier Sense Multiple Access with Collision Detection，CSMA/CD）</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
-<p><a id="CSMA/CD"></a><br><strong>CSMA/CD协议</strong><br>&emsp;&emsp;载波侦听多路访问/碰撞检测（Carrier Sense Multiple Access with Collision Detection，CSMA/CD）</p>
 <p>&emsp;&emsp;工作流程：先听后发，边听边发（区别于<a href="#CSMA">CSMA</a>协议），冲突停发，随机重发<br>&emsp;&emsp;如果在传输过程中，适配器检测到来自其他适配器的信号能量，就必须停止传输他的帧，取而代之传输一个48比特的拥塞信号。</p>
 <p>&emsp;&emsp;CSMA/CD中的站不可能同时进行发送和接收，因此采用CSMA/CD协议的以太网不可能进行全双工通信，只能进行半双工通信。</p>
 <p>&emsp;&emsp;以太网端到端往返时间 $2\tau$ 称为争用期（又称冲突窗口或碰撞窗口）。只有经过争用期这段时间还未监测到冲突时，才能确定这次发送不会发生冲突。所以CSMA/CD总线网中的所有数据帧都必须要大于一个最小帧长。所有站点收到帧长小于最小帧长的帧时，就把它当作无效帧立即丢弃。<br>$$最小帧长=总线传播时延\times 数据传输率\times 2$$</p>
 <p>&emsp;&emsp;以太网规定最短帧长为64B。如果发送数据小于64B，则需在数据字段后加入整数字节的填充字段以保证以太网的MAC帧长度不小于64B。</p>
 <p>&emsp;&emsp;CSMA/CD采用二进制指数退避算法来解决碰撞问题，定义$k=min[重传次数，10]$，从$[0,1,\dots ,2^k-1]$中随机选取一个 $r$,重传退避时间就是 $2r\tau$ 。<strong>当重传16次仍不能成功时，说明网络太拥挤，认为此帧永远无法正确发出，抛弃此帧并向高层报告出错。</strong></p>
-<p>&emsp;&emsp;采用二进制指数退避算法可使重传需要推迟的平均时间随重传次数的增大而增大（这也称动态退避），因而能降低发生碰撞的概率，有利于整个系统的稳定。</p>
-<p><a id="CSMA/CA"></a><br><strong>CSMA/CA协议</strong><br>&emsp;&emsp;载波侦听多路访问/碰撞避免（Carrier Sense Multiple Access with Collision Avoidance，CSMA/CA），主要用于无线网。</p>
+<p>&emsp;&emsp;采用二进制指数退避算法可使重传需要推迟的平均时间随重传次数的增大而增大（这也称动态退避），因而能降低发生碰撞的概率，有利于整个系统的稳定。<br><a id="CSMA/CA"></a><br><strong>CSMA/CA协议</strong><br>&emsp;&emsp;载波侦听多路访问/碰撞避免（Carrier Sense Multiple Access with Collision Avoidance，CSMA/CA），主要用于无线网。</p>
 <p>&emsp;&emsp;CSMA/CA协议的基本思想是在发送数据时先广播告知其他结点，让其他结点在某段时间内不要发送数据，以避免出现碰撞。</p>
 <h3 id="3-5-3-轮询访问介质访问控制：令牌传递协议"><a href="#3-5-3-轮询访问介质访问控制：令牌传递协议" class="headerlink" title="3.5.3 轮询访问介质访问控制：令牌传递协议"></a>3.5.3 轮询访问介质访问控制：令牌传递协议</h3><p>&emsp;&emsp;令牌环网逻辑上是一个环，物理上不一定。只有拿到令牌的计算机才能发送数据。</p>
 <h3 id="总结-7"><a href="#总结-7" class="headerlink" title="总结"></a>总结</h3><ol>
@@ -1226,8 +1214,7 @@
 <li>32位全为0，即0.0.0.0表示本网络上的本主机</li>
 <li>32位全为1，即255.255.255.255表示整个TCP/IP网络的广播地址，又称受限广播地址。实际使用时，由于路由器对广播域的隔离，255.255.255.255等效为本网络的广播地址</li>
 </ul>
-<p>&emsp;&emsp;IP网络上的一个路由器必然至少应该具有两个IP地址（路由器每个端口必须至少分配一个IP地址）。用转发器或桥接器连接的若干LAN仍是同一个网络（同一个广播域），因此该LAN中所有主机的IP地址的网络号必须相同，但主机号必须不同。</p>
-<p><a id="NAT"></a><br><strong>网络地址转换</strong><br>&emsp;&emsp;网络地址转换（NAT）是指将专用网络地址（如Intrannet）转换为公用地址（如Internet）从而对外隐藏内部管理的IP地址。</p>
+<p>&emsp;&emsp;IP网络上的一个路由器必然至少应该具有两个IP地址（路由器每个端口必须至少分配一个IP地址）。用转发器或桥接器连接的若干LAN仍是同一个网络（同一个广播域），因此该LAN中所有主机的IP地址的网络号必须相同，但主机号必须不同。<br><a id="NAT"></a><br><strong>网络地址转换</strong><br>&emsp;&emsp;网络地址转换（NAT）是指将专用网络地址（如Intrannet）转换为公用地址（如Internet）从而对外隐藏内部管理的IP地址。</p>
 <p>&emsp;&emsp;私有IP地址网段如下：</p>
 <ol>
 <li>A类：1个A类网段，即<strong>10</strong>.0.0.0-<strong>10</strong>.255.255.255</li>
@@ -1276,8 +1263,7 @@
 <li>发送方是路由器，要把IP数据报转发到另一个网络上的一台主机。这时用ARP找到本网络上的一个路由器的硬件地址，剩下的工作由找到的这个路由器完成。</li>
 </ol>
 <p><a id="DHCP"></a><br><strong>动态主机配置协议（DHCP）</strong><br>&emsp;&emsp;DHCP是应用层协议，它基于UDP的。DHCP服务器的回答报文称为提供报文。<br>&emsp;&emsp;对于网络上有多个DHCP服务器，可能收到多个应答信息，客户机只选取最先到达的。</p>
-<p>&emsp;&emsp;DHCP的客户端和服务端需要通过广播的方式来进行交互，原因是在DHCP执行期间，客户端和服务端都没有标识自己身份的IP地址。</p>
-<p><a id="ICMP"></a><br><strong>网际控制报文协议（ICMP）</strong><br>&emsp;&emsp;ICMP是IP层协议。<br>&emsp;&emsp;ICMP报文有两种类型：ICMP差错报告报文，ICMP询问报文</p>
+<p>&emsp;&emsp;DHCP的客户端和服务端需要通过广播的方式来进行交互，原因是在DHCP执行期间，客户端和服务端都没有标识自己身份的IP地址。<br><a id="ICMP"></a><br><strong>网际控制报文协议（ICMP）</strong><br>&emsp;&emsp;ICMP是IP层协议。<br>&emsp;&emsp;ICMP报文有两种类型：ICMP差错报告报文，ICMP询问报文</p>
 <p>&emsp;&emsp;ICMP差错报告报文的5种类型：</p>
 <ol>
 <li>终点不可达</li>
@@ -1574,14 +1560,12 @@
 </ol>
 <h3 id="5-3-4-TCP可靠传输"><a href="#5-3-4-TCP可靠传输" class="headerlink" title="5.3.4 TCP可靠传输"></a>5.3.4 TCP可靠传输</h3><p><strong>序号</strong><br>&emsp;&emsp;TCP连接传送的数据流中的每个字节都编上一个序号，指。序号字段的值指本报文段所发送的数据的第一个字节的序号。</p>
 <p><strong>确认</strong><br>&emsp;&emsp;TCP首部的确认号是期望收到对方的下一个报文段的数据的第一个字节的序号。<br>&emsp;&emsp;TCP默认使用累计确认，即TCP只确认数据流至第一个丢失字节为止的字节。</p>
-<p><strong>重传</strong><br>&emsp;&emsp;有两种事件会导致TCP对报文段进行重传：超时和冗余ACK</p>
-<p><a id="RTT"></a><br>&emsp;&emsp;<strong>超时</strong><br>&emsp;&emsp;一个报文段发出的时间以及收到响应确认的时间之间的差成文报文段段往返时间（Round-Trip Time，RTT）<br>&emsp;&emsp;每收到一个新的RTT样本，就重新计算一次加权平均往返时间$RTT_S$:<br>$$新RTT_S=(1-\alpha)\times (旧RTT_S)+\alpha \times (新RTT样本)$$<br>&emsp;&emsp;式中$0\le \alpha &lt; 1$，RFC2988推荐的$\alpha$ 值为0.125。<br><a id="RTO"></a><br>&emsp;&emsp;显然，超时计时器设置的超时重传时间（Restransmission Time-Out，RTO）应略大于上面的出的加权平均利率往返时间$RTT_S$：<br>$$RTO=RTT_S+4\times RTT_D$$<br>&emsp;&emsp;式中，$RTT_D$ 是 $RTT$ 的偏差的加权平均值：<br>$$新RTT_D=(1-\beta)\times (旧RTT_D)+\beta \times |RTT_S-新RTT样本|$$<br>&emsp;&emsp;式中，$\beta$是个小于1的系数，他的推荐值是0.25。</p>
+<p><strong>重传</strong><br>&emsp;&emsp;有两种事件会导致TCP对报文段进行重传：超时和冗余ACK<br><a id="RTT"></a><br>&emsp;&emsp;<strong>超时</strong><br>&emsp;&emsp;一个报文段发出的时间以及收到响应确认的时间之间的差成文报文段段往返时间（Round-Trip Time，RTT）<br>&emsp;&emsp;每收到一个新的RTT样本，就重新计算一次加权平均往返时间$RTT_S$:<br>$$新RTT_S=(1-\alpha)\times (旧RTT_S)+\alpha \times (新RTT样本)$$<br>&emsp;&emsp;式中$0\le \alpha &lt; 1$，RFC2988推荐的$\alpha$ 值为0.125。<br><a id="RTO"></a><br>&emsp;&emsp;显然，超时计时器设置的超时重传时间（Restransmission Time-Out，RTO）应略大于上面的出的加权平均利率往返时间$RTT_S$：<br>$$RTO=RTT_S+4\times RTT_D$$<br>&emsp;&emsp;式中，$RTT_D$ 是 $RTT$ 的偏差的加权平均值：<br>$$新RTT_D=(1-\beta)\times (旧RTT_D)+\beta \times |RTT_S-新RTT样本|$$<br>&emsp;&emsp;式中，$\beta$是个小于1的系数，他的推荐值是0.25。</p>
 <p>&emsp;&emsp;<strong>冗余ACK（冗余确认）</strong><br>&emsp;&emsp;冗余ACK就是再次确认某个报文段的ACK，而发送方先前已经收到过该报文段的确认。TCP规定每当比期望序号大的失序报文段到达时，就发送一个冗余ACK，指明下一个期待字节的序号[RFC 1122，RFC 2581]。</p>
 <h3 id="5-3-5-TCP流量控制"><a href="#5-3-5-TCP流量控制" class="headerlink" title="5.3.5 TCP流量控制"></a>5.3.5 TCP流量控制</h3><p>&emsp;&emsp;接收窗口rwnd：接收方根据目前接收缓存大小所许诺的最新窗口值，反映接收方的容量。<br>&emsp;&emsp;拥塞窗口cwnd：发送方根据自己估算的网络用塞程度而设置的窗口值，反映网络的当前容量。<br>&emsp;&emsp;发送方的发送窗口取rwnd和cwnd中的最小值。（可以将发送窗口等同为拥塞窗口）</p>
 <p>&emsp;&emsp;传输层定义端到端用户之间的流量控制，数据链路层定义两个中间的相邻结点的流量控制。数据链路层的滑动窗口协议的窗口大小不能动态变化，传输层的则可以动态变化。</p>
 <h3 id="5-3-6-TCP拥塞控制"><a href="#5-3-6-TCP拥塞控制" class="headerlink" title="5.3.6 TCP拥塞控制"></a>5.3.6 TCP拥塞控制</h3><p>&emsp;&emsp;拥塞控制是让网络能够承受现有的网络负荷，是一个全局性的过程，涉及所有的主机、所有的路由器，以及与降低网络传输性能有关的所有因素。相反，流量控制往往是指点对点的通信量的控制，即接收端控制发送端，它所要做的是抑制发送端发送数据的速率，以便接收端来得及接收。</p>
-<p>&emsp;&emsp;4种算法：慢开始、拥塞避免、快重传、快恢复。</p>
-<p><a id="MSS"></a><br><strong>慢开始和拥塞避免</strong><br>&emsp;&emsp;<strong>慢开始算法</strong><br>&emsp;&emsp;TCP刚建立好并开始发送报文段时，先令拥塞窗口cwnd=1，即一个最大报文段长度MSS。每收到一个对新报文段的确认后，将cwnd加1。</p>
+<p>&emsp;&emsp;4种算法：慢开始、拥塞避免、快重传、快恢复。<br><a id="MSS"></a><br><strong>慢开始和拥塞避免</strong><br>&emsp;&emsp;<strong>慢开始算法</strong><br>&emsp;&emsp;TCP刚建立好并开始发送报文段时，先令拥塞窗口cwnd=1，即一个最大报文段长度MSS。每收到一个对新报文段的确认后，将cwnd加1。</p>
 <p>&emsp;&emsp;使用满开始算法后，每经过一个传输轮次（即往返时延RTT），拥塞窗口cwnd就会加倍，即cwnd的大小指数式增长，当增大到一个规定的慢开始门限ssthresh（阈值），然后改用拥塞避免算法。（cwnd不能越过ssthresh）</p>
 <p>&emsp;&emsp;<strong>拥塞避免算法</strong><br>&emsp;&emsp;发送端的拥塞窗口cwnd每经过一个往返时延RTT就增加一个MSS的大小，而不是加倍，使cwnd按线性规律缓慢增长（即加法增大），而每当出现一次超时（网络拥塞）时，令慢开始门限ssthresh等于当前cwnd的一半（即乘法减小）。</p>
 <p>&emsp;&emsp;<strong>网络用塞的处理</strong><br>&emsp;&emsp;无论是慢开始还是拥塞避免阶段，只要检测到超时，就把慢开始门限ssthresh设置为出现拥塞时的发送方cwnd值的一半（但不能小于2）。然后把cwnd重新设置为1，执行慢开始算法。</p>
@@ -2073,7 +2057,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2019年12月10日 - 22时12分
+    2019年12月11日 - 22时12分
   </li>
 
   <!-- 引用链接 -->
@@ -2393,7 +2377,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:16</span>
+    <span title="站点阅读时长">6:15</span>
 </div>
 
         
