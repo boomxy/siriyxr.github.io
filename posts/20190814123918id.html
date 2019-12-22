@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="前言  &amp;emsp;&amp;emsp;高次多项式的因式分解一直都是一个比较头疼的事，在考研数学中在有理函数不定积分中将真分式拆解、线性代数中求高阶矩阵的特征值和常系数微分方程求解的过程中都可能会需要高次多项式因式分解。&amp;emsp;&amp;emsp;虽然考研题的次项一般不会超过四次，很多时候也能用巧妙方法求解，但也有不能一眼看出答案的时候,所以有必要掌握一种比较通用且高效的因式分解方法。">
+<meta name="keywords" content="考研,数学,理论,高次多项式,综合除法,因式分解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="考研数学相关知识点：高次多项式因式分解">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20190814123918id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="前言  &amp;emsp;&amp;emsp;高次多项式的因式分解一直都是一个比较头疼的事，在考研数学中在有理函数不定积分中将真分式拆解、线性代数中求高阶矩阵的特征值和常系数微分方程求解的过程中都可能会需要高次多项式因式分解。&amp;emsp;&amp;emsp;虽然考研题的次项一般不会超过四次，很多时候也能用巧妙方法求解，但也有不能一眼看出答案的时候,所以有必要掌握一种比较通用且高效的因式分解方法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img1.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img2.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img3.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img4.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img5.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img6.jpg">
+<meta property="og:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img7.jpg">
+<meta property="og:updated_time" content="2019-12-22T12:30:38.638Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="考研数学相关知识点：高次多项式因式分解">
+<meta name="twitter:description" content="前言  &amp;emsp;&amp;emsp;高次多项式的因式分解一直都是一个比较头疼的事，在考研数学中在有理函数不定积分中将真分式拆解、线性代数中求高阶矩阵的特征值和常系数微分方程求解的过程中都可能会需要高次多项式因式分解。&amp;emsp;&amp;emsp;虽然考研题的次项一般不会超过四次，很多时候也能用巧妙方法求解，但也有不能一眼看出答案的时候,所以有必要掌握一种比较通用且高效的因式分解方法。">
+<meta name="twitter:image" content="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img1.jpg">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20190814123918id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>考研数学相关知识点：高次多项式因式分解 | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">25</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">13</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">45</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20190814123918id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">考研数学相关知识点：高次多项式因式分解
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-14 12:39:18" itemprop="dateCreated datePublished" datetime="2019-08-14T12:39:18+08:00">2019-08-14</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-22 20:30:38" itemprop="dateModified" datetime="2019-12-22T20:30:38+08:00">2019-12-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/" itemprop="url" rel="index"><span itemprop="name">考研</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/数学/" itemprop="url" rel="index"><span itemprop="name">数学</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20190814123918id.html" class="post-meta-item leancloud_visitors" data-flag-title="考研数学相关知识点：高次多项式因式分解" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20190814123918id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20190814123918id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote class="blockquote-center"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2></blockquote>
+
+<p>&emsp;&emsp;<span class="label info">高次多项式的因式分解</span>一直都是一个比较头疼的事，在考研数学中在<span class="label warning">有理函数不定积分中将真分式拆解</span>、<span class="label warning">线性代数中求高阶矩阵的特征值</span>和<span class="label warning">常系数微分方程求解</span>的过程中都可能会需要高次多项式因式分解。<br>&emsp;&emsp;虽然考研题的次项一般不会超过四次，很多时候也能用巧妙方法求解，但也有不能一眼看出答案的时候,所以有必要掌握一种比较通用且高效的因式分解方法。</p>
+<a id="more"></a>
+<hr>
+<br>
+
+<blockquote class="blockquote-center"><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2></blockquote>
+
+<p>&emsp;&emsp;<span class="label info">试根法</span>。</p>
+<p>&emsp;&emsp;由于考研题目但凡能算出来的一般不会把答案设计的太过复杂，所以可以把 $x_0$ 取 $\pm 1,\pm2,\pm 3 \dots$依次带入方程 $f(x)$ 尝试，如果如果为解，就利用多项式除法把 $(x-x_0)$ 提出: $f(x)=(x-x_0)\cdot g(x)$，然后递归因式分解商式 $g(x)$。</p>
+<p>&emsp;&emsp;但是由于我们处理的多为高阶多项式，当 $x_0$ 取的过大都还算不出来时就不宜再用此方法，改用其他方法求解。</p>
+<hr>
+<br>
+
+<blockquote class="blockquote-center"><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2></blockquote>
+
+<p>&emsp;&emsp;本方法主要针对三次和四次多项式。</p>
+<p>&emsp;&emsp;设 $ax^4+bx^3+cx^2+dx+e$ 为整系数四次多项式。</p>
+<ol>
+<li>设 $a_1a_2=a, \quad e_1e_2=e$ ,且</li>
+</ol>
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img1.jpg" alt></p>
+<ol>
+<li>设</li>
+</ol>
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img2.jpg" alt></p>
+<p>&emsp;&emsp;则有： $ax^4+bx^3+cx^2+dx+e=(a_1x^2+c1x+e_1)(a_2x^2+c2x+e_2)$ 。实际计算我们可以把上述过程归结为下图：</p>
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img3.jpg" alt></p>
+<p>&emsp;&emsp;<strong>证</strong>： $ (a_1x^2+c_1x+e_1)$$(a_2x^2+c_2x+e_2)$$=a_1a_2x^4+$$(a_1c_2+c_1a_2)x^3+$$(a_1e_2+c_1c_2+e_1a_2)x^2+$$(c_1e_2+$$e_1c_2)x+e_1e_2 $</p>
+<p>&emsp;&emsp;注意到： $a_1a_2=a,$$a_1c_2+c_1a_2=b,$$a_1e_2+c_1c_2+e_1a_2=(c-\overline c)+\overline c=c,$$c_1e_2+e_1c_2=d,e_1e_2=e$,故有分解式$ax^4+bx^3+cx^2+dx+e=(a_1x^2+c1x+e_1)(a_2x^2+c2x+e_2)$ 。</p>
+<p>&emsp;&emsp;由于四次整系数多项式总可以分解成二个二次整系数多项式。因此上述步骤总是可实现的。</p>
+<p>&emsp;&emsp;<strong>例1</strong>、分解： $2x^4-x^3+2x^2+3x-2$<br>&emsp;&emsp;<strong>解</strong>：</p>
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img4.jpg" alt></p>
+<p>&emsp;&emsp;&emsp;&emsp;所以 $2x^4-x^3+2x^2+3x-2$<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $=(x^2-x+2)(2x^2+x-1)$<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $=(x^2-x+2)(x+1)(2x-1)$</p>
+<p>&emsp;&emsp;而对于三次多项式，我们可视其四次项系数为零即可，同样其他情况缺少某一次项就将该次项系数置零带入计算。</p>
+<p>&emsp;&emsp;<strong>例2</strong>、分解： $2x^3-3x^2+5x-2$<br>&emsp;&emsp;<strong>解</strong>：</p>
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img5.jpg" alt></p>
+<p>&emsp;&emsp;&emsp;&emsp;所以 $2x^3-3x^2+5x-2$<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $=(2x-1)(x^2-x+2)$</p>
+<hr>
+<br>
+
+<blockquote class="blockquote-center"><h2 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h2></blockquote>
+
+<h3 id="高次多项式因式分解的一般方法"><a href="#高次多项式因式分解的一般方法" class="headerlink" title="高次多项式因式分解的一般方法"></a>高次多项式因式分解的一般方法</h3><p>&emsp;&emsp;首先,先介绍下面两个定理。</p>
+<p>&emsp;&emsp;<strong>定理 1</strong> 设 $f(x)=a_nx^n+a_n-1x^{n-1}+\dots +a_1x+a_0$ 是一个整系数多项式,如果有理数 $v/u$ 是它的一个根,其中 $u$ 与 $v$ 互素,则 $u \mid a_n$ , $v \mid a_0$ 。特别地,当 $a_n=1$ 时, $f(x)$ 的有理根都是整数,且为常数项 $a_0$ 的因数。</p>
+<p>&emsp;&emsp;<strong>证明</strong>: 因为 $v/u$ 是 $f(x)$ 的根,故 $ux-v$ 整除 $f(x)$ ,设</p>
+<p>$$ f(x)=(ux-v)(b_{n-1}x^{n-1}+\dots +b_1x+b_0) \quad (\ast) $$</p>
+<p>&emsp;&emsp;则比较两端 $n$ 次项系数和常数项,得:</p>
+<p>$$ a_n=ub_{n-1},a_0=v(-b_0) \quad (\ast \ast) $$</p>
+<p>&emsp;&emsp;由于 $f(x)$ 与 $ux-v$ 都是整系数多项式,而 $ux-v$ 又是本原的,故可知 $b_{n-1}x^{n-1}+\dots +b_1x+b_0$是一个整系数多项式,因此 $b_{n-1}$ 与 $b_0$ 都是整数,于是由(**)知: $u \mid a_n$ , $v \mid a_0$ 。</p>
+<p>&emsp;&emsp;这个定理说明,欲求整系数多项式 $f(x)$ 的有理根,可先求其常数项 $a_0$ 的全部因数(包括负因数),设为 $v_1,v_2,\dots ,v_s$ ;再求出首项系数 $a_n$ 的全部因数(也包括负因数),设为 $u_1,u_2,\dots ,u_t$,则如果 $f(x)$ 有有理根,它的有理根必在所有有理数 $v_i/u_j(i=1,2,\dots ,s;j=1,2,\dots ,t)$ 之中。但是这些有理数中究竟哪些是 $f(x)$ 的根,还需要通过综合除法来逐个进行检验。但这样太麻烦,会浪费太多的时间,为了更简便地判断它的根,我们再引出下面一个定理。</p>
+<p>&emsp;&emsp;<strong>定理 2</strong> 若既约分数 $v/u$ 是整系数多项式 $f(x)$ 的根,则 $u-v \mid f(1),u+v \mid f(-1)$</p>
+<p>&emsp;&emsp;<strong>证明</strong>: 因为 $v/u$ 是 $f(x)$ 的根,由 <strong>定理 1</strong> 中的(*)知有:</p>
+<p>$$f(1)=(u-v)(b_{n-1}+\dots +b_1 +b_0)$$<br>$$f(-1)=-(u+v)[(-1)^{n-1}b_{n-1}+\dots +(-1)^1b_1 +b_0]$$</p>
+<p>&emsp;&emsp;但由于 $f(x)$ 是整系数, $f(1)$ 与 $f(-1)$ 都是整数,又 $b_{n-1},\dots ,b_1,b_0$ 也是整数,故:<br>$$u-v \mid f(1),u+v \mid f(-1)$$</p>
+<p>&emsp;&emsp;下面,我们用上面两个定理来对一些多项式进行因式分解。</p>
+<p>&emsp;&emsp;<strong>例1</strong> 把 $6x^3-5x^2+5x-2$ 因式分解<br>&emsp;&emsp;<strong>解</strong>: 我们先把它转化为求 $f(x) = 6x^3 - 5x^2+5x - 2$ 的有理根。由 <strong>定理 1</strong> 知: f (x)的常数项 $-2$ 的全部因数是: $\pm1,\pm2$ ;其中首项系数 $6$ 的全部因数是: $\pm1, \pm2,\pm3,\pm6$ 。因此要进行检验的有理数为: $\pm1,\pm2,\pm1/2,\pm1/3, \pm2/3,\pm1/6$ 。<br>&emsp;&emsp;&emsp;&emsp;但易知 $f(1) = 4 , f (-1) =18 $,故 $\pm 1$ 都不是 $f(x)$ 的根,再由 <strong>定理 2</strong>,由于:<br>$$-1- 2 \dagger f (1), 3+1\dagger f (-1), 3 + 2 \dagger f (-1)$$<br>$$-3- 2 \dagger f (1), 1+ 6 \dagger f (-1), -6 -1\dagger f (1),$$</p>
+<p>&emsp;&emsp;&emsp;&emsp;故 $-2,1/3,\pm 2/3,\pm 1/6$ 都不是 $f(x)$ 的根,因此剩下只需检验 $2,1/2,-1/3$ 这三个数了。由 <a href="/posts/20190814130522id.html" title="综合除法">综合除法</a>易知,只有$1/2$ 是它的根。<br>&emsp;&emsp;&emsp;&emsp;$\therefore 6x^3-5x^2+5x-2 $<br>&emsp;&emsp;&emsp;&emsp;$ =(x-1/2)(6x^2-2x+4)$<br>&emsp;&emsp;&emsp;&emsp;$ =(2x-1)(3x^2-x+2)$</p>
+<p>&emsp;&emsp;<strong>例2</strong> 把 $4x^4+7x^3+10x^2+5x-2$ 因式分解<br>&emsp;&emsp;<strong>解</strong>: 先把它转化成求 $f(x)=4x^4+7x^3+10x^2+5x-2$ 的有理根。<br>&emsp;&emsp;&emsp;&emsp; $\because f(x)$常数项和首项系数的全部因数分别为: $\pm1,\pm2$ 与 $\pm1, \pm2,\pm4$ 。需要检验的有理数为: $\pm1,\pm2,\pm1/2,\pm1 / 4$ 。<br>&emsp;&emsp;&emsp;&emsp;由于 $f (-1) = 0$ 故 $-1$ 是 $f (x)$ 的根,且易知,<br>$$f(x)=(x+1)(4x^3+3x^2+7x-2)$$<br>&emsp;&emsp;&emsp;&emsp;按照同样方法可求 $g(x)=4x^3+3x^2+7x-2$ 有理根,易知 $g(x)$ 的有理根为: $1/4$ ,由<a href="/posts/20190814130522id.html" title="综合除法">综合除法</a>:</p>
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img6.jpg" alt></p>
+<p>&emsp;&emsp;&emsp;&emsp; $\therefore 4x^4+7x^3+10x^2+5x-2$<br>&emsp;&emsp;&emsp;&emsp; $=(x+1)(x-1/4)(4x^2+4x+8)$<br>&emsp;&emsp;&emsp;&emsp; $=(x+1)(4x-1)(x^2+x+2)$</p>
+<p>&emsp;&emsp; 下面介绍两种特殊的高次多项式因式分解。</p>
+<h3 id="与首末两项等距离的项的系数相等的高次多项式的因式分解的方法"><a href="#与首末两项等距离的项的系数相等的高次多项式的因式分解的方法" class="headerlink" title="与首末两项等距离的项的系数相等的高次多项式的因式分解的方法"></a>与首末两项等距离的项的系数相等的高次多项式的因式分解的方法</h3><h4 id="最高次数是偶次的多项式"><a href="#最高次数是偶次的多项式" class="headerlink" title="最高次数是偶次的多项式"></a>最高次数是偶次的多项式</h4><p>&emsp;&emsp;<strong>例3</strong> 把 $2x^4+3x^3-16x^2+3x+2$ 因式分解<br>&emsp;&emsp;<strong>解</strong>: 把多项式的各项除以中间项 $x^2$ ,经整理,转化为方程得:<br>$$2(x^2+1/x^2)+3(x+1/x)-16=0$$<br>&emsp;&emsp;&emsp;&emsp;用换元法：<br>&emsp;&emsp;&emsp;&emsp;令 $x+1/x=y$ 有， $x^2+1/x^2=y^2-2$,<br>&emsp;&emsp;&emsp;&emsp;代入得 $2(y^2-2)+3y-16=0$,<br>&emsp;&emsp;&emsp;&emsp;即 $2y^2+3y-20=0$。<br>&emsp;&emsp;&emsp;&emsp;解之得： $y_1=5/2,y_2=-4$。<br>&emsp;&emsp;&emsp;&emsp;于是确定 $x$ 的两个方程:<br>&emsp;&emsp;&emsp;&emsp;$\therefore x+1/x=5/2 $,<br>&emsp;&emsp;&emsp;&emsp;$ x+1/x=-4 $。<br>&emsp;&emsp;&emsp;&emsp;解之得<br>&emsp;&emsp;&emsp;&emsp;$x_1=2,x_2=1/2,x_3=-2+\sqrt{3},x_4=-2-\sqrt{3}$,<br>&emsp;&emsp;&emsp;&emsp;$\therefore 2x^4+3x^3-16x^2+3x+2 $<br>&emsp;&emsp;&emsp;&emsp;$=2(x-2)(x-1/2)(x+2-\sqrt{3})(x+2+\sqrt{3})$<br>&emsp;&emsp;&emsp;&emsp;$=(x-2)(2x-1)(x+2-\sqrt{3})(x+2+\sqrt{3})$</p>
+<h4 id="最高次数是奇数的多项式"><a href="#最高次数是奇数的多项式" class="headerlink" title="最高次数是奇数的多项式"></a>最高次数是奇数的多项式</h4><p>&emsp;&emsp;<strong>例4</strong> 把 $x^5+2x^4-x^3+x^2-2x-1$ 因式分解<br>&emsp;&emsp;<strong>分析</strong>:这是与首末两项等距离的项的系数成相反数,必然有系数和等于 $0$ ,所以 $1$ 是 $x^5+2x^4-x^3+x^2-2x-1=0$的根,所以多项式可以化为:<br>$$(x-1)(x^4+3x^3+2x^2+3x+1)$$<br>&emsp;&emsp;而 $x^4+3x^3+2x^2+3x+1$ 又是与 <strong>例3</strong> 同样的解法。</p>
+<p>&emsp;&emsp;<strong>例5</strong> 把 $2x^5+5x^4-13x^3-13x^2+5x+2$ 因式分解<br>&emsp;&emsp;<strong>分析</strong>: 这是与首末两项等距离的项的系数相等而最高次数为奇数，所以 $x = -1$ 是 $2x^5+5x^4-13x^3-13x^2+5x+2=0$ 的根,从而原多项式可以化为:<br>$$(x+1)(2x^4+3x^3-16x^2+3x+2)$$<br>&emsp;&emsp;而 $2x^4+3x^3-16x^2+3x+2$ 又是与 <strong>例3</strong> 同样的解法。</p>
+<h3 id="各项系数和等于零的高次多项式"><a href="#各项系数和等于零的高次多项式" class="headerlink" title="各项系数和等于零的高次多项式"></a>各项系数和等于零的高次多项式</h3><p>&emsp;&emsp;<strong>例6</strong> 把 $x^4+2x^3+5x^2+4x-12$ 因式分解<br>&emsp;&emsp;<strong>解</strong>: 多项式的各项系数和:<br>$$1+2+5+4-12=0$$<br>&emsp;&emsp;&emsp;&emsp;因此 $x=1$ 必为 $x^4+2x^3+5x^2+4x-12=0$ 的根,因此由综合除法可得:</p>
+<p><img src="http://img.siriyang.cn/%E8%80%83%E7%A0%94%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3/img7.jpg" alt></p>
+<p>&emsp;&emsp;&emsp;&emsp;所以多项式可化为:<br>$$(x-1)(x^3+3x^2+8x+12)$$<br>&emsp;&emsp;&emsp;&emsp;接着对 $x^3+3x^2+8x+12$ 进行因式分解,按之前最开始的方法可以求出:<br>&emsp;&emsp;&emsp;&emsp; $x^3+3x^2+8x+12=(x-2)(x^2+x+6)$<br>&emsp;&emsp;&emsp;&emsp;$\therefore x^4+2x^3+5x^2+4x-12 $<br>&emsp;&emsp;&emsp;&emsp;$=(x-1)(x-2)(x^2+x+6)$</p>
+<hr>
+<br>
+
+<blockquote class="blockquote-center"><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2></blockquote>
+<p>&emsp;&emsp;除了掌握上述方法以外，熟记常见的三次多项式也有利于提高解题速度。</p>
+<div class="reference-linking">参考资料</div>
+
+<ul>
+<li><a href="http://xuewen.cnki.net/DownloadArticle.aspx?filename=GKSX404.061&dbtype=CJFD" target="_blank" rel="noopener"> 陈焕良 ( 南京大学) &emsp; 张筱林 ( 湖南师范大学) &emsp; 关于高次多项式的因式分解 &emsp;《工科数学》（1940年40期）</a></li>
+<li><a href="http://xuewen.cnki.net/DownloadArticle.aspx?filename=FZSX200401006&dbtype=CJFD" target="_blank" rel="noopener"> 廖列宏 &emsp; 高次多项式因式分解的几种方法 &emsp;《福建中学数学》（2004年01期） </a></li>
+</ul>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20190814130522id.html" rel="bookmark">考研数学相关知识点：综合除法与余数定理</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20190905233151id.html" rel="bookmark">2012数二真题</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20190813201626id.html" rel="bookmark">考研数学相关知识点：复数</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20190925224753id.html" rel="bookmark">2014数二真题</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20191119225540id.html" rel="bookmark">2016数二真题</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    考研数学相关知识点：高次多项式因式分解
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2019年08月14日 - 12时08分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2019年12月22日 - 20时12分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20190814123918id.html" title="考研数学相关知识点：高次多项式因式分解">https://blog.siriyang.cn/posts/20190814123918id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | 考研数学相关知识点：高次多项式因式分解](https://blog.siriyang.cn/posts/20190814123918id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/考研/" rel="tag"><i class="fa fa-tag"></i> 考研</a>
+          
+            <a href="/tags/数学/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+          
+            <a href="/tags/理论/" rel="tag"><i class="fa fa-tag"></i> 理论</a>
+          
+            <a href="/tags/高次多项式/" rel="tag"><i class="fa fa-tag"></i> 高次多项式</a>
+          
+            <a href="/tags/综合除法/" rel="tag"><i class="fa fa-tag"></i> 综合除法</a>
+          
+            <a href="/tags/因式分解/" rel="tag"><i class="fa fa-tag"></i> 因式分解</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/posts/20190814130522id.html" rel="prev" title="考研数学相关知识点：综合除法与余数定理">
+                <i class="fa fa-chevron-left"></i> 考研数学相关知识点：综合除法与余数定理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20190813201626id.html" rel="next" title="考研数学相关知识点：复数">
+                考研数学相关知识点：复数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一"><span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二"><span class="nav-text">方法二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三"><span class="nav-text">方法三</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高次多项式因式分解的一般方法"><span class="nav-text">高次多项式因式分解的一般方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与首末两项等距离的项的系数相等的高次多项式的因式分解的方法"><span class="nav-text">与首末两项等距离的项的系数相等的高次多项式的因式分解的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最高次数是偶次的多项式"><span class="nav-text">最高次数是偶次的多项式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最高次数是奇数的多项式"><span class="nav-text">最高次数是奇数的多项式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各项系数和等于零的高次多项式"><span class="nav-text">各项系数和等于零的高次多项式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">446k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:45</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
