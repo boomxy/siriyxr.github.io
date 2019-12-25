@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="1 认识指针1.1 指针和内存    作用域 生命周期    全局内存 整个文件 应用程序的生命周期   静态内存 声明它的函数内部 应用程序的生命周期   自动内存（局部内存） 声明它的函数内部 限制在函数执行时间内   动态内存 由引用该内存的指针决定 直到内存释放   1.1.2 声明指针&amp;emsp;&amp;emsp;星号两边的空白符无关紧要，下面的声明都是等价的： 1234int* pi;int">
+<meta name="keywords" content="C语言,语法,指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入理解C指针》学习笔记">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20191225223229id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="1 认识指针1.1 指针和内存    作用域 生命周期    全局内存 整个文件 应用程序的生命周期   静态内存 声明它的函数内部 应用程序的生命周期   自动内存（局部内存） 声明它的函数内部 限制在函数执行时间内   动态内存 由引用该内存的指针决定 直到内存释放   1.1.2 声明指针&amp;emsp;&amp;emsp;星号两边的空白符无关紧要，下面的声明都是等价的： 1234int* pi;int">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-25T14:37:01.980Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《深入理解C指针》学习笔记">
+<meta name="twitter:description" content="1 认识指针1.1 指针和内存    作用域 生命周期    全局内存 整个文件 应用程序的生命周期   静态内存 声明它的函数内部 应用程序的生命周期   自动内存（局部内存） 声明它的函数内部 限制在函数执行时间内   动态内存 由引用该内存的指针决定 直到内存释放   1.1.2 声明指针&amp;emsp;&amp;emsp;星号两边的空白符无关紧要，下面的声明都是等价的： 1234int* pi;int">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20191225223229id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>《深入理解C指针》学习笔记 | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">28</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">14</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">47</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20191225223229id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">《深入理解C指针》学习笔记
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-25 22:32:29 / 修改时间：22:37:01" itemprop="dateCreated datePublished" datetime="2019-12-25T22:32:29+08:00">2019-12-25</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/理论/" itemprop="url" rel="index"><span itemprop="name">理论</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/理论/C语言/" itemprop="url" rel="index"><span itemprop="name">C语言</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20191225223229id.html" class="post-meta-item leancloud_visitors" data-flag-title="《深入理解C指针》学习笔记" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20191225223229id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20191225223229id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>3.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-认识指针"><a href="#1-认识指针" class="headerlink" title="1 认识指针"></a>1 认识指针</h1><h2 id="1-1-指针和内存"><a href="#1-1-指针和内存" class="headerlink" title="1.1 指针和内存"></a>1.1 指针和内存</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>作用域</th>
+<th>生命周期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全局内存</td>
+<td>整个文件</td>
+<td>应用程序的生命周期</td>
+</tr>
+<tr>
+<td>静态内存</td>
+<td>声明它的函数内部</td>
+<td>应用程序的生命周期</td>
+</tr>
+<tr>
+<td>自动内存（局部内存）</td>
+<td>声明它的函数内部</td>
+<td>限制在函数执行时间内</td>
+</tr>
+<tr>
+<td>动态内存</td>
+<td>由引用该内存的指针决定</td>
+<td>直到内存释放</td>
+</tr>
+</tbody></table>
+<h3 id="1-1-2-声明指针"><a href="#1-1-2-声明指针" class="headerlink" title="1.1.2 声明指针"></a>1.1.2 声明指针</h3><p>&emsp;&emsp;星号两边的空白符无关紧要，下面的声明都是等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int* pi;</span><br><span class="line">int * pi;</span><br><span class="line">int *pi;</span><br><span class="line">int*pi;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>空白符的使用是个人喜好</p>
+</blockquote>
+<h3 id="1-1-3-如何阅读声明"><a href="#1-1-3-如何阅读声明" class="headerlink" title="1.1.3 如何阅读声明"></a>1.1.3 如何阅读声明</h3><p>&emsp;&emsp;倒过来读：<code>const int *pci</code></p>
+<ol>
+<li>pci是一个变量：const int *<strong>pci;</strong></li>
+<li>pci是一个指针变量：const int <strong>*pci;</strong></li>
+<li>pci是一个指向整数的指针变量：const <strong>int *pci;</strong></li>
+<li>pci是一个指向整数常量的指针变量：<strong>const int *pci;</strong></li>
+</ol>
+<h3 id="1-1-4-地址操作符"><a href="#1-1-4-地址操作符" class="headerlink" title="1.1.4 地址操作符"></a>1.1.4 地址操作符</h3><p>&emsp;&emsp;地址操作符&amp;会返回操作数的地址。</p>
+<blockquote>
+<p>尽快初始化指针是一个好习惯</p>
+</blockquote>
+<h3 id="1-1-5-打印指针的值"><a href="#1-1-5-打印指针的值" class="headerlink" title="1.1.5 打印指针的值"></a>1.1.5 打印指针的值</h3><table>
+<thead>
+<tr>
+<th>格式说明符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td>将值显示为十进制数</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>将值显示为十六进制数</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>将值显示为八进制数</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>将值显示为实现专用的格式，通常是十六进制数</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;%p 和 %x 的不同之处在于：%p一般会把数字显示为十六进制的大写。</p>
+<p><strong>虚拟内存和指针</strong></p>
+<p>&emsp;&emsp;每个程序都假定自己能够访问机器的整个物理内存空间，实际上却不是。程序使用的地址是虚拟地址。操作系统会在需要时把虚拟地址映射为物理地址。应用程序的虚拟地址不会变，就是我们在查看指针内容时看到的地址。操作系统会帮我们将虚拟地址映射为真实地址。</p>
+<h3 id="1-1-8-null的概念"><a href="#1-1-8-null的概念" class="headerlink" title="1.1.8 null的概念"></a>1.1.8 null的概念</h3><ul>
+<li>null概念是通过null指针敞亮来支持的一种抽象。这个常量可能是也可能不是常量0。C程序员不需要关心实际的内部表示。</li>
+<li>NULL宏是强制类型转换为void指针的整数常量0。在很多库中定义如下：<code>#define NULL ((void *)0)</code></li>
+<li>如果编译器使用一个非零的位串来表示null，使用NULL或0是在语言层面表示null指针的符号，实际的null内部表示由实现定义。</li>
+<li>ASCII字符NUL定义为全0的字节。</li>
+<li>null字符串是空字符串，不包含任何字符。</li>
+<li>null语句就是只有一个分号的语句。</li>
+</ul>
+<p>&emsp;&emsp;有趣的是，我们可以给指针赋0，但是不能赋任何别的整数值。</p>
+<p>&emsp;&emsp;指针可以作为逻辑表达式的唯一操作数。</p>
+<blockquote>
+<p>任何时候都不应该对null指针进行解引，因为它并不包含合法地址。执行这样的代码会导致程序终结。</p>
+</blockquote>
+<p><strong>1.用不用NULL</strong><br>&emsp;&emsp;对于指针，使用NULL或0都可以，但NULL不能用于指针之外的上下文中。尤其是替代ASCII字符NUL是有问题的。</p>
+<p>&emsp;&emsp;0的含义随着上下文变化而变化，有时可能是整数0，有时可能是null指针。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int num;</span><br><span class="line">int *pi = 0;//这里的0表示null的指针NULL</span><br><span class="line">pi = &amp;num;</span><br><span class="line">*pi = 0;//这里的0表示整数0</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.void指针</strong></p>
+<p>&emsp;&emsp;void指针是通用指针，用来存放任何数据类型的引用。</p>
+<ul>
+<li>void指针具有与char指针相同的形式和内存对齐方式；</li>
+<li>void指针和别的指针永远不会相等，不过，两个赋值为NULL的void指针是相等的。</li>
+</ul>
+<p>&emsp;&emsp;void指针只能用做数据指针，而不能用做函数指针。</p>
+<p><strong>3.全局和静态指针</strong></p>
+<p>&emsp;&emsp;指针被声明为全局或静态，就会在程序启动时被初始化为NULL。</p>
+<h2 id="1-2-指针的长度和类型"><a href="#1-2-指针的长度和类型" class="headerlink" title="1.2 指针的长度和类型"></a>1.2 指针的长度和类型</h2><h3 id="1-2-1-内存模型"><a href="#1-2-1-内存模型" class="headerlink" title="1.2.1 内存模型"></a>1.2.1 内存模型</h3><p>&emsp;&emsp;模型取决于操作系统和编译器，一种操作系统可能支持多种模型，这通常是用编译器选项来控制的。</p>
+<h3 id="1-2-2-指针相关的预定义类型"><a href="#1-2-2-指针相关的预定义类型" class="headerlink" title="1.2.2 指针相关的预定义类型"></a>1.2.2 指针相关的预定义类型</h3><ul>
+<li>size_t：用于安全的表示长度</li>
+<li>ptrdiff_t：用于处理指针算术运算</li>
+<li>intptr_t uintptr_t：用于存储指针地址</li>
+</ul>
+<p><strong>1.理解size_t</strong></p>
+<p>&emsp;&emsp;size_t类型表示C中任何对象所能达到的最大长度。它是无符号整数，因为负数在这里没有意义。它的目的是提供一种可移植的方法来声明与系统中可寻址的内存区域一致的长度。size_t用做sizeof操作符的返回值类型，同时也是很多函数的参数类型，包括malloc和strlen。</p>
+<blockquote>
+<p>在声明诸如字符数或者数组索引这样的长度变量时用size_t是好的做法。</p>
+</blockquote>
+<p>&emsp;&emsp;打印size_t类型的值要小心，因为这是无符号的值。推荐的格式说明符是%zu。不过，某些情况下不能用这个说明符，作为替代，可以考虑%u或%lu。</p>
+<p><strong>2对指针使用sizeof操作符</strong><br>&emsp;&emsp;sizeof操作符可以用来判断指针长度。</p>
+<blockquote>
+<p>当需要使用指针长度时，一定要用sizeof操作符。</p>
+</blockquote>
+<p>&emsp;&emsp;函数指针的长度是可变的，对于同一个程序来说，不同的编译选项会导致其使用不同的指针长度。</p>
+<p><strong>3.使用intptr_t和uintptr_t</strong><br>&emsp;&emsp;intptr_t和uintptr_t类型用来存放指针地址。他们提供了一种可移植且安全的方法声明指针，而且和系统中使用的指针长度相同，对于把指针转化成为整数形式来说很有用。<br>&emsp;&emsp;uintptr_t是intptr_t的无符号版本。对于大部分操作，用intptr_t比较好。uintptr_t不像intptr_t那样灵活。</p>
+<p>&emsp;&emsp;当可移植性和安全性变得重要时，就应该使用这些类型。</p>
+<blockquote>
+<p>避免把指针转换成整数。如果指针是6.位，整数只有4字节时就会丢失信息。</p>
+</blockquote>
+<h2 id="1-3-指针操作符"><a href="#1-3-指针操作符" class="headerlink" title="1.3 指针操作符"></a>1.3 指针操作符</h2><h3 id="1-3-1-指针算术运算"><a href="#1-3-1-指针算术运算" class="headerlink" title="1.3.1 指针算术运算"></a>1.3.1 指针算术运算</h3><p><strong>1.给指针加上整数</strong><br>&emsp;&emsp;给指针加上一个整数实际上加的这个整数是这个整数和指针数据类型对应字节数的乘积。</p>
+<p><strong>4.指针相减</strong><br>&emsp;&emsp;一个指针减去另一个指针会得到两个地址的差值。这个差值通常没什么用，但可以判断数组中的元素顺序。指针之间的差值是他们之间相差的“单位”数，差的符号取决于操作数的顺序。</p>
+<p>&emsp;&emsp;ptrdiff_t类型表示两个指针差值的可移植方式。</p>
+<h3 id="1-3-2-比较指针"><a href="#1-3-2-比较指针" class="headerlink" title="1.3.2 比较指针"></a>1.3.2 比较指针</h3><p>&emsp;&emsp;指针可以用标准的比较操作符来比较。当把指针和数组元素相比时，比较结果可以用来判断数组元素的相对顺序。</p>
+<h2 id="1-4-指针的常见用法"><a href="#1-4-指针的常见用法" class="headerlink" title="1.4 指针的常见用法"></a>1.4 指针的常见用法</h2><h3 id="1-4-2-常量与指针"><a href="#1-4-2-常量与指针" class="headerlink" title="1.4.2 常量与指针"></a>1.4.2 常量与指针</h3><p><strong>1.指向常量的指针</strong><br>&emsp;&emsp;可以将指针定义为指向常量，这意味着不能通过指针修改他所引用的值。</p>
+<p>&emsp;&emsp;我们不能解引指向常量的指针并改变指针所引用的值，但可以改变指针。指针的值不是常量。指针可以改为引用另一个整数常量，或者普通整数。这样做不会有问题。声明只是限制我们不能通过指针来修改引用的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const int limit=500;</span><br><span class="line">const int *pci;</span><br><span class="line">pci=&amp;limit;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;把pci声明为指向整数常量的指针意味着：</p>
+<ul>
+<li>pci可以被修改为指向不同的整数常量</li>
+<li>pci可以被修改为指向不同的非整数常量</li>
+<li>可以解引pci以读取数据</li>
+<li>不能解引pci从而修改他指向的数据</li>
+</ul>
+<blockquote>
+<p>数据类型和const关键字的顺序不重要。</p>
+</blockquote>
+<p><strong>2.指向非常量的常量指针</strong><br>&emsp;&emsp;一个指向非常量的常量指针，意味着指针不可变，但是它指向的数据可变。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int num;</span><br><span class="line">int *const cpi = &amp;num;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cpi必须被初始化为指向非常量变量；</li>
+<li>cpi不能被修改；</li>
+<li>cpi指向的数据可以被修改。</li>
+</ul>
+<p>&emsp;&emsp;无论cpi引用了什么，都可以解引cpi然后赋一个新值。所以如果试图把cpi初始化为指向常量limit，那么常量就可以修改了，这样是不对的，因为常量不可以被修改，所以会产生一个警告。</p>
+<p><strong>3.指向常量的常量指针</strong><br>&emsp;&emsp;这种指针本身不能被修改，它指向的数据也不能通过它来修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const int * const cpci = &amp;limit;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;与指向常量的指针类似，不一定只能将常量的地址赋给cpci。</p>
+<p>&emsp;&emsp;声明指针时必须进行初始化。如果不进行初始化就会产生语法错误。</p>
+<p><strong>4.指向“指向常量的常量指针”的指针</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const int * const * pcpci;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong></p>
+<table>
+<thead>
+<tr>
+<th>指针类型</th>
+<th>指针是否可修改</th>
+<th>指针指向的数据是否可修改</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>指向非常量的指针</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>指向常量的指针</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>指向非常量的常量指针</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>指向常量的常量指针</td>
+<td>否</td>
+<td>否</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20191225223317id.html" rel="bookmark">《C语言程序设计（第四版）谭浩强》学习笔记</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    《深入理解C指针》学习笔记
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2019年12月25日 - 22时12分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2019年12月25日 - 22时12分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20191225223229id.html" title="《深入理解C指针》学习笔记">https://blog.siriyang.cn/posts/20191225223229id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | 《深入理解C指针》学习笔记](https://blog.siriyang.cn/posts/20191225223229id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/C语言/" rel="tag"><i class="fa fa-tag"></i> C语言</a>
+          
+            <a href="/tags/语法/" rel="tag"><i class="fa fa-tag"></i> 语法</a>
+          
+            <a href="/tags/指针/" rel="tag"><i class="fa fa-tag"></i> 指针</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/posts/20191225223317id.html" rel="prev" title="《C语言程序设计（第四版）谭浩强》学习笔记">
+                <i class="fa fa-chevron-left"></i> 《C语言程序设计（第四版）谭浩强》学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20191216225208id.html" rel="next" title="考研政治2020肖四分析题抽背数据">
+                考研政治2020肖四分析题抽背数据 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-认识指针"><span class="nav-text">1 认识指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-指针和内存"><span class="nav-text">1.1 指针和内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-声明指针"><span class="nav-text">1.1.2 声明指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-如何阅读声明"><span class="nav-text">1.1.3 如何阅读声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-地址操作符"><span class="nav-text">1.1.4 地址操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-打印指针的值"><span class="nav-text">1.1.5 打印指针的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-8-null的概念"><span class="nav-text">1.1.8 null的概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-指针的长度和类型"><span class="nav-text">1.2 指针的长度和类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-内存模型"><span class="nav-text">1.2.1 内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-指针相关的预定义类型"><span class="nav-text">1.2.2 指针相关的预定义类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-指针操作符"><span class="nav-text">1.3 指针操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-指针算术运算"><span class="nav-text">1.3.1 指针算术运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-比较指针"><span class="nav-text">1.3.2 比较指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-指针的常见用法"><span class="nav-text">1.4 指针的常见用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-常量与指针"><span class="nav-text">1.4.2 常量与指针</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">452k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:51</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
