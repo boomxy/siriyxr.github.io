@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="1 认识指针1.1 指针和内存    作用域 生命周期    全局内存 整个文件 应用程序的生命周期   静态内存 声明它的函数内部 应用程序的生命周期   自动内存（局部内存） 声明它的函数内部 限制在函数执行时间内   动态内存 由引用该内存的指针决定 直到内存释放   1.1.2 声明指针&amp;emsp;&amp;emsp;星号两边的空白符无关紧要，下面的声明都是等价的： 1234int* pi;int">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T14:53:14.834Z">
+<meta property="og:updated_time" content="2019-12-27T15:34:54.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解C指针》学习笔记">
 <meta name="twitter:description" content="1 认识指针1.1 指针和内存    作用域 生命周期    全局内存 整个文件 应用程序的生命周期   静态内存 声明它的函数内部 应用程序的生命周期   自动内存（局部内存） 声明它的函数内部 限制在函数执行时间内   动态内存 由引用该内存的指针决定 直到内存释放   1.1.2 声明指针&amp;emsp;&amp;emsp;星号两边的空白符无关紧要，下面的声明都是等价的： 1234int* pi;int">
@@ -189,7 +189,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">28</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">31</span></a>
 
   </li>
       
@@ -202,7 +202,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">14</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">15</span></a>
 
   </li>
       
@@ -215,7 +215,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">47</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">48</span></a>
 
   </li>
       
@@ -338,7 +338,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-26 22:53:14" itemprop="dateModified" datetime="2019-12-26T22:53:14+08:00">2019-12-26</time>
+                <time title="修改时间：2019-12-27 23:34:54" itemprop="dateModified" datetime="2019-12-27T23:34:54+08:00">2019-12-27</time>
               </span>
             
           
@@ -721,6 +721,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p1 = (<span class="keyword">int</span>*) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line"><span class="keyword">int</span> *p2 = p1;</span><br><span class="line"><span class="built_in">free</span>(p1);</span><br><span class="line">...</span><br><span class="line"><span class="built_in">free</span>(p2);</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-3-3-堆和系统内存"><a href="#2-3-3-堆和系统内存" class="headerlink" title="2.3.3 堆和系统内存"></a>2.3.3 堆和系统内存</h3><p>&emsp;&emsp;堆的大小可能在程序创建后就规定不变了，也可能可以增长。不过堆管理器不一定会在调用<code>free</code>函数时将内存返还给操作系统。释放的内存只是可供应用程序后续使用。所以，如果程序先分配内存然后释放，从操作系统的角度看，释放的内存通常不会反映在应用程序的内存使用上。</p>
+<hr>
 <h1 id="资源下载"><a href="#资源下载" class="headerlink" title="资源下载"></a>资源下载</h1><p><strong>《深入理解c指针》下载</strong></p>
 <a class="btn" href="http://img.siriyang.cn/资源/深入理解c指针.pdf" target="_blank" rel="noopener"><i class="fa fa-download fa-fw fa-lg"></i>下载PDF(中文版) 33.9MB</a>
 <a class="btn" href="http://img.siriyang.cn/资源/Understanding and Using C Pointers.pdf" target="_blank" rel="noopener"><i class="fa fa-download fa-fw fa-lg"></i>下载PDF(英文版) 7.34MB</a>
@@ -788,7 +789,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2019年12月26日 - 22时12分
+    2019年12月27日 - 23时12分
   </li>
 
   <!-- 引用链接 -->
@@ -906,7 +907,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -949,7 +950,9 @@
         
           
         
-        <span class="site-state-item-count">14</span>
+          
+        
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1020,7 +1023,13 @@
         
           
         
-        <span class="site-state-item-count">28</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1113,12 +1122,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">457k</span>
+    <span title="站点总字数">459k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:55</span>
+    <span title="站点阅读时长">6:57</span>
 </div>
 
         

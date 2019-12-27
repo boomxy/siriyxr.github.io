@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.siriyang.cn/posts/20191227233812id.html</loc>
+    
+    <lastmod>2019-12-27T15:40:40.263Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.siriyang.cn/posts/20191225223229id.html</loc>
     
-    <lastmod>2019-12-26T14:53:14.834Z</lastmod>
+    <lastmod>2019-12-27T15:34:54.175Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.siriyang.cn/posts/20191225223317id.html</loc>
     
-    <lastmod>2019-12-26T14:52:55.131Z</lastmod>
+    <lastmod>2019-12-27T15:34:40.689Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.siriyang.cn/about/index.html</loc>
+    
+    <lastmod>2019-12-27T15:33:25.767Z</lastmod>
     
   </url>
   
@@ -341,13 +355,6 @@
     <loc>https://blog.siriyang.cn/lab/index.html</loc>
     
     <lastmod>2019-11-21T15:03:25.986Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.siriyang.cn/about/index.html</loc>
-    
-    <lastmod>2019-11-15T14:37:11.229Z</lastmod>
     
   </url>
   
