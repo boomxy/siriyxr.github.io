@@ -57,20 +57,20 @@
   };
 </script>
 
-  <meta name="description" content="前言&amp;emsp;&amp;emsp;之前工作室的师兄做了一个基于python人脸识别库的心率监测系统，当时师兄在工作室做技术报告演示的时候就特别感兴趣。这两天研考完了就找师兄要过来研究把玩一下，没想到在环境配置过程中踩坑无数，还差点把我毕设的环境搞崩了，我也真是憨批，明明就有预感拿毕设的虚拟环境来配会出问题，结果就真出问题了。到处查阅资料，倒腾了一下午才把环境恢复过来并最终成功配置运行。 正文&amp;emsp;">
+  <meta name="description" content="前言&amp;emsp;&amp;emsp;之前工作室的师兄做了一个基于python人脸识别库的心率监测系统，当时师兄在工作室做技术报告演示的时候就特别感兴趣。这两天研考完了就找师兄要过来研究把玩一下，没想到在环境配置过程中踩坑无数，还差点把我毕设的环境搞崩了，我也真是憨批，明明就有预感拿毕设的虚拟环境来配会出问题，结果就真出问题了。到处查阅资料，倒腾了一下午才把环境恢复过来并最终成功配置运行。">
 <meta name="keywords" content="Python,学习日志,环境,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【学习日志】心率检测系统环境配置过程中的坑">
 <meta property="og:url" content="https://blog.siriyang.cn/posts/20191227233812id.html">
 <meta property="og:site_name" content="SiriBlog">
-<meta property="og:description" content="前言&amp;emsp;&amp;emsp;之前工作室的师兄做了一个基于python人脸识别库的心率监测系统，当时师兄在工作室做技术报告演示的时候就特别感兴趣。这两天研考完了就找师兄要过来研究把玩一下，没想到在环境配置过程中踩坑无数，还差点把我毕设的环境搞崩了，我也真是憨批，明明就有预感拿毕设的虚拟环境来配会出问题，结果就真出问题了。到处查阅资料，倒腾了一下午才把环境恢复过来并最终成功配置运行。 正文&amp;emsp;">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;之前工作室的师兄做了一个基于python人脸识别库的心率监测系统，当时师兄在工作室做技术报告演示的时候就特别感兴趣。这两天研考完了就找师兄要过来研究把玩一下，没想到在环境配置过程中踩坑无数，还差点把我毕设的环境搞崩了，我也真是憨批，明明就有预感拿毕设的虚拟环境来配会出问题，结果就真出问题了。到处查阅资料，倒腾了一下午才把环境恢复过来并最终成功配置运行。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.siriyang.cn/%E3%80%90%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%E3%80%91%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%9D%91/1.png-wm">
 <meta property="og:image" content="http://img.siriyang.cn/%E3%80%90%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%E3%80%91%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%9D%91/2.png-wm">
-<meta property="og:updated_time" content="2019-12-27T15:40:40.263Z">
+<meta property="og:updated_time" content="2019-12-27T16:45:57.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【学习日志】心率检测系统环境配置过程中的坑">
-<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;之前工作室的师兄做了一个基于python人脸识别库的心率监测系统，当时师兄在工作室做技术报告演示的时候就特别感兴趣。这两天研考完了就找师兄要过来研究把玩一下，没想到在环境配置过程中踩坑无数，还差点把我毕设的环境搞崩了，我也真是憨批，明明就有预感拿毕设的虚拟环境来配会出问题，结果就真出问题了。到处查阅资料，倒腾了一下午才把环境恢复过来并最终成功配置运行。 正文&amp;emsp;">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;之前工作室的师兄做了一个基于python人脸识别库的心率监测系统，当时师兄在工作室做技术报告演示的时候就特别感兴趣。这两天研考完了就找师兄要过来研究把玩一下，没想到在环境配置过程中踩坑无数，还差点把我毕设的环境搞崩了，我也真是憨批，明明就有预感拿毕设的虚拟环境来配会出问题，结果就真出问题了。到处查阅资料，倒腾了一下午才把环境恢复过来并最终成功配置运行。">
 <meta name="twitter:image" content="http://img.siriyang.cn/%E3%80%90%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%E3%80%91%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%9D%91/1.png-wm">
   <link rel="canonical" href="https://blog.siriyang.cn/posts/20191227233812id">
 
@@ -330,11 +330,19 @@
                 
               
 
-              <time title="创建时间：2019-12-27 23:38:12 / 修改时间：23:40:40" itemprop="dateCreated datePublished" datetime="2019-12-27T23:38:12+08:00">2019-12-27</time>
+              <time title="创建时间：2019-12-27 23:38:12" itemprop="dateCreated datePublished" datetime="2019-12-27T23:38:12+08:00">2019-12-27</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-28 00:45:57" itemprop="dateModified" datetime="2019-12-28T00:45:57+08:00">2019-12-28</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -410,6 +418,8 @@
 
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&emsp;&emsp;之前工作室的师兄做了一个基于python人脸识别库的心率监测系统，当时师兄在工作室做技术报告演示的时候就特别感兴趣。这两天研考完了就找师兄要过来研究把玩一下，没想到在环境配置过程中踩坑无数，还差点把我毕设的环境搞崩了，我也真是憨批，明明就有预感拿毕设的虚拟环境来配会出问题，结果就真出问题了。到处查阅资料，倒腾了一下午才把环境恢复过来并最终成功配置运行。</p>
+<a id="more"></a>
+
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>&emsp;&emsp;一开始拿现有环境配置并成功搞砸的傻事就不说了，在把之前环境恢复以后，我从头建了一个新环境来配置，这样就可以放心大胆的干了。</p>
 <h2 id="创建新环境"><a href="#创建新环境" class="headerlink" title="创建新环境"></a>创建新环境</h2><p>&emsp;&emsp;我是使用的Anaconda图形界面客户端创建的<code>python 3.6</code>的新环境，之后操作就都是使用的Prompt命令行了，命令行操作要比图形界面客户端方便迅速很多，而且那个图形界面客户端有问题，很容易卡死。当然也可以一开始就使用命令行创建新环境，命令如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda creat -n [env_name] [list_of_packages]</span><br></pre></td></tr></table></figure>
@@ -472,13 +482,6 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\2019‎0‎8‎0‎8‎‏‎175350id.html" rel="bookmark">补码一位乘法（Python实现）</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
       <div class="popular-posts-title"><a href="\posts\20191029224349id.html" rel="bookmark">Pythonista下Pythonista Tools Installer安装教程</a></div>
       
     </li>
@@ -487,6 +490,13 @@
       
       
       <div class="popular-posts-title"><a href="\posts\20191029224207id.html" rel="bookmark">Pythonista下stash安装教程</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20190808175350id.html" rel="bookmark">补码一位乘法（Python实现）</a></div>
       
     </li>
   
@@ -528,7 +538,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2019年12月27日 - 23时12分
+    2019年12月28日 - 00时12分
   </li>
 
   <!-- 引用链接 -->
@@ -577,10 +587,6 @@
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/posts/2019‎‎8‎‎7‎220228id.html" rel="prev" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
