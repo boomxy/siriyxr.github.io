@@ -65,10 +65,13 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="1 认识指针1.1 指针和内存    作用域 生命周期    全局内存 整个文件 应用程序的生命周期   静态内存 声明它的函数内部 应用程序的生命周期   自动内存（局部内存） 声明它的函数内部 限制在函数执行时间内   动态内存 由引用该内存的指针决定 直到内存释放   1.1.2 声明指针&amp;emsp;&amp;emsp;星号两边的空白符无关紧要，下面的声明都是等价的： 1234int* pi;int">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-27T15:34:54.175Z">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.png-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C.png-wm">
+<meta property="og:updated_time" content="2020-01-01T02:48:15.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解C指针》学习笔记">
 <meta name="twitter:description" content="1 认识指针1.1 指针和内存    作用域 生命周期    全局内存 整个文件 应用程序的生命周期   静态内存 声明它的函数内部 应用程序的生命周期   自动内存（局部内存） 声明它的函数内部 限制在函数执行时间内   动态内存 由引用该内存的指针决定 直到内存释放   1.1.2 声明指针&amp;emsp;&amp;emsp;星号两边的空白符无关紧要，下面的声明都是等价的： 1234int* pi;int">
+<meta name="twitter:image" content="http://img.siriyang.cn/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.png-wm">
   <link rel="canonical" href="https://blog.siriyang.cn/posts/20191225223229id">
 
 
@@ -189,7 +192,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">31</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">36</span></a>
 
   </li>
       
@@ -202,7 +205,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">15</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">17</span></a>
 
   </li>
       
@@ -215,7 +218,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">48</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">57</span></a>
 
   </li>
       
@@ -338,7 +341,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 23:34:54" itemprop="dateModified" datetime="2019-12-27T23:34:54+08:00">2019-12-27</time>
+                <time title="修改时间：2020-01-01 10:48:15" itemprop="dateModified" datetime="2020-01-01T10:48:15+08:00">2020-01-01</time>
               </span>
             
           
@@ -405,7 +408,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>6k</span>
+              <span>20k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -415,7 +418,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>5 分钟</span>
+              <span>18 分钟</span>
             </span>
           
 
@@ -721,6 +724,295 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p1 = (<span class="keyword">int</span>*) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line"><span class="keyword">int</span> *p2 = p1;</span><br><span class="line"><span class="built_in">free</span>(p1);</span><br><span class="line">...</span><br><span class="line"><span class="built_in">free</span>(p2);</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-3-3-堆和系统内存"><a href="#2-3-3-堆和系统内存" class="headerlink" title="2.3.3 堆和系统内存"></a>2.3.3 堆和系统内存</h3><p>&emsp;&emsp;堆的大小可能在程序创建后就规定不变了，也可能可以增长。不过堆管理器不一定会在调用<code>free</code>函数时将内存返还给操作系统。释放的内存只是可供应用程序后续使用。所以，如果程序先分配内存然后释放，从操作系统的角度看，释放的内存通常不会反映在应用程序的内存使用上。</p>
+<h1 id="3-指针和函数"><a href="#3-指针和函数" class="headerlink" title="3 指针和函数"></a>3 指针和函数</h1><blockquote>
+<p>局部变量也称为自动变量，他总是分配在栈帧上。</p>
+</blockquote>
+<h2 id="3-1-程序的栈和堆"><a href="#3-1-程序的栈和堆" class="headerlink" title="3.1 程序的栈和堆"></a>3.1 程序的栈和堆</h2><h3 id="3-1-1-程序栈"><a href="#3-1-1-程序栈" class="headerlink" title="3.1.1 程序栈"></a>3.1.1 程序栈</h3><p>&emsp;&emsp;程序栈和堆共享同一块内存区域。程序栈通常占据这块区域的下部，而堆用的则是上部。</p>
+<p>&emsp;&emsp;函数被调用时，占向上“长出”一个栈帧。当函数终止时，其栈帧从程序栈上弹出。栈帧所使用的内存不会被清理，但最终可能被推到程序栈上的另一个栈帧覆盖。</p>
+<p>&emsp;&emsp;动态分配的内存来自堆，对向下“生长”。随着内存的分配和释放，堆中会布满碎片。尽管堆是向下生长的，但这只是个大体方向，实际上内存可能在堆上的任意位置分配。</p>
+<h3 id="3-1-2-栈帧的组织"><a href="#3-1-2-栈帧的组织" class="headerlink" title="3.1.2 栈帧的组织"></a>3.1.2 栈帧的组织</h3><p>&emsp;&emsp;栈帧由以下几种元素组成：</p>
+<ul>
+<li>返回地址：函数完成后要返回的程序内部地址</li>
+<li>局部数据存储：为局部变量分配的内存</li>
+<li>参数存储：为函数参数分配的内存</li>
+<li>栈指针和基指针：运行时系统来管理栈的指针</li>
+</ul>
+<p>&emsp;&emsp;栈指针通常指向栈顶部。基指针（帧指针）通常存在并指向栈内部的地址。这两个指针都不是C指针。如果运行时系统用C实现，这些指针倒真是C指针。</p>
+<p>&emsp;&emsp;C把块语句当作“微型”函数，会在适合的时机将其推入栈和从栈中弹出。</p>
+<p>&emsp;&emsp;将栈帧推到程序栈上时，系统可能会耗尽内存，这种情况称为栈溢出。<strong>要牢记每个线程通常都会有自己的程序栈。</strong></p>
+<h2 id="3-2-通过指针传递和返回数据"><a href="#3-2-通过指针传递和返回数据" class="headerlink" title="3.2 通过指针传递和返回数据"></a>3.2 通过指针传递和返回数据</h2><p>&emsp;&emsp;<strong>传递参数（包括指针）时，传递的是他们的值。</strong>也就是说，传递给函数的是参数的一个副本，当传递大型结构体的时候，使用指针会比直接复制参数值使得程序运行更快。</p>
+<h3 id="3-2-4-返回指针"><a href="#3-2-4-返回指针" class="headerlink" title="3.2.4 返回指针"></a>3.2.4 返回指针</h3><p>&emsp;&emsp;函数返回指针时可能存在几个潜在的问题：</p>
+<ul>
+<li>返回为初始化的指针</li>
+<li>返回指向无效地址的指针</li>
+<li>返回局部变量的指针</li>
+<li>返回指针但是没有释放内存</li>
+</ul>
+<h3 id="3-2-5-局部数据指针"><a href="#3-2-5-局部数据指针" class="headerlink" title="3.2.5 局部数据指针"></a>3.2.5 局部数据指针</h3><p>&emsp;&emsp;返回局部变量的指针，一旦函数执行完栈帧就被弹出了，尽管数据可能还在，但如果之后继续执行其他函数，该内存就会被覆盖。</p>
+<p>&emsp;&emsp;如果使用静态变量，把作用域限制在函数内部，但是分配在栈帧外面，避免其他函数复写变量值。但每次调用该函数都会重复利用这个变量，这样相当于每次都把上一次调用的结果覆盖掉了。此外，静态数组必须声明为固定长度，这样会限制函数处理变长数组的能力。</p>
+<h3 id="3-2-7-传递指针的指针"><a href="#3-2-7-传递指针的指针" class="headerlink" title="3.2.7 传递指针的指针"></a>3.2.7 传递指针的指针</h3><p><strong>实现自己的free函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">saferFree</span><span class="params">(<span class="keyword">void</span> **pp)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pp != <span class="literal">NULL</span> &amp;&amp; *pp != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">free</span>(*pp);</span><br><span class="line">        *pp = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;如果调用这个函数时没有显示的把指针类型转换为<code>void</code>会产生警告，执行显示转换就不会有警告。下面这个宏生去了函数使用者做类型转换和传递指针的地址：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> safeFree(p) safeerFree((void**)&amp;p)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-函数指针"><a href="#3-3-函数指针" class="headerlink" title="3.3 函数指针"></a>3.3 函数指针</h2><h3 id="3-3-1-声明函数指针"><a href="#3-3-1-声明函数指针" class="headerlink" title="3.3.1 声明函数指针"></a>3.3.1 声明函数指针</h3><blockquote>
+<p>使用函数指针时一定要小心，因为C不会检查参数传递是否正确。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*f1)(<span class="keyword">double</span>); <span class="comment">//传入 double，返回 int</span></span><br><span class="line"><span class="keyword">void</span> (*f2)(<span class="keyword">char</span>*); <span class="comment">//传入 char 指针，没有返回值</span></span><br><span class="line"><span class="keyword">double</span>* (*f3)(<span class="keyword">int</span>,<span class="keyword">int</span>); <span class="comment">//传递两个整数，返回 double 指针</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;不要把返回指针的函数和函数指针搞混。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">f4</span><span class="params">()</span></span>; <span class="comment">//f4是一个函数，返回一个整数指针</span></span><br><span class="line"><span class="keyword">int</span> (*f5)(); <span class="comment">//f5是一个返回整数的函数指针</span></span><br><span class="line"><span class="keyword">int</span>* (*f6)(); <span class="comment">//f6是一个返回整数指针的函数指针</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-2-使用函数指针"><a href="#3-3-2-使用函数指针" class="headerlink" title="3.3.2 使用函数指针"></a>3.3.2 使用函数指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*fptr1)(<span class="keyword">int</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num*num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n = <span class="number">5</span>;</span><br><span class="line">fptr1 = square; <span class="comment">// fptr1 = &amp;square; </span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d squard is %d\n"</span>,n,fptr1(n));</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;在这种上下文环境中，编译器会忽略取地址符操作，所以你可以写出来，但没必要这么做。</p>
+<p>&emsp;&emsp;为函数指针声明一个类型定义会比较方便，类型定义的名字是声明的最后一个元素。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*funcptr)</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">funcptr fptr2;</span><br><span class="line">fptr2 = square;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d squard is %d\n"</span>,n,fptr1(n));</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-3-传递函数指针"><a href="#3-3-3-传递函数指针" class="headerlink" title="3.3.3 传递函数指针"></a>3.3.3 传递函数指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">subtract</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num1 - num2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*fptrOperation)</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compute</span><span class="params">(fptrOperation operation, <span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> operation(num1, num2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, compute(add, <span class="number">5</span>, <span class="number">6</span>));</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, compute(sub, <span class="number">5</span>, <span class="number">6</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="返回函数指针"><a href="#返回函数指针" class="headerlink" title="返回函数指针"></a>返回函数指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">fptrOperation <span class="title">select</span><span class="params">(<span class="keyword">char</span> opcode)</span></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(opcode)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'+'</span>: <span class="keyword">return</span> add;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'-'</span>: <span class="keyword">return</span> subtract;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">evaluate</span><span class="params">(<span class="keyword">char</span> opcode <span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>&#123;</span><br><span class="line">    fptrOperation operation=select(opcode);</span><br><span class="line">    <span class="keyword">return</span> operation(num1,num2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, evaluate(<span class="string">'+'</span>, <span class="number">5</span>, <span class="number">6</span>));</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, evaluate(<span class="string">'-'</span>, <span class="number">5</span>, <span class="number">6</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-5-使用函数指针数组"><a href="#3-3-5-使用函数指针数组" class="headerlink" title="3.3.5 使用函数指针数组"></a>3.3.5 使用函数指针数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*operation)</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line">operation operations[<span class="number">128</span>]=&#123;<span class="literal">NULL</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;也可以不用<code>typedef</code>来声明这个数组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*operations[<span class="number">128</span>])(<span class="keyword">int</span>, <span class="keyword">int</span>)=&#123;<span class="literal">NULL</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-7-转换函数指针"><a href="#3-3-7-转换函数指针" class="headerlink" title="3.3.7 转换函数指针"></a>3.3.7 转换函数指针</h3><p>&emsp;&emsp;我们可以将指向某个函数的指针转换为其他类型的指针，不过要谨慎使用，因为运行时系统不会验证函数指针所用的参数是否正确。也可以再转回来，得到的结果和原指针相同，但函数指针的长度不一定相等。</p>
+<blockquote>
+<p>无法保证函数指针和数据指针转换后正常工作。</p>
+</blockquote>
+<p>&emsp;&emsp;<code>void*</code> 指针不一定能用在函数指针上。</p>
+<h1 id="4-指针和数组"><a href="#4-指针和数组" class="headerlink" title="4 指针和数组"></a>4 指针和数组</h1><p>&emsp;&emsp;一种常见的错误观点是“数组和指针是完全可以互换的”。尽管数组名字有时候可以当作指针来用，但数组的名字不是指针。数组表示法也可以和指针一起使用，但两者明显不同，也不一定能互换。尽管数组使用自身的名字可以返回数组地址，但名字本身不能作为赋值操作的目标。</p>
+<h2 id="4-1-数组概述"><a href="#4-1-数组概述" class="headerlink" title="4.1 数组概述"></a>4.1 数组概述</h2><p>&emsp;&emsp;不要混淆二维数组和指针的数组，它们很类似，但是行为有点差别。</p>
+<h3 id="4-1-1-一维数组"><a href="#4-1-1-一维数组" class="headerlink" title="4.1.1 一维数组"></a>4.1.1 一维数组</h3><p>&emsp;&emsp;对数组做<code>sizeof</code>操作会得到为该数组分配的字节数，要知道元素的数量，只需将数组长度除以元素长度。</p>
+<h2 id="4-2-指针表示法和数组"><a href="#4-2-指针表示法和数组" class="headerlink" title="4.2 指针表示法和数组"></a>4.2 指针表示法和数组</h2><p>&emsp;&emsp;我们可以只用数组名字，也可以对数组的第一个元素用取地址操作符，这些写法是等价的，都会返回<code>vactor</code>的地址。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">vector</span>[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>,<span class="built_in">vector</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;<span class="built_in">vector</span>[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;有时候也使用<code>&amp;vector</code>这个表达式获取数组地址，不同于其他表示法，这么做返回的是整个数组的指针，其他两种方法得到是整数指针。</p>
+<p>&emsp;&emsp;给指针加上一个整数会把它持有的地址增加这个整数和数据类型长度的乘积。</p>
+<p>&emsp;&emsp;数组表示法可以理解为“偏移并解引”操作。</p>
+<p><strong>数组和指针的差别</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">vector</span>[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *pv = <span class="built_in">vector</span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>vector[i]</code>生成的代码和<code>*(vector+i)</code>生成的不一样，<code>vector[i]</code>表示法生成的机器码从位置<code>vector</code>开始，移动<code>i</code>个位置，取出内容。而<code>*(vector+i)</code>表示法，生成的机器码则是从<code>vector</code>开始，在地址上增加<code>i</code>，然后取出这个地址中的内容。尽管结果是一样的，生成的机器码却不一样，对于大部分人来说，这种差别几乎无足轻重。</p>
+<p>&emsp;&emsp;<code>sizeof</code>操作符对数组和同一个数组的指针操作也是不同的。对<code>vector</code>调用<code>sizeof</code>操作符会返回20，就是这个数组分配的字节数。对<code>pv</code>调用<code>sizeof</code>操作符会返回4，就是指针的长度。</p>
+<p>&emsp;&emsp;<code>pv</code>是一个坐值，左值表示赋值操作符左边的符号。左值必须能修改。像<code>vector</code>这样的数组名字不是左值，它不能被修改。</p>
+<h2 id="4-3-用malloc创建一维数组"><a href="#4-3-用malloc创建一维数组" class="headerlink" title="4.3 用malloc创建一维数组"></a>4.3 用malloc创建一维数组</h2><p>&emsp;&emsp;用malloc创建的一维数组也可以使用数组表示法，但是用完之后要记得释放内存。</p>
+<h2 id="4-4-用realloc调整数组长度"><a href="#4-4-用realloc调整数组长度" class="headerlink" title="4.4 用realloc调整数组长度"></a>4.4 用realloc调整数组长度</h2><p>&emsp;&emsp;如果<code>realloc</code>分配成功，我们不需要释放<code>buffer</code>，因为<code>realloc</code>会把原来的缓冲区复制到新的缓冲区，再把旧的释放。如果试图释放<code>buffer</code>，十有八九程序会终止，因为我们试图重复释放同一块内存。</p>
+<h2 id="4-7-指针和多维数组"><a href="#4-7-指针和多维数组" class="headerlink" title="4.7 指针和多维数组"></a>4.7 指针和多维数组</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> matrix[<span class="number">2</span>][<span class="number">5</span>] = &#123;...&#125;</span><br><span class="line"><span class="keyword">int</span> (*pmatrix)[<span class="number">5</span>] = matrix;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;上面的整条声明语句将<code>pmatrix</code>定义为一个指向二维数组的指针，该二维数组的元素类型是整数，每列有5个元素。如果我们把括号去掉就声明了5. 元素的数组，数组元素的类型是整数指针。</p>
+<p>&emsp;&emsp;<code>matrix+1</code>得到的是数组的第二行，要得到数组第一行的第一个元素应使用<code>*(matrix[0]+1)</code>。</p>
+<h2 id="4-8-传递多维数组"><a href="#4-8-传递多维数组" class="headerlink" title="4.8 传递多维数组"></a>4.8 传递多维数组</h2><p>&emsp;&emsp;要传递<code>matrix</code>，可以这么写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display2DArray</span><span class="params">(<span class="keyword">int</span> arr[][<span class="number">5</span>], <span class="keyword">int</span> rows)</span></span>&#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;或者这么写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display2DArray</span><span class="params">(<span class="keyword">int</span> (*arr)[<span class="number">5</span>], <span class="keyword">int</span> rows)</span></span>&#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这两种写法都指明了数组的列数，这很必要。第一种写法是数组指针的一个隐式声明，第二种写法则是指针的一种显示声明。</p>
+<blockquote>
+<p>下面的声明是错误的：<br><code>void display2DArray(int *arr[5], int rows){</code><br>尽管不会产生语法错误，但是函数会认为传入的数组拥有5个整数指针。</p>
+</blockquote>
+<p>&emsp;&emsp;也可能遇到下面这样的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display2DArrayUnknownSize</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols)</span></span>&#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;要调用这个函数可以这么写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispaly2DArrayUnknownSize(&amp;matrix[<span class="number">0</span>][<span class="number">0</span>], <span class="number">2</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;在函数内我们无法像下面这样使用数组下标：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d "</span>, arr[i][j]);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;原因是没有将指针声明为二维数组。我们可以用一个下标，这样写只是解释为数组内部的偏移量，不能用两个下标是因为编译器不知道一维的长度：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d "</span>, (arr+i)[j]);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这里传递的是<code>&amp;matrix[0][0]</code>而不是<code>matrix</code>，尽管<code>matrix</code>也能运行，但是会产生编译警告，原因是指针类型不兼容。<code>&amp;matrix[0][0]</code>表达式是一个整数指针，而<code>matirx</code>则是一个整数数组的指针。<br>&emsp;&emsp;在传递二维以上的数组时，除了第一维以外，需要指定其他维度的长度。</p>
+<h2 id="4-9-动态分配二维数组"><a href="#4-9-动态分配二维数组" class="headerlink" title="4.9 动态分配二维数组"></a>4.9 动态分配二维数组</h2><p>&emsp;&emsp;当我们用<code>malloc</code>这样和函数创建二维数组时，在内存分配上会有几种选择。由于我们可以将二维数组当作数组的数组，因而“内层”的数组没有理由一定要是连续的。如果对这种数组使用下标，数组的不连续对程序员是透明的。</p>
+<blockquote>
+<p>内存的连续性还会影响复制内存等其他操作，内存不连续就可能需要多次复制。</p>
+</blockquote>
+<h3 id="4-9-2-分配连续内存"><a href="#4-9-2-分配连续内存" class="headerlink" title="4.9.2 分配连续内存"></a>4.9.2 分配连续内存</h3><p><strong>方法一：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> rows = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> columns = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> **matrix = (<span class="keyword">int</span> **) <span class="built_in">malloc</span>(rows * <span class="keyword">sizeof</span>(<span class="keyword">int</span> *));</span><br><span class="line">matrix[<span class="number">0</span>] = (<span class="keyword">int</span> *) <span class="built_in">malloc</span>(rows * columns * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i &lt; rows; i++)</span><br><span class="line">    matrix[i] = matrix[<span class="number">0</span>] + i * columns;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *matrix=(<span class="keyword">int</span> *)<span class="built_in">malloc</span>(rows * columns * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;后面的代码用到这个数组时不能使用下标，必须手动计算索引。</p>
+<h2 id="4-10-不规则数组和指针"><a href="#4-10-不规则数组和指针" class="headerlink" title="4.10 不规则数组和指针"></a>4.10 不规则数组和指针</h2><p>&emsp;&emsp;复合字面量是一种C构造，前面看起来像类型转换，后面跟着花括号括起来的初始化列表。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">const</span> <span class="keyword">int</span>) &#123;<span class="number">100</span>&#125;</span><br><span class="line">(<span class="keyword">int</span>[<span class="number">3</span>]) &#123;<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;通过复合字面量创建数组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*(arr1[])) = &#123;</span><br><span class="line">    (<span class="keyword">int</span>[]) &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;,</span><br><span class="line">    (<span class="keyword">int</span>[]) &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;,</span><br><span class="line">    (<span class="keyword">int</span>[]) &#123;<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*(arr2[])) = &#123;</span><br><span class="line">    (<span class="keyword">int</span>[]) &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;,</span><br><span class="line">    (<span class="keyword">int</span>[]) &#123;<span class="number">4</span>, <span class="number">5</span>&#125;,</span><br><span class="line">    (<span class="keyword">int</span>[]) &#123;<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这两个数组所有类存都是连续的，其中第二个是变长数组。都可以使用数组和指针表示法，但对于变长数组在遍历的时候可能要对每行单独写一个循环，不是很方便。</p>
+<h1 id="5-指针和字符串"><a href="#5-指针和字符串" class="headerlink" title="5 指针和字符串"></a>5 指针和字符串</h1><h2 id="5-1-字符串基础"><a href="#5-1-字符串基础" class="headerlink" title="5.1 字符串基础"></a>5.1 字符串基础</h2><p>&emsp;&emsp;字符串的长度是字符串中除了<code>NUL</code>字符之外的字符数。为字符串分配内存时，要记得为所有的字符加上<code>NUL</code>字符分配足够的空间。</p>
+<blockquote>
+<p>记住，<code>NULL</code>和<code>NUL</code>不同。<code>NULL</code>用来表示特殊的指针，通常定义为<code>((void*)0)</code>，而<code>NUL</code>是<code>char</code>，定义为<code>\0</code>，两者不能混用。</p>
+</blockquote>
+<p>&emsp;&emsp;字符常量通常由一个字符组成，也可以包含很多字符，比如转义字符。在C中，它们的类型是<code>int</code>，<code>char</code>的长度是1字节，而字符字面量的长度是4字节。这个看似异常的现象乃语言设计者有意为之。</p>
+<h3 id="5-1-1-字符串声明"><a href="#5-1-1-字符串声明" class="headerlink" title="5.1.1 字符串声明"></a>5.1.1 字符串声明</h3><p>&emsp;&emsp;声明字符串的方式有三种：字面量、字符数组和字符指针。字符串字面量是用双引号引起来的字符序列，常用来进行初始化，它们位于字符串字面量池中。不要把字符串字面量和单引号引起来的字符搞混——后者是字符字面量。</p>
+<h3 id="5-1-2-字符串字面量池"><a href="#5-1-2-字符串字面量池" class="headerlink" title="5.1.2 字符串字面量池"></a>5.1.2 字符串字面量池</h3><p>&emsp;&emsp;定义字面量时通常会将其分配在字面量池中，多次用到同一个字面量时，字面量池中通常只有一份副本。这样会减少应用程序占用的内存。大部分编译器有关闭字面量池的选项，一旦关闭，字面量可能生成多个副本，每个副本拥有自己的地址。</p>
+<blockquote>
+<p>GCC用<code>-fwritable-strings</code>选项来关闭字符串池。在Microsoft Visual Studio 中，<code>/GF</code>选项会打开字符串池。</p>
+</blockquote>
+<p>&emsp;&emsp;字符串字面量一般分配在只读内存中，所以是不可变的。字符串字面量不存在作用域的概念。</p>
+<p>&emsp;&emsp;由于在有的编译器中（比如GCC），字符串字面量是可以修改的，因此最好把变量声明为<code>const</code>类型。</p>
+<h3 id="5-1-3-字符串初始化"><a href="#5-1-3-字符串初始化" class="headerlink" title="5.1.3 字符串初始化"></a>5.1.3 字符串初始化</h3><p><strong>1.初始化char数组</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> header1[] = <span class="string">"Media Player"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> header2[<span class="number">13</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(header,<span class="string">"Media Player"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;下面的赋值是不合法的，我们不能把字符串字面量的地址赋给数组名字。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> header3[];</span><br><span class="line">header3 = <span class="string">"Media Player"</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.初始化char指针</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *header = (<span class="keyword">char</span>*) <span class="built_in">malloc</span>(<span class="built_in">strlen</span>(<span class="string">"Media Player"</span>)+<span class="number">1</span>);</span><br><span class="line"><span class="built_in">strcpy</span>(header,<span class="string">"Media Player"</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>再决定<code>malloc</code>函数要用到的字符串长度时，要注意以下事项。</p>
+<ul>
+<li>一定要记得算上终结符<code>NUL</code>。<br>不要用<code>sizeof</code>操作符，而是用<code>strlen</code>函数来确定已有字符串的长度。<code>sizeof</code>操作符会返回数组和指针的长度，而不是字符串的长度。</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;我们可以将字符串字面量的地址直接赋给字符指针，不过，这样不会产生字符串的副本。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *header = <span class="string">"Media Player"</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>试图用字符字面量来初始化<code>char</code>指针不会起作用。因为字符字面量是<code>int</code>类型，这其实是尝试把整数赋给字符指针。这样将常会造成应用程序在解引指针时终止。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* prefix = <span class="string">'+'</span>; <span class="comment">//不合法</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>正确的做法是像下面这样用<code>malloc</code>函数：</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prefix = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="number">2</span>);</span><br><span class="line">*prefix = <span class="string">'+'</span>;</span><br><span class="line">*(prefix+<span class="number">1</span>) = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.从标准输入初始化字符串</strong><br>&emsp;&emsp;这里会出问题是因为我们在使用<code>command</code>变量之前没有为其分配内存：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *command;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"*Enter a Command:"</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%s"</span>,command);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;要解决这个问题需要首先为指针分配内存，或者使用定长数组代替指针。</p>
+<p><strong>4.字符串的位置小结</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* globalHeader = <span class="string">"Chapter"</span>;</span><br><span class="line"><span class="keyword">char</span> globalArrayHeader[] = <span class="string">"Chapter"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">displayHeader</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span>* staticHeader = <span class="string">"Chapter"</span>;</span><br><span class="line">    <span class="keyword">char</span>* localHeader = <span class="string">"Chapter"</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> staticArrayHeader[] = <span class="string">"Chapter"</span>;</span><br><span class="line">    <span class="keyword">char</span> localArrayHeader[] = <span class="string">"Chapter"</span>;</span><br><span class="line">    <span class="keyword">char</span>* heapHeader = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="built_in">strlen</span>(<span class="string">"Chapter"</span>)+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(heapHeader,<span class="string">"Chapter"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.siriyang.cn/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.png-wm" alt></p>
+<h2 id="5-2-标准字符串操作"><a href="#5-2-标准字符串操作" class="headerlink" title="5.2 标准字符串操作"></a>5.2 标准字符串操作</h2><h3 id="5-2-1-比较字符串"><a href="#5-2-1-比较字符串" class="headerlink" title="5.2.1 比较字符串"></a>5.2.1 比较字符串</h3><p>&emsp;&emsp;<code>strcmp</code>函数原型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcmp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s1, <span class="keyword">const</span> <span class="keyword">char</span> *s2)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数返回以下三种值之一：</p>
+<ul>
+<li>负数：如果按字典序（字母序）s1比s2小就返回负数。</li>
+<li>0：如果两个字符串相等就返回0。</li>
+<li>正数：如果按字典序s1比s2大就返回正数。</li>
+</ul>
+<p>&emsp;&emsp;比较字符串的错误方法：<br>&emsp;&emsp;第一种，试图用复试操作符比较：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> command[<span class="number">16</span>];</span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span>(command = <span class="string">"Quit"</span>)&#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;首先，这不是作比较，其次，这样对导致类型不兼容的语法错误，我们不能把字符串字面量地址赋给数组名字。</p>
+<p>&emsp;&emsp;另一种方法是相等操作符：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> command[<span class="number">16</span>];</span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span>(command == <span class="string">"Quit"</span>)&#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这样会得到假，因为我们比较的是<code>command</code>的地址和字符串字面量的地址。相等操作符比较的是地址，而不是地址中的内容，用数组名字或者字符串字面量就会返回地址。</p>
+<h3 id="5-2-2-复制字符串"><a href="#5-2-2-复制字符串" class="headerlink" title="5.2.2 复制字符串"></a>5.2.2 复制字符串</h3><p>&emsp;&emsp;<code>strcpy</code>函数原型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">strcpy</span><span class="params">(<span class="keyword">char</span> *s1, <span class="keyword">const</span> <span class="keyword">char</span> *s2)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-3-拼接字符串"><a href="#5-2-3-拼接字符串" class="headerlink" title="5.2.3 拼接字符串"></a>5.2.3 拼接字符串</h3><p>&emsp;&emsp;<code>strcat</code>函数原型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cahr *strcat(char *s1, const char *s2);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;此函数把第二个字符串拼接到第一个到结尾。函数不会分配内存，这意味着第一个字符串必须足够长，能容纳拼接后的结果，否则函数可能会越界写入，导致不可预期的行为。</p>
+<p>&emsp;&emsp;函数的返回值的地址跟第一个参数的地址一样。这在某些情况下比较方便，比如这个函数作为<code>printf</code>函数的参数时。</p>
+<p><strong>正确的字符串拼接：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* error = <span class="string">"ERROR: "</span>;</span><br><span class="line"><span class="keyword">char</span>* errorMessage = <span class="string">"Not enough memory"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span>* buffer = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="built_in">strlen</span>(error)+<span class="built_in">strlen</span>(errrorMessage)+<span class="number">1</span>);</span><br><span class="line"><span class="built_in">strcpy</span>(buffer,error);</span><br><span class="line"><span class="built_in">strcat</span>(buffer,errorMessage);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%s\n"</span>,buffer);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%s\n"</span>,error);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%s\n"</span>,errorMessage);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Not enough memory</span><br><span class="line">ERROR:</span><br><span class="line">Not enough memory</span><br></pre></td></tr></table></figure>
+
+<p><strong>不正确的字符串拼接：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* error = <span class="string">"ERROR: "</span>;</span><br><span class="line"><span class="keyword">char</span>* errorMessage = <span class="string">"Not enough memory"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcat</span>(error, errorMessage);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%s\n"</span>,error);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%s\n"</span>,errorMessage);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;输出：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Not enough memory</span><br><span class="line">ot enough memory</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>errorMessage</code>字符串会左移一个字符，原因是拼接后的结果覆写了<code>errorMessage</code>。</p>
+<p><img src="http://img.siriyang.cn/%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C.png-wm" alt></p>
+<p>&emsp;&emsp;如果我们像下面这样用<code>char</code>数组而不是用指针来存储字符串，就不一定能工作了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> error[] = <span class="string">"ERROR: "</span>;</span><br><span class="line"><span class="keyword">char</span> errorMessage[] = <span class="string">"Not enough memory"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;如果用下面这个<code>strcat</code>调用会得到一个语法错误，这是因为我们试图把函数返回的指针赋给数组名字，这类操作不合法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error = <span class="built_in">strcat</span>(error, errorMessage);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;如果像下面这样去掉赋值，就可能会有内存访问的漏洞，因为赋值操作会覆写栈帧的一部分。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(error, errorMessage);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>一定要专门为拼接结果分配内存。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* path = <span class="string">"C:"</span>;</span><br><span class="line"><span class="keyword">char</span>* currentPath = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="built_in">strlen</span>(path)+<span class="number">2</span>);</span><br><span class="line">currentPath = <span class="built_in">strcat</span>(currentPath,<span class="string">"\\"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;因为在字符串字面量中用了转义序列，所以这里拼接的是一个反斜杠字符。</p>
+<p>&emsp;&emsp;如果使用字符字面量，那么就会得到一个运行时错误，原因是第二个参数被错误的解释为<code>char</code>类型变量的地址。（此处其实是个整数，而参数是<code>char*</code>，所以整数被当成了地址。）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">currentPath = <span class="built_in">strcat</span>(path, <span class="string">'\\'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-3-传递字符串"><a href="#5-3-传递字符串" class="headerlink" title="5.3 传递字符串"></a>5.3 传递字符串</h2><h3 id="5-3-1-传递简单字符串"><a href="#5-3-1-传递简单字符串" class="headerlink" title="5.3.1 传递简单字符串"></a>5.3.1 传递简单字符串</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> stringLength(<span class="keyword">char</span>* <span class="built_in">string</span>)&#123;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,stringLength(simpleArray));</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,stringLength(&amp;simpleArray));</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,stringLength(&amp;simpleArray[<span class="number">0</span>]));</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;第二个语句中，显示使用了取地址操作符，不过这样写有冗余，没有必要，而且会产生警告。第三个语句中，我们对数组第一个元素用了取地址操作符，这样可以工作，不过有点繁琐。</p>
+<h3 id="5-3-2-传递字符常量的指针"><a href="#5-3-2-传递字符常量的指针" class="headerlink" title="5.3.2 传递字符常量的指针"></a>5.3.2 传递字符常量的指针</h3><p>&emsp;&emsp;这样可以用指针传递字符串，同时也能防止传递的字符串被修改。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> stringLength(<span class="keyword">char</span>* <span class="built_in">string</span>)&#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-3-传递需要初始化的字符串"><a href="#5-3-3-传递需要初始化的字符串" class="headerlink" title="5.3.3 传递需要初始化的字符串"></a>5.3.3 传递需要初始化的字符串</h3><p>&emsp;&emsp;<code>snprintf</code>函数第一个参数指向缓冲区。第二个参数指定缓冲区的长度，函数不会越过缓冲区写入。</p>
+<h2 id="5-4-返回字符串"><a href="#5-4-返回字符串" class="headerlink" title="5.4 返回字符串"></a>5.4 返回字符串</h2><h3 id="5-4-2-返回动态分配内存的地址"><a href="#5-4-2-返回动态分配内存的地址" class="headerlink" title="5.4.2 返回动态分配内存的地址"></a>5.4.2 返回动态分配内存的地址</h3><p>&emsp;&emsp;这种情况写释放返回的内存是函数调用者的责任，如果用户没有释放返回的内存，则会造成内存泄漏。</p>
+<p>&emsp;&emsp;返回局部字符串的地址，如果内存被别的栈帧覆写就会损坏，应该避免使用这种方法。</p>
+<h1 id="6-指针和结构体"><a href="#6-指针和结构体" class="headerlink" title="6 指针和结构体"></a>6 指针和结构体</h1><h2 id="6-1-介绍"><a href="#6-1-介绍" class="headerlink" title="6.1 介绍"></a>6.1 介绍</h2><p>&emsp;&emsp;如果使用结构体的简单声明，那么就使用点表示法来访问其字段。如果使用结构体指针，就需要使用箭头操作符。我们不一定非得用箭头操作符，可以先解引指针然后用点操作符。</p>
+<p><strong>为结构体分配内存</strong><br>&emsp;&emsp;实际长度通常会大于各字段的长度和，因为结构体的各字段之间可能会有填充。某些数据类型需要对齐到特定边界就会产生填充。比如说，短整数通常对齐到能被2整除的地址上，而整数对齐到能被4整除的地址上。</p>
+<p>&emsp;&emsp;这些额外的内存分配意味着几个问题：</p>
+<ul>
+<li>要谨慎使用指针算术符运算</li>
+<li>结构体数组的元素之间可能存在额外的内存</li>
+</ul>
+<h2 id="6-2-结构体释放问题"><a href="#6-2-结构体释放问题" class="headerlink" title="6.2 结构体释放问题"></a>6.2 结构体释放问题</h2><p>&emsp;&emsp;再为结构体分配内存时，运行时系统不会自动为结构体内部的指针分配内存。当结构体消失时，运行时系统也不会自动释放结构体内部的指针指向的内存。</p>
+<h2 id="6-3-避免malloc-free开销"><a href="#6-3-避免malloc-free开销" class="headerlink" title="6.3 避免malloc/free开销"></a>6.3 避免malloc/free开销</h2><p>&emsp;&emsp;通过维护一个结构体池，当用户需要的时候从池中取一个，如果池中没有了就动态申请一个。当用户不用了返回时，就放入池中，如果池满了就释放掉该结构体。</p>
+<p>&emsp;&emsp;以<code>Person</code>结构体为例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIST_SIZE 10</span></span><br><span class="line">Person *<span class="built_in">list</span>[LIST_SIZE];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initializeList</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;LIST_SIZE; i++)&#123;</span><br><span class="line">        <span class="built_in">list</span>[i] = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Person *<span class="title">getPerson</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;LIST_SIZE; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">list</span>[i] != <span class="literal">NULL</span>)&#123;</span><br><span class="line">            Person *ptr = <span class="built_in">list</span>[i];</span><br><span class="line">            <span class="built_in">list</span>[i] = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">return</span> ptr;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Person *person = (Person*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Person));</span><br><span class="line">    <span class="keyword">return</span> person;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Person *<span class="title">returnPerson</span><span class="params">(Person *person)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;LIST_SIZE; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">list</span>[i] == <span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="built_in">list</span>[i] = person;</span><br><span class="line">            <span class="keyword">return</span> person;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    deallocatePerson(person);</span><br><span class="line">    <span class="built_in">free</span>(person);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-安全问题和指针误用"><a href="#7-安全问题和指针误用" class="headerlink" title="7 安全问题和指针误用"></a>7 安全问题和指针误用</h1><h2 id="7-1-指针的声明和初始化"><a href="#7-1-指针的声明和初始化" class="headerlink" title="7.1 指针的声明和初始化"></a>7.1 指针的声明和初始化</h2><h3 id="7-1-1-不恰当的指针声明"><a href="#7-1-1-不恰当的指针声明" class="headerlink" title="7.1.1 不恰当的指针声明"></a>7.1.1 不恰当的指针声明</h3><p>&emsp;&emsp;按照如下写法，对计算机来说是把<code>ptr1</code>声明为整数指针，<code>ptr2</code>声明为整数变量。但对程序员来说可能暗示<code>ptr1、ptr2</code>都是指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* ptr1, ptr2;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;同一行中把两个变量声明为指针的正确写法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ptr1, *ptr2;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>每个变量声明单独占一行更好。</p>
+</blockquote>
+<p>&emsp;&emsp;用类型定义代替宏定义是另一个好习惯。类型定义允许编译器检查作用域规则，而宏定义不一定会。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PINT int*</span></span><br><span class="line">PINT ptr1, ptr2;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;在这里结果跟之前错误声明两个指针一样，更好的方法是用下面的类型定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>* PINT;</span><br><span class="line">PINT ptr1, ptr2;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;两个变量均被声明为整数指针。</p>
+<h3 id="7-1-2-使用指针前为初始化"><a href="#7-1-2-使用指针前为初始化" class="headerlink" title="7.1.2 使用指针前为初始化"></a>7.1.2 使用指针前为初始化</h3><p>&emsp;&emsp;在初始化指针之前就使用指针会导致运行时错误，有时候将这种指针成为野指针。</p>
+<h2 id="7-2-指针的使用问题"><a href="#7-2-指针的使用问题" class="headerlink" title="7.2 指针的使用问题"></a>7.2 指针的使用问题</h2><p>&emsp;&emsp;下面几种情况可能导致缓冲区溢出：</p>
+<ul>
+<li>访问数组元素是没有检查所引值</li>
+<li>对数组指针做算术运算时不小心</li>
+<li>用<code>gets</code>这样的函数从标准输入读取字符串</li>
+<li>误用<code>strcpy</code>和<code>strcat</code>这样的函数</li>
+</ul>
+<h3 id="7-2-1-测试NULL"><a href="#7-2-1-测试NULL" class="headerlink" title="7.2.1 测试NULL"></a>7.2.1 测试NULL</h3><p>&emsp;&emsp;用<code>malloc</code>这类函数时一定要检查返回值，否则可能会导致程序非正常终止。</p>
+<h3 id="7-2-5-错误计算数组长度"><a href="#7-2-5-错误计算数组长度" class="headerlink" title="7.2.5 错误计算数组长度"></a>7.2.5 错误计算数组长度</h3><p>&emsp;&emsp;将数组传递给函数时，一定要同时传递数组长度。</p>
+<p>&emsp;&emsp;<code>strcpy</code>函数允许缓冲区溢出，要谨慎使用<code>strcpy</code>这类不传递缓冲区长度的函数。传递缓冲区长度能提供额外的安全屏障。</p>
+<h3 id="7-2-6-错误使用sizeof操作符"><a href="#7-2-6-错误使用sizeof操作符" class="headerlink" title="7.2.6 错误使用sizeof操作符"></a>7.2.6 错误使用sizeof操作符</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> buffer[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> *pbuffer = buffer;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="keyword">sizeof</span>(buffer); i++)&#123;</span><br><span class="line">    *(pbuffer++) = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;因为缓冲区长度一字节计算是80（20乘以4字节每元素）。可以在<code>for</code>表达式带测试条件中用<code>sizeof(buffer)/sizeof(int)</code>来避免这个问题。</p>
+<h3 id="7-2-7-一定要匹配指针类型"><a href="#7-2-7-一定要匹配指针类型" class="headerlink" title="7.2.7 一定要匹配指针类型"></a>7.2.7 一定要匹配指针类型</h3><p>&emsp;&emsp;总是用适合的指针类型来装数据是个好主意。</p>
+<h3 id="7-2-9-字符串的安全问题"><a href="#7-2-9-字符串的安全问题" class="headerlink" title="7.2.9 字符串的安全问题"></a>7.2.9 字符串的安全问题</h3><p>&emsp;&emsp;如果使用<code>strcpy</code>和<code>strcat</code>这类字符串函数，稍不留神就会引发缓冲区溢出。<code>strncpy</code>和<code>strncat</code>函数可以对这种操作提供一些支持，它们的<code>size_t</code>参数指定要复制的字符的最大数量。不过，如果字符数量计算不正确，替代函数也容易出错。</p>
+<p>&emsp;&emsp;C11中（Annex K）加入<code>strcat_s</code>和<code>strcpy_s</code>函数，如果发生缓冲区溢出，它们会返回错误，目前只有Microsoft Visual C++支持。<code>strcpy_s</code>它接受三个参数：目标缓冲区、目标缓冲区的长度以及原缓冲区。如果返回值是0。就表示没有错误发生。<br>&emsp;&emsp;还有<code>scanf_s</code>和<code>wsanf_s</code>可以用来防止缓冲区溢出。</p>
+<p>&emsp;&emsp;<code>gets</code>函数从标准输入读取一个字符串，并把字符保存在目标缓冲区中，它可能会越过缓冲区的声明长度写入。如果字符串太长的话，就会发生缓冲区溢出。</p>
+<p>&emsp;&emsp;<code>printf、fprintf、snprintf</code>和<code>syslog</code>这些函数都接受格式化字符串作为参数，避免<strong>格式化字符串攻击</strong>的一种简单方法是永远不要把用户提供的格式化字符串传递给这些函数。</p>
+<h3 id="7-2-10-指针算术运算和结构体"><a href="#7-2-10-指针算术运算和结构体" class="headerlink" title="7.2.10 指针算术运算和结构体"></a>7.2.10 指针算术运算和结构体</h3><p>&emsp;&emsp;我们应该只对数组使用指针算术运算，因为数组肯定分配在连续的内存块上。不过，不应该将他们用在结构体内，因为结构体的字段可能分配在不连续的内存区域。</p>
+<h3 id="7-2-11-函数指针的问题"><a href="#7-2-11-函数指针的问题" class="headerlink" title="7.2.11 函数指针的问题"></a>7.2.11 函数指针的问题</h3><p>&emsp;&emsp;如果函数和函数指针的签名不同，不要把函数赋给函数指针，这样会导致未定义的行为。</p>
+<h2 id="7-3-内存释放问题"><a href="#7-3-内存释放问题" class="headerlink" title="7.3 内存释放问题"></a>7.3 内存释放问题</h2><h3 id="7-3-2-清除敏感数据"><a href="#7-3-2-清除敏感数据" class="headerlink" title="7.3.2 清除敏感数据"></a>7.3.2 清除敏感数据</h3><p>&emsp;&emsp;一旦不再需要内存中的敏感数据，马上进行覆写是个好主意。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> name[<span class="number">32</span>];</span><br><span class="line">...</span><br><span class="line"><span class="comment">//删除数据</span></span><br><span class="line"><span class="built_in">memset</span>(name,<span class="number">0</span>,<span class="keyword">sizeof</span>(name));</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;如果是指针：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *name = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(...)</span><br><span class="line">...</span><br><span class="line"><span class="built_in">memset</span>(name,<span class="number">0</span>,<span class="keyword">sizeof</span>(name));</span><br><span class="line"><span class="built_in">free</span>(name);</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h1 id="资源下载"><a href="#资源下载" class="headerlink" title="资源下载"></a>资源下载</h1><p><strong>《深入理解c指针》下载</strong></p>
 <a class="btn" href="http://img.siriyang.cn/资源/深入理解c指针.pdf" target="_blank" rel="noopener"><i class="fa fa-download fa-fw fa-lg"></i>下载PDF(中文版) 33.9MB</a>
@@ -789,7 +1081,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2019年12月27日 - 23时12分
+    2020年01月01日 - 10时01分
   </li>
 
   <!-- 引用链接 -->
@@ -907,7 +1199,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -952,7 +1244,11 @@
         
           
         
-        <span class="site-state-item-count">15</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1029,7 +1325,17 @@
         
           
         
-        <span class="site-state-item-count">31</span>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1095,7 +1401,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-认识指针"><span class="nav-text">1 认识指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-指针和内存"><span class="nav-text">1.1 指针和内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-声明指针"><span class="nav-text">1.1.2 声明指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-如何阅读声明"><span class="nav-text">1.1.3 如何阅读声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-地址操作符"><span class="nav-text">1.1.4 地址操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-打印指针的值"><span class="nav-text">1.1.5 打印指针的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-8-null的概念"><span class="nav-text">1.1.8 null的概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-指针的长度和类型"><span class="nav-text">1.2 指针的长度和类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-内存模型"><span class="nav-text">1.2.1 内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-指针相关的预定义类型"><span class="nav-text">1.2.2 指针相关的预定义类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-指针操作符"><span class="nav-text">1.3 指针操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-指针算术运算"><span class="nav-text">1.3.1 指针算术运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-比较指针"><span class="nav-text">1.3.2 比较指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-指针的常见用法"><span class="nav-text">1.4 指针的常见用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-常量与指针"><span class="nav-text">1.4.2 常量与指针</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-C的动态内存管理"><span class="nav-text">2 C的动态内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-动态内存分配"><span class="nav-text">2.1 动态内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-动态内存分配函数"><span class="nav-text">2.2 动态内存分配函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-使用malloc函数"><span class="nav-text">2.2.1 使用malloc函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-使用calloc函数"><span class="nav-text">2.2.2 使用calloc函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-使用realloc函数"><span class="nav-text">2.2.3 使用realloc函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-用free函数释放内存"><span class="nav-text">2.3 用free函数释放内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-重复释放"><span class="nav-text">2.3.2 重复释放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-堆和系统内存"><span class="nav-text">2.3.3 堆和系统内存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#资源下载"><span class="nav-text">资源下载</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-认识指针"><span class="nav-text">1 认识指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-指针和内存"><span class="nav-text">1.1 指针和内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-声明指针"><span class="nav-text">1.1.2 声明指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-如何阅读声明"><span class="nav-text">1.1.3 如何阅读声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-地址操作符"><span class="nav-text">1.1.4 地址操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-打印指针的值"><span class="nav-text">1.1.5 打印指针的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-8-null的概念"><span class="nav-text">1.1.8 null的概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-指针的长度和类型"><span class="nav-text">1.2 指针的长度和类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-内存模型"><span class="nav-text">1.2.1 内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-指针相关的预定义类型"><span class="nav-text">1.2.2 指针相关的预定义类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-指针操作符"><span class="nav-text">1.3 指针操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-指针算术运算"><span class="nav-text">1.3.1 指针算术运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-比较指针"><span class="nav-text">1.3.2 比较指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-指针的常见用法"><span class="nav-text">1.4 指针的常见用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-常量与指针"><span class="nav-text">1.4.2 常量与指针</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-C的动态内存管理"><span class="nav-text">2 C的动态内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-动态内存分配"><span class="nav-text">2.1 动态内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-动态内存分配函数"><span class="nav-text">2.2 动态内存分配函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-使用malloc函数"><span class="nav-text">2.2.1 使用malloc函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-使用calloc函数"><span class="nav-text">2.2.2 使用calloc函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-使用realloc函数"><span class="nav-text">2.2.3 使用realloc函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-用free函数释放内存"><span class="nav-text">2.3 用free函数释放内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-重复释放"><span class="nav-text">2.3.2 重复释放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-堆和系统内存"><span class="nav-text">2.3.3 堆和系统内存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-指针和函数"><span class="nav-text">3 指针和函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-程序的栈和堆"><span class="nav-text">3.1 程序的栈和堆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-程序栈"><span class="nav-text">3.1.1 程序栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-栈帧的组织"><span class="nav-text">3.1.2 栈帧的组织</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-通过指针传递和返回数据"><span class="nav-text">3.2 通过指针传递和返回数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-返回指针"><span class="nav-text">3.2.4 返回指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5-局部数据指针"><span class="nav-text">3.2.5 局部数据指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-7-传递指针的指针"><span class="nav-text">3.2.7 传递指针的指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-函数指针"><span class="nav-text">3.3 函数指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-声明函数指针"><span class="nav-text">3.3.1 声明函数指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-使用函数指针"><span class="nav-text">3.3.2 使用函数指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-传递函数指针"><span class="nav-text">3.3.3 传递函数指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回函数指针"><span class="nav-text">返回函数指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-5-使用函数指针数组"><span class="nav-text">3.3.5 使用函数指针数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-7-转换函数指针"><span class="nav-text">3.3.7 转换函数指针</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-指针和数组"><span class="nav-text">4 指针和数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-数组概述"><span class="nav-text">4.1 数组概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-一维数组"><span class="nav-text">4.1.1 一维数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-指针表示法和数组"><span class="nav-text">4.2 指针表示法和数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-用malloc创建一维数组"><span class="nav-text">4.3 用malloc创建一维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-用realloc调整数组长度"><span class="nav-text">4.4 用realloc调整数组长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-指针和多维数组"><span class="nav-text">4.7 指针和多维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-传递多维数组"><span class="nav-text">4.8 传递多维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-9-动态分配二维数组"><span class="nav-text">4.9 动态分配二维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9-2-分配连续内存"><span class="nav-text">4.9.2 分配连续内存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-10-不规则数组和指针"><span class="nav-text">4.10 不规则数组和指针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-指针和字符串"><span class="nav-text">5 指针和字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-字符串基础"><span class="nav-text">5.1 字符串基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-字符串声明"><span class="nav-text">5.1.1 字符串声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-字符串字面量池"><span class="nav-text">5.1.2 字符串字面量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-3-字符串初始化"><span class="nav-text">5.1.3 字符串初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-标准字符串操作"><span class="nav-text">5.2 标准字符串操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-比较字符串"><span class="nav-text">5.2.1 比较字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-复制字符串"><span class="nav-text">5.2.2 复制字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-拼接字符串"><span class="nav-text">5.2.3 拼接字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-传递字符串"><span class="nav-text">5.3 传递字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-传递简单字符串"><span class="nav-text">5.3.1 传递简单字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-传递字符常量的指针"><span class="nav-text">5.3.2 传递字符常量的指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-3-传递需要初始化的字符串"><span class="nav-text">5.3.3 传递需要初始化的字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-返回字符串"><span class="nav-text">5.4 返回字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-返回动态分配内存的地址"><span class="nav-text">5.4.2 返回动态分配内存的地址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-指针和结构体"><span class="nav-text">6 指针和结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-介绍"><span class="nav-text">6.1 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-结构体释放问题"><span class="nav-text">6.2 结构体释放问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-避免malloc-free开销"><span class="nav-text">6.3 避免malloc/free开销</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-安全问题和指针误用"><span class="nav-text">7 安全问题和指针误用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-指针的声明和初始化"><span class="nav-text">7.1 指针的声明和初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-1-不恰当的指针声明"><span class="nav-text">7.1.1 不恰当的指针声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-2-使用指针前为初始化"><span class="nav-text">7.1.2 使用指针前为初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-指针的使用问题"><span class="nav-text">7.2 指针的使用问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-1-测试NULL"><span class="nav-text">7.2.1 测试NULL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-5-错误计算数组长度"><span class="nav-text">7.2.5 错误计算数组长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-6-错误使用sizeof操作符"><span class="nav-text">7.2.6 错误使用sizeof操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-7-一定要匹配指针类型"><span class="nav-text">7.2.7 一定要匹配指针类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-9-字符串的安全问题"><span class="nav-text">7.2.9 字符串的安全问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-10-指针算术运算和结构体"><span class="nav-text">7.2.10 指针算术运算和结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-11-函数指针的问题"><span class="nav-text">7.2.11 函数指针的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-内存释放问题"><span class="nav-text">7.3 内存释放问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-2-清除敏感数据"><span class="nav-text">7.3.2 清除敏感数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#资源下载"><span class="nav-text">资源下载</span></a></li></ol></div>
             
 
           </div>
@@ -1113,7 +1419,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1122,12 +1428,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">459k</span>
+    <span title="站点总字数">489k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:57</span>
+    <span title="站点阅读时长">7:25</span>
 </div>
 
         
