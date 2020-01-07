@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="概念&amp;emsp;&amp;emsp;Vector包含着一系列连续存储的元素,其行为和数组类似。访问Vector中的任意元素或从末尾添加元素都可以在常量级时间复杂度内完成，而查找特定值的元素所处的位置或是在Vector中插入元素则是线性时间复杂度。 头文件 1#include &amp;lt;vector&amp;gt;  名字空间 1std  构造函数语法: 1234vector();vector( size_type">
+<meta name="keywords" content="C&#x2F;C++,文档,STL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL常用模板：Vector向量">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200107203328id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="概念&amp;emsp;&amp;emsp;Vector包含着一系列连续存储的元素,其行为和数组类似。访问Vector中的任意元素或从末尾添加元素都可以在常量级时间复杂度内完成，而查找特定值的元素所处的位置或是在Vector中插入元素则是线性时间复杂度。 头文件 1#include &amp;lt;vector&amp;gt;  名字空间 1std  构造函数语法: 1234vector();vector( size_type">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-07T13:09:35.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STL常用模板：Vector向量">
+<meta name="twitter:description" content="概念&amp;emsp;&amp;emsp;Vector包含着一系列连续存储的元素,其行为和数组类似。访问Vector中的任意元素或从末尾添加元素都可以在常量级时间复杂度内完成，而查找特定值的元素所处的位置或是在Vector中插入元素则是线性时间复杂度。 头文件 1#include &amp;lt;vector&amp;gt;  名字空间 1std  构造函数语法: 1234vector();vector( size_type">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200107203328id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>STL常用模板：Vector向量 | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">49</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">88</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200107203328id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">STL常用模板：Vector向量
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-07 20:33:28 / 修改时间：21:09:35" itemprop="dateCreated datePublished" datetime="2020-01-07T20:33:28+08:00">2020-01-07</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200107203328id.html" class="post-meta-item leancloud_visitors" data-flag-title="STL常用模板：Vector向量" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200107203328id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200107203328id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>5.9k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>&emsp;&emsp;<code>Vector</code>包含着一系列连续存储的元素,其行为和数组类似。访问<code>Vector</code>中的任意元素或从末尾添加元素都可以在常量级时间复杂度内完成，而查找特定值的元素所处的位置或是在<code>Vector</code>中插入元素则是线性时间复杂度。</p>
+<p><strong>头文件</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>名字空间</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>();</span><br><span class="line"><span class="built_in">vector</span>( size_type num, <span class="keyword">const</span> TYPE &amp;val );</span><br><span class="line"><span class="built_in">vector</span>( <span class="keyword">const</span> <span class="built_in">vector</span> &amp;from );</span><br><span class="line"><span class="built_in">vector</span>( input_iterator start, input_iterator end );</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;<code>C++ Vectors</code>可以使用以下任意一种参数方式构造: </p>
+<ul>
+<li>无参数 - 构造一个空的<code>vector</code>, </li>
+<li>数量(<code>num</code>)和值(<code>val</code>) - 构造一个初始放入<code>num</code>个值为<code>val</code>的元素的<code>Vector</code> </li>
+<li><code>vector(from)</code> - 构造一个与<code>vector from</code> 相同的<code>vector</code> </li>
+<li>迭代器(<code>start</code>)和迭代器(<code>end</code>) - 构造一个初始值为<code>[start,end)</code>区间元素的<code>Vector</code>(注:半开区间). </li>
+</ul>
+<p>&emsp;&emsp;举例,下面这个实例构造了一个包含5个值为42的元素的Vector</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1( <span class="number">5</span>, <span class="number">42</span> );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p><strong>语法:</strong></p>
+<ul>
+<li>v1 == v2</li>
+<li>v1 != v2</li>
+<li>v1 &lt;= v2</li>
+<li>v1 &gt;= v2</li>
+<li>v1 &lt; v2</li>
+<li>v1 &gt; v2 </li>
+<li>v[]</li>
+</ul>
+<p>&emsp;&emsp;<code>C++ Vectors</code>能够使用标准运算符: <code>==, !=, &lt;=, &gt;=, &lt;</code> 和 <code>&gt;</code>。 要访问<code>vector</code>中的某特定位置的元素可以使用 <code>[]</code> 操作符. </p>
+<p>&emsp;&emsp;两个<code>vectors</code>被认为是相等的,如果: </p>
+<ol>
+<li>它们具有相同的容量 </li>
+<li>所有相同位置的元素相等</li>
+</ol>
+<p>&emsp;&emsp;<code>vectors</code>之间大小的比较是按照词典规则。</p>
+<hr>
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><h3 id="assign"><a href="#assign" class="headerlink" title="assign"></a>assign</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">assign</span><span class="params">( input_iterator start, input_iterator end )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">assign</span><span class="params">( size_type num, <span class="keyword">const</span> TYPE &amp;val )</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>assign()</code> 函数要么将区间<code>[start, end)</code>的元素赋到当前<code>vector</code>,或者赋<code>num</code>个值为<code>val</code>的元素到<code>vector</code>中。这个函数将会清除掉为<code>vector</code>赋值以前的内容。</p>
+<hr>
+<h3 id="at"><a href="#at" class="headerlink" title="at"></a>at</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TYPE <span class="title">at</span><span class="params">( size_type loc )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>at()</code> 函数返回当前<code>Vector</code>指定位置<code>loc</code>的元素的引用。 <code>at()</code> 函数比 <code>[]</code> 运算符更加安全, 因为它不会让你去访问到<code>Vector</code>内越界的元素。<br>&emsp;&emsp;例如, 考虑下面的代码:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v( <span class="number">5</span>, <span class="number">1</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ ) &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Element "</span> &lt;&lt; i &lt;&lt; <span class="string">" is "</span> &lt;&lt; v[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这段代码访问了<code>vector</code>末尾以后的元素,这将可能导致很危险的结果。以下的代码将更加安全: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v( <span class="number">5</span>, <span class="number">1</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ ) &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Element "</span> &lt;&lt; i &lt;&lt; <span class="string">" is "</span> &lt;&lt; v.at(i) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;取代试图访问内存里非法值的作法,<code>at()</code> 函数能够辨别出访问是否越界并在越界的时候抛出一个异常。</p>
+<hr>
+<h3 id="back"><a href="#back" class="headerlink" title="back"></a>back</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TYPE <span class="title">back</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>back()</code> 函数返回当前<code>vector</code>最末一个元素的引用。例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ ) &#123;</span><br><span class="line">  v.push_back(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"The first element is "</span> &lt;&lt; v.front() </span><br><span class="line">     &lt;&lt; <span class="string">" and the last element is "</span> &lt;&lt; v.back() &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这段代码产生如下结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The first element is 0 and the last element is 4</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="begin"><a href="#begin" class="headerlink" title="begin"></a>begin</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">begin</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>begin()</code>函数返回一个指向当前<code>vector</code>起始元素的迭代器。例如,下面这段使用了一个迭代器来显示出<code>vector</code>中的所有元素:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1( <span class="number">5</span>, <span class="number">789</span> );</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line"><span class="keyword">for</span>( it = v1.begin(); it != v1.end(); it++ )</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="capacity"><a href="#capacity" class="headerlink" title="capacity"></a>capacity</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">capacity</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>capacity()</code> 函数返回当前<code>vector</code>在重新进行内存分配以前所能容纳的元素数量。</p>
+<hr>
+<h3 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>clear()</code>函数删除当前<code>vector</code>中的所有元素。</p>
+<hr>
+<h3 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;如果当前<code>vector</code>没有容纳任何元素,则<code>empty()</code>函数返回<code>true</code>,否则返回<code>false</code>。例如,以下代码清空一个<code>vector</code>,并按照逆序显示所有的元素:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ ) &#123;</span><br><span class="line">    v.push_back(i);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">while</span>( !v.empty() ) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; v.back() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    v.pop_back();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">end</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>end()</code> 函数返回一个指向当前<code>vector</code>末尾元素的下一位置的迭代器。注意,如果你要访问末尾元素,需要先将此迭代器自减1。</p>
+<hr>
+<h3 id="erase"><a href="#erase" class="headerlink" title="erase"></a>erase</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">( iterator loc )</span></span>;</span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">( iterator start, iterator end )</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>erase</code>函数要么删作指定位置<code>loc</code>的元素,要么删除区间<code>[start, end)</code>的所有元素。返回值是指向删除的最后一个元素的下一位置的迭代器。例如:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个vector,置入字母表的前十个字符</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; alphaVector;</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">10</span>; i++ )</span><br><span class="line">    alphaVector.push_back( i + <span class="number">65</span> );</span><br><span class="line"><span class="keyword">int</span> size = alphaVector.size();</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;::iterator startIterator;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;::iterator tempIterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i &lt; size; i++ )</span><br><span class="line">&#123;</span><br><span class="line">    startIterator = alphaVector.begin();</span><br><span class="line">    alphaVector.erase( startIterator );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Display the vector</span></span><br><span class="line">    <span class="keyword">for</span>( tempIterator = alphaVector.begin(); tempIterator != alphaVector.end(); tempIterator++ )</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; *tempIterator;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这段代码将会显示如下输出: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BCDEFGHIJ</span><br><span class="line">CDEFGHIJ</span><br><span class="line">DEFGHIJ</span><br><span class="line">EFGHIJ</span><br><span class="line">FGHIJ</span><br><span class="line">GHIJ</span><br><span class="line">HIJ</span><br><span class="line">IJ</span><br><span class="line">J</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="front"><a href="#front" class="headerlink" title="front"></a>front</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TYPE <span class="title">front</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>front()</code>函数返回当前<code>vector</code>起始元素的引用</p>
+<hr>
+<h3 id="get-allocator"><a href="#get-allocator" class="headerlink" title="get_allocator"></a>get_allocator</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">allocator_type <span class="title">get_allocator</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>get_allocator()</code> 函数返回当前<code>vector</code>的内存分配器。</p>
+<hr>
+<h3 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">insert</span><span class="params">( iterator loc, <span class="keyword">const</span> TYPE &amp;val )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">( iterator loc, size_type num, <span class="keyword">const</span> TYPE &amp;val )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">( iterator loc, input_iterator start, input_iterator end )</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>insert()</code> 函数有以下三种用法: </p>
+<ul>
+<li>在指定位置loc前插入值为val的元素,返回指向这个元素的迭代器 </li>
+<li>在指定位置loc前插入num个值为val的元素 </li>
+<li>在指定位置loc前插入区间[start, end)的所有元素 </li>
+</ul>
+<p>&emsp;&emsp;举例: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个vector,置入字母表的前十个字符</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; alphaVector;</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">10</span>; i++ )</span><br><span class="line">  alphaVector.push_back( i + <span class="number">65</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">//插入四个C到vector中</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;::iterator theIterator = alphaVector.begin();</span><br><span class="line">alphaVector.insert( theIterator, <span class="number">4</span>, <span class="string">'C'</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示vector的内容</span></span><br><span class="line"><span class="keyword">for</span>( theIterator = alphaVector.begin(); theIterator != alphaVector.end(); theIterator++ )</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; *theIterator;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这段代码将显示: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CCCCABCDEFGHIJ</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="max-size"><a href="#max-size" class="headerlink" title="max_size"></a>max_size</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">max_size</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>max_size()</code> 函数返回当前<code>vector</code>所能容纳元素数量的最大值(译注:包括可重新分配内存). </p>
+<hr>
+<h3 id="pop-back"><a href="#pop-back" class="headerlink" title="pop_back"></a>pop_back</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop_back</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>pop_back()</code>函数删除当前<code>vector</code>最末的一个元素,例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; alphaVector;</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">10</span>; i++ )</span><br><span class="line">    alphaVector.push_back( i + <span class="number">65</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> size = alphaVector.size();</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;::iterator theIterator;</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>; i &lt; size; i++ ) &#123;</span><br><span class="line">  alphaVector.pop_back();</span><br><span class="line">  <span class="keyword">for</span>( theIterator = alphaVector.begin(); theIterator != alphaVector.end(); theIterator++ )</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; *theIterator;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这段代码将显示以下输出: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ABCDEFGHI</span><br><span class="line">ABCDEFGH</span><br><span class="line">ABCDEFG</span><br><span class="line">ABCDEF</span><br><span class="line">ABCDE</span><br><span class="line">ABCD</span><br><span class="line">ABC</span><br><span class="line">AB</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="push-back"><a href="#push-back" class="headerlink" title="push_back"></a>push_back</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">( <span class="keyword">const</span> TYPE &amp;val )</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>push_back()</code>添加值为<code>val</code>的元素到当前<code>vector</code>末尾</p>
+<hr>
+<h3 id="rbegin"><a href="#rbegin" class="headerlink" title="rbegin"></a>rbegin</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">reverse_iterator <span class="title">rbegin</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>rbegin</code>函数返回指向当前<code>vector</code>末尾的逆迭代器。(译注:实际指向末尾的下一位置,而其内容为末尾元素的值,详见逆代器相关内容)</p>
+<hr>
+<h3 id="rend"><a href="#rend" class="headerlink" title="rend"></a>rend</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">reverse_iterator <span class="title">rend</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>rend()</code>函数返回指向当前<code>vector</code>起始位置的逆迭代器. </p>
+<hr>
+<h3 id="reserve"><a href="#reserve" class="headerlink" title="reserve"></a>reserve</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reserve</span><span class="params">( size_type size )</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>reserve()</code>函数为当前<code>vector</code>预留至少共容纳<code>size</code>个元素的空间。(译注:实际空间可能大于<code>size</code>)</p>
+<hr>
+<h3 id="resize"><a href="#resize" class="headerlink" title="resize"></a>resize</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">( size_type size, TYPE val )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>resize()</code> 函数改变当前<code>vector</code>的大小为<code>size</code>,且对新创建的元素赋值<code>val</code></p>
+<hr>
+<h3 id="size"><a href="#size" class="headerlink" title="size"></a>size</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">size</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>size()</code> 函数返回当前<code>vector</code>所容纳元素的数目 </p>
+<hr>
+<h3 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">( <span class="built_in">vector</span> &amp;from )</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>swap()</code>函数交换当前<code>vector</code>与<code>vector from</code>的元素</p>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200107213559id.html" rel="bookmark">STL常用模板：Set集合</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200107212453id.html" rel="bookmark">STL常用模板：Iterator迭代器</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200107200316id.html" rel="bookmark">STL常用模板：Stack栈</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200107191416id.html" rel="bookmark">STL常用模板：Queue队列</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200106225519id.html" rel="bookmark">STL常用模板：PriorityQueue优先队列</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    STL常用模板：Vector向量
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年01月07日 - 20时01分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年01月07日 - 21时01分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200107203328id.html" title="STL常用模板：Vector向量">https://blog.siriyang.cn/posts/20200107203328id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | STL常用模板：Vector向量](https://blog.siriyang.cn/posts/20200107203328id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/文档/" rel="tag"><i class="fa fa-tag"></i> 文档</a>
+          
+            <a href="/tags/STL/" rel="tag"><i class="fa fa-tag"></i> STL</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/posts/20200107212453id.html" rel="prev" title="STL常用模板：Iterator迭代器">
+                <i class="fa fa-chevron-left"></i> STL常用模板：Iterator迭代器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200107200316id.html" rel="next" title="STL常用模板：Stack栈">
+                STL常用模板：Stack栈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数"><span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数"><span class="nav-text">常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#assign"><span class="nav-text">assign</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#at"><span class="nav-text">at</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#back"><span class="nav-text">back</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#begin"><span class="nav-text">begin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#capacity"><span class="nav-text">capacity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear"><span class="nav-text">clear</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#empty"><span class="nav-text">empty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#end"><span class="nav-text">end</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#erase"><span class="nav-text">erase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#front"><span class="nav-text">front</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-allocator"><span class="nav-text">get_allocator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insert"><span class="nav-text">insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max-size"><span class="nav-text">max_size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pop-back"><span class="nav-text">pop_back</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push-back"><span class="nav-text">push_back</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rbegin"><span class="nav-text">rbegin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rend"><span class="nav-text">rend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reserve"><span class="nav-text">reserve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resize"><span class="nav-text">resize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#size"><span class="nav-text">size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swap"><span class="nav-text">swap</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">546k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">8:17</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
