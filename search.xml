@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[STL常用模板：MultiSet多元集合]]></title>
+    <url>%2Fposts%2F20200108162441id.html</url>
+    <content type="text"><![CDATA[概念&emsp;&emsp;多元集合(MultiSets)和集合(Sets)相像，只不过支持重复对象。 头文件 1#include &lt;set&gt; 名字空间 1std 构造函数定义： 1multiset&lt;Type&gt; 常用函数begin语法: 1iterator begin(); &emsp;&emsp;返回指向当前集合中第一个元素的迭代器。 clear语法: 1void clear(); &emsp;&emsp;清除当前集合中的所有元素。 count语法: 1size_type count( const key_type &amp;key ); &emsp;&emsp;返回当前集合中出现的某个值的元素的数目。 empty语法: 1bool empty(); &emsp;&emsp;如果当前多元集合为空，返回true；否则返回false。 end语法: 1iterator end(); &emsp;&emsp;返回指向当前集合中最后一个元素的迭代器。 equal_range语法: 1pair equal_range( const key_type &amp;key ); &emsp;&emsp;返回集合中与给定值相等的上下限的两个迭代器。 erase语法: 12345void erase( iterator pos );void erase( iterator start, iterator end );size_type erase( const key_type &amp;key ); 说明： 删除i元素； 删除从start开始到end结束的元素； 删除等于key值的所有元素（返回被删除的元素的个数）。 find语法: 1iterator find( const key_type &amp;key ); &emsp;&emsp;在当前集合中查找等于key值的元素，并返回指向该元素的迭代器；如果没有找到，返回指向多元集合最后一个元素的迭代器。 get_allocator语法: 1allocator_type get_allocator(); &emsp;&emsp;返回当前集合的分配器。 insert语法: 12345iterator insert( iterator pos, const TYPE &amp;val );void insert( input_iterator start, input_iterator end );pair insert( const TYPE &amp;val ); &emsp;&emsp;The function insert() either: 在迭代器i前插入val，并返回一个指向该元素的迭代器； 将迭代器start开始到end结束返回内的元素插入到集合中； 在当前集合中插入val元素，并返回指向该元素的迭代器和一个布尔值来说明val是否成功的被插入了。 key_comp语法: 1key_compare key_comp(); &emsp;&emsp;返回一个用于元素间值比较的函数对象。 lower_bound语法: 1iterator lower_bound( const key_type &amp;key ); &emsp;&emsp;返回一个指向大于或者等于key值的第一个元素的迭代器。 max_size语法: 1size_type max_size(); &emsp;&emsp;返回当前多元集合能容纳元素的最大限值。 rbegin语法: 1reverse_iterator rbegin(); &emsp;&emsp;返回指向当前多元集合中最后一个元素的反向迭代器。 rend语法: 1reverse_iterator rend(); &emsp;&emsp;返回指向集合中第一个元素的反向迭代器。 size语法: 1size_type size(); &emsp;&emsp;返回当前多元集合中元素的数目。 swap语法: 1void swap( multiset &amp;obj ); &emsp;&emsp;交换当前多元集合和obj多元集合中的元素。 upper_bound语法: 1iterator upper_bound( const key_type &amp;key ); &emsp;&emsp;在当前多元集合中返回一个指向大于Key值的元素的迭代器 value_comp语法: 1value_compare value_comp(); &emsp;&emsp;返回一个用于比较元素间的值的函数对象。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>文档</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[STL常用模板：MultiMap多元字典]]></title>
+    <url>%2Fposts%2F20200108162422id.html</url>
+    <content type="text"><![CDATA[概念&emsp;&emsp;C++ Multimaps和map很相似，但是MultiMaps允许重复的元素。 Map：一对一；有序( 自动按 key 升序 )；可用 [ ] 赋值和取值；采用 红黑树 结构；实现O(lgn)的查找，插入和删除。 Multimap：多对多；有序( 自动按 key 升序 )；无[ ] 操作；可自定义排序函数；采用 红黑树 结构。 头文件 1#include &lt;map&gt; 名字空间 1std 构造函数定义： 1multimap&lt;Type,Type&gt; 常用函数begin语法: 1iterator begin(); &emsp;&emsp;begin()函数返回一个迭代器，指向multimap的第一个元素。 clear语法: 1void clear(); &emsp;&emsp;clear()函数删除multimap中的所有元素。 count语法: 1size_type count( const key_type &amp;key ); &emsp;&emsp;count()函数返回multimap中键值等于key的元素的个数。 empty语法: 1bool empty(); &emsp;&emsp;empty()函数返回真(true)如果multimap为空，否则返回假(false)。 end语法: 1iterator end(); &emsp;&emsp;end()函数返回一个迭代器，指向multimap的尾部。 equal_range语法: 1pair equal_range( const key_type &amp;key ); &emsp;&emsp;equal_range()函数查找multimap中键值等于key的所有元素，返回指示范围的两个迭代器。 erase语法: 123void erase( iterator pos );void erase( iterator start, iterator end );size_type erase( const key_type &amp;key ); &emsp;&emsp;erase()函数删除在pos位置的元素，或者删除在start和end之间的元素，或者删除那些值为key的所有元素。 find语法: 1iterator find( const key_type &amp;key ); &emsp;&emsp;find()函数返回一个迭代器指向键值为key的元素，如果没找到就返回指向multimap尾部的迭代器。 get_allocator语法: 1allocator_type get_allocator(); &emsp;&emsp;get_allocator()函数返回multimap的配置器。 insert语法: 123iterator insert( iterator pos, const TYPE &amp;val );void insert( input_iterator start, input_iterator end );pair insert( const TYPE &amp;val ); &emsp;&emsp;insert()函数： 插入val到pos的后面，然后返回一个指向这个元素的迭代器。 插入start到end的元素到multimap中。 只有在val不存在时插入val。返回值是一个指向被插入元素的迭代器和一个描述是否插入的bool值。 key_comp语法: 1key_compare key_comp(); &emsp;&emsp;key_comp()函数返回一个比较key的函数。 lower_bound语法: 1iterator lower_bound( const key_type &amp;key ); &emsp;&emsp;lower_bound()函数返回一个迭代器，指向multimap中键值&gt;=key的第一个元素。 max_size语法: 1size_type max_size(); &emsp;&emsp;max_size()函数返回multimap能够保存的最大元素个数。 rbegin语法: 1reverse_iterator rbegin(); &emsp;&emsp;rbegin()函数返回一个指向multimap尾部的逆向迭代器。 rend语法: 1reverse_iterator rend(); &emsp;&emsp;rend()函数返回一个指向multimap头部的逆向迭代器。 size语法: 1size_type size(); &emsp;&emsp;size()函数返回multimap中保存的元素个数。 swap语法: 1void swap( multimap &amp;obj ); &emsp;&emsp;swap()交换obj和现mulitmap中的元素。 upper_bound语法: 1iterator upper_bound( const key_type &amp;key ); &emsp;&emsp;upper_bound()函数返回一个迭代器，指向multimap中键值&gt;key的第一个元素。 value_comp语法: 1value_compare value_comp(); &emsp;&emsp;value_comp()函数返回一个比较元素value的函数。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>文档</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[STL常用模板：Map字典]]></title>
+    <url>%2Fposts%2F20200108153950id.html</url>
+    <content type="text"><![CDATA[概念&emsp;&emsp;map是STL的一个关联容器，它提供一对一的hash。 第一个可以称为关键字(key)，每个关键字只能在map中出现一次； 第二个可能称为该关键字的值(value)； &emsp;&emsp;map以模板(泛型)方式实现，可以存储任意类型的数据，包括使用者自定义的数据类型。Map主要用于资料一对一映射(one-to-one)的情況，map內部的实现自建一颗红黑树，这颗树具有对数据自动排序的功能。在map内部所有的数据都是有序的，后边我们会见识到有序的好处。比如一个班级中，每个学生的学号跟他的姓名就存在著一对一映射的关系。 头文件 1#include &lt;map&gt; 名字空间 1std 构造函数定义： 1map&lt;Type,Type&gt; &emsp;&emsp;第一个Type是键的类型，第二个Type是值的类型。 常用函数begin语法: 1iterator begin(); &emsp;&emsp;begin()函数返回一个迭代器指向map的第一个元素。 clear语法: 1void clear(); &emsp;&emsp;clear()函数删除map中的所有元素。 count语法: 1size_type count( const KEY_TYPE &amp;key ); &emsp;&emsp;count()函数返回map中键值等于key的元素的个数。 empty语法: 1bool empty(); &emsp;&emsp;empty()函数返回真(true)如果map为空，否则返回假(false)。 end语法: 1iterator end(); &emsp;&emsp;end()函数返回一个迭代器指向map的尾部。 equal_range语法: 1pair equal_range( const KEY_TYPE &amp;key ); &emsp;&emsp;equal_range()函数返回两个迭代器——一个指向第一个键值为key的元素，另一个指向最后一个键值为key的元素。 erase语法: 123void erase( iterator pos );void erase( iterator start, iterator end );size_type erase( const KEY_TYPE &amp;key ); &emsp;&emsp;erase()函数删除在pos位置的元素，或者删除在start和end之间的元素，或者删除那些值为key的所有元素。 find语法: 1iterator find( const KEY_TYPE &amp;key ); &emsp;&emsp;find()函数返回一个迭代器指向键值为key的元素，如果没找到就返回指向map尾部的迭代器。 get_allocator语法: 1allocator_type get_allocator(); &emsp;&emsp;get_allocator()函数返回map的配置器。 insert语法: 123iterator insert( iterator pos, const pair&lt;KEY_TYPE,VALUE_TYPE&gt; &amp;val );void insert( input_iterator start, input_iterator end );pair&lt;iterator, bool&gt; insert( const pair&lt;KEY_TYPE,VALUE_TYPE&gt; &amp;val ); &emsp;&emsp;insert()函数： 插入val到pos的后面，然后返回一个指向这个元素的迭代器。 插入start到end的元素到map中。 &emsp;&emsp;只有在val不存在时插入val。返回值是一个指向被插入元素的迭代器和一个描述是否插入的bool值。 &emsp;&emsp;示例： 123456789101112// 定义一个map对象map&lt;int, string&gt; mapStudent; // 第一种 用insert函數插入pairmapStudent.insert(pair&lt;int, string&gt;(000, "student_zero")); // 第二种 用insert函数插入value_type数据mapStudent.insert(map&lt;int, string&gt;::value_type(001, "student_one")); // 第三种 用"array"方式插入mapStudent[123] = "student_first";mapStudent[456] = "student_second"; &emsp;&emsp;以上三种用法，虽然都可以实现数据的插入，但是它们是有区别的，当然了第一种和第二种在效果上是完成一样的，用insert函数插入数据，在数据的 插入上涉及到集合的唯一性这个概念，即当map中有这个关键字时，insert操作是不能在插入数据的，但是用数组方式就不同了，它可以覆盖以前该关键字对 应的值。 key_comp语法: 1key_compare key_comp(); &emsp;&emsp;key_comp()函数返回一个比较key的函数。 lower_bound语法: 1iterator lower_bound( const KEY_TYPE &amp;key ); &emsp;&emsp;lower_bound()函数返回一个迭代器，指向map中键值&gt;=key的第一个元素。 max_size语法: 1size_type max_size(); &emsp;&emsp;max_size()函数返回map能够保存的最大元素个数。 rbegin语法: 1reverse_iterator rbegin(); &emsp;&emsp;rbegin()函数返回一个指向map尾部的逆向迭代器。 rend语法: 1reverse_iterator rend(); &emsp;&emsp;rend()函数返回一个指向map头部的逆向迭代器。 size语法: 1size_type size(); &emsp;&emsp;size()函数返回map中保存的元素个数。 swap语法: 1void swap( map &amp;obj ); &emsp;&emsp;swap()交换obj和现map中的元素。 upper_bound语法: 1iterator upper_bound( const KEY_TYPE &amp;key ); &emsp;&emsp;upper_bound()函数返回一个迭代器，指向map中键值&gt;key的第一个元素。 value_comp语法: 1value_compare value_comp(); &emsp;&emsp;value_comp()函数返回一个比较元素value的函数。 参考资料 C++ map用法总结（整理）]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>文档</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[STL常用模板：Bitset位集合]]></title>
+    <url>%2Fposts%2F20200108151414id.html</url>
+    <content type="text"><![CDATA[概念&emsp;&emsp;C++ Bitsets给程序员提供一种位集合的数据结构。Bitsets使用许多二元操作符，比如逻辑和，或等。 头文件 1#include &lt;bitset&gt; 名字空间 1std 构造函数语法: 1234bitset();bitset( unsigned long val );bitset( string val );bitset( char val[] ); &emsp;&emsp;C++ Bitsets能以无参的形式创建，或者提供一个长无符号整数，它将被转化为二进制，然后插入到bitset中。当创建bitset时，模板中提供的数字决定bitset有多长。 &emsp;&emsp;例如，以下代码创建bitset，然后显示它们： 1234567891011121314bitset&lt;4&gt; bitset1; //无参构造，长度为４，默认每一位为０bitset&lt;8&gt; bitset2(12); //长度为８，二进制保存，前面用０补充string s = "100101";bitset&lt;10&gt; bitset3(s); //长度为10，前面用０补充char s2[] = "10101";bitset&lt;13&gt; bitset4(s2); //长度为13，前面用０补充cout &lt;&lt; bitset1 &lt;&lt; endl; //0000cout &lt;&lt; bitset2 &lt;&lt; endl; //00001100cout &lt;&lt; bitset3 &lt;&lt; endl; //0000100101cout &lt;&lt; bitset4 &lt;&lt; endl; //0000000010101 运算符语法: 1!=, ==, &amp;=, ^=, |=, ~, &lt;&lt;=, &gt;&gt;=, [] &emsp;&emsp;这些操作符都可以和bitsets一起工作。它们被这样定义: != 返回真如果两个bitset不相等。 == 返回真如果两个bitset相等。 &amp;= 完成两个bitset间的与运算。 ^= 完成两个bitset间的异或运算。 |= 完成两个bitset间的或运算。 ~ 反置bitset (和调用 flip()类似) &lt;&lt;= 把bitset向左移动 &gt;&gt;= 把bitset向右移动 [x] 返回第x个位的引用 &emsp;&emsp;例如，以下代码创建一个bitset，然后向左移动4个位： 123456789// 创建一个bitsetbitset&lt;8&gt; bs2( (long) 131 );cout &lt;&lt; "bs2 is " &lt;&lt; bs2 &lt;&lt; endl;// 向左移动4位bs2 &lt;&lt;= 4;cout &lt;&lt; "now bs2 is " &lt;&lt; bs2 &lt;&lt; endl; &emsp;&emsp;当上述代码运行时，显示： 12bs2 is 10000011now bs2 is 00110000 常用函数any语法: 1bool any(); &emsp;&emsp;any()函数返回真如果有位被设置为1，否则返回假。 count语法: 1size_type count(); &emsp;&emsp;count()函数bitset中被设置成1的位的个数。 flip语法: 12bitset &amp;flip();bitset &amp;flip( size_t pos ); &emsp;&emsp;flip()函数反置bitset中所有的位，即将1设为0，0设为1。如果指定pos，那么只有pos上的位被反置。 none语法: 1bool none(); &emsp;&emsp;none()返回真如果没有位被设为1，否则返回假。 reset语法: 12bitset &amp;reset();bitset &amp;reset( size_t pos ); &emsp;&emsp;reset()重置bitset（全部设为0），如果指定pos，那么只有pos上的位被重置。 set语法: 12bitset &amp;set();bitset &amp;set( size_t pos, int val=1 ); &emsp;&emsp;set()函数设置bitset上所有的位，然后返回bitset。如果指定pos，那么只有pos上的位被设置。 size语法: 1size_t size(); &emsp;&emsp;size()返回bitset能容纳的位。 test语法: 1bool test( size_t pos ); &emsp;&emsp;test()函数返回在pos上的位的值。 to_string语法: 1string to_string(); &emsp;&emsp;to_string()函数返回bitset的字符串形式。 to_ulong语法: 1unsigned long to_ulong(); &emsp;&emsp;to_ulong()返回bitset的无符号长整数形式。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>文档</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[STL常用模板：Double Ended Queue双向队列]]></title>
+    <url>%2Fposts%2F20200108145405id.html</url>
+    <content type="text"><![CDATA[概念&emsp;&emsp;双向队列和向量很相似，但是它允许在容器头部快速插入和删除（就像在尾部一样）。 头文件 1#include &lt;deque&gt; 名字空间 1std 构造函数语法: 12345deque();deque( size_type size );deque( size_type num, const TYPE &amp;val );deque( const deque &amp;from );deque( input_iterator start, input_iterator end ); &emsp;&emsp;C++ Deques能用以下方式创建: 无参，创建一个空双向队列 size - 创建一个大小为size的双向队列 num and val - 放置num个val的拷贝到队列中， from - 从from创建一个内容一样的双向队列 start 和 end - 创建一个队列，保存从start到end的元素。 &emsp;&emsp;例如，下列代码创建并显示一个双向队列： 123456789// 创建一个双向队列，里面有10个1deque dq( 10, 1 );// 创建一个迭代器deque::iterator iter;// 显示这个双向队列for( iter = dq.begin(); iter != dq.end(); iter++ )&#123; cout &lt;&lt; *iter &lt;&lt; endl;&#125; 运算符语法: 1[] &emsp;&emsp;你可以使用[]操作符访问双向队列中单个的元素。 常用函数assign语法: 12void assign( input_iterator start, input_iterator end);void assign( Size num, const TYPE &amp;val ); &emsp;&emsp;assign()函数用start和end指示的范围为双向队列赋值，或者设置成num个val。 at语法: 1reference at( size_type pos ); &emsp;&emsp;at()函数返回一个引用，指向双向队列中位置pos上的元素。 back语法: 1reference back(); &emsp;&emsp;back()返回一个引用，指向双向队列中最后一个元素。 begin语法: 1iterator begin(); &emsp;&emsp;begin()函数返回一个迭代器，指向双向队列的第一个元素。 clear语法: 1void clear(); &emsp;&emsp;clear()函数删除双向队列中所有元素。 empty语法: 1bool empty(); &emsp;&emsp;empty()返回真如果双向队列为空，否则返回假。 end语法: 1iterator end(); &emsp;&emsp;end()函数返回一个迭代器，指向双向队列的尾部。 erase语法: 12iterator erase( iterator pos );iterator erase( iterator start, iterator end ); &emsp;&emsp;erase()函数删除pos位置上的元素，或者删除start和end之间的所有元素。返回值是一个iterator，指向被删除元素的后一个元素。 front语法: 1reference front(); &emsp;&emsp;front()函数返回一个引用，指向双向队列的头部。 get_allocator语法: 1allocator_type get_allocator(); &emsp;&emsp;get_allocator()函数返回双向队列的配置器。 insert语法: 12iterator insert( iterator pos, size_type num, const TYPE &amp;val );void insert( iterator pos, input_iterator start, input_iterator end ); &emsp;&emsp;insert()在pos前插入num个val值，或者插入从start到end范围内的元素到pos前面。 max_size语法: 1size_type max_size(); &emsp;&emsp;max_size()返回双向队列能容纳的最大元素个数。 pop_back语法: 1void pop_back(); &emsp;&emsp;pop_back()删除双向队列尾部的元素。 pop_front语法: 1void pop_front(); &emsp;&emsp;pop_front()删除双向队列头部的元素。 push_back语法: 1void push_back( const TYPE &amp;val ); &emsp;&emsp;push_back()函数在双向队列的尾部加入一个值为val的元素。 push_front语法: 1void push_front( const TYPE &amp;val ); &emsp;&emsp;push_front()函数在双向队列的头部加入一个值为val的元素。 rbegin语法: 1reverse_iterator rbegin(); &emsp;&emsp;rbegin()返回一个指向双向队列尾部的逆向迭代器。 rend语法: 1reverse_iterator rend(); &emsp;&emsp;rend()返回一个指向双向队列头部的逆向迭代器。 resize语法: 1void resize( size_type num, TYPE val ); &emsp;&emsp;resize()改变双向队列的大小为num，另加入的元素都被填充为val。 size语法: 1size_type size(); &emsp;&emsp;size()函数返回双向队列中的元素个数。 swap语法: 1void swap( deque &amp;target ); &emsp;&emsp;swap()函数交换target和现双向队列中元素。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>文档</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[STL常用模板：List链表]]></title>
+    <url>%2Fposts%2F20200108141737id.html</url>
+    <content type="text"><![CDATA[概念&emsp;&emsp;List将元素按顺序储存在链表中。与向量(vector)相比, 它允许快速的插入和删除，但是随机访问却比较慢。 头文件 1#include &lt;list&gt; 名字空间 1std 构造函数定义: 1list&lt;Type&gt; 示例: 12345list&lt;int&gt; lst1; //创建空listlist&lt;int&gt; lst2(5); //创建含有5个元素的listlist&lt;int&gt; lst3(3,2); //创建含有3个元素的listlist&lt;int&gt; lst4(lst2); //使用lst2初始化lst4list&lt;int&gt; lst5(lst2.begin(),lst2.end()); //同lst4 常用函数assign语法: 12void assign( input_iterator start, input_iterator end );void assign( size_type num, const TYPE &amp;val ); &emsp;&emsp;assign()函数以迭代器start和end指示的范围为list赋值或者为list赋值num个以val为值的元素。 back语法: 1reference back(); &emsp;&emsp;back()函数返回一个引用，指向list的最后一个元素。 begin语法: 1iterator begin(); &emsp;&emsp;begin()函数返回一个迭代器，指向list的第一个元素。例如， 123456789// 创建一个元素类型是字符的链表list&lt;char&gt; charList;for( int i=0; i &lt; 10; i++ ) charList.push_front( i + 65 );// 显示这个链表list&lt;char&gt;::iterator theIterator;for( theIterator = charList.begin(); theIterator != charList.end(); theIterator++ ) cout &lt;&lt; *theIterator; clear语法: 1void clear(); &emsp;&emsp;clear()函数删除list的所有元素。 empty语法: 1bool empty(); &emsp;&emsp;empty()函数返回真(true)如果链表为空，否则返回假。例如： 1234567list&lt;int&gt; the_list;for( int i = 0; i &lt; 10; i++ ) the_list.push_back( i ); while( !the_list.empty() ) &#123; cout &lt;&lt; the_list.front() &lt;&lt; endl; the_list.pop_front();&#125; end语法: 12345678910111213 iterator end();``` &amp;emsp;&amp;emsp;`end()`函数返回一个迭代器，指向链表的末尾。---### erase **语法:** ```C++ iterator erase( iterator pos ); iterator erase( iterator start, iterator end ); &emsp;&emsp;erase()函数删除以pos指示位置的元素, 或者删除start和end之间的元素。 返回值是一个迭代器，指向最后一个被删除元素的下一个元素。 front语法: 1reference front(); &emsp;&emsp;front()函数返回一个引用，指向链表的第一个元素。 1234567list&lt;int&gt; the_list;for( int i = 0; i &lt; 10; i++ ) the_list.push_back( i ); while( !the_list.empty() ) &#123; cout &lt;&lt; the_list.front() &lt;&lt; endl; the_list.pop_front();&#125; get_allocator语法: 1allocator_type get_allocator(); &emsp;&emsp;get_allocator()函数返回链表的配置器。 insert语法: 123iterator insert( iterator pos, const TYPE &amp;val );void insert( iterator pos, size_type num, const TYPE &amp;val );void insert( iterator pos, input_iterator start, input_iterator end ); &emsp;&emsp;insert()插入元素val到位置pos，或者插入num个元素val到pos之前，或者插入start到end之间的元素到pos的位置。返回值是一个迭代器，指向被插入的元素。 max_size语法: 1size_type max_size(); &emsp;&emsp;max_size()函数返回链表能够储存的元素数目。 merge语法: 12void merge( list &amp;lst );void merge( list &amp;lst, Comp compfunction ); &emsp;&emsp;merge()函数把自己和lst链表连接在一起，产生一个整齐排列的组合链表。如果指定compfunction，则将指定函数作为比较的依据。 pop_back语法: 1void pop_back(); &emsp;&emsp;pop_back()函数删除链表的最后一个元素。 pop_front语法: 1void pop_front(); &emsp;&emsp;pop_front()函数删除链表的第一个元素。 push_back语法: 1void push_back( const TYPE &amp;val ); &emsp;&emsp;push_back()将val连接到链表的最后。例如： 123list&lt;int&gt; the_list;for( int i = 0; i &lt; 10; i++ ) the_list.push_back( i ); push_front语法: 1void push_front( const TYPE &amp;val ); &emsp;&emsp;push_front()函数将val连接到链表的头部。 rbegin语法: 1reverse_iterator rbegin(); &emsp;&emsp;rbegin()函数返回一个逆向迭代器，指向链表的末尾。 remove语法: 1void remove( const TYPE &amp;val ); &emsp;&emsp;remove()函数删除链表中所有值为val的元素。例如 1234567// 创建一个链表，元素是字母表的前10个元素list&lt;char&gt; charList;for( int i=0; i &lt; 10; i++ ) charList.push_front( i + 65 );// 删除所有'E'的实例charList.remove( 'E' ); remove_if语法: 1void remove_if( UnPred pr ); &emsp;&emsp;remove_if()以一元谓词pr为判断元素的依据，遍历整个链表。如果pr返回true则删除该元素。 rend语法: 1reverse_iterator rend(); &emsp;&emsp;rend()函数迭代器指向链表的头部。 resize语法: 1void resize( size_type num, TYPE val ); &emsp;&emsp;resize()函数把list的大小改变到num。被加入的多余的元素都被赋值为val。 reverse语法: 1void reverse(); &emsp;&emsp;reverse()函数把list所有元素倒转。 size语法: 1size_type size(); &emsp;&emsp;size()函数返回list中元素的数量。 sort语法: 12void sort();void sort( Comp compfunction ); &emsp;&emsp;sort()函数为链表排序，默认是升序。如果指定compfunction的话，就采用指定函数来判定两个元素的大小。 splice语法: 123void splice( iterator pos, list &amp;lst );void splice( iterator pos, list &amp;lst, iterator del );void splice( iterator pos, list &amp;lst, iterator start, iterator end ); &emsp;&emsp;splice()函数把lst连接到pos的位置。如果指定其他参数，则插入lst中del所指元素到现链表的pos上，或者用start和end指定范围。 swap语法: 1void swap( list &amp;lst ); &emsp;&emsp;swap()函数交换lst和现链表中的元素。 unique语法: 12void unique();void unique( BinPred pr ); &emsp;&emsp;unique()函数删除链表中所有重复的元素。如果指定pr，则使用pr来判定是否删除。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>文档</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[STL常用模板：Set集合]]></title>
     <url>%2Fposts%2F20200107213559id.html</url>
     <content type="text"><![CDATA[概念&emsp;&emsp;set作为一个容器也是用来存储同一数据类型的数据类型，并且能从一个数据集合中取出数据，在set中每个元素的值都唯一，而且系统能根据元素的值自动进行排序。应该注意的是set中数元素的值不能直接被改变。C++ STL中标准关联容器set, multiset, map, multimap内部采用的就是一种非常高效的平衡检索二叉树：红黑树，也称为RB树(Red-Black Tree)。RB树的统计性能要好于一般平衡二叉树，所以被STL选择作为了关联容器的内部结构。 头文件 1#include &lt;set&gt; 名字空间 1std 构造函数定义: 1set&lt;Type&gt; 常用函数begin语法: 1iterator begin(); &emsp;&emsp;返回指向当前集合中第一个元素的迭代器。 clear语法: 1void clear(); &emsp;&emsp;清除当前集合中的所有元素。 count语法: 1size_type count( const key_type &amp;key ); &emsp;&emsp;返回当前集合中出现的某个值的元素的数目。 empty语法: 1bool empty(); &emsp;&emsp;如果当前集合为空，返回true；否则返回false。 end语法: 1const_iterator end(); &emsp;&emsp;返回指向当前集合中最后一个元素的迭代器。 equal_range语法: 1pair equal_range( const key_type &amp;key ); &emsp;&emsp;返回集合中与给定值相等的上下限的两个迭代器。 erase语法: 12345void erase( iterator i );void erase( iterator start, iterator end );size_type erase( const key_type &amp;key ); 说明： 删除i元素； 删除从start开始到end结束的元素； 删除等于key值的所有元素（返回被删除的元素的个数）。 find语法: 1iterator find( const key_type &amp;key ); &emsp;&emsp;在当前集合中查找等于key值的元素，并返回指向该元素的迭代器；如果没有找到，返回指向集合最后一个元素的迭代器。 get_allocator语法: 1allocator_type get_allocator(); &emsp;&emsp;返回当前集合的分配器。 insert语法: 12345iterator insert( iterator i, const TYPE &amp;val );void insert( input_iterator start, input_iterator end );pair insert( const TYPE &amp;val ); 说明： 在迭代器i前插入val； 将迭代器start开始到end结束返回内的元素插入到集合中； 在当前集合中插入val元素，并返回指向该元素的迭代器和一个布尔值来说明val是否成功的被插入了。 &emsp;&emsp;（应该注意的是在集合(Sets)中不能插入两个相同的元素。) lower_bound语法: 1iterator lower_bound( const key_type &amp;key ); &emsp;&emsp;返回一个指向大于或者等于key值的第一个元素的迭代器。 key_comp语法: 1key_compare key_comp(); &emsp;&emsp;返回一个用于元素间值比较的函数对象。 max_size语法: 1size_type max_size(); &emsp;&emsp;返回当前集合能容纳元素的最大限值。 rbegin语法: 1reverse_iterator rbegin(); &emsp;&emsp;返回指向当前集合中最后一个元素的反向迭代器。 rend语法: 1reverse_iterator rend(); &emsp;&emsp;返回指向集合中第一个元素的反向迭代器。 size语法: 1size_type size(); &emsp;&emsp;返回当前集合中元素的数目。 swap语法: 1void swap( set &amp;object ); &emsp;&emsp;交换当前集合和object集合中的元素。 upper_bound语法: 1iterator upper_bound( const key_type &amp;key ); &emsp;&emsp;在当前集合中返回一个指向大于Key值的元素的迭代器。 value_comp语法: 1value_compare value_comp(); &emsp;&emsp;返回一个用于比较元素间的值的函数对象。]]></content>
@@ -306,8 +396,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：哈希表</tag>
         <tag>算法：字符串</tag>
+        <tag>算法：哈希表</tag>
         <tag>算法：双指针</tag>
         <tag>算法：Sliding Window</tag>
       </tags>
@@ -525,19 +615,6 @@
       <tags>
         <tag>算法题</tag>
         <tag>CCF-CSP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[口语要素1000句]]></title>
-    <url>%2Fposts%2F20191230180610id.html</url>
-    <content type="text"><![CDATA[1.Have you met Jean?你认识简吗？ 2.It’s up to you.由你决定。 3.What do you do for a living?你做什么工作？ 4.He’s on the phone.他在接电话。 5.Have you worked there long?你在哪工作很久了吗？ 6.How do I get to the post office from here?请问从这里到邮局怎么走？ 7.How much do I owe you?我要付你多少钱？ 8.What’s the weather like today?今天天气如何？ 9.Where are you headed?你要到哪里去？ 10.I wasn’t born yesterday.我又不是三岁小孩。 11.How do you want the beef?你的牛肉要怎样？ 12.He just stepped out.他刚刚出去。 13.I tossed and turned all night.我整晚翻来覆去睡不着。 14.What do you do for relaxation?你做什么消遣？ 15.I envy you.我羡慕你。 16.I’m broke.我没什么钱。 17.The sooner the better.越快越好。 18.When is the most convenient time for you?你什么时候最方便？ 19.Take your Time.慢慢来。 20.I wish to discuss something personal.我想谈些私事。 21.How often do you eat out?你多久在外面吃一次。 22.I’m mad about Bruce Lee!我迷死李小龙了！]]></content>
-      <categories>
-        <category>考研</category>
-        <category>英语</category>
-      </categories>
-      <tags>
-        <tag>英语</tag>
-        <tag>口语</tag>
       </tags>
   </entry>
   <entry>
