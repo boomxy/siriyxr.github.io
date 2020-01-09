@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="asm语法:  1asm( &quot;instruction&quot; );  &amp;emsp;&amp;emsp;asm允许你在你的代码中直接插入汇编语言指令， 各种不同的编译器为这一个指令允许不一致形式, 比如： 　 123asm &amp;#123;  instruction-sequence&amp;#125;  &amp;emsp;&amp;emsp;或  1asm( instruction );   auto&amp;emsp;&amp;emsp;关键字aut">
+<meta name="keywords" content="C&#x2F;C++,文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C-CPP参考文档：关键字">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200109182820id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="asm语法:  1asm( &quot;instruction&quot; );  &amp;emsp;&amp;emsp;asm允许你在你的代码中直接插入汇编语言指令， 各种不同的编译器为这一个指令允许不一致形式, 比如： 　 123asm &amp;#123;  instruction-sequence&amp;#125;  &amp;emsp;&amp;emsp;或  1asm( instruction );   auto&amp;emsp;&amp;emsp;关键字aut">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-09T11:08:35.855Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C-CPP参考文档：关键字">
+<meta name="twitter:description" content="asm语法:  1asm( &quot;instruction&quot; );  &amp;emsp;&amp;emsp;asm允许你在你的代码中直接插入汇编语言指令， 各种不同的编译器为这一个指令允许不一致形式, 比如： 　 123asm &amp;#123;  instruction-sequence&amp;#125;  &amp;emsp;&amp;emsp;或  1asm( instruction );   auto&amp;emsp;&amp;emsp;关键字aut">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200109182820id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C-CPP参考文档：关键字 | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">49</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">95</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200109182820id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">C-CPP参考文档：关键字
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-09 18:28:20 / 修改时间：19:08:35" itemprop="dateCreated datePublished" datetime="2020-01-09T18:28:20+08:00">2020-01-09</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200109182820id.html" class="post-meta-item leancloud_visitors" data-flag-title="C-CPP参考文档：关键字" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200109182820id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200109182820id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>9.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>9 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="asm"><a href="#asm" class="headerlink" title="asm"></a>asm</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span>( <span class="string">"instruction"</span> );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>asm</code>允许你在你的代码中直接插入汇编语言指令， 各种不同的编译器为这一个指令允许不一致形式, 比如：
+　</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span> &#123;</span><br><span class="line">  instruction-sequence</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;或 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span>( instruction );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><p>&emsp;&emsp;关键字<code>auto</code>是用来声明完全可选择的局部变量的 </p>
+<hr>
+<h1 id="bool"><a href="#bool" class="headerlink" title="bool"></a>bool</h1><p>&emsp;&emsp;关键字<code>bool</code>是用来声明布尔逻辑变量的；也就是说,变量要么是真，要么是假。举个例子： </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> done = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">while</span>( !done ) &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="break"><a href="#break" class="headerlink" title="break"></a>break</h1><p>&emsp;&emsp;关键字<code>break</code>是用来跳出一个<code>do</code>, <code>for</code>或 <code>while</code> 的循环。 它也可以结束一个 <code>switch</code> 语句的子句,让程序忽略下面的<code>case</code>代码。举个例子:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( x &lt; <span class="number">100</span> ) &#123;</span><br><span class="line">  <span class="keyword">if</span>( x &lt; <span class="number">0</span> )</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  x++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>break</code>语句只能跳出本层循环,假如你要跳出一个三重嵌套的循环,你就要使用包含其它的逻辑或者用一个<code>goto</code>语句跳出这个嵌套循环。 </p>
+<hr>
+<h1 id="case"><a href="#case" class="headerlink" title="case"></a>case</h1><p>&emsp;&emsp;在<code>switch</code>里面用来检测匹配 。 </p>
+<hr>
+<h1 id="catch"><a href="#catch" class="headerlink" title="catch"></a>catch</h1><p>&emsp;&emsp;<code>catch</code> 语句通常通过 <code>throw</code> 语句捕获一个异常。 </p>
+<hr>
+<h1 id="char"><a href="#char" class="headerlink" title="char"></a>char</h1><p>&emsp;&emsp;关键字<code>char</code>用来声明布尔型变量。 </p>
+<hr>
+<h1 id="class"><a href="#class" class="headerlink" title="class"></a>class</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">class</span>-<span class="title">name</span> :</span> inheritance-<span class="built_in">list</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>-members-<span class="built_in">list</span>;    </span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">protected</span>-members-<span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">public</span>-members-<span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">&#125; object-<span class="built_in">list</span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;关键字<code>class</code>允许你创建新的数据类型。 <code>class-name</code> 就是你要创建的类的名字,并且 <code>inheritance-list</code> 是一个对你创建的新类可供选择的定义体的表单。类的默认为私有类型成员,除非这个表单标注在公有或保护类型之下。 <code>object-list</code> 是一个或一组声明对象。举个例子:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span> &#123;</span></span><br><span class="line">  <span class="keyword">int</span> Day;</span><br><span class="line">  <span class="keyword">int</span> Month;</span><br><span class="line">  <span class="keyword">int</span> Year;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="const"><a href="#const" class="headerlink" title="const"></a>const</h1><p>&emsp;&emsp;关键字<code>const</code>用来告诉编译器一个一旦被初始化过的变量就不能再修改。</p>
+<hr>
+<h1 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const_cast</span>&lt;type&gt; (object);</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;关键字<code>const</code>用于移除”<code>const-ness</code>“的数据,目标数据类型必须和原类型相同,目标数据没有被<code>const</code>定义过除外。 </p>
+<hr>
+<h1 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h1><p>&emsp;&emsp;<code>continue</code>语句用来结束这次循环在一个循环语句中,例如,下面这段代码会显示所有除了10之外0-20的所有数字: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">21</span>; i++ ) &#123;</span><br><span class="line">  <span class="keyword">if</span>( i == <span class="number">10</span> ) &#123;</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="default"><a href="#default" class="headerlink" title="default"></a>default</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> 语句中的缺省条件。</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> p;</span><br><span class="line"><span class="keyword">delete</span>[] pArray;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>delete</code>操作用来释放<code>p</code>指向的内存。这个指针先前应该被 <code>new</code>调用过。上面第二种形式用于删除一个数组。</p>
+<hr>
+<h1 id="do"><a href="#do" class="headerlink" title="do"></a>do</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  statement-<span class="built_in">list</span>;</span><br><span class="line">&#125; <span class="keyword">while</span>( condition );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>do</code>构建一个循环语句表,直到条件为假。注意循环中的语句至少被执行一次,因为判断条件在循环的最后。</p>
+<hr>
+<h1 id="double"><a href="#double" class="headerlink" title="double"></a>double</h1><p>&emsp;&emsp;关键字<code>double</code>用来声明浮点型变量的精度。   </p>
+<hr>
+<h1 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a>dynamic_cast</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dynamic_cast</span>&lt;type&gt; (object);</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;关键字<code>dynamic_cast</code>强制将一个类型转化为另外一种类型，并且在执行运行时时检查它保证它的合法性。如果你想在两个互相矛盾的类型之间转化时，<code>cast</code>的返回值将为<code>NULL</code>。</p>
+<hr>
+<h1 id="else"><a href="#else" class="headerlink" title="else"></a>else</h1><p>&emsp;&emsp;关键字<code>else</code>用在 <code>if</code> 语句中的二中选一。 </p>
+<hr>
+<h1 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> name &#123;name-<span class="built_in">list</span>&#125; var-<span class="built_in">list</span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;关键字<code>enum</code>用来创建一个包含多个名称元素的名称表。<code>var-list</code> 是可选的。 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> color &#123;red, orange, yellow, green, blue, indigo, violet&#125;;</span><br><span class="line"></span><br><span class="line">color c1 = indigo;</span><br><span class="line"><span class="keyword">if</span>( c1 == indigo ) &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"c1 is indigo"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="explicit"><a href="#explicit" class="headerlink" title="explicit"></a>explicit</h1><p>&emsp;&emsp;当构造函数被指定为<code>explicit</code>的时候,将不会自动把构造函数作为转换构造函数,这仅仅用在当一个初始化语句参数与这个构造函数的形参匹配的情况。</p>
+<hr>
+<h1 id="extern"><a href="#extern" class="headerlink" title="extern"></a>extern</h1><p>&emsp;&emsp;关键字<code>extern</code>用来告知编译器变量在当前范围之外声明过了。被<code>extern</code>语句描述过的变量将分派不到任何空间,因为他们在别的地方被定义过了。</p>
+<p>&emsp;&emsp;<code>Extern</code>语句频繁的用于在多个文件之间的跨范围数据传递。 </p>
+<hr>
+<h1 id="false"><a href="#false" class="headerlink" title="false"></a>false</h1><p>&emsp;&emsp;”<code>false</code>“是布尔型的值。 </p>
+<hr>
+<h1 id="float"><a href="#float" class="headerlink" title="float"></a>float</h1><p>&emsp;&emsp;关键字<code>float</code>用来声明浮点型变量。  </p>
+<hr>
+<h1 id="for"><a href="#for" class="headerlink" title="for"></a>for</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>( initialization; test-condition; increment ) &#123;</span><br><span class="line">  statement-<span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>for</code>构造一个由4部分组成的循环: </p>
+<ul>
+<li>初始化, 可以由0个或更多的由逗号分开的初始化语句构成; </li>
+<li>判断条件,如果满足该语句循环继续执行; </li>
+<li>增量, 可以由0个或更多的由逗号分开的增量语句构成; </li>
+<li>语句体,由0个或更多的语句构成,当循环条件成立时他们被执行。 </li>
+</ul>
+<p>例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ ) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"i is "</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> j, k;</span><br><span class="line">  <span class="keyword">for</span>( j = <span class="number">0</span>, k = <span class="number">10</span>;</span><br><span class="line">       j &lt; k;</span><br><span class="line">j++, k-- ) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"j is "</span> &lt;&lt; j &lt;&lt; <span class="string">" and k is "</span> &lt;&lt; k &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>( ; ; ) &#123;</span><br><span class="line">    <span class="comment">// loop forever!</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="friend"><a href="#friend" class="headerlink" title="friend"></a>friend</h1><p>&emsp;&emsp;关键字<code>friend</code>允许类或函数访问一个类中的私有数据。 </p>
+<hr>
+<h1 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">goto</span> labelA;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">labelA:</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>goto</code>语句可以完成从当前位置到指定标志位的跳转。使用<code>goto</code>语句要考虑有害性,所以它不经常使用。 例如, <code>goto</code>可以用来跳出多重嵌套 <code>for</code> 循环,它比额外的逻辑性跳出更具有时效性。 </p>
+<hr>
+<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( conditionA ) &#123;</span><br><span class="line">  statement-listA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>( conditionB ) &#123;</span><br><span class="line">  statement-listB;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  statement-listN;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>if</code> 构造一个允许不同的代码在不同的条件下执行的分支机制。<code>conditions</code> 是判断语句,<code>statement-list</code> 。 假如条件为假, <code>else</code>语句块将被执行,所有的<code>else</code>是可选的。 </p>
+<hr>
+<h1 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">functionA</span><span class="params">( <span class="keyword">int</span> i )</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>inline</code>这个关键字请求编译器扩张一个给定的函数。它向这个函数发出一条插入代码的<code>call</code>。函数里面有静态变量，嵌套的，<code>switches</code>或者是递归的时候不给予内联。当一个函数声明包含在一个类声明里面时，编译器会尝试的自动把函数内联。</p>
+<hr>
+<h1 id="int"><a href="#int" class="headerlink" title="int"></a>int</h1><p>&emsp;&emsp;关键字<code>int</code> 用来声明整型变量。  </p>
+<hr>
+<h1 id="long"><a href="#long" class="headerlink" title="long"></a>long</h1><p>&emsp;&emsp;关键字<code>long</code> 用来声明长整型变量。 </p>
+<hr>
+<h1 id="mutable"><a href="#mutable" class="headerlink" title="mutable"></a>mutable</h1><p>&emsp;&emsp;关键字<code>mutable</code> 忽略所有<code>const</code> 语句。一个属于<code>const</code>对象的<code>mutable</code> 成员可以被修改。</p>
+<hr>
+<h1 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> name &#123;</span><br><span class="line">  declaration-<span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;关键字<code>namespace</code>允许你创建一个新的空间。名字由你选择,忽略创建没有命名的名字空间。一旦你创建了一个名字空间,你必须明确地说明它或者用关键字<code>using</code>。 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> CartoonNameSpace &#123;</span><br><span class="line">  <span class="keyword">int</span> HomersAge;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">incrementHomersAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    HomersAge++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  CartoonNameSpace::HomersAge = <span class="number">39</span>;</span><br><span class="line">  CartoonNameSpace::incrementHomersAge();</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; CartoonNameSpace::HomersAge &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="new"><a href="#new" class="headerlink" title="new"></a>new</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pointer = <span class="keyword">new</span> type;</span><br><span class="line">pointer = <span class="keyword">new</span> type( initializer );</span><br><span class="line">pointer = <span class="keyword">new</span> type[size];</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;<code>new</code>可以给数据类型分配一个新结点并返回一个指向新分配内存区的首地址。 也可以对它进行初始化。中括号中的 <code>size</code> 可以分配尺寸大小。</p>
+<hr>
+<h1 id="operator"><a href="#operator" class="headerlink" title="operator"></a>operator</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>-type class-name::<span class="keyword">operator</span>#(parameter-<span class="built_in">list</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span>-type <span class="keyword">operator</span>#(parameter-<span class="built_in">list</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;关键字<code>operator</code> 用于重载函数。在上面语法中用特殊符(<code>#</code>)描述特征的操作将被重载。假如在一个类中,类名应当被指定。对于一元的操作, <code>parameter-list</code> 应当为空, 对于二元的操作,在<code>operator</code>右边的 <code>parameter-list</code> 应当包含操作数 (在<code>operand</code> 左边的被当作 <code>this</code>通过)。 </p>
+<p>&emsp;&emsp;对于不属于重载函数的<code>operator</code>成员,在左边的操作数被作为第一个参数,在右边的操作数被当作第二个参数被通过。</p>
+<p>&emsp;&emsp;你不能用<code>#</code>, <code>##</code>, <code>.</code>, <code>:</code>, <code>.*</code>或者 <code>?</code> 标志重载。 </p>
+<hr>
+<h1 id="private"><a href="#private" class="headerlink" title="private"></a>private</h1><p>&emsp;&emsp;属于私有类的数据只能被它的内部成员访问,除了<code>friend</code> 使用。关键字<code>private</code> 也能用来继承一个私有的基类,所有的公共和保护成员的基类可以变成私有的派生类。</p>
+<hr>
+<h1 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h1><p>&emsp;&emsp;保护数据对于它们自己的类是私有的并且能被派生类继承。关键字<code>protected</code> 也能用于指定派生,所有的公共和保护成员的基类可以变成保护的派生类。</p>
+<hr>
+<h1 id="public"><a href="#public" class="headerlink" title="public"></a>public</h1><p>&emsp;&emsp;在类中的公共数据可以被任何人访问。关键字<code>public</code>也能用来指定派生,所有的公共和保护成员的基类可以变成保护的派生类。</p>
+<hr>
+<h1 id="register"><a href="#register" class="headerlink" title="register"></a>register</h1><p>&emsp;&emsp;关键字<code>register</code> 请求编译器优化它定义的变量,并且通常这种优化比人工优化的好。</p>
+<hr>
+<h1 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reinterpret_cast</span>&lt;type&gt; (object);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;<code>reinterpret_cast</code> 操作能把一种数据类型改变成另一种。它应当被用在两种不可调和的指针类型之间。</p>
+<hr>
+<h1 id="return"><a href="#return" class="headerlink" title="return"></a>return</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">return</span>( value );</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;<code>return</code> 语句可以从当前函数跳转到调用该函数的任何地方。返回值是任意的。一个函数可以有不止一个返回语句。</p>
+<hr>
+<h1 id="short"><a href="#short" class="headerlink" title="short"></a>short</h1><p>&emsp;&emsp;关键字<code>short</code>用来修正数据类型,用来声明短整型变量。</p>
+<hr>
+<h1 id="signed"><a href="#signed" class="headerlink" title="signed"></a>signed</h1><p>&emsp;&emsp;关键字<code>signed</code> 用来修正数据类型,用来声明符号字符型型变量。 </p>
+<hr>
+<h1 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof"></a>sizeof</h1><p>&emsp;&emsp;<code>sizeof</code> 操作用来用字节计算右边表达式并返回字节数。</p>
+<hr>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>&emsp;&emsp;<code>static</code> 数据类型用来给变量创建永久存储空间。静态变量在函数间调用时保持他们的值不变。当用在一个类中时,所有要用到静态变量的时候这个类将把这个变量镜像过去。</p>
+<hr>
+<h1 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static_cast</span>&lt;type&gt; (object);</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;关键字<code>static_cast</code> 用来在两个不同类型之间进行强制转换,并且没有运行时间检查。</p>
+<hr>
+<h1 id="struct"><a href="#struct" class="headerlink" title="struct"></a>struct</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">struct</span>-<span class="title">name</span> :</span> inheritance-<span class="built_in">list</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span>-members-<span class="built_in">list</span>;    </span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">protected</span>-members-<span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">private</span>-members-<span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">&#125; object-<span class="built_in">list</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;<code>Structs</code> 类似于 <code>classes</code>, <code>struct</code>中的成员更像是类中的公共成员。在C中,<code>structs</code> 仅能包含数据并不允许有继承表。 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Date</span> &#123;</span></span><br><span class="line">  <span class="keyword">int</span> Day;</span><br><span class="line">  <span class="keyword">int</span> Month;</span><br><span class="line">  <span class="keyword">int</span> Year;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>( expression ) &#123;</span><br><span class="line">  <span class="keyword">case</span> A:</span><br><span class="line">    statement <span class="built_in">list</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> B:</span><br><span class="line">    statement <span class="built_in">list</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">case</span> N:</span><br><span class="line">    statement <span class="built_in">list</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    statement <span class="built_in">list</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;<code>switch</code>语句允许你通过一个表达式判断许多数值,它一般用来在多重循环中代替<code>if()...else if()...else if()...</code> 语句。 break 语句必须在每个<code>case</code> 语句之后, 负责循环将执行所有的<code>case</code>语句。<code>default case</code> 是可选的。假如所有的<code>case</code>都不能匹配的话,他将和<code>defult case</code>匹配。 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> keystroke = getch();</span><br><span class="line"><span class="keyword">switch</span>( keystroke ) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'b'</span>:</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'c'</span>:</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'d'</span>:</span><br><span class="line">    KeyABCDPressed();</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'e'</span>:</span><br><span class="line">    KeyEPressed();</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    UnknownKeyPressed();</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="template"><a href="#template" class="headerlink" title="template"></a>template</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">data</span>-<span class="title">type</span>&gt; <span class="title">return</span>-<span class="title">type</span> <span class="title">name</span>( <span class="title">parameter</span>-<span class="title">list</span> ) &#123;</span></span><br><span class="line">  statement-<span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;<code>Templates</code>能用来创建一个对未知数据类型的操作的函数模板。这个通过用其它数据类型代替一个占位符<code>data-type</code> 来实现。 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">X</span>&gt; <span class="title">void</span> <span class="title">genericSwap</span>( <span class="title">X</span> &amp;<span class="title">a</span>, <span class="title">X</span> &amp;<span class="title">b</span> ) &#123;</span></span><br><span class="line">  X tmp;</span><br><span class="line">  </span><br><span class="line">  tmp = a;</span><br><span class="line">  a = b;</span><br><span class="line">  b = tmp;</span><br><span class="line">&#125;     </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> num1 = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">int</span> num2 = <span class="number">21</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Before, num1 is "</span> &lt;&lt; num1 &lt;&lt; <span class="string">" and num2 is "</span> &lt;&lt; num2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  genericSwap( num1, num2 );</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"After, num1 is "</span> &lt;&lt; num1 &lt;&lt; <span class="string">" and num2 is "</span> &lt;&lt; num2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">char</span> c1 = <span class="string">'a'</span>;</span><br><span class="line">  <span class="keyword">char</span> c2 = <span class="string">'z'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Before, c1 is "</span> &lt;&lt; c1 &lt;&lt; <span class="string">" and c2 is "</span> &lt;&lt; c2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  genericSwap( c1, c2 );</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"After, c1 is "</span> &lt;&lt; c1 &lt;&lt; <span class="string">" and c2 is "</span> &lt;&lt; c2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span>( <span class="number">0</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><p>&emsp;&emsp;关键字 <code>this</code> 指向当前对象。所有属于一个 <code>class</code> 的函数成员都有一个<code>this</code> 指向。 </p>
+<hr>
+<h1 id="throw"><a href="#throw" class="headerlink" title="throw"></a>throw</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  statement <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">catch</span>( typeA arg ) &#123;</span><br><span class="line">  statement <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">catch</span>( typeB arg ) &#123;</span><br><span class="line">  statement <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">catch</span>( typeN arg ) &#123;</span><br><span class="line">  statement <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;<code>throw</code> 在C++体系下用来处理异常。同<code>try</code> 和 <code>catch</code> 语句一起使用, C++ 处理异常的系统给程序一个比较可行的机制用于错误校正。当你通常在用 <code>try</code> 去执行一段有潜在错误的代码时。在代码的某一处,一个<code>throw</code> 语句会被执行, 这将会从<code>try</code>的这一块跳转到<code>catch</code>的那一块中去。 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Before throwing exception"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">throw</span> <span class="number">42</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Shouldn't ever see this"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">catch</span>( <span class="keyword">int</span> error ) &#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Error: caught exception "</span> &lt;&lt; error &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="true"><a href="#true" class="headerlink" title="true"></a>true</h1><p>&emsp;&emsp;”<code>true</code>“是布尔型的值。 </p>
+<hr>
+<h1 id="try"><a href="#try" class="headerlink" title="try"></a>try</h1><p>&emsp;&emsp;<code>try</code> 语句试图去执行由异常产生的代码。 查看 <code>throw</code> 语句获得更多细节。 </p>
+<hr>
+<h1 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> existing-type <span class="keyword">new</span>-type;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;关键字<code>typedef</code> 允许你从一个现有的类型中创建一个新类型。 </p>
+<hr>
+<h1 id="typeid"><a href="#typeid" class="headerlink" title="typeid"></a>typeid</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeid</span>( object );</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>typeid</code> 操作返回给一个<code>type_info</code> 定义过的对象的那个对象的类型。 </p>
+<hr>
+<h1 id="typename"><a href="#typename" class="headerlink" title="typename"></a>typename</h1><p>&emsp;&emsp;关键字<code>typename</code>能用来在中 <code>template</code> 描述一个未定义类型或者代替关键字<code>class</code>。</p>
+<hr>
+<h1 id="union"><a href="#union" class="headerlink" title="union"></a>union</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> <span class="keyword">union</span>-name &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span>-members-<span class="built_in">list</span>;    </span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">private</span>-members-<span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">&#125; object-<span class="built_in">list</span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;<code>Unions</code> 类似于 <code>classes</code>,除了所有的成员分享同一内存外它的缺省值更像公共类型。 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> Data &#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">char</span> c;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="unsigned"><a href="#unsigned" class="headerlink" title="unsigned"></a>unsigned</h1><p>&emsp;&emsp;关键字<code>unsigned</code> 用来修正数据类型,它用来声明无符整型变量。 </p>
+<hr>
+<h1 id="using"><a href="#using" class="headerlink" title="using"></a>using</h1><p>&emsp;&emsp;关键字<code>using</code> 用来在当前范围输入一个<code>namespace</code>。 </p>
+<hr>
+<h1 id="virtual"><a href="#virtual" class="headerlink" title="virtual"></a>virtual</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">virtual</span> <span class="keyword">return</span>-type name( parameter-<span class="built_in">list</span> );</span><br><span class="line"><span class="keyword">virtual</span> <span class="keyword">return</span>-type name( parameter-<span class="built_in">list</span> ) = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;关键字<code>virtual</code> 能用来创建虚函数,它通常不被派生类有限考虑。但是假如函数被作为一个纯的虚函数 (被=0表示)时, 这种情况它一定被派生类有限考虑。 </p>
+<hr>
+<h1 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h1><p>&emsp;&emsp;关键字<code>volatile</code>在描述变量时使用,阻止编译器优化那些以<code>valatile</code>修饰的变量,<code>volatile</code>被用在一些变量能被意外方式改变的地方,例如:抛出中断,这些变量若无<code>volatile</code>可能会和编译器执行的优化 相冲突。</p>
+<hr>
+<h1 id="void"><a href="#void" class="headerlink" title="void"></a>void</h1><p>&emsp;&emsp;关键字<code>void</code> 用来表示一个函数不返回任何值,或者普通变量能指向任何类型的数据。 <code>Void</code> 也能用来声明一个空参数表。  </p>
+<hr>
+<h1 id="wchar-t"><a href="#wchar-t" class="headerlink" title="wchar_t"></a>wchar_t</h1><p>&emsp;&emsp;关键字 <code>wchar_t</code> 用来声明字符变量的宽度。  </p>
+<hr>
+<h1 id="while"><a href="#while" class="headerlink" title="while"></a>while</h1><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( condition ) &#123;</span><br><span class="line">  statement-<span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;关键字 <code>while</code> 用于一个只要条件未真就执行<code>statement-list</code>的循环体。注意假如起始条件为<code>false</code>,<code>statement-list</code> 将不被执行。 (你可以用一个<code>do</code>循环来保证<code>statement-list</code>至少被执行一次。) 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> done = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">while</span>( !done ) &#123;</span><br><span class="line"></span><br><span class="line">  ProcessData();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>( StopLooping() ) &#123;</span><br><span class="line">    done = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200107212453id.html" rel="bookmark">STL常用模板：Iterator迭代器</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200109180432id.html" rel="bookmark">C-CPP参考文档：预处理命令</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108162422id.html" rel="bookmark">STL常用模板：MultiMap多元字典</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108153950id.html" rel="bookmark">STL常用模板：Map字典</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108151414id.html" rel="bookmark">STL常用模板：Bitset位集合</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    C-CPP参考文档：关键字
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年01月09日 - 18时01分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年01月09日 - 19时01分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200109182820id.html" title="C-CPP参考文档：关键字">https://blog.siriyang.cn/posts/20200109182820id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | C-CPP参考文档：关键字](https://blog.siriyang.cn/posts/20200109182820id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/文档/" rel="tag"><i class="fa fa-tag"></i> 文档</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200109180432id.html" rel="next" title="C-CPP参考文档：预处理命令">
+                C-CPP参考文档：预处理命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#asm"><span class="nav-text">asm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#auto"><span class="nav-text">auto</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bool"><span class="nav-text">bool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#break"><span class="nav-text">break</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#case"><span class="nav-text">case</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#catch"><span class="nav-text">catch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#char"><span class="nav-text">char</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#class"><span class="nav-text">class</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#const"><span class="nav-text">const</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#const-cast"><span class="nav-text">const_cast</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#continue"><span class="nav-text">continue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#default"><span class="nav-text">default</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#delete"><span class="nav-text">delete</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#do"><span class="nav-text">do</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#double"><span class="nav-text">double</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dynamic-cast"><span class="nav-text">dynamic_cast</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#else"><span class="nav-text">else</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#enum"><span class="nav-text">enum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#explicit"><span class="nav-text">explicit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#extern"><span class="nav-text">extern</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#false"><span class="nav-text">false</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#float"><span class="nav-text">float</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for"><span class="nav-text">for</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#friend"><span class="nav-text">friend</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#goto"><span class="nav-text">goto</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if"><span class="nav-text">if</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#inline"><span class="nav-text">inline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#int"><span class="nav-text">int</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#long"><span class="nav-text">long</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mutable"><span class="nav-text">mutable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#namespace"><span class="nav-text">namespace</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#new"><span class="nav-text">new</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#operator"><span class="nav-text">operator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#private"><span class="nav-text">private</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#protected"><span class="nav-text">protected</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#public"><span class="nav-text">public</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#register"><span class="nav-text">register</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reinterpret-cast"><span class="nav-text">reinterpret_cast</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#return"><span class="nav-text">return</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#short"><span class="nav-text">short</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#signed"><span class="nav-text">signed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sizeof"><span class="nav-text">sizeof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#static"><span class="nav-text">static</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#static-cast"><span class="nav-text">static_cast</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#struct"><span class="nav-text">struct</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#switch"><span class="nav-text">switch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#template"><span class="nav-text">template</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this"><span class="nav-text">this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#throw"><span class="nav-text">throw</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#true"><span class="nav-text">true</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#try"><span class="nav-text">try</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typedef"><span class="nav-text">typedef</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typeid"><span class="nav-text">typeid</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typename"><span class="nav-text">typename</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#union"><span class="nav-text">union</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unsigned"><span class="nav-text">unsigned</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#using"><span class="nav-text">using</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#virtual"><span class="nav-text">virtual</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#volatile"><span class="nav-text">volatile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#void"><span class="nav-text">void</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wchar-t"><span class="nav-text">wchar_t</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#while"><span class="nav-text">while</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">578k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">8:46</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>

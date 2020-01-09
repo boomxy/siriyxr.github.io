@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="基本C/C++ 预处理命令  操作符优先级  转义字符  ASCII码表  基本数据类型  关键字   标准C库 Standard C I/O  Standard C String &amp;amp; Character  Standard C Math  Standard C Time &amp;amp; Date  Standard C Memory  Other standard C functions">
+  <meta name="description" content="基本C/C++  预处理命令操作符优先级   优先级 操作符 优先级 操作符    1 () &amp;emsp; [] &amp;emsp; -&amp;gt; &amp;emsp; . &amp;emsp; :: &amp;emsp; !&amp;emsp; ~ &amp;emsp;++&amp;emsp; -- 9 &amp;amp; (bitwise AND)   2 - (unary) &amp;emsp; *  (dereference) &amp;emsp; &amp;amp; (ad">
 <meta name="keywords" content="C&#x2F;C++,文档">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C&#x2F;C++参考文档">
 <meta property="og:url" content="https://blog.siriyang.cn/posts/20200107194641id.html">
 <meta property="og:site_name" content="SiriBlog">
-<meta property="og:description" content="基本C/C++ 预处理命令  操作符优先级  转义字符  ASCII码表  基本数据类型  关键字   标准C库 Standard C I/O  Standard C String &amp;amp; Character  Standard C Math  Standard C Time &amp;amp; Date  Standard C Memory  Other standard C functions">
+<meta property="og:description" content="基本C/C++  预处理命令操作符优先级   优先级 操作符 优先级 操作符    1 () &amp;emsp; [] &amp;emsp; -&amp;gt; &amp;emsp; . &amp;emsp; :: &amp;emsp; !&amp;emsp; ~ &amp;emsp;++&amp;emsp; -- 9 &amp;amp; (bitwise AND)   2 - (unary) &amp;emsp; *  (dereference) &amp;emsp; &amp;amp; (ad">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-08T08:42:31.846Z">
+<meta property="og:updated_time" content="2020-01-09T11:09:47.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C&#x2F;C++参考文档">
-<meta name="twitter:description" content="基本C/C++ 预处理命令  操作符优先级  转义字符  ASCII码表  基本数据类型  关键字   标准C库 Standard C I/O  Standard C String &amp;amp; Character  Standard C Math  Standard C Time &amp;amp; Date  Standard C Memory  Other standard C functions">
+<meta name="twitter:description" content="基本C/C++  预处理命令操作符优先级   优先级 操作符 优先级 操作符    1 () &amp;emsp; [] &amp;emsp; -&amp;gt; &amp;emsp; . &amp;emsp; :: &amp;emsp; !&amp;emsp; ~ &amp;emsp;++&amp;emsp; -- 9 &amp;amp; (bitwise AND)   2 - (unary) &amp;emsp; *  (dereference) &amp;emsp; &amp;amp; (ad">
   <link rel="canonical" href="https://blog.siriyang.cn/posts/20200107194641id">
 
 
@@ -215,7 +215,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">93</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">95</span></a>
 
   </li>
       
@@ -338,7 +338,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-08 16:42:31" itemprop="dateModified" datetime="2020-01-08T16:42:31+08:00">2020-01-08</time>
+                <time title="修改时间：2020-01-09 19:09:47" itemprop="dateModified" datetime="2020-01-09T19:09:47+08:00">2020-01-09</time>
               </span>
             
           
@@ -405,7 +405,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>642</span>
+              <span>4.3k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -415,7 +415,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
           
 
@@ -428,15 +428,977 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="基本C-C"><a href="#基本C-C" class="headerlink" title="基本C/C++"></a>基本C/C++</h1><ul>
-<li>预处理命令 </li>
-<li>操作符优先级 </li>
-<li>转义字符 </li>
-<li>ASCII码表 </li>
-<li>基本数据类型 </li>
-<li>关键字 </li>
+        <blockquote class="blockquote-center"><h1 id="基本C-C"><a href="#基本C-C" class="headerlink" title="基本C/C++"></a>基本C/C++</h1></blockquote>
+
+<h2 id="预处理命令"><a href="#预处理命令" class="headerlink" title="预处理命令"></a><a href="https://blog.siriyang.cn/posts/20200109180432id.html">预处理命令</a></h2><h2 id="操作符优先级"><a href="#操作符优先级" class="headerlink" title="操作符优先级"></a>操作符优先级</h2><table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>操作符</th>
+<th>优先级</th>
+<th>操作符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>() &emsp; [] &emsp; -&gt; &emsp; . &emsp; :: &emsp; !&emsp; ~ &emsp;++&emsp; --</td>
+<td>9</td>
+<td>&amp; (bitwise AND)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>- (unary) &emsp; *  (dereference) &emsp; &amp; (address of) &emsp; sizeof</td>
+<td>10</td>
+<td>^</td>
+</tr>
+<tr>
+<td>3</td>
+<td>-&gt;* &emsp; .*</td>
+<td>11</td>
+<td>|</td>
+</tr>
+<tr>
+<td>4</td>
+<td>* (multiply) &emsp; / &emsp; %</td>
+<td>12</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>5</td>
+<td>+ &emsp; -</td>
+<td>13</td>
+<td>||</td>
+</tr>
+<tr>
+<td>6</td>
+<td>&lt;&lt; &emsp; &gt;&gt;</td>
+<td>14</td>
+<td>? &emsp; :</td>
+</tr>
+<tr>
+<td>7</td>
+<td>&lt; &emsp; &lt;= &emsp; &gt; &emsp; &gt;=</td>
+<td>15</td>
+<td>= &emsp; += &emsp; -= &emsp; etc.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>== &emsp; !=</td>
+<td>16</td>
+<td>,</td>
+</tr>
+</tbody></table>
+<h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2><table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\‘</td>
+<td>单引号</td>
+</tr>
+<tr>
+<td>\“</td>
+<td>双引号</td>
+</tr>
+<tr>
+<td>\\</td>
+<td>反斜杠</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>空字符</td>
+</tr>
+<tr>
+<td>\a</td>
+<td>响铃</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>后退</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>走纸</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>水平制表符</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>垂直制表符</td>
+</tr>
+<tr>
+<td>\xnnn</td>
+<td>表示十六进制数(nnn)</td>
+</tr>
+</tbody></table>
+<h2 id="ASCII码表"><a href="#ASCII码表" class="headerlink" title="ASCII码表"></a>ASCII码表</h2><table>
+<thead>
+<tr>
+<th>十进制</th>
+<th>八进制</th>
+<th>十六进制</th>
+<th>字符</th>
+<th>描述</th>
+<th>十进制</th>
+<th>八进制</th>
+<th>十六进制</th>
+<th>字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>00</td>
+<td>NUL</td>
+<td></td>
+<td>64</td>
+<td>100</td>
+<td>40</td>
+<td>@</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>01</td>
+<td>SOH</td>
+<td>start of header</td>
+<td>65</td>
+<td>101</td>
+<td>41</td>
+<td>A</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>02</td>
+<td>STX</td>
+<td>start of text</td>
+<td>66</td>
+<td>102</td>
+<td>42</td>
+<td>B</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>03</td>
+<td>ETX</td>
+<td>end of text</td>
+<td>67</td>
+<td>103</td>
+<td>43</td>
+<td>C</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>04</td>
+<td>EOT</td>
+<td>end of transmission</td>
+<td>68</td>
+<td>104</td>
+<td>44</td>
+<td>D</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>05</td>
+<td>ENQ</td>
+<td>enquiry</td>
+<td>69</td>
+<td>105</td>
+<td>45</td>
+<td>E</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>6</td>
+<td>06</td>
+<td>ACK</td>
+<td>acknowledge</td>
+<td>70</td>
+<td>106</td>
+<td>46</td>
+<td>F</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>07</td>
+<td>BEL</td>
+<td>bell</td>
+<td>71</td>
+<td>107</td>
+<td>47</td>
+<td>G</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>10</td>
+<td>08</td>
+<td>BS</td>
+<td>backspace</td>
+<td>72</td>
+<td>110</td>
+<td>48</td>
+<td>H</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>11</td>
+<td>09</td>
+<td>HT</td>
+<td>horizontal tab</td>
+<td>73</td>
+<td>111</td>
+<td>49</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>12</td>
+<td>0A</td>
+<td>LF</td>
+<td>line feed</td>
+<td>74</td>
+<td>112</td>
+<td>4A</td>
+<td>J</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>13</td>
+<td>0B</td>
+<td>VT</td>
+<td>vertical tab</td>
+<td>75</td>
+<td>113</td>
+<td>4B</td>
+<td>K</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>14</td>
+<td>0C</td>
+<td>FF</td>
+<td>form feed</td>
+<td>76</td>
+<td>114</td>
+<td>4C</td>
+<td>L</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>15</td>
+<td>0D</td>
+<td>CR</td>
+<td>carriage return</td>
+<td>77</td>
+<td>115</td>
+<td>4D</td>
+<td>M</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>16</td>
+<td>0E</td>
+<td>SO</td>
+<td>shift out</td>
+<td>78</td>
+<td>116</td>
+<td>4E</td>
+<td>N</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>17</td>
+<td>0F</td>
+<td>SI</td>
+<td>shift in</td>
+<td>79</td>
+<td>117</td>
+<td>4F</td>
+<td>O</td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td>20</td>
+<td>10</td>
+<td>DLE</td>
+<td>data link escape</td>
+<td>80</td>
+<td>120</td>
+<td>50</td>
+<td>P</td>
+<td></td>
+</tr>
+<tr>
+<td>17</td>
+<td>21</td>
+<td>11</td>
+<td>DC1</td>
+<td>no assignment, but usually XON</td>
+<td>81</td>
+<td>121</td>
+<td>51</td>
+<td>Q</td>
+<td></td>
+</tr>
+<tr>
+<td>18</td>
+<td>22</td>
+<td>12</td>
+<td>DC2</td>
+<td></td>
+<td>82</td>
+<td>122</td>
+<td>52</td>
+<td>R</td>
+<td></td>
+</tr>
+<tr>
+<td>19</td>
+<td>23</td>
+<td>13</td>
+<td>DC3</td>
+<td>no assignment, but usually XOFF</td>
+<td>83</td>
+<td>123</td>
+<td>53</td>
+<td>S</td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td>24</td>
+<td>14</td>
+<td>DC4</td>
+<td></td>
+<td>84</td>
+<td>124</td>
+<td>54</td>
+<td>T</td>
+<td></td>
+</tr>
+<tr>
+<td>21</td>
+<td>25</td>
+<td>15</td>
+<td>NAK</td>
+<td>negative acknowledge</td>
+<td>85</td>
+<td>125</td>
+<td>55</td>
+<td>U</td>
+<td></td>
+</tr>
+<tr>
+<td>22</td>
+<td>26</td>
+<td>16</td>
+<td>SYN</td>
+<td>synchronous idle</td>
+<td>86</td>
+<td>126</td>
+<td>56</td>
+<td>V</td>
+<td></td>
+</tr>
+<tr>
+<td>23</td>
+<td>27</td>
+<td>17</td>
+<td>ETB</td>
+<td>end of transmission block</td>
+<td>87</td>
+<td>127</td>
+<td>57</td>
+<td>W</td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td>30</td>
+<td>18</td>
+<td>CAN</td>
+<td>cancel</td>
+<td>88</td>
+<td>130</td>
+<td>58</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr>
+<td>25</td>
+<td>31</td>
+<td>19</td>
+<td>EM</td>
+<td>end of medium</td>
+<td>89</td>
+<td>131</td>
+<td>59</td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>26</td>
+<td>32</td>
+<td>1A</td>
+<td>SUB</td>
+<td>substitute</td>
+<td>90</td>
+<td>132</td>
+<td>5A</td>
+<td>Z</td>
+<td></td>
+</tr>
+<tr>
+<td>27</td>
+<td>33</td>
+<td>1B</td>
+<td>ESC</td>
+<td>escape</td>
+<td>91</td>
+<td>133</td>
+<td>5B</td>
+<td>[</td>
+<td></td>
+</tr>
+<tr>
+<td>28</td>
+<td>34</td>
+<td>1C</td>
+<td>FS</td>
+<td>file seperator</td>
+<td>92</td>
+<td>134</td>
+<td>5C</td>
+<td>\</td>
+<td></td>
+</tr>
+<tr>
+<td>29</td>
+<td>35</td>
+<td>1D</td>
+<td>GS</td>
+<td>group seperator</td>
+<td>93</td>
+<td>135</td>
+<td>5D</td>
+<td>]</td>
+<td></td>
+</tr>
+<tr>
+<td>30</td>
+<td>36</td>
+<td>1E</td>
+<td>RS</td>
+<td>record seperator</td>
+<td>94</td>
+<td>136</td>
+<td>5E</td>
+<td>^</td>
+<td></td>
+</tr>
+<tr>
+<td>31</td>
+<td>37</td>
+<td>1F</td>
+<td>US</td>
+<td>unit seperator</td>
+<td>95</td>
+<td>137</td>
+<td>5F</td>
+<td>_</td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td>40</td>
+<td>20</td>
+<td>SPC</td>
+<td>space</td>
+<td>96</td>
+<td>140</td>
+<td>60</td>
+<td>`</td>
+<td></td>
+</tr>
+<tr>
+<td>33</td>
+<td>41</td>
+<td>21</td>
+<td>!</td>
+<td></td>
+<td>97</td>
+<td>141</td>
+<td>61</td>
+<td>a</td>
+<td></td>
+</tr>
+<tr>
+<td>34</td>
+<td>42</td>
+<td>22</td>
+<td>“</td>
+<td></td>
+<td>98</td>
+<td>142</td>
+<td>62</td>
+<td>b</td>
+<td></td>
+</tr>
+<tr>
+<td>35</td>
+<td>43</td>
+<td>23</td>
+<td>#</td>
+<td></td>
+<td>99</td>
+<td>143</td>
+<td>63</td>
+<td>c</td>
+<td></td>
+</tr>
+<tr>
+<td>36</td>
+<td>44</td>
+<td>24</td>
+<td>$</td>
+<td></td>
+<td>100</td>
+<td>144</td>
+<td>64</td>
+<td>d</td>
+<td></td>
+</tr>
+<tr>
+<td>37</td>
+<td>45</td>
+<td>25</td>
+<td>%</td>
+<td></td>
+<td>101</td>
+<td>145</td>
+<td>65</td>
+<td>e</td>
+<td></td>
+</tr>
+<tr>
+<td>38</td>
+<td>46</td>
+<td>26</td>
+<td>&amp;</td>
+<td></td>
+<td>102</td>
+<td>146</td>
+<td>66</td>
+<td>f</td>
+<td></td>
+</tr>
+<tr>
+<td>39</td>
+<td>47</td>
+<td>27</td>
+<td>‘</td>
+<td></td>
+<td>103</td>
+<td>147</td>
+<td>67</td>
+<td>g</td>
+<td></td>
+</tr>
+<tr>
+<td>40</td>
+<td>50</td>
+<td>28</td>
+<td>(</td>
+<td></td>
+<td>104</td>
+<td>150</td>
+<td>68</td>
+<td>h</td>
+<td></td>
+</tr>
+<tr>
+<td>41</td>
+<td>51</td>
+<td>29</td>
+<td>)</td>
+<td></td>
+<td>105</td>
+<td>151</td>
+<td>69</td>
+<td>i</td>
+<td></td>
+</tr>
+<tr>
+<td>42</td>
+<td>52</td>
+<td>2A</td>
+<td>*</td>
+<td></td>
+<td>106</td>
+<td>152</td>
+<td>6A</td>
+<td>j</td>
+<td></td>
+</tr>
+<tr>
+<td>43</td>
+<td>53</td>
+<td>2B</td>
+<td>+</td>
+<td></td>
+<td>107</td>
+<td>153</td>
+<td>6B</td>
+<td>k</td>
+<td></td>
+</tr>
+<tr>
+<td>44</td>
+<td>54</td>
+<td>2C</td>
+<td>,</td>
+<td></td>
+<td>108</td>
+<td>154</td>
+<td>6C</td>
+<td>l</td>
+<td></td>
+</tr>
+<tr>
+<td>45</td>
+<td>55</td>
+<td>2D</td>
+<td>-</td>
+<td></td>
+<td>109</td>
+<td>155</td>
+<td>6D</td>
+<td>m</td>
+<td></td>
+</tr>
+<tr>
+<td>46</td>
+<td>56</td>
+<td>2E</td>
+<td>.</td>
+<td></td>
+<td>110</td>
+<td>156</td>
+<td>6E</td>
+<td>n</td>
+<td></td>
+</tr>
+<tr>
+<td>47</td>
+<td>57</td>
+<td>2F</td>
+<td>/</td>
+<td></td>
+<td>111</td>
+<td>157</td>
+<td>6F</td>
+<td>o</td>
+<td></td>
+</tr>
+<tr>
+<td>48</td>
+<td>60</td>
+<td>30</td>
+<td>0</td>
+<td></td>
+<td>112</td>
+<td>160</td>
+<td>70</td>
+<td>p</td>
+<td></td>
+</tr>
+<tr>
+<td>49</td>
+<td>61</td>
+<td>31</td>
+<td>1</td>
+<td></td>
+<td>113</td>
+<td>161</td>
+<td>71</td>
+<td>q</td>
+<td></td>
+</tr>
+<tr>
+<td>50</td>
+<td>62</td>
+<td>32</td>
+<td>2</td>
+<td></td>
+<td>114</td>
+<td>162</td>
+<td>72</td>
+<td>r</td>
+<td></td>
+</tr>
+<tr>
+<td>51</td>
+<td>63</td>
+<td>33</td>
+<td>3</td>
+<td></td>
+<td>115</td>
+<td>163</td>
+<td>73</td>
+<td>s</td>
+<td></td>
+</tr>
+<tr>
+<td>52</td>
+<td>64</td>
+<td>34</td>
+<td>4</td>
+<td></td>
+<td>116</td>
+<td>164</td>
+<td>74</td>
+<td>t</td>
+<td></td>
+</tr>
+<tr>
+<td>53</td>
+<td>65</td>
+<td>35</td>
+<td>5</td>
+<td></td>
+<td>117</td>
+<td>165</td>
+<td>75</td>
+<td>u</td>
+<td></td>
+</tr>
+<tr>
+<td>54</td>
+<td>66</td>
+<td>36</td>
+<td>6</td>
+<td></td>
+<td>118</td>
+<td>166</td>
+<td>76</td>
+<td>v</td>
+<td></td>
+</tr>
+<tr>
+<td>55</td>
+<td>67</td>
+<td>37</td>
+<td>7</td>
+<td></td>
+<td>119</td>
+<td>167</td>
+<td>77</td>
+<td>w</td>
+<td></td>
+</tr>
+<tr>
+<td>56</td>
+<td>70</td>
+<td>38</td>
+<td>8</td>
+<td></td>
+<td>120</td>
+<td>170</td>
+<td>78</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>57</td>
+<td>71</td>
+<td>39</td>
+<td>9</td>
+<td></td>
+<td>121</td>
+<td>171</td>
+<td>79</td>
+<td>y</td>
+<td></td>
+</tr>
+<tr>
+<td>58</td>
+<td>72</td>
+<td>3A</td>
+<td>:</td>
+<td></td>
+<td>122</td>
+<td>172</td>
+<td>7A</td>
+<td>z</td>
+<td></td>
+</tr>
+<tr>
+<td>59</td>
+<td>73</td>
+<td>3B</td>
+<td>;</td>
+<td></td>
+<td>123</td>
+<td>173</td>
+<td>7B</td>
+<td>{</td>
+<td></td>
+</tr>
+<tr>
+<td>60</td>
+<td>74</td>
+<td>3C</td>
+<td>&lt;</td>
+<td></td>
+<td>124</td>
+<td>174</td>
+<td>7C</td>
+<td>|</td>
+<td></td>
+</tr>
+<tr>
+<td>61</td>
+<td>75</td>
+<td>3D</td>
+<td>=</td>
+<td></td>
+<td>125</td>
+<td>175</td>
+<td>7D</td>
+<td>}</td>
+<td></td>
+</tr>
+<tr>
+<td>62</td>
+<td>76</td>
+<td>3E</td>
+<td>&gt;</td>
+<td></td>
+<td>126</td>
+<td>176</td>
+<td>7E</td>
+<td>~</td>
+<td></td>
+</tr>
+<tr>
+<td>63</td>
+<td>77</td>
+<td>3F</td>
+<td>?</td>
+<td></td>
+<td>127</td>
+<td>177</td>
+<td>7F</td>
+<td>DEL</td>
+<td>delete</td>
+</tr>
+</tbody></table>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>&emsp;&emsp;C语言包含5个基本数据类型: <code>void</code>, <code>integer</code>, <code>float</code>, <code>double</code>, 和 <code>char</code>。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>空类型</td>
+</tr>
+<tr>
+<td>int</td>
+<td>整型</td>
+</tr>
+<tr>
+<td>float</td>
+<td>浮点类型</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点类型</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符类型</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;C++ 定义了另外两个基本数据类型: <code>bool</code> 和 <code>wchar_t</code>. </p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool</td>
+<td>布尔类型, 值为true 或 false</td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>宽字符类型</td>
+</tr>
+</tbody></table>
+<p><strong>类型修饰符</strong><br>&emsp;&emsp;一些基本数据类型能够被 <code>signed</code>, <code>unsigned</code>, <code>short</code>, 和 <code>long</code> 修饰。 当类型修饰符单独使用的时候, 默认的类型是 <code>int</code>。 下表是所有可能出现的数据类型: </p>
+<ul>
+<li>bool </li>
+<li>char </li>
+<li>unsigned char </li>
+<li>signed char </li>
+<li>int </li>
+<li>unsigned int </li>
+<li>signed int </li>
+<li>short int </li>
+<li>unsigned short int </li>
+<li>signed short int </li>
+<li>long int </li>
+<li>signed long int </li>
+<li>unsigned long int </li>
+<li>float </li>
+<li>double </li>
+<li>long double </li>
+<li>wchar_t </li>
 </ul>
-<h1 id="标准C库"><a href="#标准C库" class="headerlink" title="标准C库"></a>标准C库</h1><ul>
+<p><strong>类型大小和表示范围</strong><br>&emsp;&emsp;基本数据类型的大小以及能够表示的数据范围是与编译器和硬件平台有关的。 “<code>cfloat</code>“ (或者 “<code>float.h</code>“) 头文件往往定义了基本数据类型能够表示的数据的最大值和最小值。 你也可以使用 <code>sizeof</code> 来获得类型的大小(字节数) 。 然而, 很多平台使用了一些数据类型的标准大小，如: <code>int</code> 和 <code>float</code> 通常占用 32位, <code>char</code> 占用 8位, <code>double</code> 通常占用64位。 <code>bools</code> 通常以 8位 来实现。</p>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a><a href="https://blog.siriyang.cn/posts/20200109182820id.html">关键字</a></h2><hr>
+<blockquote class="blockquote-center"><h1 id="标准C库"><a href="#标准C库" class="headerlink" title="标准C库"></a>标准C库</h1></blockquote>
+
+<ul>
 <li>Standard C I/O </li>
 <li>Standard C String &amp; Character </li>
 <li>Standard C Math </li>
@@ -444,7 +1406,10 @@
 <li>Standard C Memory </li>
 <li>Other standard C functions </li>
 </ul>
-<h1 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h1><ul>
+<hr>
+<blockquote class="blockquote-center"><h1 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h1></blockquote>
+
+<ul>
 <li>C++ I/O</li>
 <li>C++ Strings</li>
 </ul>
@@ -492,7 +1457,14 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\20200107212453id.html" rel="bookmark">STL常用模板：Iterator迭代器</a></div>
+      <div class="popular-posts-title"><a href="\posts\20200107213559id.html" rel="bookmark">STL常用模板：Set集合</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200109182820id.html" rel="bookmark">C-CPP参考文档：关键字</a></div>
       
     </li>
   
@@ -506,21 +1478,14 @@
     <li class="popular-posts-item">
       
       
+      <div class="popular-posts-title"><a href="\posts\20200108162422id.html" rel="bookmark">STL常用模板：MultiMap多元字典</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
       <div class="popular-posts-title"><a href="\posts\20200108153950id.html" rel="bookmark">STL常用模板：Map字典</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\20200108151414id.html" rel="bookmark">STL常用模板：Bitset位集合</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\20200108145405id.html" rel="bookmark">STL常用模板：Double Ended Queue双向队列</a></div>
       
     </li>
   
@@ -562,7 +1527,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2020年01月08日 - 16时01分
+    2020年01月09日 - 19时01分
   </li>
 
   <!-- 引用链接 -->
@@ -678,7 +1643,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -912,7 +1877,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本C-C"><span class="nav-text">基本C/C++</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准C库"><span class="nav-text">标准C库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C"><span class="nav-text">C++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-标准模板库-STL"><span class="nav-text">C++ 标准模板库(STL)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序结构"><span class="nav-text">顺序结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器适配器"><span class="nav-text">容器适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联合容器"><span class="nav-text">联合容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-text">迭代器</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本C-C"><span class="nav-text">基本C/C++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预处理命令"><span class="nav-text">预处理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符优先级"><span class="nav-text">操作符优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转义字符"><span class="nav-text">转义字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASCII码表"><span class="nav-text">ASCII码表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键字"><span class="nav-text">关键字</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准C库"><span class="nav-text">标准C库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C"><span class="nav-text">C++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-标准模板库-STL"><span class="nav-text">C++ 标准模板库(STL)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序结构"><span class="nav-text">顺序结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器适配器"><span class="nav-text">容器适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联合容器"><span class="nav-text">联合容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-text">迭代器</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -939,12 +1904,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">562k</span>
+    <span title="站点总字数">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:31</span>
+    <span title="站点阅读时长">8:46</span>
 </div>
 
         
