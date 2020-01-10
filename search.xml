@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode：155-最小栈]]></title>
+    <url>%2Fposts%2F20200110150812id.html</url>
+    <content type="text"><![CDATA[LeetCode题目汇总 题目描述&emsp;&emsp;设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。 push(x) – 将元素 x 推入栈中。 pop() – 删除栈顶的元素。 top() – 获取栈顶元素。 getMin() – 检索栈中的最小元素。 示例: 12345678MinStack minStack = new MinStack();minStack.push(-2);minStack.push(0);minStack.push(-3);minStack.getMin(); --&gt; 返回 -3.minStack.pop();minStack.top(); --&gt; 返回 0.minStack.getMin(); --&gt; 返回 -2. 题解分析&emsp;&emsp;使用一个min栈来同步计算每插入一个元素以后当前栈的最小值。后期可以继续优化当只有更小的元素插入时才向min插入。 代码12345678910111213141516171819202122232425262728293031323334353637383940class MinStack &#123;public: stack&lt;int&gt; s,min; /** initialize your data structure here. */ MinStack() &#123; &#125; void push(int x) &#123; s.push(x); if(min.empty()) min.push(x); else&#123; min.push(min.top()&lt;x?min.top():x); &#125; &#125; void pop() &#123; s.pop(); min.pop(); &#125; int top() &#123; return s.top(); &#125; int getMin() &#123; return min.top(); &#125;&#125;;/** * Your MinStack object will be instantiated and called as such: * MinStack* obj = new MinStack(); * obj-&gt;push(x); * obj-&gt;pop(); * int param_3 = obj-&gt;top(); * int param_4 = obj-&gt;getMin(); */]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>LeetCode</tag>
+        <tag>算法：栈</tag>
+        <tag>算法：设计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode：66-加一]]></title>
+    <url>%2Fposts%2F20200110142252id.html</url>
+    <content type="text"><![CDATA[LeetCode题目汇总 题目描述&emsp;&emsp;给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。 &emsp;&emsp;最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。 &emsp;&emsp;你可以假设除了整数 0 之外，这个整数不会以零开头。 示例 1: 输入: [1,2,3]输出: [1,2,4]解释: 输入数组表示数字 123。 示例 2: 输入: [4,3,2,1]输出: [4,3,2,2]解释: 输入数组表示数字 4321。 题解分析&emsp;&emsp;从后向前遍历，依次计算每一位的进位。如果全部走完以便以后进位变量t为1，则在数组最前面插入1。 代码123456789101112131415class Solution &#123;public: vector&lt;int&gt; plusOne(vector&lt;int&gt;&amp; digits) &#123; int t=1; for(int i =digits.size()-1;i&gt;=0 &amp;&amp; t;i--)&#123; t=(digits[i]+1)/10; digits[i]=(digits[i]+1)%10; &#125; if(t) digits.insert(digits.begin(),1,1); return digits; &#125;&#125;;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>LeetCode</tag>
+        <tag>算法：数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode：283-移动零]]></title>
     <url>%2Fposts%2F20200109214539id.html</url>
     <content type="text"><![CDATA[LeetCode题目汇总 题目描述&emsp;&emsp;给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。 示例: 输入: [0,1,0,3,12]输出: [1,3,12,0,0] 说明: 必须在原数组上操作，不能拷贝额外的数组。 尽量减少操作次数。 题解分析&emsp;&emsp;使用双指针，将后面非零的数字全部移到前面，然后再将生于的位置置零。 代码123456789101112131415class Solution &#123;public: void moveZeroes(vector&lt;int&gt;&amp; nums) &#123; int i=0,j=0; while(i&lt;nums.size())&#123; if(nums[i]) nums[j++]=nums[i]; i++; &#125; while(j&lt;nums.size())&#123; nums[j++]=0; &#125; &#125;&#125;;]]></content>
@@ -44,8 +75,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：链表</tag>
         <tag>算法：双指针</tag>
+        <tag>算法：链表</tag>
       </tags>
   </entry>
   <entry>
@@ -298,8 +329,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：哈希表</tag>
         <tag>算法：位运算</tag>
+        <tag>算法：哈希表</tag>
       </tags>
   </entry>
   <entry>
@@ -472,8 +503,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：哈希表</tag>
         <tag>算法：字符串</tag>
+        <tag>算法：哈希表</tag>
         <tag>算法：双指针</tag>
         <tag>算法：Sliding Window</tag>
       </tags>
@@ -570,7 +601,7 @@
   <entry>
     <title><![CDATA[LeetCode题目汇总]]></title>
     <url>%2Fposts%2F20200103132244id.html</url>
-    <content type="text"><![CDATA[LeetCode官网 &emsp;&emsp;以下都是我自己做过的题目，答案也全是自己做的，和网上大牛的最优解还是有差距。╮(￣▽ ￣)╭ 我的LeetCode主页 # 题名 难度 备注 1 两数之和 简单 2 两数相加 中等 3 无重复字符的最长子串 中等 4 寻找两个有序数组的中位数 困难 19 删除链表的倒数第N个节点 中等 26 删除排序数组中的重复项 简单 122 买卖股票的最佳时机II 简单 136 只出现一次的数 简单 189 旋转数组 简单 217 存在重复元素 简单 283 移动零 简单 350 两个数组的交集II 简单 1309 解码字母到整数映射 简单 第170场周赛]]></content>
+    <content type="text"><![CDATA[LeetCode官网 &emsp;&emsp;以下都是我自己做过的题目，答案也全是自己做的，和网上大牛的最优解还是有差距。╮(￣▽ ￣)╭ 我的LeetCode主页 # 题名 难度 备注 1 两数之和 简单 2 两数相加 中等 3 无重复字符的最长子串 中等 4 寻找两个有序数组的中位数 困难 19 删除链表的倒数第N个节点 中等 26 删除排序数组中的重复项 简单 66 加一 简单 122 买卖股票的最佳时机II 简单 136 只出现一次的数 简单 155 最小栈 简单 189 旋转数组 简单 217 存在重复元素 简单 283 移动零 简单 350 两个数组的交集II 简单 1309 解码字母到整数映射 简单 第170场周赛]]></content>
       <categories>
         <category>计算机</category>
         <category>算法题</category>
