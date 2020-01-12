@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="概念栈是一种后进先出的数据结构，也就是LIFO(last in first out) ，最后加入栈的元素将最先被取出来，在栈的同一端进行数据的插入与取出，这一段叫做“栈顶”。 头文件 1#include &amp;lt;stack&amp;gt;  名字空间 1std  构造函数定义: 1queue&amp;lt;Type, Container = deque&amp;lt;T&amp;gt; &amp;gt;  &amp;emsp;&amp;emsp;这对尖">
+  <meta name="description" content="C/C++参考文档 概念栈是一种后进先出的数据结构，也就是LIFO(last in first out) ，最后加入栈的元素将最先被取出来，在栈的同一端进行数据的插入与取出，这一段叫做“栈顶”。 头文件 1#include &amp;lt;stack&amp;gt;  名字空间 1std  构造函数定义: 1queue&amp;lt;Type, Container = deque&amp;lt;T&amp;gt; &amp;gt;  &amp;emsp">
 <meta name="keywords" content="C&#x2F;C++,文档,STL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STL常用模板：Stack栈">
 <meta property="og:url" content="https://blog.siriyang.cn/posts/20200107200316id.html">
 <meta property="og:site_name" content="SiriBlog">
-<meta property="og:description" content="概念栈是一种后进先出的数据结构，也就是LIFO(last in first out) ，最后加入栈的元素将最先被取出来，在栈的同一端进行数据的插入与取出，这一段叫做“栈顶”。 头文件 1#include &amp;lt;stack&amp;gt;  名字空间 1std  构造函数定义: 1queue&amp;lt;Type, Container = deque&amp;lt;T&amp;gt; &amp;gt;  &amp;emsp;&amp;emsp;这对尖">
+<meta property="og:description" content="C/C++参考文档 概念栈是一种后进先出的数据结构，也就是LIFO(last in first out) ，最后加入栈的元素将最先被取出来，在栈的同一端进行数据的插入与取出，这一段叫做“栈顶”。 头文件 1#include &amp;lt;stack&amp;gt;  名字空间 1std  构造函数定义: 1queue&amp;lt;Type, Container = deque&amp;lt;T&amp;gt; &amp;gt;  &amp;emsp">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-07T12:24:02.271Z">
+<meta property="og:updated_time" content="2020-01-12T03:50:08.085Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL常用模板：Stack栈">
-<meta name="twitter:description" content="概念栈是一种后进先出的数据结构，也就是LIFO(last in first out) ，最后加入栈的元素将最先被取出来，在栈的同一端进行数据的插入与取出，这一段叫做“栈顶”。 头文件 1#include &amp;lt;stack&amp;gt;  名字空间 1std  构造函数定义: 1queue&amp;lt;Type, Container = deque&amp;lt;T&amp;gt; &amp;gt;  &amp;emsp;&amp;emsp;这对尖">
+<meta name="twitter:description" content="C/C++参考文档 概念栈是一种后进先出的数据结构，也就是LIFO(last in first out) ，最后加入栈的元素将最先被取出来，在栈的同一端进行数据的插入与取出，这一段叫做“栈顶”。 头文件 1#include &amp;lt;stack&amp;gt;  名字空间 1std  构造函数定义: 1queue&amp;lt;Type, Container = deque&amp;lt;T&amp;gt; &amp;gt;  &amp;emsp">
   <link rel="canonical" href="https://blog.siriyang.cn/posts/20200107200316id">
 
 
@@ -189,7 +189,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">52</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">55</span></a>
 
   </li>
       
@@ -215,7 +215,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">100</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">108</span></a>
 
   </li>
       
@@ -327,11 +327,19 @@
                 
               
 
-              <time title="创建时间：2020-01-07 20:03:16 / 修改时间：20:24:02" itemprop="dateCreated datePublished" datetime="2020-01-07T20:03:16+08:00">2020-01-07</time>
+              <time title="创建时间：2020-01-07 20:03:16" itemprop="dateCreated datePublished" datetime="2020-01-07T20:03:16+08:00">2020-01-07</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-12 11:50:08" itemprop="dateModified" datetime="2020-01-12T11:50:08+08:00">2020-01-12</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -397,7 +405,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>808</span>
+              <span>818</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -420,7 +428,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>栈是一种后进先出的数据结构，也就是LIFO(last in first out) ，最后加入栈的元素将最先被取出来，在栈的同一端进行数据的插入与取出，这一段叫做“栈顶”。</p>
+        <p><a href="https://blog.siriyang.cn/posts/20200107194641id.html">C/C++参考文档</a></p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>栈是一种后进先出的数据结构，也就是LIFO(last in first out) ，最后加入栈的元素将最先被取出来，在栈的同一端进行数据的插入与取出，这一段叫做“栈顶”。</p>
 <p><strong>头文件</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br></pre></td></tr></table></figure>
 
@@ -567,7 +576,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2020年01月07日 - 20时01分
+    2020年01月12日 - 11时01分
   </li>
 
   <!-- 引用链接 -->
@@ -685,7 +694,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -859,7 +868,13 @@
         
           
         
-        <span class="site-state-item-count">52</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -952,12 +967,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">583k</span>
+    <span title="站点总字数">604k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:50</span>
+    <span title="站点阅读时长">9:09</span>
 </div>
 
         
