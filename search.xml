@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CCF-CSP：201612-1中间数]]></title>
+    <url>%2Fposts%2F20200118212159id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目编号： 201612-1 试题名称： 中间数 时间限制： 1.0s 内存限制： 256.0MB 问题描述&emsp;&emsp;在一个整数序列$a_1, a_2, … , a_n$中，如果存在某个数，大于它的整数数量等于小于它的整数数量，则称其为中间数。在一个序列中，可能存在多个下标不相同的中间数，这些中间数的值是相同的。&emsp;&emsp;给定一个整数序列，请找出这个整数序列的中间数的值。 输入格式&emsp;&emsp;输入的第一行包含了一个整数n，表示整数序列中数的个数。&emsp;&emsp;第二行包含n个正整数，依次表示$a_1, a_2, … , a_n$。 输出格式&emsp;&emsp;如果约定序列的中间数存在，则输出中间数的值，否则输出-1表示不存在中间数。 样例数据样例输入 1262 6 5 6 3 5 样例输出5 样例说明&emsp;&emsp;比5小的数有2个，比5大的数也有2个。 样例输入 1243 4 6 7 样例输出-1 样例说明&emsp;&emsp;在序列中的4个数都不满足中间数的定义。 样例输入 1253 4 6 6 7 样例输出-1 样例说明&emsp;&emsp;在序列中的5个数都不满足中间数的定义。 评测用例规模与约定&emsp;&emsp;对于所有评测用例，1 $\le$ n $\le$ 1000，1 $\le$ ai $\le$ 1000。 解答代码1234567891011121314151617181920212223242526272829303132333435363738394041#include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;algorithm&gt;using namespace std;int main()&#123; int n; vector&lt;int&gt; num; cin&gt;&gt;n; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; num.push_back(t); &#125; sort(num.begin(),num.end()); int res=-1; for(int i=0;i&lt;n;i++)&#123; int t1,t2; for(t1=i-1;t1&gt;=0 &amp;&amp; num[t1]==num[i];t1--); for(t2=i+1;t2&lt;n &amp;&amp; num[t2]==num[i];t2++); t1=t1&gt;=0?t1-0+1:0; t2=t2&lt;n?n-t2:0; if(t1==t2)&#123; res=num[i]; break; &#125; &#125; cout&lt;&lt;res; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201703-2学生排队]]></title>
+    <url>%2Fposts%2F20200118205706id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目编号： 201703-2 试题名称： 学生排队 时间限制： 1.0s 内存限制： 256.0MB 问题描述&emsp;&emsp;体育老师小明要将自己班上的学生按顺序排队。他首先让学生按学号从小到大的顺序排成一排，学号小的排在前面，然后进行多次调整。一次调整小明可能让一位同学出队，向前或者向后移动一段距离后再插入队列。&emsp;&emsp;例如，下面给出了一组移动的例子，例子中学生的人数为8人。&emsp;&emsp;0）初始队列中学生的学号依次为1, 2, 3, 4, 5, 6, 7, 8；&emsp;&emsp;1）第一次调整，命令为“3号同学向后移动2”，表示3号同学出队，向后移动2名同学的距离，再插入到队列中，新队列中学生的学号依次为1, 2, 4, 5, 3, 6, 7, 8；&emsp;&emsp;2）第二次调整，命令为“8号同学向前移动3”，表示8号同学出队，向前移动3名同学的距离，再插入到队列中，新队列中学生的学号依次为1, 2, 4, 5, 8, 3, 6, 7；&emsp;&emsp;3）第三次调整，命令为“3号同学向前移动2”，表示3号同学出队，向前移动2名同学的距离，再插入到队列中，新队列中学生的学号依次为1, 2, 4, 3, 5, 8, 6, 7。&emsp;&emsp;小明记录了所有调整的过程，请问，最终从前向后所有学生的学号依次是多少？&emsp;&emsp;请特别注意，上述移动过程中所涉及的号码指的是学号，而不是在队伍中的位置。在向后移动时，移动的距离不超过对应同学后面的人数，如果向后移动的距离正好等于对应同学后面的人数则该同学会移动到队列的最后面。在向前移动时，移动的距离不超过对应同学前面的人数，如果向前移动的距离正好等于对应同学前面的人数则该同学会移动到队列的最前面。 输入格式&emsp;&emsp;输入的第一行包含一个整数n，表示学生的数量，学生的学号由1到n编号。&emsp;&emsp;第二行包含一个整数m，表示调整的次数。&emsp;&emsp;接下来m行，每行两个整数p, q，如果q为正，表示学号为p的同学向后移动q，如果q为负，表示学号为p的同学向前移动-q。 输出格式&emsp;&emsp;输出一行，包含n个整数，相邻两个整数之间由一个空格分隔，表示最终从前向后所有学生的学号。 样例输入12345833 28 -33 -2 样例输出1 2 4 3 5 8 6 7 评测用例规模与约定&emsp;&emsp;对于所有评测用例，1 $\le$ n $\le$ 1000，1 $\le$ m $\le$ 1000，所有移动均合法。 解答代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include &lt;iostream&gt; #include &lt;vector&gt;using namespace std;void movefront(vector&lt;int&gt; &amp;q,int s,int w)&#123; int n; for(n=0;q[n]!=s;n++); int t=q[n]; for(int i=0;i&lt;w;i++)&#123; q[n]=q[n-1]; n--; &#125; q[n]=t;&#125;void moveback(vector&lt;int&gt; &amp;q,int s,int w)&#123; int n; for(n=0;q[n]!=s;n++); int t=q[n]; for(int i=0;i&lt;w;i++)&#123; q[n]=q[n+1]; n++; &#125; q[n]=t;&#125;int main()&#123; int n,m; vector&lt;int&gt; q; cin&gt;&gt;n&gt;&gt;m; for(int i=0;i&lt;n;i++)&#123; q.push_back(i+1); &#125; for(int i=0;i&lt;m;i++)&#123; int s,w; cin&gt;&gt;s&gt;&gt;w; if(w&gt;0) moveback(q,s,w); else movefront(q,s,-w); &#125; for(int i=0;i&lt;n;i++)&#123; cout&lt;&lt;q[i]&lt;&lt;" "; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201703-1分蛋糕]]></title>
+    <url>%2Fposts%2F20200118202831id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目编号： 201703-1 试题名称： 分蛋糕 时间限制： 1.0s 内存限制： 256.0MB 问题描述&emsp;&emsp;小明今天生日，他有n块蛋糕要分给朋友们吃，这n块蛋糕（编号为1到n）的重量分别为$a_1, a_2, … , a_n$。小明想分给每个朋友至少重量为k的蛋糕。小明的朋友们已经排好队准备领蛋糕，对于每个朋友，小明总是先将自己手中编号最小的蛋糕分给他，当这个朋友所分得蛋糕的重量不到k时，再继续将剩下的蛋糕中编号最小的给他，直到小明的蛋糕分完或者这个朋友分到的蛋糕的总重量大于等于k。&emsp;&emsp;请问当小明的蛋糕分完时，总共有多少个朋友分到了蛋糕。 输入格式&emsp;&emsp;输入的第一行包含了两个整数n, k,意义如上所述。&emsp;&emsp;第二行包含n个正整数，依次表示$a_1, a_2, … , a_n$。 输出格式&emsp;&emsp;输出一个整数，表示有多少个朋友分到了蛋糕。 样例输入126 92 6 5 6 3 5 样例输出3 样例说明&emsp;&emsp;第一个朋友分到了前3块蛋糕，第二个朋友分到了第4、5块蛋糕，第三个朋友分到了最后一块蛋糕。 评测用例规模与约定&emsp;&emsp;对于所有评测用例，1 $\le$ n $\le$ 1000，1 $\le$ k $\le$ 10000，1 $\le$ ai $\le$ 1000。 解答代码12345678910111213141516171819202122232425262728#include &lt;iostream&gt; using namespace std;int main()&#123; int n,k; cin&gt;&gt;n&gt;&gt;k; int sum,res; sum=0; res=0; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; sum+=t; if(sum&gt;=k)&#123; sum=0; res++; &#125; &#125; if(sum) res++; cout&lt;&lt;res; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[重邮18-19年C语言期末考试试卷及答案]]></title>
     <url>%2Fposts%2F20200118113033id.html</url>
     <content type="text"><![CDATA[下载试卷PDF 1.9MB A卷一、基础知识测试题1. 8 ; 201 2. 0 ; 1 3. 90 ; 60 4. 8642 ; 8 5. 1 ; A 6. &quot;Yes!&quot; ; B&emsp;&emsp;完全数（Perfect number），又称完美数或完备数，是一些特殊的自然数。它所有的真因子（即除了自身以外的约数）的和（即因子函数），恰好等于它本身。 7. 1 ; 2 8. 10 ; A 9. 64 ; 3 10. &quot; A Z C D B C&quot; ; C 11. &quot; 1 3 4 5 7 9&quot; ; A 12. &quot;Yes!&quot; ; 4 13. 1boxs[i].seats[j] ; 1maxIndex 14. A ; D 15. A ; B 二、编程题1. 12345678910111213141516171819#include &lt;stdio.h&gt;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; for(int j=0;j&lt;n;j++)&#123; if((i+j)%2==0) printf("男"); else printf("女"); &#125; printf("\n"); &#125; return 0;&#125; 2. 12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;stdio.h&gt;void convert(char *str,int n)&#123; int i=0; int f=0; if(n==0)&#123; str[0]='0'; str[1]='\n'; return; &#125; if(n&lt;0)&#123; n*=-1; f=1; &#125; while(n&gt;0)&#123; str[i]='0'+n%10; n/=10; i++; &#125; if(f)&#123; str[i]='-'; i++; str[i]='\n'; &#125; for(int j=0;j&lt;i/2;j++)&#123; char t=str[j]; str[j]=str[i-j-1]; str[i-j-1]=t; &#125;&#125;int main()&#123; char str[255]; convert(str,-12345); printf("%s",str); return 0;&#125; 3. 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;stdio.h&gt;typedef struct Pair&#123; int key; int value;&#125;Pair;void sort(Pair *p)&#123; for(int i=0;i&lt;10;i++) for(int j=i+1;j&lt;10;j++) if(p[i].value&lt;p[j].value)&#123; int tk,tv; tk=p[i].key; tv=p[i].value; p[i].key=p[j].key; p[i].value=p[j].value; p[j].key=tk; p[j].value=tv; &#125;&#125;void top3(Pair *p)&#123; for(int i=0;i&lt;3;i++)&#123; printf("%d %d\n",p[i].key,p[i].value); &#125;&#125;int main()&#123; Pair p[10]; for(int i=0;i&lt;10;i++)&#123; scanf("%d %d",&amp;p[i].key,&amp;p[i].value); &#125; sort(p); top3(p); return 0;&#125; B卷一、基础知识测试题1. 0.000000 ; 1000.000000 2. &quot;Yes!&quot; ; 57 3. 1775 ; 不可以 4. 21 ; 55 i f s t 3 1 2 2 4 2 3 3 5 3 5 5 6 5 8 8 7 8 13 13 8 13 21 21 9 21 34 34 10 34 55 55 5. 12341011 ; C 6. 55555 ; 空格 7. 15 ; 5 8. 120 ; 5 9. 68 ; 不能 1 2 3 4 5 6 7 8 9 10 11 1213 14 15 16 10. 99 ; 可以 11. -12345 ; 5 12. tpuqc ; p 13. 1price -= 0.5 ; 1fee = price*amount 14. 定义数据类型 ; C 15. C ; C 二、编程题1. 12345678910111213141516#include &lt;stdio.h&gt;int len(char *str)&#123; int i; if(!str) return -1; for(i=0;str[i]!='\0';i++); return i;&#125;int main()&#123; printf("%d",len("hello world!")); return 0;&#125; 2. 123456789101112131415161718192021222324252627282930313233343536#include &lt;stdio.h&gt;int isSu(int n)&#123; if(n==2) return 1; for(int i=2;i&lt;n/2;i++)&#123; if(n%i==0) return 0; &#125; return 1;&#125;int main()&#123; int n[101]=&#123;0&#125;; for(int i=2;i&lt;=100;i++)&#123; if(n[i]) continue; if(!isSu(n[i])) n[i]=1; int t=2; while(i*t&lt;=100) n[i*(t++)]=1; &#125; for(int i=2;i&lt;=100;i++) if(!n[i]) printf("%d ",i); return 0;&#125; 3. 12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;stdio.h&gt;typedef struct Household&#123; int ID; double amount; double fee;&#125;H;void sort(H *h)&#123; for(int i=0;i&lt;600;i++) for(int j=i+1;j&lt;600;j++) if(h[i].amount&lt;h[j].amount)&#123; int ti; double ta,tf; ti=h[i].ID; ta=h[i].amount; tf=h[i].fee; h[i].ID=h[j].ID; h[i].amount=h[j].amount; h[i].fee=h[j].fee; h[j].ID=ti; h[j].amount=ta; h[j].fee=tf; &#125;&#125;int main()&#123; H h[10]; for(int i=0;i&lt;600;i++)&#123; scanf("%d",&amp;h[i].amount); h[i].ID=i+1; h[i].fee=h[i].amount*1.53; &#125; sort(h); for(int i=0;i&lt;600;i++)&#123; printf("ID:%d fee:%lf",h[i].ID,h[i].fee); &#125; return 0;&#125;]]></content>
@@ -953,7 +995,7 @@
   <entry>
     <title><![CDATA[CCF-CSP题目汇总]]></title>
     <url>%2Fposts%2F20191230204553id.html</url>
-    <content type="text"><![CDATA[CCF-CSP首页 &emsp;&emsp;以下都是我自己做过的题目，答案也全是自己做的，和网上大牛的最优解还是有差距。╮(￣▽ ￣)╭ 试题编号 试题名称 最高得分 201912-1 报数 100 201912-2 回收站选址 100 201909-1 小明种苹果 100 201909-2 小明种苹果（续） 100 201909-3 字符画 201903-1 小中大 100 201903-2 二十四点 100 201812-1 小明上学 100 201812-2 小明放学 100 201809-1 卖菜 100 201809-2 买菜 100 201803-1 跳一跳 100 201803-2 碰撞的小球 100 201712-1 最小差值 100 201712-2 游戏 100 201709-1 打酱油 100 201709-2 公共钥匙盒 100 201312-1 出现次数最多的数 100 201312-2 ISBN号码 100]]></content>
+    <content type="text"><![CDATA[CCF-CSP首页 &emsp;&emsp;以下都是我自己做过的题目，答案也全是自己做的，和网上大牛的最优解还是有差距。╮(￣▽ ￣)╭ 试题编号 试题名称 最高得分 201912-1 报数 100 201912-2 回收站选址 100 201909-1 小明种苹果 100 201909-2 小明种苹果（续） 100 201909-3 字符画 201903-1 小中大 100 201903-2 二十四点 100 201812-1 小明上学 100 201812-2 小明放学 100 201809-1 卖菜 100 201809-2 买菜 100 201803-1 跳一跳 100 201803-2 碰撞的小球 100 201712-1 最小差值 100 201712-2 游戏 100 201709-1 打酱油 100 201709-2 公共钥匙盒 100 201703-1 分蛋糕 100 201703-2 学生排队 100 201612-1 中间数 100 201312-1 出现次数最多的数 100 201312-2 ISBN号码 100]]></content>
       <categories>
         <category>计算机</category>
         <category>算法题</category>
@@ -1342,8 +1384,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -1356,8 +1398,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -1370,8 +1412,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -1560,8 +1602,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>理论</tag>
+        <tag>数学</tag>
         <tag>高次多项式</tag>
         <tag>综合除法</tag>
         <tag>余数定理</tag>
@@ -1577,8 +1619,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>理论</tag>
+        <tag>数学</tag>
         <tag>高次多项式</tag>
         <tag>综合除法</tag>
         <tag>因式分解</tag>
@@ -1594,8 +1636,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>理论</tag>
+        <tag>数学</tag>
         <tag>复数</tag>
         <tag>微分方程</tag>
       </tags>
