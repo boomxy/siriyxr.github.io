@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[重邮18-19年C语言期末考试试卷]]></title>
+    <url>%2Fposts%2F20200118113033id.html</url>
+    <content type="text"><![CDATA[下载试卷PDF 1.9MB A卷一、基础知识测试题1. 8 ; 201 2. 0 ; 1 3. 90 ; 60 4. 8642 ; 8 5. 1 ; A 6. &quot;Yes!&quot; ; B&emsp;&emsp;完全数（Perfect number），又称完美数或完备数，是一些特殊的自然数。它所有的真因子（即除了自身以外的约数）的和（即因子函数），恰好等于它本身。 7. 1 ; 2 8. 10 ; A 9. 64 ; 3 10. &quot; A Z C D B C&quot; ; C 11. &quot; 1 3 4 5 7 9&quot; ; A 12. &quot;Yes!&quot; ; 4 13. 1boxs[i].seats[j] ; 1maxIndex 14. A ; D 15. A ; B 二、编程题1. 12345678910111213141516171819#include &lt;stdio.h&gt;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; for(int j=0;j&lt;n;j++)&#123; if((i+j)%2==0) printf("男"); else printf("女"); &#125; printf("\n"); &#125; return 0;&#125; 2. 12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;stdio.h&gt;void convert(char *str,int n)&#123; int i=0; int f=0; if(n==0)&#123; str[0]='0'; str[1]='\n'; return; &#125; if(n&lt;0)&#123; n*=-1; f=1; &#125; while(n&gt;0)&#123; str[i]='0'+n%10; n/=10; i++; &#125; if(f)&#123; str[i]='-'; i++; str[i]='\n'; &#125; for(int j=0;j&lt;i/2;j++)&#123; char t=str[j]; str[j]=str[i-j-1]; str[i-j-1]=t; &#125;&#125;int main()&#123; char str[255]; convert(str,-12345); printf("%s",str); return 0;&#125; 3. 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;stdio.h&gt;typedef struct Pair&#123; int key; int value;&#125;Pair;void sort(Pair *p)&#123; for(int i=0;i&lt;10;i++) for(int j=i+1;j&lt;10;j++) if(p[i].value&lt;p[j].value)&#123; int tk,tv; tk=p[i].key; tv=p[i].value; p[i].key=p[j].key; p[i].value=p[j].value; p[j].key=tk; p[j].value=tv; &#125;&#125;void top3(Pair *p)&#123; for(int i=0;i&lt;3;i++)&#123; printf("%d %d\n",p[i].key,p[i].value); &#125;&#125;int main()&#123; Pair p[10]; for(int i=0;i&lt;10;i++)&#123; scanf("%d %d",&amp;p[i].key,&amp;p[i].value); &#125; sort(p); top3(p); return 0;&#125; B卷一、基础知识测试题二、编程题]]></content>
+      <categories>
+        <category>考研</category>
+        <category>复试</category>
+      </categories>
+      <tags>
+        <tag>考研</tag>
+        <tag>真题</tag>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CCF-CSP：201312-2ISBN号码]]></title>
     <url>%2Fposts%2F20200117222047id.html</url>
     <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201312-2试题名称： ISBN号码时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;每一本正式出版的图书都有一个ISBN号码与之对应，ISBN码包括9位数字、1位识别码和3位分隔符，其规定格式如“x-xxx-xxxxx-x”，其中符号“-”是分隔符（键盘上的减号），最后一位是识别码，例如0-670-82162-4就是一个标准的ISBN码。ISBN码的首位数字表示书籍的出版语言，例如0代表英语；第一个分隔符“-”之后的三位数字代表出版社，例如670代表维京出版社；第二个分隔之后的五位数字代表该书在出版社的编号；最后一位为识别码。&emsp;&emsp;识别码的计算方法如下：&emsp;&emsp;首位数字乘以1加上次位数字乘以2….以此类推，用所得的结果mod 11，所得的余数即为识别码，如果余数为10，则识别码为大写字母X。例如ISBN号码0-670-82162-4中的识别码4是这样得到的：对067082162这9个数字，从左至右，分别乘以1，2，… ，9，再求和，即0×1+6×2+…+2×9=158，然后取158 mod 11的结果4作为识别码。&emsp;&emsp;编写程序判断输入的ISBN号码中识别码是否正确，如果正确，则仅输出“Right”；如果错误，则输出是正确的ISBN号码。 输入格式&emsp;&emsp;输入只有一行，是一个字符序列，表示一本书的ISBN号码（保证输入符合ISBN号码的格式要求）。 输出格式&emsp;&emsp;输出一行，假如输入的ISBN号码的识别码正确，那么输出“Right”，否则，按照规定的格式，输出正确的ISBN号码（包括分隔符“-”）。 样例数据样例输入1 10-670-82162-4 样例输出2 1Right 样例输入1 10-670-82162-0 样例输出2 10-670-82162-4 解答代码123456789101112131415161718192021222324252627282930313233343536373839#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;int main(int argc, char** argv) &#123; string in; int n,f; n=0; cin&gt;&gt;in; if(in[12]=='X') f=10; else f=in[12]-'0'; for(int i=0,j=1;i&lt;11;i++)&#123; if(in[i]=='-') continue; n+=(in[i]-'0')*j; j++; &#125; if(n%11==f) cout&lt;&lt;"Right"; else if(n%11==10)&#123; in[12]='X'; cout&lt;&lt;in; &#125; else&#123; in[12]=(char)('0'+(n%11)); cout&lt;&lt;in; &#125; return 0;&#125;]]></content>
