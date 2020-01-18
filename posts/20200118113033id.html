@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="重庆邮电大学2018-2019学年1学期C语言程序设计试卷（期末）真题及答案">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-18T06:15:55.797Z">
+<meta property="og:updated_time" content="2020-01-18T07:43:21.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重邮18-19年C语言期末考试试卷及答案">
 <meta name="twitter:description" content="重庆邮电大学2018-2019学年1学期C语言程序设计试卷（期末）真题及答案">
@@ -327,7 +327,7 @@
                 
               
 
-              <time title="创建时间：2020-01-18 11:30:33 / 修改时间：14:15:55" itemprop="dateCreated datePublished" datetime="2020-01-18T11:30:33+08:00">2020-01-18</time>
+              <time title="创建时间：2020-01-18 11:30:33 / 修改时间：15:43:21" itemprop="dateCreated datePublished" datetime="2020-01-18T11:30:33+08:00">2020-01-18</time>
             </span>
           
             
@@ -390,7 +390,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>1.7k</span>
+              <span>3.4k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -400,7 +400,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
           
             <div class="post-description">重庆邮电大学2018-2019学年1学期C语言程序设计试卷（期末）真题及答案</div>
@@ -446,7 +446,98 @@
 <p><strong>3.</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Pair</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> key;</span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line">&#125;Pair;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(Pair *p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">			<span class="keyword">if</span>(p[i].value&lt;p[j].value)&#123;</span><br><span class="line">				<span class="keyword">int</span> tk,tv;</span><br><span class="line">				tk=p[i].key;</span><br><span class="line">				tv=p[i].value;</span><br><span class="line">				p[i].key=p[j].key;</span><br><span class="line">				p[i].value=p[j].value;</span><br><span class="line">				p[j].key=tk;</span><br><span class="line">				p[j].value=tv;</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">top3</span><span class="params">(Pair *p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,p[i].key,p[i].value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	Pair p[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;p[i].key,&amp;p[i].value);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sort(p);</span><br><span class="line"></span><br><span class="line">	top3(p);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="B卷"><a href="#B卷" class="headerlink" title="B卷"></a>B卷</h2><h3 id="一、基础知识测试题-1"><a href="#一、基础知识测试题-1" class="headerlink" title="一、基础知识测试题"></a>一、基础知识测试题</h3><h3 id="二、编程题-1"><a href="#二、编程题-1" class="headerlink" title="二、编程题"></a>二、编程题</h3>
+<h2 id="B卷"><a href="#B卷" class="headerlink" title="B卷"></a>B卷</h2><h3 id="一、基础知识测试题-1"><a href="#一、基础知识测试题-1" class="headerlink" title="一、基础知识测试题"></a>一、基础知识测试题</h3><p><strong>1.</strong> 0.000000 ; 1000.000000</p>
+<p><strong>2.</strong> <code>&quot;Yes!&quot;</code> ; 57</p>
+<p><strong>3.</strong> 1775 ; 不可以</p>
+<p><strong>4.</strong> 21 ; 55</p>
+<table>
+<thead>
+<tr>
+<th>i</th>
+<th>f</th>
+<th>s</th>
+<th>t</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+<td>13</td>
+<td>13</td>
+</tr>
+<tr>
+<td>8</td>
+<td>13</td>
+<td>21</td>
+<td>21</td>
+</tr>
+<tr>
+<td>9</td>
+<td>21</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>10</td>
+<td>34</td>
+<td>55</td>
+<td>55</td>
+</tr>
+</tbody></table>
+<p><strong>5.</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p> ; C</p>
+<p><strong>6.</strong> 55555 ; 空格</p>
+<p><strong>7.</strong> 15 ; 5</p>
+<p><strong>8.</strong> 120 ; 5</p>
+<p><strong>9.</strong> 68 ; 不能</p>
+<p> <code>1</code>  2    3   <code>4</code><br> 5   <code>6</code>  <code>7</code>   8<br> 9  <code>10</code> <code>11</code>  12<br><code>13</code> 14   15  <code>16</code></p>
+<p><strong>10.</strong> 99 ; 可以</p>
+<p><strong>11.</strong> -12345 ; 5</p>
+<p><strong>12.</strong> tpuqc ; p</p>
+<p><strong>13.</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">price -= <span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+
+<p>;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fee = price*amount</span><br></pre></td></tr></table></figure>
+
+<p><strong>14.</strong> 定义数据类型 ; C</p>
+<p><strong>15.</strong>  C ; C</p>
+<h3 id="二、编程题-1"><a href="#二、编程题-1" class="headerlink" title="二、编程题"></a>二、编程题</h3><p><strong>1.</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">len</span><span class="params">(<span class="keyword">char</span> *str)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">if</span>(!str)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;str[i]!=<span class="string">'\0'</span>;i++);</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,len(<span class="string">"hello world!"</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isSu</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;n/<span class="number">2</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n%i==<span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> n[<span class="number">101</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">100</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n[i])</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(!isSu(n[i]))</span><br><span class="line">			n[i]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> t=<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">while</span>(i*t&lt;=<span class="number">100</span>)</span><br><span class="line">			n[i*(t++)]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">100</span>;i++)</span><br><span class="line">		<span class="keyword">if</span>(!n[i])</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d "</span>,i);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Household</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> ID;</span><br><span class="line">	<span class="keyword">double</span> amount;</span><br><span class="line">	<span class="keyword">double</span> fee;</span><br><span class="line">&#125;H;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(H *h)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">600</span>;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;<span class="number">600</span>;j++)</span><br><span class="line">			<span class="keyword">if</span>(h[i].amount&lt;h[j].amount)&#123;</span><br><span class="line">				<span class="keyword">int</span> ti;</span><br><span class="line">				<span class="keyword">double</span> ta,tf;</span><br><span class="line">				ti=h[i].ID;</span><br><span class="line">				ta=h[i].amount;</span><br><span class="line">				tf=h[i].fee;</span><br><span class="line">				h[i].ID=h[j].ID;</span><br><span class="line">				h[i].amount=h[j].amount;</span><br><span class="line">				h[i].fee=h[j].fee;</span><br><span class="line">				h[j].ID=ti;</span><br><span class="line">				h[j].amount=ta;</span><br><span class="line">				h[j].fee=tf;</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	H h[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">600</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;h[i].amount);</span><br><span class="line">		h[i].ID=i+<span class="number">1</span>;</span><br><span class="line">		h[i].fee=h[i].amount*<span class="number">1.53</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sort(h);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">600</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"ID:%d fee:%lf"</span>,h[i].ID,h[i].fee);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
 	
@@ -539,7 +630,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2020年01月18日 - 14时01分
+    2020年01月18日 - 15时01分
   </li>
 
   <!-- 引用链接 -->
@@ -932,12 +1023,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">616k</span>
+    <span title="站点总字数">618k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9:20</span>
+    <span title="站点阅读时长">9:22</span>
 </div>
 
         
