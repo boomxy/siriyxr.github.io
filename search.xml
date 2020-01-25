@@ -1,6 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CCF-CSP：201403-2窗口]]></title>
+    <url>%2Fposts%2F20200125181950id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201403-2试题名称： 窗口时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;在某图形操作系统中,有 N 个窗口,每个窗口都是一个两边与坐标轴分别平行的矩形区域。窗口的边界上的点也属于该窗口。窗口之间有层次的区别,在多于一个窗口重叠的区域里,只会显示位于顶层的窗口里的内容。&emsp;&emsp;当你点击屏幕上一个点的时候,你就选择了处于被点击位置的最顶层窗口,并且这个窗口就会被移到所有窗口的最顶层,而剩余的窗口的层次顺序不变。如果你点击的位置不属于任何窗口,则系统会忽略你这次点击。&emsp;&emsp;现在我们希望你写一个程序模拟点击窗口的过程。 输入格式&emsp;&emsp;输入的第一行有两个正整数,即 N 和 M。(1 $\le$ N $\le$ 10,1 $\le$ M $\le$ 10)&emsp;&emsp;接下来 N 行按照从最下层到最顶层的顺序给出 N 个窗口的位置。 每行包含四个非负整数 $x_1$, $y_1$, $x_2$, $y_2$,表示该窗口的一对顶点坐标分别为 ($x_1$, $y_1$) 和 ($x_2$, $y_2$)。保证 $x_1$ &lt; $x_2$,$y_1$ &lt; $y_2$。&emsp;&emsp;接下来 M 行每行包含两个非负整数 x, y,表示一次鼠标点击的坐标。&emsp;&emsp;题目中涉及到的所有点和矩形的顶点的 x, y 坐标分别不超过 2559 和 1439。 输出格式&emsp;&emsp;输出包括 M 行,每一行表示一次鼠标点击的结果。如果该次鼠标点击选择了一个窗口,则输出这个窗口的编号(窗口按照输入中的顺序从 1 编号到 N);如果没有,则输出”IGNORED“(不含双引号)。 样例输入123456783 40 0 4 41 1 5 52 2 6 61 10 04 40 5 样例输出1234211IGNORED 样例说明&emsp;&emsp;第一次点击的位置同时属于第 1 和第 2 个窗口,但是由于第 2 个窗口在上面,它被选择并且被置于顶层。&emsp;&emsp;第二次点击的位置只属于第 1 个窗口,因此该次点击选择了此窗口并将其置于顶层。现在的三个窗口的层次关系与初始状态恰好相反了。&emsp;&emsp;第三次点击的位置同时属于三个窗口的范围,但是由于现在第 1 个窗口处于顶层,它被选择。&emsp;&emsp;最后点击的 (0, 5) 不属于任何窗口。 解答代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;typedef struct Win &#123; int top; int id; int x1, x2, y1, y2;&#125;Win;bool cmp(Win w1, Win w2) &#123; return w1.top &gt; w2.top;&#125;int main() &#123; int n, m, top = 0; Win w[11]; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; n; i++) &#123; cin &gt;&gt; w[i].x1 &gt;&gt; w[i].y1 &gt;&gt; w[i].x2 &gt;&gt; w[i].y2; w[i].id = i + 1; w[i].top = top++; &#125; sort(w, w + n, cmp); for (int i = 0; i &lt; m; i++) &#123; int f = 1; int cx, cy; cin &gt;&gt; cx&gt;&gt;cy; for (int j = 0; j &lt; n; j++) &#123; if (w[j].x1 &lt;= cx &amp;&amp; cx &lt;= w[j].x2 &amp;&amp; w[j].y1 &lt;= cy &amp;&amp; cy &lt;= w[j].y2) &#123; cout &lt;&lt; w[j].id &lt;&lt; endl; w[j].top = top++; sort(w, w + n, cmp); f = 0; break; &#125; &#125; if (f) cout &lt;&lt; "IGNORED" &lt;&lt; endl; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201403-1相反数]]></title>
+    <url>%2Fposts%2F20200125175737id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201403-1试题名称： 相反数时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;有 N 个非零且各不相同的整数。请你编一个程序求出它们中有多少对相反数(a 和 -a 为一对相反数)。 输入格式&emsp;&emsp;第一行包含一个正整数 N。(1 $\le$ N $\le$ 500)。&emsp;&emsp;第二行为 N 个用单个空格隔开的非零整数,每个数的绝对值不超过1000,保证这些整数各不相同。 输出格式&emsp;&emsp;只输出一个整数,即这 N 个数中包含多少对相反数。 样例输入1251 2 3 -1 -2 样例输出2 解答代码1234567891011121314151617181920212223242526#include &lt;iostream&gt;#include &lt;set&gt;using namespace std;int main()&#123; int n; int res=0; set&lt;int&gt; s; cin&gt;&gt;n; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; if(s.find(-t)!=s.end()) res++; else s.insert(t); &#125; cout&lt;&lt;res; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201409-2画图]]></title>
+    <url>%2Fposts%2F20200125174825id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201409-2试题名称： 画图时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;在一个定义了直角坐标系的纸上，画一个($x_1,y_1$)到($x_2,y_2$)的矩形指将横坐标范围从$x_1$到$x_2$，纵坐标范围从$y_1$到$y_2$之间的区域涂上颜色。&emsp;&emsp;下图给出了一个画了两个矩形的例子。第一个矩形是(1,1) 到(4, 4)，用绿色和紫色表示。第二个矩形是(2, 3)到(6, 5)，用蓝色和紫色表示。图中，一共有15个单位的面积被涂上颜色，其中紫色部分被涂了两次，但在计算面积时只计算一次。在实际的涂色过程中，所有的矩形都涂成统一的颜色，图中显示不同颜色仅为说明方便。 &emsp;&emsp;给出所有要画的矩形，请问总共有多少个单位的面积被涂上颜色。 输入格式&emsp;&emsp;输入的第一行包含一个整数n，表示要画的矩形的个数。&emsp;&emsp;接下来n行，每行4个非负整数，分别表示要画的矩形的左下角的横坐标与纵坐标，以及右上角的横坐标与纵坐标。 输出格式&emsp;&emsp;输出一个整数，表示有多少个单位的面积被涂上颜色。 样例输入12321 1 4 42 3 6 5 样例输出15 评测用例规模与约定&emsp;&emsp;1 $\le$ n $\le$ 100，0 $\le$ 横坐标、纵坐标 $\le$ 100。 解答代码123456789101112131415161718192021222324252627282930#include &lt;iostream&gt;using namespace std;int main()&#123; int n; int mat[101][101]=&#123;0&#125;; int res=0; cin&gt;&gt;n; for(int i=0;i&lt;n;i++)&#123; int x1,y1,x2,y2; cin&gt;&gt;x1&gt;&gt;y1&gt;&gt;x2&gt;&gt;y2; for(int j=y1;j&lt;y2;j++) for(int k=x1;k&lt;x2;k++) mat[j][k]=1; &#125; for(int i=0;i&lt;101;i++)&#123; for(int j=0;j&lt;101;j++)&#123; res+=mat[i][j]; &#125; &#125; cout&lt;&lt;res; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201409-1相邻数对]]></title>
+    <url>%2Fposts%2F20200125173806id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201409-1试题名称： 相邻数对时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;给定n个不同的整数，问这些数中有多少对整数，它们的值正好相差1。 输入格式&emsp;&emsp;输入的第一行包含一个整数n，表示给定整数的个数。&emsp;&emsp;第二行包含所给定的n个整数。 输出格式&emsp;&emsp;输出一个整数，表示值正好相差1的数对的个数。 样例输入12610 2 6 3 7 8 样例输出3 样例说明&emsp;&emsp;值正好相差1的数对包括(2, 3), (6, 7), (7, 8)。 评测用例规模与约定&emsp;&emsp;1 $\le$ n $\le$ 1000，给定的整数为不超过10000的非负整数。 解答代码12345678910111213141516171819202122232425262728#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int main()&#123; int n; int num[1001]=&#123;0&#125;; int res=0; cin&gt;&gt;n; for(int i=0;i&lt;n;i++)&#123; cin&gt;&gt;num[i]; &#125; sort(num,num+n); for(int i=0;i&lt;n-1;i++)&#123; if(num[i+1]-num[i]==1) res++; &#125; cout&lt;&lt;res; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201412-2Z字形扫描]]></title>
+    <url>%2Fposts%2F20200125172151id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201412-2试题名称： Z字形扫描时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;在图像编码的算法中，需要将一个给定的方形矩阵进行Z字形扫描(Zigzag Scan)。给定一个n×n的矩阵，Z字形扫描的过程如下图所示： &emsp;&emsp;对于下面的4×4的矩阵，&emsp;&emsp;1 5 3 9&emsp;&emsp;3 7 5 6&emsp;&emsp;9 4 6 4&emsp;&emsp;7 3 1 3&emsp;&emsp;对其进行Z字形扫描后得到长度为16的序列：&emsp;&emsp;1 5 3 9 7 3 9 5 4 7 3 6 6 4 1 3&emsp;&emsp;请实现一个Z字形扫描的程序，给定一个n×n的矩阵，输出对这个矩阵进行Z字形扫描的结果。 输入格式&emsp;&emsp;输入的第一行包含一个整数n，表示矩阵的大小。&emsp;&emsp;输入的第二行到第n+1行每行包含n个正整数，由空格分隔，表示给定的矩阵。 输出格式&emsp;&emsp;输出一行，包含n×n个整数，由空格分隔，表示输入的矩阵经过Z字形扫描后的结果。 样例输入1234541 5 3 93 7 5 69 4 6 47 3 1 3 样例输出11 5 3 9 7 3 9 5 4 7 3 6 6 4 1 3 评测用例规模与约定&emsp;&emsp;1 $\le$ n $\le$ 500，矩阵元素为不超过1000的正整数。 解答代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include &lt;iostream&gt;using namespace std;int mat[501][501];int main()&#123; int n,x,y,c,r; x=1; y=-1; c=r=0; cin&gt;&gt;n; for(int i=0;i&lt;n;i++)&#123; for(int j=0;j&lt;n;j++)&#123; cin&gt;&gt;mat[i][j]; &#125; &#125; while(true)&#123; cout&lt;&lt;mat[r][c]&lt;&lt;" "; if(c==n-1 &amp;&amp; r==n-1) break; r+=y; c+=x; if(x&gt;0)&#123; if(r&lt;0 &amp;&amp; c&lt;n)&#123; r=0; x*=-1; y*=-1; &#125; else if(c==n &amp;&amp; r&gt;=0)&#123; c=n-1; x*=-1; y*=-1; &#125; else if(c==n &amp;&amp; r&lt;0)&#123; r=1; c=n-1; x*=-1; y*=-1; &#125; &#125; else&#123; if(c&lt;0 &amp;&amp; r&lt;n)&#123; c=0; x*=-1; y*=-1; &#125; else if(r==n &amp;&amp; c&gt;=0)&#123; r=n-1; x*=-1; y*=-1; &#125; else if(r==n &amp;&amp; c&lt;0)&#123; c=1; r=n-1; x*=-1; y*=-1; &#125; &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201412-1门禁系统]]></title>
+    <url>%2Fposts%2F20200125162659id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201412-1试题名称： 门禁系统时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;涛涛最近要负责图书馆的管理工作，需要记录下每天读者的到访情况。每位读者有一个编号，每条记录用读者的编号来表示。给出读者的来访记录，请问每一条记录中的读者是第几次出现。 输入格式&emsp;&emsp;输入的第一行包含一个整数n，表示涛涛的记录条数。&emsp;&emsp;第二行包含n个整数，依次表示涛涛的记录中每位读者的编号。 输出格式&emsp;&emsp;输出一行，包含n个整数，由空格分隔，依次表示每条记录中的读者编号是第几次出现。 样例输入1251 2 1 1 3 样例输出11 1 2 3 1 评测用例规模与约定&emsp;&emsp;1 $\le$ n $\le$ 1,000，读者的编号为不超过n的正整数。 解答代码12345678910111213141516171819#include &lt;iostream&gt;using namespace std;int main()&#123; int n; int p[1001]=&#123;0&#125;; cin&gt;&gt;n; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; cout&lt;&lt;++p[t]&lt;&lt;" "; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201503-2数字排序]]></title>
+    <url>%2Fposts%2F20200125162040id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201503-2试题名称： 数字排序时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;给定n个整数，请统计出每个整数出现的次数，按出现次数从多到少的顺序输出。 输入格式&emsp;&emsp;输入的第一行包含一个整数n，表示给定数字的个数。&emsp;&emsp;第二行包含n个整数，相邻的整数之间用一个空格分隔，表示所给定的整数。 输出格式&emsp;&emsp;输出多行，每行包含两个整数，分别表示一个给定的整数和它出现的次数。按出现次数递减的顺序输出。如果两个整数出现的次数一样多，则先输出值较小的，然后输出值较大的。 样例输入12125 2 3 3 1 3 4 2 5 2 3 5 样例输出123453 42 35 31 14 1 评测用例规模与约定&emsp;&emsp;1 $\le$ n $\le$ 1000，给出的数都是不超过1000的非负整数。 解答代码12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;typedef struct Num&#123; int k,v;&#125;Num;bool cmp(Num n1,Num n2)&#123; if(n1.v!=n2.v) return n1.v&gt;n2.v; else return n1.k&lt;n2.k;&#125;int main()&#123; Num num[1001]; int n; for(int i=0;i&lt;1001;i++)&#123; num[i].k=i+1; num[i].v=0; &#125; cin&gt;&gt;n; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; num[t-1].v++; &#125; sort(num,num+1001,cmp); for(int i=0;i&lt;1001;i++)&#123; if(num[i].v) cout&lt;&lt;num[i].k&lt;&lt;" "&lt;&lt;num[i].v&lt;&lt;endl; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201503-1图像旋转]]></title>
+    <url>%2Fposts%2F20200125160217id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201503-1试题名称： 图像旋转时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;旋转是图像处理的基本操作，在这个问题中，你需要将一个图像逆时针旋转90度。&emsp;&emsp;计算机中的图像表示可以用一个矩阵来表示，为了旋转一个图像，只需要将对应的矩阵旋转即可。 输入格式&emsp;&emsp;输入的第一行包含两个整数n, m，分别表示图像矩阵的行数和列数。&emsp;&emsp;接下来n行每行包含m个整数，表示输入的图像。 输出格式&emsp;&emsp;输出m行，每行包含n个整数，表示原始矩阵逆时针旋转90度后的矩阵。 样例输入1232 31 5 33 2 4 样例输出1233 45 21 3 评测用例规模与约定&emsp;&emsp;1 $\le$ n, m $\le$ 1,000，矩阵中的数都是不超过1000的非负整数。 解答解析&emsp;&emsp;这个代码有点奇怪的就是把矩阵声明写到函数里面运行时就会出问题，写外面就没事，多半是栈空间不足。 代码123456789101112131415161718192021222324252627#include &lt;iostream&gt;using namespace std;int mat[1001][1001];int main()&#123; int m,n; cin&gt;&gt;n&gt;&gt;m; for(int i=0;i&lt;n;i++) for(int j=0;j&lt;m;j++)&#123; cin&gt;&gt;mat[j][i]; &#125; for(int i=m-1;i&gt;=0;i--)&#123; for(int j=0;j&lt;n;j++)&#123; cout&lt;&lt;mat[i][j]&lt;&lt;" "; &#125; cout&lt;&lt;endl; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201509-2日期计算]]></title>
+    <url>%2Fposts%2F20200124142404id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201509-2试题名称： 日期计算时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;给定一个年份y和一个整数d，问这一年的第d天是几月几日？&emsp;&emsp;注意闰年的2月有29天。满足下面条件之一的是闰年：&emsp;&emsp;1） 年份是4的整数倍，而且不是100的整数倍；&emsp;&emsp;2） 年份是400的整数倍。 输入格式&emsp;&emsp;输入的第一行包含一个整数y，表示年份，年份在1900到2015之间（包含1900和2015）。&emsp;&emsp;输入的第二行包含一个整数d，d在1至365之间。 输出格式&emsp;&emsp;输出两行，每行一个整数，分别表示答案的月份和日期。 样例输入112201580 样例输出112321 样例输入212200040 样例输出21229 解答代码12345678910111213141516171819202122232425262728293031323334353637#include &lt;iostream&gt;using namespace std;int main()&#123; int y; int d; int m; int l[]=&#123;31,28,31,30,31,30,31,31,30,31,30,31&#125;; cin&gt;&gt;y&gt;&gt;d; m=1; while(1)&#123; if(m==2 &amp;&amp; (y%400==0 || (y%4==0 &amp;&amp; y%100!=0)))&#123; if(d&gt;29)&#123; d-=29; m++; &#125; else break; &#125; else&#123; if(d&gt;l[m-1])&#123; d-=l[m-1]; m++; &#125; else break; &#125; &#125; cout&lt;&lt;m&lt;&lt;endl&lt;&lt;d&lt;&lt;endl; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201509-1数列分段]]></title>
+    <url>%2Fposts%2F20200124140247id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201509-1试题名称： 数列分段时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;给定一个整数数列，数列中连续相同的最长整数序列算成一段，问数列中共有多少段? 输入格式&emsp;&emsp;输入的第一行包含一个整数n，表示数列中整数的个数。&emsp;&emsp;第二行包含n个整数$a_1, a_2, … , a_n$，表示给定的数列，相邻的整数之间用一个空格分隔。 输出格式&emsp;&emsp;输出一个整数，表示给定的数列有多个段。 样例输入1288 8 8 0 12 12 8 0 样例输出5 样例说明&emsp;&emsp;8 8 8是第一段，0是第二段，12 12是第三段，倒数第二个整数8是第四段，最后一个0是第五段。 评测用例规模与约定&emsp;&emsp;1 $\le$ n $\le$ 1000，0 $\le a_i \le$ 1000。 解答代码123456789101112131415161718192021222324#include &lt;iostream&gt;using namespace std;int main()&#123; int res=1; int n; cin&gt;&gt;n; int last,now; cin&gt;&gt;last; for(int i=1;i&lt;n;i++)&#123; cin&gt;&gt;now; if(now!=last) res++; last=now; &#125; cout&lt;&lt;res; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201512-2消除类游戏]]></title>
+    <url>%2Fposts%2F20200124125326id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201512-2试题名称： 消除类游戏时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;消除类游戏是深受大众欢迎的一种游戏，游戏在一个包含有n行m列的游戏棋盘上进行，棋盘的每一行每一列的方格上放着一个有颜色的棋子，当一行或一列上有连续三个或更多的相同颜色的棋子时，这些棋子都被消除。当有多处可以被消除时，这些地方的棋子将同时被消除。&emsp;&emsp;现在给你一个n行m列的棋盘，棋盘中的每一个方格上有一个棋子，请给出经过一次消除后的棋盘。&emsp;&emsp;请注意：一个棋子可能在某一行和某一列同时被消除。 输入格式&emsp;&emsp;输入的第一行包含两个整数n, m，用空格分隔，分别表示棋盘的行数和列数。&emsp;&emsp;接下来n行，每行m个整数，用空格分隔，分别表示每一个方格中的棋子的颜色。颜色使用1至9编号。 输出格式&emsp;&emsp;输出n行，每行m个整数，相邻的整数之间使用一个空格分隔，表示经过一次消除后的棋盘。如果一个方格中的棋子被消除，则对应的方格输出0，否则输出棋子的颜色编号。 样例输入1123454 52 2 3 1 23 4 5 1 42 3 2 1 32 2 2 4 4 样例输出112342 2 3 0 23 4 5 0 42 3 2 0 30 0 0 4 4 样例说明1&emsp;&emsp;棋盘中第4列的1和第4行的2可以被消除，其他的方格中的棋子均保留。 样例输入2123454 52 2 3 1 23 1 1 1 12 3 2 1 32 2 3 3 3 样例输出212342 2 3 0 23 0 0 0 02 3 2 0 32 2 0 0 0 样例说明2&emsp;&emsp;棋盘中所有的1以及最后一行的3可以被同时消除，其他的方格中的棋子均保留。 评测用例规模与约定&emsp;&emsp;所有的评测用例满足：1 $\le$ n, m $\le$ 30。 解答分析&emsp;&emsp;先用一个mask数组来记录要消去的数字，最后输出时再进行处理。 代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;iostream&gt;using namespace std;int main()&#123; int w,h; int map[31][31]; int mask[31][31]=&#123;0&#125;; cin&gt;&gt;h&gt;&gt;w; for(int i=0;i&lt;h;i++) for(int j=0;j&lt;w;j++)&#123; cin&gt;&gt;map[i][j]; &#125; for(int i=0;i&lt;h;i++) for(int j=0;j&lt;w;j++)&#123; //处理垂直 if(i&gt;0&amp;&amp;i&lt;h-1)&#123; if(map[i][j]==map[i-1][j] &amp;&amp; map[i][j]==map[i+1][j])&#123; mask[i][j]=1; mask[i+1][j]=1; mask[i-1][j]=1; &#125; &#125; //处理水平 if(j&gt;0&amp;&amp;j&lt;w-1)&#123; if(map[i][j]==map[i][j-1] &amp;&amp; map[i][j]==map[i][j+1])&#123; mask[i][j]=1; mask[i][j+1]=1; mask[i][j-1]=1; &#125; &#125; &#125; for(int i=0;i&lt;h;i++)&#123; for(int j=0;j&lt;w;j++)&#123; cout&lt;&lt;map[i][j]*(1-mask[i][j])&lt;&lt;" "; &#125; cout&lt;&lt;endl; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201512-1数位之和]]></title>
+    <url>%2Fposts%2F20200124123513id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201512-1试题名称： 数位之和时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;给定一个十进制整数n，输出n的各位数字之和。 输入格式&emsp;&emsp;输入一个整数n。 输出格式&emsp;&emsp;输出一个整数，表示答案。 样例输入120151220 样例输出13 样例说明&emsp;&emsp;20151220的各位数字之和为2+0+1+5+1+2+2+0=13。 评测用例规模与约定&emsp;&emsp;所有评测用例满足：0 $\le$ n $\le$ 1000000000。 解答代码1234567891011121314151617181920#include &lt;iostream&gt;using namespace std;int main()&#123; long n; int sum=0; cin&gt;&gt;n; while(n&gt;0)&#123; sum+=n%10; n/=10; &#125; cout&lt;&lt;sum; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201604-2俄罗斯方块]]></title>
+    <url>%2Fposts%2F20200124121615id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201604-2试题名称： 俄罗斯方块时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。&emsp;&emsp;游戏在一个15行10列的方格图上进行，方格图上的每一个格子可能已经放置了方块，或者没有放置方块。每一轮，都会有一个新的由4个小方块组成的板块从方格图的上方落下，玩家可以操作板块左右移动放到合适的位置，当板块中某一个方块的下边缘与方格图上的方块上边缘重合或者达到下边界时，板块不再移动，如果此时方格图的某一行全放满了方块，则该行被消除并得分。&emsp;&emsp;在这个问题中，你需要写一个程序来模拟板块下落，你不需要处理玩家的操作，也不需要处理消行和得分。&emsp;&emsp;具体的，给定一个初始的方格图，以及一个板块的形状和它下落的初始位置，你要给出最终的方格图。输入格式&emsp;&emsp;输入的前15行包含初始的方格图，每行包含10个数字，相邻的数字用空格分隔。如果一个数字是0，表示对应的方格中没有方块，如果数字是1，则表示初始的时候有方块。输入保证前4行中的数字都是0。&emsp;&emsp;输入的第16至第19行包含新加入的板块的形状，每行包含4个数字，组成了板块图案，同样0表示没方块，1表示有方块。输入保证板块的图案中正好包含4个方块，且4个方块是连在一起的（准确的说，4个方块是四连通的，即给定的板块是俄罗斯方块的标准板块）。&emsp;&emsp;第20行包含一个1到7之间的整数，表示板块图案最左边开始的时候是在方格图的哪一列中。注意，这里的板块图案指的是16至19行所输入的板块图案，如果板块图案的最左边一列全是0，则它的左边和实际所表示的板块的左边是不一致的（见样例）输出格式&emsp;&emsp;输出15行，每行10个数字，相邻的数字之间用一个空格分隔，表示板块下落后的方格图。注意，你不需要处理最终的消行。 样例输入12345678910111213141516171819200 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 1 0 00 0 0 0 0 0 1 0 0 00 0 0 0 0 0 1 0 0 01 1 1 0 0 0 1 1 1 10 0 0 0 1 0 0 0 0 00 0 0 00 1 1 10 0 0 10 0 0 03 样例输出1234567891011121314150 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 00 0 0 0 0 0 0 1 0 00 0 0 0 0 0 1 0 0 00 0 0 0 0 0 1 0 0 01 1 1 1 1 1 1 1 1 10 0 0 0 1 1 0 0 0 0 解答代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include &lt;iostream&gt;using namespace std;int main()&#123; int map[15][10]=&#123;0&#125;; int s[4][4]=&#123;0&#125;; int pos,bottom; for(int i=0;i&lt;15;i++) for(int j=0;j&lt;10;j++)&#123; cin&gt;&gt;map[i][j]; &#125; for(int i=0;i&lt;4;i++)&#123; int t=0; for(int j=0;j&lt;4;j++)&#123; cin&gt;&gt;s[i][j]; t+=s[i][j]; &#125; if(t) bottom=i;//找到方块最下方一行 &#125; cin&gt;&gt;pos; //找到方块停留的位置 int f=1; int i,j,k; for(i=0;i&lt;15-bottom &amp;&amp; f;i++)&#123; for(int j=0;j&lt;=bottom &amp;&amp; f;j++) for(int k=0;k&lt;4 &amp;&amp; f;k++)&#123; if(s[j][k]==1 &amp;&amp; map[i+j][pos+k-1]==1)&#123; f=0; &#125; &#125; &#125; //根据是否发生碰撞修正坐标 i-=f==0?2:1; //绘制方块 for(int j=0;j&lt;=bottom;j++) for(int k=0;k&lt;4;k++)&#123; if(s[j][k]==1 )&#123; map[i+j][pos+k-1]=1; &#125; &#125; //打印 for(int i=0;i&lt;15;i++)&#123; for(int j=0;j&lt;10;j++)&#123; cout&lt;&lt;map[i][j]&lt;&lt;" "; &#125; cout&lt;&lt;endl; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF-CSP：201604-1折点计数]]></title>
+    <url>%2Fposts%2F20200121210511id.html</url>
+    <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201604-1试题名称： 折点计数时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;给定n个整数表示一个商店连续n天的销售量。如果某天之前销售量在增长，而后一天销售量减少，则称这一天为折点，反过来如果之前销售量减少而后一天销售量增长，也称这一天为折点。其他的天都不是折点。如下图中，第3天和第6天是折点。 &emsp;&emsp;给定n个整数$a_1, a_2, … , a_n$表示销售量，请计算出这些天总共有多少个折点。&emsp;&emsp;为了减少歧义，我们给定的数据保证：在这n天中相邻两天的销售量总是不同的，即 $a_i-1\ne a_i$。注意，如果两天不相邻，销售量可能相同。 输入格式&emsp;&emsp;输入的第一行包含一个整数n。&emsp;&emsp;第二行包含n个整数，用空格分隔，分别表示$a_1, a_2, … , a_n$。 输出格式&emsp;&emsp;输出一个整数，表示折点出现的数量。 样例输入1275 4 1 2 3 6 4 样例输出2 评测用例规模与约定&emsp;&emsp;所有评测用例满足：1 $\le$ n $\le$ 1000，每天的销售量是不超过10000的非负整数。 解答代码1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;int main()&#123; int n; vector&lt;int&gt; v; int res=0; cin&gt;&gt;n; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; v.push_back(t); &#125; for(int i=1;i&lt;v.size()-1;i++)&#123; if(v[i]&lt;v[i+1] &amp;&amp; v[i]&lt;v[i-1])res++; if(v[i]&gt;v[i+1] &amp;&amp; v[i]&gt;v[i-1])res++; &#125; cout&lt;&lt;res; return 0;&#125;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>CCF-CSP</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>CCF-CSP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CCF-CSP：201609-2火车购票]]></title>
     <url>%2Fposts%2F20200119215314id.html</url>
     <content type="text"><![CDATA[CCF-CSP题目汇总 题目编号： 201609-2 试题名称： 火车购票 时间限制： 1.0s 内存限制： 256.0MB 问题描述&emsp;&emsp;请实现一个铁路购票系统的简单座位分配算法，来处理一节车厢的座位分配。&emsp;&emsp;假设一节车厢有20排、每一排5个座位。为方便起见，我们用1到100来给所有的座位编号，第一排是1到5号，第二排是6到10号，依次类推，第20排是96到100号。&emsp;&emsp;购票时，一个人可能购一张或多张票，最多不超过5张。如果这几张票可以安排在同一排编号相邻的座位，则应该安排在编号最小的相邻座位。否则应该安排在编号最小的几个空座位中（不考虑是否相邻）。&emsp;&emsp;假设初始时车票全部未被购买，现在给了一些购票指令，请你处理这些指令。 输入格式&emsp;&emsp;输入的第一行包含一个整数n，表示购票指令的数量。&emsp;&emsp;第二行包含n个整数，每个整数p在1到5之间，表示要购入的票数，相邻的两个数之间使用一个空格分隔。 输出格式&emsp;&emsp;输出n行，每行对应一条指令的处理结果。&emsp;&emsp;对于购票指令p，输出p张车票的编号，按从小到大排序。 样例输入1242 5 4 2 样例输出12341 26 7 8 9 1011 12 13 143 4 样例说明&emsp;&emsp;1) 购2张票，得到座位1、2。&emsp;&emsp;2) 购5张票，得到座位6至10。&emsp;&emsp;3) 购4张票，得到座位11至14。&emsp;&emsp;4) 购2张票，得到座位3、4。 评测用例规模与约定&emsp;&emsp;对于所有评测用例，1 $\le$ n $\le$ 100，所有购票数量之和不超过100。 解答代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;iostream&gt;using namespace std;int main()&#123; int n,seat[20]=&#123;0&#125;; cin&gt;&gt;n; while((n--)&gt;0)&#123; int t; cin&gt;&gt;t; for(int i=0;i&lt;20;i++)&#123; if(5-seat[i]&gt;=t)&#123; for(int j=0;j&lt;t;j++)&#123; cout&lt;&lt;i*5+seat[i]+j+1&lt;&lt;" "; &#125; cout&lt;&lt;endl; seat[i]+=t; t=0; break; &#125; &#125; int f=t; for(int i=0;i&lt;20 &amp;&amp; t;i++)&#123; if(5&gt;seat[i])&#123; if(t&lt;=5-seat[i])&#123; for(int j=0;j&lt;t;j++)&#123; cout&lt;&lt;i*5+seat[i]+j+1&lt;&lt;" "; &#125; seat[i]+=t; break; &#125; else&#123; for(int j=0;j&lt;5-seat[i];j++)&#123; cout&lt;&lt;i*5+seat[i]+j+1&lt;&lt;" "; &#125; t-=5-seat[i]; seat[i]=5; &#125; &#125; &#125; if(f) cout&lt;&lt;endl; &#125; return 0;&#125;]]></content>
@@ -458,8 +654,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：双指针</tag>
         <tag>算法：链表</tag>
+        <tag>算法：双指针</tag>
       </tags>
   </entry>
   <entry>
@@ -1082,7 +1278,7 @@
   <entry>
     <title><![CDATA[CCF-CSP题目汇总]]></title>
     <url>%2Fposts%2F20191230204553id.html</url>
-    <content type="text"><![CDATA[CCF-CSP首页 &emsp;&emsp;以下都是我自己做过的题目，答案也全是自己做的，和网上大牛的最优解还是有差距。╮(￣▽ ￣)╭ 试题编号 试题名称 最高得分 201912-1 报数 100 201912-2 回收站选址 100 201909-1 小明种苹果 100 201909-2 小明种苹果（续） 100 201909-3 字符画 201903-1 小中大 100 201903-2 二十四点 100 201812-1 小明上学 100 201812-2 小明放学 100 201809-1 卖菜 100 201809-2 买菜 100 201803-1 跳一跳 100 201803-2 碰撞的小球 100 201712-1 最小差值 100 201712-2 游戏 100 201709-1 打酱油 100 201709-2 公共钥匙盒 100 201703-1 分蛋糕 100 201703-2 学生排队 100 201612-1 中间数 100 201612-2 工资计算 100 201609-1 最大波动 100 201609-2 火车购票 100 201312-1 出现次数最多的数 100 201312-2 ISBN号码 100]]></content>
+    <content type="text"><![CDATA[CCF-CSP首页 &emsp;&emsp;以下都是我自己做过的题目，答案也全是自己做的，和网上大牛的最优解还是有差距。╮(￣▽ ￣)╭ 试题编号 试题名称 最高得分 201912-1 报数 100 201912-2 回收站选址 100 201909-1 小明种苹果 100 201909-2 小明种苹果（续） 100 201909-3 字符画 201903-1 小中大 100 201903-2 二十四点 100 201812-1 小明上学 100 201812-2 小明放学 100 201809-1 卖菜 100 201809-2 买菜 100 201803-1 跳一跳 100 201803-2 碰撞的小球 100 201712-1 最小差值 100 201712-2 游戏 100 201709-1 打酱油 100 201709-2 公共钥匙盒 100 201703-1 分蛋糕 100 201703-2 学生排队 100 201612-1 中间数 100 201612-2 工资计算 100 201609-1 最大波动 100 201609-2 火车购票 100 201604-1 折点计数 100 201604-2 俄罗斯方块 100 201512-1 数位之和 100 201512-2 消除类游戏 100 201509-1 数列分段 100 201509-2 日期计算 100 201503-1 图像旋转 100 201503-2 数字排序 100 201412-1 门禁系统 100 201412-2 Z字形扫描 100 201409-1 相邻数对 100 201409-2 画图 100 201403-1 相反数 100 201403-2 窗口 100 201312-1 出现次数最多的数 100 201312-2 ISBN号码 100]]></content>
       <categories>
         <category>计算机</category>
         <category>算法题</category>
@@ -1471,8 +1667,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -1485,8 +1681,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -1499,8 +1695,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -1688,8 +1884,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>考研</tag>
         <tag>理论</tag>
+        <tag>考研</tag>
         <tag>数学</tag>
         <tag>高次多项式</tag>
         <tag>综合除法</tag>
@@ -1705,8 +1901,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>考研</tag>
         <tag>理论</tag>
+        <tag>考研</tag>
         <tag>数学</tag>
         <tag>高次多项式</tag>
         <tag>综合除法</tag>
@@ -1722,8 +1918,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>考研</tag>
         <tag>理论</tag>
+        <tag>考研</tag>
         <tag>数学</tag>
         <tag>复数</tag>
         <tag>微分方程</tag>
