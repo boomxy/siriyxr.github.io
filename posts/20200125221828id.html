@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="C/C++参考文档 标准c数学函数  abs语法:  12#include &amp;lt;stdlib.h&amp;gt;int abs( int num );    &amp;emsp;&amp;emsp;功能：  函数返回参数num的绝对值。&amp;emsp;&amp;emsp;例如:  1234int magic_number = 10;cout &amp;lt;&amp;lt; &quot;Enter a guess: &quot;;cin &amp;gt;&amp;gt; x;co">
+<meta name="keywords" content="C&#x2F;C++,文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;CPP参考文档：C Math">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200125221828id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="C/C++参考文档 标准c数学函数  abs语法:  12#include &amp;lt;stdlib.h&amp;gt;int abs( int num );    &amp;emsp;&amp;emsp;功能：  函数返回参数num的绝对值。&amp;emsp;&amp;emsp;例如:  1234int magic_number = 10;cout &amp;lt;&amp;lt; &quot;Enter a guess: &quot;;cin &amp;gt;&amp;gt; x;co">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-25T15:44:10.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C&#x2F;CPP参考文档：C Math">
+<meta name="twitter:description" content="C/C++参考文档 标准c数学函数  abs语法:  12#include &amp;lt;stdlib.h&amp;gt;int abs( int num );    &amp;emsp;&amp;emsp;功能：  函数返回参数num的绝对值。&amp;emsp;&amp;emsp;例如:  1234int magic_number = 10;cout &amp;lt;&amp;lt; &quot;Enter a guess: &quot;;cin &amp;gt;&amp;gt; x;co">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200125221828id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C/CPP参考文档：C Math | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">141</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200125221828id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">C/CPP参考文档：C Math
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-25 22:18:28 / 修改时间：23:44:10" itemprop="dateCreated datePublished" datetime="2020-01-25T22:18:28+08:00">2020-01-25</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200125221828id.html" class="post-meta-item leancloud_visitors" data-flag-title="C/CPP参考文档：C Math" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200125221828id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200125221828id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>3.5k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://blog.siriyang.cn/posts/20200107194641id.html">C/C++参考文档</a></p>
+<blockquote class="blockquote-center"><h1 id="标准c数学函数"><a href="#标准c数学函数" class="headerlink" title="标准c数学函数"></a>标准c数学函数</h1></blockquote>
+
+<h2 id="abs"><a href="#abs" class="headerlink" title="abs"></a>abs</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">( <span class="keyword">int</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>num</code>的绝对值。<br>&emsp;&emsp;例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> magic_number = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter a guess: "</span>;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; x;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"Your guess was "</span> &lt;&lt; <span class="built_in">abs</span>( magic_number - x ) &lt;&lt; <span class="string">" away from the magic number."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="acos"><a href="#acos" class="headerlink" title="acos"></a>acos</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">acos</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能： 函数返回参数<code>arg</code>的反余弦值。参数<code>arg</code> 应当在-1和1之间。 </p>
+<hr>
+<h2 id="asin"><a href="#asin" class="headerlink" title="asin"></a>asin</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">asin</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能： 函数返回参数<code>arg</code>的反正弦值。参数<code>arg</code> 应当在-1和1之间。  </p>
+<hr>
+<h2 id="atan"><a href="#atan" class="headerlink" title="atan"></a>atan</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">atan</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能： 函数返回参数<code>arg</code>的反正切值。 </p>
+<hr>
+<h2 id="atan2"><a href="#atan2" class="headerlink" title="atan2"></a>atan2</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">atan2</span><span class="params">( <span class="keyword">double</span> y, <span class="keyword">double</span> x )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能： 函数计算<code>y/x</code>的反正切值，按照参数的符号计算所在的象限。 </p>
+<hr>
+<h2 id="ceil"><a href="#ceil" class="headerlink" title="ceil"></a>ceil</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">ceil</span><span class="params">( <span class="keyword">double</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数不小于<code>num</code> 的最小整数。例如, </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="number">6.04</span>;</span><br><span class="line">x = <span class="built_in">ceil</span>( y );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>x</code>为7.0. </p>
+<hr>
+<h2 id="cos"><a href="#cos" class="headerlink" title="cos"></a>cos</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cos</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>arg</code>的余弦值，<code>arg</code>以弧度表示给出。 </p>
+<hr>
+<h2 id="cosh"><a href="#cosh" class="headerlink" title="cosh"></a>cosh</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cosh</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>arg</code>的双曲余弦值。 </p>
+<hr>
+<h2 id="div"><a href="#div" class="headerlink" title="div"></a>div</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">div_t</span> div( <span class="keyword">int</span> numerator, <span class="keyword">int</span> denominator );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>numerator / denominator</code>的商和余数。结构类型<code>div_t</code>定义在<code>stdlib.h</code>中: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> quot;     <span class="comment">// 商数</span></span><br><span class="line"><span class="keyword">int</span> rem;      <span class="comment">// 余数</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;例, 以下代码显示<code>x/y</code>的商和余数: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">div_t</span> temp;</span><br><span class="line">temp = div( x, y );</span><br><span class="line"><span class="built_in">printf</span>( <span class="string">"%d divided by %d yields %d with a remainder of %d\n"</span>, x, y, temp.quot, temp.rem );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">exp</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>returns e (2.7182818)</code>的<code>arg</code>次幂。 </p>
+<hr>
+<h2 id="fabs"><a href="#fabs" class="headerlink" title="fabs"></a>fabs</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">fabs</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>arg</code>的绝对值。 </p>
+<hr>
+<h2 id="floor"><a href="#floor" class="headerlink" title="floor"></a>floor</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">floor</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数不大于<code>arg</code>的最大整数。例如, </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="number">6.04</span>;</span><br><span class="line">x = <span class="built_in">floor</span>( y );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>x</code>的值为6.0. </p>
+<hr>
+<h2 id="fmod"><a href="#fmod" class="headerlink" title="fmod"></a>fmod</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">fmod</span><span class="params">( <span class="keyword">double</span> x, <span class="keyword">double</span> y )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>x/y</code>的余数。</p>
+<hr>
+<h2 id="frexp"><a href="#frexp" class="headerlink" title="frexp"></a>frexp</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">frexp</span><span class="params">( <span class="keyword">double</span> num, <span class="keyword">int</span> *<span class="built_in">exp</span> )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数将参数<code>num</code> 分成两部分： 0.5 和1之间的尾数（由函数返回）并返回指数<code>exp</code>。转换成如下的科学计数法形式： </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = mantissa * (<span class="number">2</span> ^ <span class="built_in">exp</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="labs"><a href="#labs" class="headerlink" title="labs"></a>labs</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">labs</span><span class="params">( <span class="keyword">long</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>num</code>的绝对值。 </p>
+<hr>
+<h2 id="ldexp"><a href="#ldexp" class="headerlink" title="ldexp"></a>ldexp</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">ldexp</span><span class="params">( <span class="keyword">double</span> num, <span class="keyword">int</span> <span class="built_in">exp</span> )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>num * (2 ^ exp)</code>。如果发生溢出返回<code>HUGE_VAL</code>。 </p>
+<hr>
+<h2 id="ldiv"><a href="#ldiv" class="headerlink" title="ldiv"></a>ldiv</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">ldiv_t</span> ldiv( <span class="keyword">long</span> numerator, <span class="keyword">long</span> denominator );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>numerator / denominator</code>的商和余数。结构类型 <code>ldiv_t</code> 定义在<code>stdlib.h</code>中： </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> quot;    <span class="comment">// 商数 </span></span><br><span class="line"><span class="keyword">long</span> rem;     <span class="comment">// 余数</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">log</span><span class="params">( <span class="keyword">double</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>num</code>的自然对数。如果<code>num</code>为负,产生域错误；如果<code>num</code> 为零，产生范围错误。 </p>
+<hr>
+<h2 id="log10"><a href="#log10" class="headerlink" title="log10"></a>log10</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">log10</span><span class="params">( <span class="keyword">double</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>num</code>以10为底的对数。如果<code>num</code>为负,产生域错误；如果<code>num</code> 为零，产生范围错误。</p>
+<hr>
+<h2 id="modf"><a href="#modf" class="headerlink" title="modf"></a>modf</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">modf</span><span class="params">( <span class="keyword">double</span> num, <span class="keyword">double</span> *i )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数将参数<code>num</code> 分割为整数和小数，返回小数部分并将整数部分赋给<code>i</code>。 </p>
+<hr>
+<h2 id="pow"><a href="#pow" class="headerlink" title="pow"></a>pow</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">pow</span><span class="params">( <span class="keyword">double</span> base, <span class="keyword">double</span> <span class="built_in">exp</span> )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回以参数<code>base</code> 为底的<code>exp</code> 次幂。如果<code>base</code>为零或负和<code>exp</code> 小于等于零或非整数时,产生域错误。如果溢出，产生范围错误。 </p>
+<hr>
+<h2 id="sin"><a href="#sin" class="headerlink" title="sin"></a>sin</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sin</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>arg</code>的正弦值，<code>arg</code>以弧度表示给出。</p>
+<hr>
+<h2 id="sinh"><a href="#sinh" class="headerlink" title="sinh"></a>sinh</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sinh</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>arg</code>的双曲正弦值。</p>
+<hr>
+<h2 id="sqrt"><a href="#sqrt" class="headerlink" title="sqrt"></a>sqrt</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sqrt</span><span class="params">( <span class="keyword">double</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>num</code>的平方根。如果<code>num</code>为负,产生域错误。</p>
+<hr>
+<h2 id="tan"><a href="#tan" class="headerlink" title="tan"></a>tan</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">tan</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>arg</code>的正切值，<code>arg</code>以弧度表示给出。 </p>
+<hr>
+<h2 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h2><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">tanh</span><span class="params">( <span class="keyword">double</span> arg )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;功能：  函数返回参数<code>arg</code>的双曲正切值。 </p>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108141737id.html" rel="bookmark">STL常用模板：List链表</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200107213559id.html" rel="bookmark">STL常用模板：Set集合</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200109180432id.html" rel="bookmark">C/CPP参考文档：预处理命令</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108162441id.html" rel="bookmark">STL常用模板：MultiSet多元集合</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108162422id.html" rel="bookmark">STL常用模板：MultiMap多元字典</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    C/CPP参考文档：C Math
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年01月25日 - 22时01分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年01月25日 - 23时01分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200125221828id.html" title="C/CPP参考文档：C Math">https://blog.siriyang.cn/posts/20200125221828id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | C/CPP参考文档：C Math](https://blog.siriyang.cn/posts/20200125221828id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/文档/" rel="tag"><i class="fa fa-tag"></i> 文档</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200125181950id.html" rel="next" title="CCF-CSP：201403-2窗口">
+                CCF-CSP：201403-2窗口 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#标准c数学函数"><span class="nav-text">标准c数学函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abs"><span class="nav-text">abs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#acos"><span class="nav-text">acos</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#asin"><span class="nav-text">asin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atan"><span class="nav-text">atan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atan2"><span class="nav-text">atan2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ceil"><span class="nav-text">ceil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cos"><span class="nav-text">cos</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cosh"><span class="nav-text">cosh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#div"><span class="nav-text">div</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exp"><span class="nav-text">exp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fabs"><span class="nav-text">fabs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#floor"><span class="nav-text">floor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fmod"><span class="nav-text">fmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#frexp"><span class="nav-text">frexp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#labs"><span class="nav-text">labs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ldexp"><span class="nav-text">ldexp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ldiv"><span class="nav-text">ldiv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log"><span class="nav-text">log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log10"><span class="nav-text">log10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#modf"><span class="nav-text">modf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pow"><span class="nav-text">pow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sin"><span class="nav-text">sin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sinh"><span class="nav-text">sinh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sqrt"><span class="nav-text">sqrt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tan"><span class="nav-text">tan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tanh"><span class="nav-text">tanh</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">650k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9:51</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>

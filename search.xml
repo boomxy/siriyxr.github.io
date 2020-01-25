@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[C/CPP参考文档：C Math]]></title>
+    <url>%2Fposts%2F20200125221828id.html</url>
+    <content type="text"><![CDATA[C/C++参考文档 标准c数学函数 abs语法: 12#include &lt;stdlib.h&gt;int abs( int num ); &emsp;&emsp;功能： 函数返回参数num的绝对值。&emsp;&emsp;例如: 1234int magic_number = 10;cout &lt;&lt; "Enter a guess: ";cin &gt;&gt; x;cout &lt;&lt; "Your guess was " &lt;&lt; abs( magic_number - x ) &lt;&lt; " away from the magic number." &lt;&lt; endl; acos语法: 12#include &lt;math.h&gt;double acos( double arg ); &emsp;&emsp;功能： 函数返回参数arg的反余弦值。参数arg 应当在-1和1之间。 asin语法: 12#include &lt;math.h&gt;double asin( double arg ); &emsp;&emsp;功能： 函数返回参数arg的反正弦值。参数arg 应当在-1和1之间。 atan语法: 12#include &lt;math.h&gt;double atan( double arg ); &emsp;&emsp;功能： 函数返回参数arg的反正切值。 atan2语法: 12#include &lt;math.h&gt;double atan2( double y, double x ); &emsp;&emsp;功能： 函数计算y/x的反正切值，按照参数的符号计算所在的象限。 ceil语法: 12#include &lt;math.h&gt;double ceil( double num ); &emsp;&emsp;功能： 函数返回参数不小于num 的最小整数。例如, 12y = 6.04;x = ceil( y ); &emsp;&emsp;x为7.0. cos语法: 12#include &lt;math.h&gt;double cos( double arg ); &emsp;&emsp;功能： 函数返回参数arg的余弦值，arg以弧度表示给出。 cosh语法: 12#include &lt;math.h&gt;double cosh( double arg ); &emsp;&emsp;功能： 函数返回参数arg的双曲余弦值。 div语法: 12#include &lt;stdlib.h&gt;div_t div( int numerator, int denominator ); &emsp;&emsp;功能： 函数返回参数numerator / denominator的商和余数。结构类型div_t定义在stdlib.h中: 12int quot; // 商数int rem; // 余数 &emsp;&emsp;例, 以下代码显示x/y的商和余数: 123div_t temp;temp = div( x, y );printf( "%d divided by %d yields %d with a remainder of %d\n", x, y, temp.quot, temp.rem ); exp语法: 12#include &lt;math.h&gt;double exp( double arg ); &emsp;&emsp;功能： 函数返回参数returns e (2.7182818)的arg次幂。 fabs语法: 12#include &lt;math.h&gt;double fabs( double arg ); &emsp;&emsp;功能： 函数返回参数arg的绝对值。 floor语法: 12#include &lt;math.h&gt;double floor( double arg ); &emsp;&emsp;功能： 函数返回参数不大于arg的最大整数。例如, 12y = 6.04;x = floor( y ); &emsp;&emsp;x的值为6.0. fmod语法: 12#include &lt;math.h&gt;double fmod( double x, double y ); &emsp;&emsp;功能： 函数返回参数x/y的余数。 frexp语法: 12#include &lt;math.h&gt;double frexp( double num, int *exp ); &emsp;&emsp;功能： 函数将参数num 分成两部分： 0.5 和1之间的尾数（由函数返回）并返回指数exp。转换成如下的科学计数法形式： 1num = mantissa * (2 ^ exp) labs语法: 12#include &lt;stdlib.h&gt;long labs( long num ); &emsp;&emsp;功能： 函数返回参数num的绝对值。 ldexp语法: 12#include &lt;math.h&gt;double ldexp( double num, int exp ); &emsp;&emsp;功能： 函数返回参数num * (2 ^ exp)。如果发生溢出返回HUGE_VAL。 ldiv语法: 12#include &lt;stdlib.h&gt;ldiv_t ldiv( long numerator, long denominator ); &emsp;&emsp;功能： 函数返回参数numerator / denominator的商和余数。结构类型 ldiv_t 定义在stdlib.h中： 12long quot; // 商数 long rem; // 余数 log语法: 12#include &lt;math.h&gt;double log( double num ); &emsp;&emsp;功能： 函数返回参数num的自然对数。如果num为负,产生域错误；如果num 为零，产生范围错误。 log10语法: 12#include &lt;math.h&gt;double log10( double num ); &emsp;&emsp;功能： 函数返回参数num以10为底的对数。如果num为负,产生域错误；如果num 为零，产生范围错误。 modf语法: 12#include &lt;math.h&gt;double modf( double num, double *i ); &emsp;&emsp;功能： 函数将参数num 分割为整数和小数，返回小数部分并将整数部分赋给i。 pow语法: 12#include &lt;math.h&gt;double pow( double base, double exp ); &emsp;&emsp;功能： 函数返回以参数base 为底的exp 次幂。如果base为零或负和exp 小于等于零或非整数时,产生域错误。如果溢出，产生范围错误。 sin语法: 12#include &lt;math.h&gt;double sin( double arg ); &emsp;&emsp;功能： 函数返回参数arg的正弦值，arg以弧度表示给出。 sinh语法: 12#include &lt;math.h&gt;double sinh( double arg ); &emsp;&emsp;功能： 函数返回参数arg的双曲正弦值。 sqrt语法: 12#include &lt;math.h&gt;double sqrt( double num ); &emsp;&emsp;功能： 函数返回参数num的平方根。如果num为负,产生域错误。 tan语法: 12#include &lt;math.h&gt;double tan( double arg ); &emsp;&emsp;功能： 函数返回参数arg的正切值，arg以弧度表示给出。 tanh语法: 12#include &lt;math.h&gt;double tanh( double arg ); &emsp;&emsp;功能： 函数返回参数arg的双曲正切值。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CCF-CSP：201403-2窗口]]></title>
     <url>%2Fposts%2F20200125181950id.html</url>
     <content type="text"><![CDATA[CCF-CSP题目汇总 题目试题编号： 201403-2试题名称： 窗口时间限制： 1.0s内存限制： 256.0MB 问题描述&emsp;&emsp;在某图形操作系统中,有 N 个窗口,每个窗口都是一个两边与坐标轴分别平行的矩形区域。窗口的边界上的点也属于该窗口。窗口之间有层次的区别,在多于一个窗口重叠的区域里,只会显示位于顶层的窗口里的内容。&emsp;&emsp;当你点击屏幕上一个点的时候,你就选择了处于被点击位置的最顶层窗口,并且这个窗口就会被移到所有窗口的最顶层,而剩余的窗口的层次顺序不变。如果你点击的位置不属于任何窗口,则系统会忽略你这次点击。&emsp;&emsp;现在我们希望你写一个程序模拟点击窗口的过程。 输入格式&emsp;&emsp;输入的第一行有两个正整数,即 N 和 M。(1 $\le$ N $\le$ 10,1 $\le$ M $\le$ 10)&emsp;&emsp;接下来 N 行按照从最下层到最顶层的顺序给出 N 个窗口的位置。 每行包含四个非负整数 $x_1$, $y_1$, $x_2$, $y_2$,表示该窗口的一对顶点坐标分别为 ($x_1$, $y_1$) 和 ($x_2$, $y_2$)。保证 $x_1$ &lt; $x_2$,$y_1$ &lt; $y_2$。&emsp;&emsp;接下来 M 行每行包含两个非负整数 x, y,表示一次鼠标点击的坐标。&emsp;&emsp;题目中涉及到的所有点和矩形的顶点的 x, y 坐标分别不超过 2559 和 1439。 输出格式&emsp;&emsp;输出包括 M 行,每一行表示一次鼠标点击的结果。如果该次鼠标点击选择了一个窗口,则输出这个窗口的编号(窗口按照输入中的顺序从 1 编号到 N);如果没有,则输出”IGNORED“(不含双引号)。 样例输入123456783 40 0 4 41 1 5 52 2 6 61 10 04 40 5 样例输出1234211IGNORED 样例说明&emsp;&emsp;第一次点击的位置同时属于第 1 和第 2 个窗口,但是由于第 2 个窗口在上面,它被选择并且被置于顶层。&emsp;&emsp;第二次点击的位置只属于第 1 个窗口,因此该次点击选择了此窗口并将其置于顶层。现在的三个窗口的层次关系与初始状态恰好相反了。&emsp;&emsp;第三次点击的位置同时属于三个窗口的范围,但是由于现在第 1 个窗口处于顶层,它被选择。&emsp;&emsp;最后点击的 (0, 5) 不属于任何窗口。 解答代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;typedef struct Win &#123; int top; int id; int x1, x2, y1, y2;&#125;Win;bool cmp(Win w1, Win w2) &#123; return w1.top &gt; w2.top;&#125;int main() &#123; int n, m, top = 0; Win w[11]; cin &gt;&gt; n &gt;&gt; m; for (int i = 0; i &lt; n; i++) &#123; cin &gt;&gt; w[i].x1 &gt;&gt; w[i].y1 &gt;&gt; w[i].x2 &gt;&gt; w[i].y2; w[i].id = i + 1; w[i].top = top++; &#125; sort(w, w + n, cmp); for (int i = 0; i &lt; m; i++) &#123; int f = 1; int cx, cy; cin &gt;&gt; cx&gt;&gt;cy; for (int j = 0; j &lt; n; j++) &#123; if (w[j].x1 &lt;= cx &amp;&amp; cx &lt;= w[j].x2 &amp;&amp; w[j].y1 &lt;= cy &amp;&amp; cy &lt;= w[j].y2) &#123; cout &lt;&lt; w[j].id &lt;&lt; endl; w[j].top = top++; sort(w, w + n, cmp); f = 0; break; &#125; &#125; if (f) cout &lt;&lt; "IGNORED" &lt;&lt; endl; &#125; return 0;&#125;]]></content>
@@ -469,8 +483,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：哈希表</tag>
         <tag>算法：字符串</tag>
+        <tag>算法：哈希表</tag>
       </tags>
   </entry>
   <entry>
@@ -1082,8 +1096,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：哈希表</tag>
         <tag>算法：字符串</tag>
+        <tag>算法：哈希表</tag>
         <tag>算法：双指针</tag>
         <tag>算法：Sliding Window</tag>
       </tags>
@@ -1545,8 +1559,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>环境搭建</tag>
         <tag>Pythonista</tag>
+        <tag>环境</tag>
       </tags>
   </entry>
   <entry>
@@ -1559,8 +1573,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>环境搭建</tag>
         <tag>Pythonista</tag>
+        <tag>环境</tag>
       </tags>
   </entry>
   <entry>
@@ -1667,8 +1681,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -1681,8 +1695,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -1695,8 +1709,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -1776,9 +1790,9 @@
         <category>环境</category>
       </categories>
       <tags>
-        <tag>环境搭建</tag>
         <tag>Markdown</tag>
         <tag>VSCode</tag>
+        <tag>环境</tag>
       </tags>
   </entry>
   <entry>
