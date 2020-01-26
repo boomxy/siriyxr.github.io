@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="修改序列的操作  &amp;emsp;&amp;emsp;定义于头文件 &amp;lt;algorithm&amp;gt; swap定义 12template&amp;lt; class T &amp;gt;void swap( T&amp;amp; a, T&amp;amp; b );  功能&amp;emsp;&amp;emsp;交换给定值&amp;emsp;&amp;emsp;1）交换 a 与 b 。&amp;emsp;&amp;emsp;2）交换 a 与 b 数组。等效于调用 std::swap_r">
+<meta name="keywords" content="C&#x2F;C++,文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;CPP参考文档：C++ Algorithm">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200126115533id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="修改序列的操作  &amp;emsp;&amp;emsp;定义于头文件 &amp;lt;algorithm&amp;gt; swap定义 12template&amp;lt; class T &amp;gt;void swap( T&amp;amp; a, T&amp;amp; b );  功能&amp;emsp;&amp;emsp;交换给定值&amp;emsp;&amp;emsp;1）交换 a 与 b 。&amp;emsp;&amp;emsp;2）交换 a 与 b 数组。等效于调用 std::swap_r">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-26T07:00:32.393Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C&#x2F;CPP参考文档：C++ Algorithm">
+<meta name="twitter:description" content="修改序列的操作  &amp;emsp;&amp;emsp;定义于头文件 &amp;lt;algorithm&amp;gt; swap定义 12template&amp;lt; class T &amp;gt;void swap( T&amp;amp; a, T&amp;amp; b );  功能&amp;emsp;&amp;emsp;交换给定值&amp;emsp;&amp;emsp;1）交换 a 与 b 。&amp;emsp;&amp;emsp;2）交换 a 与 b 数组。等效于调用 std::swap_r">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200126115533id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C/CPP参考文档：C++ Algorithm | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">146</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200126115533id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">C/CPP参考文档：C++ Algorithm
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-26 11:55:33 / 修改时间：15:00:32" itemprop="dateCreated datePublished" datetime="2020-01-26T11:55:33+08:00">2020-01-26</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200126115533id.html" class="post-meta-item leancloud_visitors" data-flag-title="C/CPP参考文档：C++ Algorithm" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200126115533id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200126115533id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>16k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>14 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote class="blockquote-center"><h1 id="修改序列的操作"><a href="#修改序列的操作" class="headerlink" title="修改序列的操作"></a>修改序列的操作</h1></blockquote>
+
+<p>&emsp;&emsp;<strong>定义于头文件</strong> <code>&lt;algorithm&gt;</code></p>
+<h2 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">swap</span>( <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">T</span>&amp; <span class="title">b</span> );</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong><br>&emsp;&emsp;交换给定值<br>&emsp;&emsp;1）交换 <code>a</code> 与 <code>b</code> 。<br>&emsp;&emsp;2）交换 <code>a</code> 与 <code>b</code> 数组。等效于调用 <code>std::swap_ranges(a, a+N, b)</code> 。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><code>a</code>, <code>b</code>    -    要交换的值</li>
+</ul>
+<p><strong>复杂度</strong><br>&emsp;&emsp;1) 常量<br>&emsp;&emsp;2) 与 <code>N</code> 成线性</p>
+<p><strong>示例</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a = <span class="number">5</span>, b = <span class="number">3</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// 前</span></span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">' '</span> &lt;&lt; b &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="built_in">std</span>::swap(a,b);</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// 后</span></span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">' '</span> &lt;&lt; b &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5 3</span><br><span class="line">3 5</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="swap-ranges"><a href="#swap-ranges" class="headerlink" title="swap_ranges"></a>swap_ranges</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">ForwardIt1</span>, <span class="title">class</span> <span class="title">ForwardIt2</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">ForwardIt2</span> <span class="title">swap_ranges</span>( <span class="title">ForwardIt1</span> <span class="title">first1</span>, <span class="title">ForwardIt1</span> <span class="title">last1</span>,</span></span><br><span class="line"><span class="class">                        <span class="title">ForwardIt2</span> <span class="title">first2</span> );</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong>在范围 <code>[first1, last1)</code> 和始于 <code>first2</code> 的另一范围间交换元素。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><code>first1</code>, <code>last1</code>    -    要交换的第一个元素范围</li>
+<li><code>first2</code>    -    要交换的第二个元素范围的起始</li>
+</ul>
+<p><strong>返回值</strong><br>&emsp;&emsp;指向始于 <code>first2</code> 的范围中被交换的最末元素后一元素的迭代器。</p>
+<p><strong>可能的实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIt1</span>, <span class="title">class</span> <span class="title">ForwardIt2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">ForwardIt2</span> <span class="title">swap_ranges</span>(<span class="title">ForwardIt1</span> <span class="title">first1</span>, </span></span><br><span class="line"><span class="class">                             <span class="title">ForwardIt1</span> <span class="title">last1</span>, </span></span><br><span class="line"><span class="class">                             <span class="title">ForwardIt2</span> <span class="title">first2</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">while</span> (first1 != last1) &#123;</span><br><span class="line">        <span class="built_in">std</span>::iter_swap(first1++, first2++);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度</strong><br>&emsp;&emsp;与 <code>first1</code> 和 <code>last1</code> 的距离成线性</p>
+<p><strong>示例</strong><br>&emsp;&emsp;演示来自不同容器的子范围交换</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; l = &#123;<span class="number">-1</span>, <span class="number">-2</span>, <span class="number">-3</span>, <span class="number">-4</span>, <span class="number">-5</span>&#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">std</span>::swap_ranges(v.begin(), v.begin()+<span class="number">3</span>, l.begin());</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : v)</span><br><span class="line">       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : l)</span><br><span class="line">       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-1 -2 -3 4 5</span><br><span class="line">1 2 3 -4 -5</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="iter-swap"><a href="#iter-swap" class="headerlink" title="iter_swap"></a>iter_swap</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">ForwardIt1</span>, <span class="title">class</span> <span class="title">ForwardIt2</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">iter_swap</span>( <span class="title">ForwardIt1</span> <span class="title">a</span>, <span class="title">ForwardIt2</span> <span class="title">b</span> );</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>参数</strong></p>
+<ul>
+<li><code>a</code>, <code>b</code>    -    指向要交换的元素的迭代器</li>
+</ul>
+<p><strong>复杂度</strong><br>&emsp;&emsp;常数</p>
+<p><strong>可能的实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIt1</span>, <span class="title">class</span> <span class="title">ForwardIt2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">constexpr</span> <span class="title">void</span> <span class="title">iter_swap</span>(<span class="title">ForwardIt1</span> <span class="title">a</span>, <span class="title">ForwardIt2</span> <span class="title">b</span>) // <span class="title">C</span>++20 起为 <span class="title">constexpr</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">using</span> <span class="built_in">std</span>::swap;</span><br><span class="line">   swap(*a, *b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong><br>&emsp;&emsp;下面是选择排序在 C++ 中的实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">ForwardIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">selection_sort</span>(<span class="title">ForwardIt</span> <span class="title">begin</span>, <span class="title">ForwardIt</span> <span class="title">end</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">for</span> (ForwardIt i = begin; i != end; ++i)</span><br><span class="line">        <span class="built_in">std</span>::iter_swap(i, <span class="built_in">std</span>::min_element(i, end));</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::random_device rd;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function">mt19937 <span class="title">gen</span><span class="params">(rd())</span></span>;</span><br><span class="line">    <span class="built_in">std</span>::uniform_int_distribution&lt;&gt; dist(<span class="number">-10</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">    <span class="built_in">std</span>::generate_n(back_inserter(v), <span class="number">20</span>, bind(dist, gen));</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Before sort: "</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> e : v) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">" "</span>;</span><br><span class="line"> </span><br><span class="line">    selection_sort(v.begin(), v.end());</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\nAfter sort: "</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> e : v) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Before sort: -7 6 2 4 -1 6 -9 -1 2 -5 10 -9 -5 -3 -5 -3 6 6 1 8</span><br><span class="line">After sort: -9 -9 -7 -5 -5 -5 -3 -3 -1 -1 1 2 2 4 6 6 6 6 8 10</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">reverse</span>( <span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span> );</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong><br>&emsp;&emsp;反转 <code>[first, last)</code> 范围中的元素顺序</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><code>first</code>, <code>last</code>    -    要反转的元素的范围</li>
+</ul>
+<p><strong>可能的实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">reverse</span>(<span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">while</span> ((first != last) &amp;&amp; (first != --last)) &#123;</span><br><span class="line">        <span class="built_in">std</span>::iter_swap(first++, last);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度</strong><br>&emsp;&emsp;和 <code>first</code> 与 <code>last</code> 间的距离成线性</p>
+<p><strong>示例</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::reverse(<span class="built_in">std</span>::begin(v), <span class="built_in">std</span>::end(v));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> e : v) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">int</span> a[] = &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::reverse(<span class="built_in">std</span>::begin(a), <span class="built_in">std</span>::end(a));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> e : a) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">321</span><br><span class="line">7654</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="reverse-copy"><a href="#reverse-copy" class="headerlink" title="reverse_copy"></a>reverse_copy</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span>, <span class="title">class</span> <span class="title">OutputIt</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">OutputIt</span> <span class="title">reverse_copy</span>( <span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span>, <span class="title">OutputIt</span> <span class="title">d_first</span> );</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong><br>&emsp;&emsp;复制来自范围 <code>[first, last)</code> 的元素到始于 <code>d_first</code> 的新范围，使得新范围中元素以逆序排列。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><code>first</code>, <code>last</code>    -    要复制的元素范围</li>
+<li><code>d_first</code>    -    新范围的起始</li>
+</ul>
+<p><strong>返回值</strong><br>&emsp;&emsp;指向最后被复制元素后一元素的迭代器。</p>
+<p><strong>可能的实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span>, <span class="title">class</span> <span class="title">OutputIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">OutputIt</span> <span class="title">reverse_copy</span>(<span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span>, <span class="title">OutputIt</span> <span class="title">d_first</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">while</span> (first != last) &#123;</span><br><span class="line">        *(d_first++) = *(--last);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度</strong><br>&emsp;&emsp;与 <code>first</code> 和 <code>last</code> 间的距离成线性。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; value : v) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; destination(<span class="number">3</span>);</span><br><span class="line">    <span class="built_in">std</span>::reverse_copy(<span class="built_in">std</span>::begin(v), <span class="built_in">std</span>::end(v), <span class="built_in">std</span>::begin(destination));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; value : destination) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 2 3 </span><br><span class="line">3 2 1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote class="blockquote-center"><h1 id="排序操作"><a href="#排序操作" class="headerlink" title="排序操作"></a>排序操作</h1></blockquote>
+
+<p>&emsp;&emsp;<strong>定义于头文件</strong> <code>&lt;algorithm&gt;</code></p>
+<h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">RandomIt</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">sort</span>( <span class="title">RandomIt</span> <span class="title">first</span>, <span class="title">RandomIt</span> <span class="title">last</span> );</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">RandomIt</span>, <span class="title">class</span> <span class="title">Compare</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">sort</span>( <span class="title">RandomIt</span> <span class="title">first</span>, <span class="title">RandomIt</span> <span class="title">last</span>, <span class="title">Compare</span> <span class="title">comp</span> );</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong><br>&emsp;&emsp;以升序排序范围 [first, last) 中的元素。不保证维持相等元素的顺序。</p>
+<ul>
+<li>1) 用 operator&lt; 比较元素。</li>
+<li>2) 用给定的二元比较函数 comp 比较元素。</li>
+</ul>
+<p><strong>参数</strong></p>
+<ul>
+<li><code>first</code>, <code>last</code>    -    要排序的元素范围</li>
+<li><code>policy</code>    -    所用的执行策略。细节见执行策略。</li>
+<li><code>comp</code>    -    比较函数对象（即满足比较 (Compare) 概念的对象），若第一参数小于（即先序于）第二参数则返回 <code>​true</code> 。</li>
+</ul>
+<p>&emsp;&emsp;比较函数的签名应等价于如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> Type1 &amp;a, <span class="keyword">const</span> Type2 &amp;b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;虽然签名不必有 <code>const &amp;</code> ，函数也不能修改传递给它的对象，而且必须接受（可为 <code>const</code> 的）类型 <code>Type1</code> 与 <code>Type2</code> 的值，无关乎值类别（从而不允许 <code>Type1 &amp;</code> ，亦不允许 <code>Type1</code> ，除非 <code>Type1</code> 的移动等价于复制 (C++11 起)）。<br>&emsp;&emsp;类型 <code>Type1</code> 与 <code>Type2</code> 必须使得 <code>RandomIt</code> 类型的对象能在解引用后隐式转换到这两个类型。 </p>
+<p><strong>复杂度</strong></p>
+<ul>
+<li>平均 <code>O(N·log(N))</code> 次比较，其中 <code>N = std::distance(first, last)</code> 。(C++11 前)</li>
+<li><code>O(N·log(N))</code> 次比较，其中 <code>N = std::distance(first, last)</code> 。(C++11 起)</li>
+</ul>
+<p><strong>示例</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;array&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span>, 10&gt; s = &#123;<span class="number">5</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">3</span>&#125;; </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 用默认的 operator&lt; 排序</span></span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> a : s) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 用标准库比较函数对象排序</span></span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end(), <span class="built_in">std</span>::greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> a : s) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 用自定义函数对象排序</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">        </span>&#123;   </span><br><span class="line">            <span class="keyword">return</span> a &lt; b;</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125; customLess;</span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end(), customLess);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> a : s) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 用 lambda 表达式排序</span></span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end(), [](<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        <span class="keyword">return</span> b &lt; a;   </span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> a : s) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 1 2 3 4 5 6 7 8 9 </span><br><span class="line">9 8 7 6 5 4 3 2 1 0 </span><br><span class="line">0 1 2 3 4 5 6 7 8 9 </span><br><span class="line">9 8 7 6 5 4 3 2 1 0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote class="blockquote-center"><h1 id="最小-最大操作"><a href="#最小-最大操作" class="headerlink" title="最小/最大操作"></a>最小/最大操作</h1></blockquote>
+
+<p>&emsp;&emsp;<strong>定义于头文件</strong> <code>&lt;algorithm&gt;</code></p>
+<h2 id="max"><a href="#max" class="headerlink" title="max"></a>max</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt; </span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">max</span>( <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span> );</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Compare</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">max</span>( <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span>, <span class="title">Compare</span> <span class="title">comp</span> );</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">max</span>( <span class="title">std</span>:</span>:<span class="built_in">initializer_list</span>&lt;T&gt; ilist );</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Compare</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">max</span>( <span class="title">std</span>:</span>:<span class="built_in">initializer_list</span>&lt;T&gt; ilist, Compare comp );</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong><br>&emsp;&emsp;返回给定值中的较大者。</p>
+<ul>
+<li>1-2) 返回 <code>a</code> 与 <code>b</code> 的较大者。</li>
+<li>3-4) 返回 <code>initializer_list ilist</code> 中值的最大者。</li>
+<li>(1,3) 版本用 <code>operator&lt;</code> 比较元素， (2,4) 版本用给定的比较函数 <code>comp</code> 。</li>
+</ul>
+<p><strong>参数</strong></p>
+<ul>
+<li><code>a</code>, <code>b</code>    -    要比较的值</li>
+<li><code>ilist</code>    -    拥有要比较的值的 <code>initializer_list</code></li>
+<li><code>cmp</code>    -    比较函数对象（即满足比较 (Compare) 要求的对象），若若 <code>a</code> 小于 <code>b</code> ，则返回 ​<code>true</code> 。</li>
+</ul>
+<p>&emsp;&emsp;比较函数的签名应等价于如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> Type1 &amp;a, <span class="keyword">const</span> Type2 &amp;b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;虽然签名不必有 <code>const &amp;</code> ，函数也不能修改传递给它的对象，而且必须接受（可为 <code>const</code> 的）类型 <code>Type1</code> 与 <code>Type2</code> 的值，无关乎值类别（从而不允许 <code>Type1 &amp;</code> ，亦不允许 <code>Type1</code> ，除非 <code>Type1</code> 的移动等价于复制 (C++11 起)）。<br>&emsp;&emsp;类型 <code>Type1</code> 与 <code>Type2</code> 必须使得 T 类型的对象能隐式转换到这两个类型。</p>
+<p><strong>返回值</strong></p>
+<ul>
+<li>1-2) <code>a</code> 与 <code>b</code> 的较大者。若它们等价，则返回 <code>a</code> 。</li>
+<li>3-4) <code>ilist</code> 中的最大值。若有数个等价于最大者的值，则返回最左侧的这种值。</li>
+</ul>
+<p><strong>复杂度</strong></p>
+<ul>
+<li>1-2) 准确一次比较</li>
+<li>3-4) 准确 <code>ilist.size() - 1</code> 次比较</li>
+</ul>
+<p><strong>可能的实现</strong><br><strong>版本一</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; </span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">max</span>(<span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">return</span> (a &lt; b) ? b : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>版本二</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Compare</span>&gt; </span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">max</span>(<span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span>, <span class="title">Compare</span> <span class="title">comp</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">return</span> (comp(a, b)) ? b : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>版本三</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">max</span>( <span class="title">std</span>:</span>:<span class="built_in">initializer_list</span>&lt;T&gt; ilist)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> *<span class="built_in">std</span>::max_element(ilist.begin(), ilist.end());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>版本四</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Compare</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">max</span>( <span class="title">std</span>:</span>:<span class="built_in">initializer_list</span>&lt;T&gt; ilist, Compare comp )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> *<span class="built_in">std</span>::max_element(ilist.begin(), ilist.end(), comp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong><br>&emsp;&emsp;若参数之一是右值，且返回该参数，则以引用捕获 <code>std::max</code> 的结果会产生一个悬垂引用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; r = <span class="built_in">std</span>::max(n<span class="number">-1</span>, n+<span class="number">1</span>);</span><br><span class="line"><span class="comment">// r 为悬垂</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"larger of 1 and 9999: "</span> &lt;&lt; <span class="built_in">std</span>::max(<span class="number">1</span>, <span class="number">9999</span>) &lt;&lt; <span class="string">'\n'</span></span><br><span class="line">              &lt;&lt; <span class="string">"larger of 'a', and 'b': "</span> &lt;&lt; <span class="built_in">std</span>::max(<span class="string">'a'</span>, <span class="string">'b'</span>) &lt;&lt; <span class="string">'\n'</span></span><br><span class="line">              &lt;&lt; <span class="string">"longest of \"foo\", \"bar\", and \"hello\": "</span> &lt;&lt;</span><br><span class="line">                  <span class="built_in">std</span>::max( &#123; <span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"hello"</span> &#125;,</span><br><span class="line">                            [](<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; s1, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; s2) &#123;</span><br><span class="line">                                 <span class="keyword">return</span> s1.size() &lt; s2.size();</span><br><span class="line">                             &#125;) &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">larger of 1 and 9999: 9999</span><br><span class="line">larger of &apos;a&apos;, and &apos;b&apos;: b</span><br><span class="line">longest of &quot;foo&quot;, &quot;bar&quot;, and &quot;hello&quot;: hello</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="min"><a href="#min" class="headerlink" title="min"></a>min</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt; </span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">min</span>( <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span> );</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Compare</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">min</span>( <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span>, <span class="title">Compare</span> <span class="title">comp</span> );</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">min</span>( <span class="title">std</span>:</span>:<span class="built_in">initializer_list</span>&lt;T&gt; ilist );</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Compare</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">min</span>( <span class="title">std</span>:</span>:<span class="built_in">initializer_list</span>&lt;T&gt; ilist, Compare comp );</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong><br>&emsp;&emsp;返回给定值中的较小者。</p>
+<ul>
+<li>1-2) 返回 <code>a</code> 与 <code>b</code> 的较小者。</li>
+<li>3-4) 返回 <code>initializer_list ilist</code> 中值的最小者。</li>
+<li>(1,3) 版本用 <code>operator&lt;</code> 比较元素， (2,4) 版本用给定的比较函数 <code>comp</code> 。</li>
+</ul>
+<p><strong>参数</strong></p>
+<ul>
+<li><code>a</code>, <code>b</code>    -    要比较的值</li>
+<li><code>ilist</code>    -    拥有要比较的值的 <code>initializer_list</code></li>
+<li><code>cmp</code>    -    比较函数对象（即满足比较 (Compare) 要求的对象），若 <code>a</code> 小于 <code>b</code> ，则返回 ​<code>true</code> 。</li>
+</ul>
+<p>&emsp;&emsp;比较函数的签名应等价于如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> Type1 &amp;a, <span class="keyword">const</span> Type2 &amp;b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;虽然签名不必有 <code>const &amp;</code> ，函数也不能修改传递给它的对象，而且必须接受（可为 <code>const</code> 的）类型 <code>Type1</code> 与 <code>Type2</code> 的值，无关乎值类别（从而不允许 <code>Type1 &amp;</code> ，亦不允许 <code>Type1</code> ，除非 <code>Type1</code> 的移动等价于复制 (C++11 起)）。<br>&emsp;&emsp;类型 <code>Type1</code> 与 <code>Type2</code> 必须使得 <code>T</code> 类型的对象能隐式转换到这两个类型。 ​</p>
+<p><strong>返回值</strong></p>
+<ul>
+<li>1-2) <code>a</code> 与 <code>b</code> 的较小者。若值等价，则返回 <code>a</code> 。</li>
+<li>3-4) <code>ilist</code> 中的最小值。若有数个等价于最小者的值，则返回最左侧的这种值。</li>
+</ul>
+<p><strong>复杂度</strong></p>
+<ul>
+<li>1-2) 准确一次比较</li>
+<li>3-4) 准确 <code>ilist.size() - 1</code> 次比较</li>
+</ul>
+<p><strong>可能的实现</strong><br><strong>版本一</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; </span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">min</span>(<span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">return</span> (b &lt; a) ? b : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>版本二</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Compare</span>&gt; </span></span><br><span class="line"><span class="class"><span class="title">const</span> <span class="title">T</span>&amp; <span class="title">min</span>(<span class="title">const</span> <span class="title">T</span>&amp; <span class="title">a</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">b</span>, <span class="title">Compare</span> <span class="title">comp</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">return</span> (comp(b, a)) ? b : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>版本三</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">min</span>( <span class="title">std</span>:</span>:<span class="built_in">initializer_list</span>&lt;T&gt; ilist)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> *<span class="built_in">std</span>::min_element(ilist.begin(), ilist.end());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>版本四</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Compare</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">min</span>(<span class="title">std</span>:</span>:<span class="built_in">initializer_list</span>&lt;T&gt; ilist, Compare comp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> *<span class="built_in">std</span>::min_element(ilist.begin(), ilist.end(), comp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>警告</strong><br>&emsp;&emsp;若参数之一是右值，且返回该参数，则以引用捕获 <code>std::min</code> 的结果会产生一个悬垂引用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; r = <span class="built_in">std</span>::min(n<span class="number">-1</span>, n+<span class="number">1</span>);</span><br><span class="line"><span class="comment">// r 为悬垂</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"smaller of 1 and 9999: "</span> &lt;&lt; <span class="built_in">std</span>::min(<span class="number">1</span>, <span class="number">9999</span>) &lt;&lt; <span class="string">'\n'</span></span><br><span class="line">              &lt;&lt; <span class="string">"smaller of 'a', and 'b': "</span> &lt;&lt; <span class="built_in">std</span>::min(<span class="string">'a'</span>, <span class="string">'b'</span>) &lt;&lt; <span class="string">'\n'</span></span><br><span class="line">              &lt;&lt; <span class="string">"shortest of \"foo\", \"bar\", and \"hello\": "</span> &lt;&lt;</span><br><span class="line">                  <span class="built_in">std</span>::min( &#123; <span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"hello"</span> &#125;,</span><br><span class="line">                            [](<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; s1, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; s2) &#123;</span><br><span class="line">                                 <span class="keyword">return</span> s1.size() &lt; s2.size();</span><br><span class="line">                             &#125;) &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">smaller of 1 and 9999: 1</span><br><span class="line">smaller of &apos;a&apos;, and &apos;b&apos;: a</span><br><span class="line">shortest of &quot;foo&quot;, &quot;bar&quot;, and &quot;hello&quot;: foo</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote class="blockquote-center"><h1 id="排列操作"><a href="#排列操作" class="headerlink" title="排列操作"></a>排列操作</h1></blockquote>
+
+<p>&emsp;&emsp;<strong>定义于头文件</strong> <code>&lt;algorithm&gt;</code></p>
+<h2 id="next-permutation"><a href="#next-permutation" class="headerlink" title="next_permutation"></a>next_permutation</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">next_permutation</span>( <span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span> );</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span>, <span class="title">class</span> <span class="title">Compare</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">next_permutation</span>( <span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span>, <span class="title">Compare</span> <span class="title">comp</span> );</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong><br>&emsp;&emsp;变换范围 <code>[first, last)</code> 为来自所有按相对于 <code>operator&lt;</code> 或 <code>comp</code> 的字典序的下个排列。若这种排列存在则返回 <code>true</code> ，否则变换范围为首个排列（如同用 <code>std::sort(first, last)</code> ）并返回 <code>false</code> 。</p>
+<p><strong>参数</strong></p>
+<ul>
+<li><code>first</code>, <code>last</code>    -    要重排的元素范围</li>
+<li><code>comp</code>    -    比较函数对象（即满足比较 (Compare) 要求的对象），若首个参数小于第二个，则返回 <code>​true</code> 。</li>
+</ul>
+<p>&emsp;&emsp;比较函数的签名应等价于如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> Type1 &amp;a, <span class="keyword">const</span> Type2 &amp;b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;虽然签名不必有 <code>const &amp;</code> ，函数也不能修改传递给它的对象，而且必须接受（可为 <code>const</code> 的）类型 <code>Type1</code> 与 <code>Type2</code> 的值，无关乎值类别（从而不允许 <code>Type1 &amp;</code> ，亦不允许<code>Type1</code> ，除非 <code>Type1</code> 的移动等价于复制 (C++11 起)）。<br>&emsp;&emsp;类型 <code>Type1</code> 与 <code>Type2</code> 必须使得 <code>BidirIt</code> 类型的对象能在解引用后隐式转换到这两个类型。 ​</p>
+<p><strong>返回值</strong><br>&emsp;&emsp;若新排列按字典序大于旧者则为 <code>true</code> 。若抵达最后重排并重置范围为首个排列则为 <code>false</code> 。</p>
+<p><strong>复杂度</strong><br>&emsp;&emsp;至多 <code>N/2</code> 次交换，其中 <code>N = std::distance(first, last)</code> 。</p>
+<p>&emsp;&emsp;典型实现在排列的整个序列上，平均每次调用使用约 3 次比较和 1.5 次交换。</p>
+<p><strong>可能的实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">next_permutation</span>(<span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">if</span> (first == last) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    BidirIt i = last;</span><br><span class="line">    <span class="keyword">if</span> (first == --i) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        BidirIt i1, i2;</span><br><span class="line"> </span><br><span class="line">        i1 = i;</span><br><span class="line">        <span class="keyword">if</span> (*--i &lt; *i1) &#123;</span><br><span class="line">            i2 = last;</span><br><span class="line">            <span class="keyword">while</span> (!(*i &lt; *--i2))</span><br><span class="line">                ;</span><br><span class="line">            <span class="built_in">std</span>::iter_swap(i, i2);</span><br><span class="line">            <span class="built_in">std</span>::reverse(i1, last);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i == first) &#123;</span><br><span class="line">            <span class="built_in">std</span>::reverse(first, last);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong><br>&emsp;&emsp;下列代码打印字符串 “<code>aba</code>“ 的全部三种排列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> s = <span class="string">"aba"</span>;</span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end());</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span>(<span class="built_in">std</span>::next_permutation(s.begin(), s.end()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aab</span><br><span class="line">aba</span><br><span class="line">baa</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="prev-permutation"><a href="#prev-permutation" class="headerlink" title="prev_permutation"></a>prev_permutation</h2><p><strong>定义</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">prev_permutation</span>( <span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span>, <span class="title">class</span> <span class="title">Compare</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">prev_permutation</span>( <span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span>, <span class="title">Compare</span> <span class="title">comp</span>);</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>功能</strong><br>&emsp;&emsp;变换范围 <code>[first, last)</code> 为来自于相对于 <code>operator&lt;</code> 或 <code>comp</code> 的字典序的所有排列集合的上个排列。若这种排列存在则返回 <code>true</code> ，否则变换范围为末排列（如同用 <code>std::sort(first, last); std::reverse(first, last);</code> ）并返回 <code>false</code> 。</p>
+<p><strong>返回值</strong><br>&emsp;&emsp;若新排列按字典序前趋旧排列则为 <code>true</code> 。若抵达首个排列并重置范围为最末排列则为 <code>false</code> 。</p>
+<p><strong>复杂度</strong><br>&emsp;&emsp;至多 <code>(last-first)/2</code> 次交换。</p>
+<p>&emsp;&emsp;典型实现在排列的整个序列上，平均每次调用使用约 3 次比较和 1.5 次交换。</p>
+<p><strong>可能的实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">BidirIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">prev_permutation</span>(<span class="title">BidirIt</span> <span class="title">first</span>, <span class="title">BidirIt</span> <span class="title">last</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">if</span> (first == last) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    BidirIt i = last;</span><br><span class="line">    <span class="keyword">if</span> (first == --i) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        BidirIt i1, i2;</span><br><span class="line"> </span><br><span class="line">        i1 = i;</span><br><span class="line">        <span class="keyword">if</span> (*i1 &lt; *--i) &#123;</span><br><span class="line">            i2 = last;</span><br><span class="line">            <span class="keyword">while</span> (!(*--i2 &lt; *i))</span><br><span class="line">                ;</span><br><span class="line">            <span class="built_in">std</span>::iter_swap(i, i2);</span><br><span class="line">            <span class="built_in">std</span>::reverse(i1, last);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i == first) &#123;</span><br><span class="line">            <span class="built_in">std</span>::reverse(first, last);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong><br>下列代码以逆序打印字符串 “<code>abc</code>“ 的所有六个排列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> s=<span class="string">"abc"</span>;</span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end(), <span class="built_in">std</span>::greater&lt;<span class="keyword">char</span>&gt;());</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span>(<span class="built_in">std</span>::prev_permutation(s.begin(), s.end()));</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cba cab bca bac acb abc</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div class="reference-linking">参考资料</div>
+
+<ul>
+<li><a href="https://zh.cppreference.com/w/cpp/algorithm" target="_blank" rel="noopener">cppreference.com 算法库</a></li>
+</ul>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108141737id.html" rel="bookmark">STL常用模板：List链表</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200125221828id.html" rel="bookmark">C/CPP参考文档：C Math</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200112102040id.html" rel="bookmark">C/CPP参考文档：C++ String</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200109182820id.html" rel="bookmark">C/CPP参考文档：关键字</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200109180432id.html" rel="bookmark">C/CPP参考文档：预处理命令</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    C/CPP参考文档：C++ Algorithm
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年01月26日 - 11时01分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年01月26日 - 15时01分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200126115533id.html" title="C/CPP参考文档：C++ Algorithm">https://blog.siriyang.cn/posts/20200126115533id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | C/CPP参考文档：C++ Algorithm](https://blog.siriyang.cn/posts/20200126115533id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/文档/" rel="tag"><i class="fa fa-tag"></i> 文档</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/posts/20200126125601id.html" rel="prev" title="LeetCode：1333-餐厅过滤器">
+                <i class="fa fa-chevron-left"></i> LeetCode：1333-餐厅过滤器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200126111804id.html" rel="next" title="LeetCode：1331-数组序号转换">
+                LeetCode：1331-数组序号转换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#修改序列的操作"><span class="nav-text">修改序列的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#swap"><span class="nav-text">swap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#swap-ranges"><span class="nav-text">swap_ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iter-swap"><span class="nav-text">iter_swap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reverse"><span class="nav-text">reverse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reverse-copy"><span class="nav-text">reverse_copy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排序操作"><span class="nav-text">排序操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-text">sort</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小-最大操作"><span class="nav-text">最小/最大操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#max"><span class="nav-text">max</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#min"><span class="nav-text">min</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排列操作"><span class="nav-text">排列操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#next-permutation"><span class="nav-text">next_permutation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prev-permutation"><span class="nav-text">prev_permutation</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">673k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:12</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>

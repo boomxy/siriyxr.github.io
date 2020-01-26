@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode：1333-餐厅过滤器]]></title>
+    <url>%2Fposts%2F20200126125601id.html</url>
+    <content type="text"><![CDATA[LeetCode题目汇总 题目描述&emsp;&emsp;给你一个餐馆信息数组 restaurants，其中 restaurants[i] = [id_i, rating_i, veganFriendly_i, price_i, distance_i]。你必须使用以下三个过滤器来过滤这些餐馆信息。 &emsp;&emsp;其中素食者友好过滤器 veganFriendly 的值可以为 true 或者 false，如果为 true 就意味着你应该只包括 veganFriendly_i 为 true 的餐馆，为 false 则意味着可以包括任何餐馆。此外，我们还有最大价格 maxPrice 和最大距离 maxDistance 两个过滤器，它们分别考虑餐厅的价格因素和距离因素的最大值。 &emsp;&emsp;过滤后返回餐馆的 id，按照 rating 从高到低排序。如果 rating 相同，那么按 id 从高到低排序。简单起见， veganFriendly_i 和 veganFriendly 为 true 时取值为 1，为 false 时，取值为 0 。 示例 1： 输入：restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 1, maxPrice = 50, maxDistance = 10输出：[3,1,5]解释：这些餐馆为：餐馆 1 [id=1, rating=4, veganFriendly=1, price=40, distance=10]餐馆 2 [id=2, rating=8, veganFriendly=0, price=50, distance=5]餐馆 3 [id=3, rating=8, veganFriendly=1, price=30, distance=4]餐馆 4 [id=4, rating=10, veganFriendly=0, price=10, distance=3]餐馆 5 [id=5, rating=1, veganFriendly=1, price=15, distance=1]在按照 veganFriendly = 1, maxPrice = 50 和 maxDistance = 10 进行过滤后，我们得到了餐馆 3, 餐馆 1 和 餐馆 5（按评分从高到低排序）。 示例 2： 输入：restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 0, maxPrice = 50, maxDistance = 10输出：[4,3,2,1,5]解释：餐馆与示例 1 相同，但在 veganFriendly = 0 的过滤条件下，应该考虑所有餐馆。 示例 3： 输入：restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 0, maxPrice = 30, maxDistance = 3输出：[4,5] 提示： 1 &lt;= restaurants.length &lt;= 10^4 restaurants[i].length == 5 1 &lt;= idi, ratingi, pricei, distancei &lt;= 10^5 1 &lt;= maxPrice, maxDistance &lt;= 10^5 veganFriendlyi 和 veganFriendly 的值为 0 或 1 。 所有 idi 各不相同。 题解解析&emsp;&emsp;本来想直接在原数组上进行删除操作，结果实现的时候出了点问题，所以就申请了一个新数组将符合条件的插入。 代码123456789101112131415161718192021222324252627282930313233343536373839class Solution &#123; static bool cmp(vector&lt;int&gt; v1,vector&lt;int&gt; v2)&#123; if(v1[1]==v2[1])&#123; return v1[0]&gt;v2[0]; &#125; return v1[1]&gt;v2[1];&#125; public: vector&lt;int&gt; filterRestaurants(vector&lt;vector&lt;int&gt;&gt;&amp; restaurants, int veganFriendly, int maxPrice, int maxDistance) &#123; vector&lt;int&gt; res; vector&lt;vector&lt;int&gt;&gt; vt; for(auto tIte=restaurants.begin();tIte!=restaurants.end();tIte++)&#123; if(veganFriendly &amp;&amp; !(*tIte)[2])&#123; continue; &#125; if((*tIte)[3]&gt;maxPrice)&#123; continue; &#125; if((*tIte)[4]&gt;maxDistance)&#123; continue; &#125; vt.push_back(*tIte); &#125; sort(vt.begin(),vt.end(),cmp); for(auto tIte=vt.begin();tIte!=vt.end();tIte++)&#123; res.push_back((*tIte)[0]); &#125; return res; &#125;&#125;;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>LeetCode</tag>
+        <tag>算法：数组</tag>
+        <tag>算法：排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[C/CPP参考文档：C++ Algorithm]]></title>
+    <url>%2Fposts%2F20200126115533id.html</url>
+    <content type="text"><![CDATA[修改序列的操作 &emsp;&emsp;定义于头文件 &lt;algorithm&gt; swap定义 12template&lt; class T &gt;void swap( T&amp; a, T&amp; b ); 功能&emsp;&emsp;交换给定值&emsp;&emsp;1）交换 a 与 b 。&emsp;&emsp;2）交换 a 与 b 数组。等效于调用 std::swap_ranges(a, a+N, b) 。 参数 a, b - 要交换的值 复杂度&emsp;&emsp;1) 常量&emsp;&emsp;2) 与 N 成线性 示例 123456789101112131415#include &lt;algorithm&gt;#include &lt;iostream&gt; int main()&#123; int a = 5, b = 3; // 前 std::cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; b &lt;&lt; '\n'; std::swap(a,b); // 后 std::cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; b &lt;&lt; '\n';&#125; 输出 125 33 5 swap_ranges123template&lt; class ForwardIt1, class ForwardIt2 &gt;ForwardIt2 swap_ranges( ForwardIt1 first1, ForwardIt1 last1, ForwardIt2 first2 ); 功能在范围 [first1, last1) 和始于 first2 的另一范围间交换元素。 参数 first1, last1 - 要交换的第一个元素范围 first2 - 要交换的第二个元素范围的起始 返回值&emsp;&emsp;指向始于 first2 的范围中被交换的最末元素后一元素的迭代器。 可能的实现 12345678910template&lt;class ForwardIt1, class ForwardIt2&gt;ForwardIt2 swap_ranges(ForwardIt1 first1, ForwardIt1 last1, ForwardIt2 first2)&#123; while (first1 != last1) &#123; std::iter_swap(first1++, first2++); &#125; return first2;&#125; 复杂度&emsp;&emsp;与 first1 和 last1 的距离成线性 示例&emsp;&emsp;演示来自不同容器的子范围交换 123456789101112131415161718#include &lt;algorithm&gt;#include &lt;list&gt;#include &lt;vector&gt;#include &lt;iostream&gt;int main()&#123; std::vector&lt;int&gt; v = &#123;1, 2, 3, 4, 5&#125;; std::list&lt;int&gt; l = &#123;-1, -2, -3, -4, -5&#125;; std::swap_ranges(v.begin(), v.begin()+3, l.begin()); for(int n : v) std::cout &lt;&lt; n &lt;&lt; ' '; std::cout &lt;&lt; '\n'; for(int n : l) std::cout &lt;&lt; n &lt;&lt; ' '; std::cout &lt;&lt; '\n';&#125; 输出 12-1 -2 -3 4 51 2 3 -4 -5 iter_swap定义 12template&lt; class ForwardIt1, class ForwardIt2 &gt;void iter_swap( ForwardIt1 a, ForwardIt2 b ); 参数 a, b - 指向要交换的元素的迭代器 复杂度&emsp;&emsp;常数 可能的实现 123456template&lt;class ForwardIt1, class ForwardIt2&gt;constexpr void iter_swap(ForwardIt1 a, ForwardIt2 b) // C++20 起为 constexpr&#123; using std::swap; swap(*a, *b);&#125; 示例&emsp;&emsp;下面是选择排序在 C++ 中的实现 123456789101112131415161718192021222324252627282930#include &lt;random&gt;#include &lt;vector&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;functional&gt; template&lt;class ForwardIt&gt;void selection_sort(ForwardIt begin, ForwardIt end)&#123; for (ForwardIt i = begin; i != end; ++i) std::iter_swap(i, std::min_element(i, end));&#125; int main()&#123; std::random_device rd; std::mt19937 gen(rd()); std::uniform_int_distribution&lt;&gt; dist(-10, 10); std::vector&lt;int&gt; v; std::generate_n(back_inserter(v), 20, bind(dist, gen)); std::cout &lt;&lt; "Before sort: "; for(auto e : v) std::cout &lt;&lt; e &lt;&lt; " "; selection_sort(v.begin(), v.end()); std::cout &lt;&lt; "\nAfter sort: "; for(auto e : v) std::cout &lt;&lt; e &lt;&lt; " "; std::cout &lt;&lt; '\n';&#125; 输出 12Before sort: -7 6 2 4 -1 6 -9 -1 2 -5 10 -9 -5 -3 -5 -3 6 6 1 8After sort: -9 -9 -7 -5 -5 -5 -3 -3 -1 -1 1 2 2 4 6 6 6 6 8 10 reverse定义 12template&lt; class BidirIt &gt;void reverse( BidirIt first, BidirIt last ); 功能&emsp;&emsp;反转 [first, last) 范围中的元素顺序 参数 first, last - 要反转的元素的范围 可能的实现 1234567template&lt;class BidirIt&gt;void reverse(BidirIt first, BidirIt last)&#123; while ((first != last) &amp;&amp; (first != --last)) &#123; std::iter_swap(first++, last); &#125;&#125; 复杂度&emsp;&emsp;和 first 与 last 间的距离成线性 示例 12345678910111213141516#include &lt;vector&gt;#include &lt;iostream&gt;#include &lt;iterator&gt;#include &lt;algorithm&gt; int main()&#123; std::vector&lt;int&gt; v&#123;1,2,3&#125;; std::reverse(std::begin(v), std::end(v)); for(auto e : v) std::cout &lt;&lt; e; std::cout &lt;&lt; '\n'; int a[] = &#123;4, 5, 6, 7&#125;; std::reverse(std::begin(a), std::end(a)); for(auto e : a) std::cout &lt;&lt; e;&#125; 输出 123217654 reverse_copy定义 12template&lt; class BidirIt, class OutputIt &gt;OutputIt reverse_copy( BidirIt first, BidirIt last, OutputIt d_first ); 功能&emsp;&emsp;复制来自范围 [first, last) 的元素到始于 d_first 的新范围，使得新范围中元素以逆序排列。 参数 first, last - 要复制的元素范围 d_first - 新范围的起始 返回值&emsp;&emsp;指向最后被复制元素后一元素的迭代器。 可能的实现 12345678template&lt;class BidirIt, class OutputIt&gt;OutputIt reverse_copy(BidirIt first, BidirIt last, OutputIt d_first)&#123; while (first != last) &#123; *(d_first++) = *(--last); &#125; return d_first;&#125; 复杂度&emsp;&emsp;与 first 和 last 间的距离成线性。 示例 12345678910111213141516171819#include &lt;vector&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt; int main()&#123; std::vector&lt;int&gt; v(&#123;1,2,3&#125;); for (const auto&amp; value : v) &#123; std::cout &lt;&lt; value &lt;&lt; " "; &#125; std::cout &lt;&lt; '\n'; std::vector&lt;int&gt; destination(3); std::reverse_copy(std::begin(v), std::end(v), std::begin(destination)); for (const auto&amp; value : destination) &#123; std::cout &lt;&lt; value &lt;&lt; " "; &#125; std::cout &lt;&lt; '\n';&#125; 输出 121 2 3 3 2 1 排序操作 &emsp;&emsp;定义于头文件 &lt;algorithm&gt; sort定义 12345template&lt; class RandomIt &gt;void sort( RandomIt first, RandomIt last );template&lt; class RandomIt, class Compare &gt;void sort( RandomIt first, RandomIt last, Compare comp ); 功能&emsp;&emsp;以升序排序范围 [first, last) 中的元素。不保证维持相等元素的顺序。 1) 用 operator&lt; 比较元素。 2) 用给定的二元比较函数 comp 比较元素。 参数 first, last - 要排序的元素范围 policy - 所用的执行策略。细节见执行策略。 comp - 比较函数对象（即满足比较 (Compare) 概念的对象），若第一参数小于（即先序于）第二参数则返回 ​true 。 &emsp;&emsp;比较函数的签名应等价于如下： 1bool cmp(const Type1 &amp;a, const Type2 &amp;b); &emsp;&emsp;虽然签名不必有 const &amp; ，函数也不能修改传递给它的对象，而且必须接受（可为 const 的）类型 Type1 与 Type2 的值，无关乎值类别（从而不允许 Type1 &amp; ，亦不允许 Type1 ，除非 Type1 的移动等价于复制 (C++11 起)）。&emsp;&emsp;类型 Type1 与 Type2 必须使得 RandomIt 类型的对象能在解引用后隐式转换到这两个类型。 复杂度 平均 O(N·log(N)) 次比较，其中 N = std::distance(first, last) 。(C++11 前) O(N·log(N)) 次比较，其中 N = std::distance(first, last) 。(C++11 起) 示例 123456789101112131415161718192021222324252627282930313233343536373839404142434445#include &lt;algorithm&gt;#include &lt;functional&gt;#include &lt;array&gt;#include &lt;iostream&gt; int main()&#123; std::array&lt;int, 10&gt; s = &#123;5, 7, 4, 2, 8, 6, 1, 9, 0, 3&#125;; // 用默认的 operator&lt; 排序 std::sort(s.begin(), s.end()); for (auto a : s) &#123; std::cout &lt;&lt; a &lt;&lt; " "; &#125; std::cout &lt;&lt; '\n'; // 用标准库比较函数对象排序 std::sort(s.begin(), s.end(), std::greater&lt;int&gt;()); for (auto a : s) &#123; std::cout &lt;&lt; a &lt;&lt; " "; &#125; std::cout &lt;&lt; '\n'; // 用自定义函数对象排序 struct &#123; bool operator()(int a, int b) const &#123; return a &lt; b; &#125; &#125; customLess; std::sort(s.begin(), s.end(), customLess); for (auto a : s) &#123; std::cout &lt;&lt; a &lt;&lt; " "; &#125; std::cout &lt;&lt; '\n'; // 用 lambda 表达式排序 std::sort(s.begin(), s.end(), [](int a, int b) &#123; return b &lt; a; &#125;); for (auto a : s) &#123; std::cout &lt;&lt; a &lt;&lt; " "; &#125; std::cout &lt;&lt; '\n';&#125; 输出 12340 1 2 3 4 5 6 7 8 9 9 8 7 6 5 4 3 2 1 0 0 1 2 3 4 5 6 7 8 9 9 8 7 6 5 4 3 2 1 0 最小/最大操作 &emsp;&emsp;定义于头文件 &lt;algorithm&gt; max定义 1234567891011template&lt; class T &gt; const T&amp; max( const T&amp; a, const T&amp; b );template&lt; class T, class Compare &gt;const T&amp; max( const T&amp; a, const T&amp; b, Compare comp );template&lt; class T &gt;T max( std::initializer_list&lt;T&gt; ilist );template&lt; class T, class Compare &gt;T max( std::initializer_list&lt;T&gt; ilist, Compare comp ); 功能&emsp;&emsp;返回给定值中的较大者。 1-2) 返回 a 与 b 的较大者。 3-4) 返回 initializer_list ilist 中值的最大者。 (1,3) 版本用 operator&lt; 比较元素， (2,4) 版本用给定的比较函数 comp 。 参数 a, b - 要比较的值 ilist - 拥有要比较的值的 initializer_list cmp - 比较函数对象（即满足比较 (Compare) 要求的对象），若若 a 小于 b ，则返回 ​true 。 &emsp;&emsp;比较函数的签名应等价于如下： 1bool cmp(const Type1 &amp;a, const Type2 &amp;b); &emsp;&emsp;虽然签名不必有 const &amp; ，函数也不能修改传递给它的对象，而且必须接受（可为 const 的）类型 Type1 与 Type2 的值，无关乎值类别（从而不允许 Type1 &amp; ，亦不允许 Type1 ，除非 Type1 的移动等价于复制 (C++11 起)）。&emsp;&emsp;类型 Type1 与 Type2 必须使得 T 类型的对象能隐式转换到这两个类型。 返回值 1-2) a 与 b 的较大者。若它们等价，则返回 a 。 3-4) ilist 中的最大值。若有数个等价于最大者的值，则返回最左侧的这种值。 复杂度 1-2) 准确一次比较 3-4) 准确 ilist.size() - 1 次比较 可能的实现版本一 12345template&lt;class T&gt; const T&amp; max(const T&amp; a, const T&amp; b)&#123; return (a &lt; b) ? b : a;&#125; 版本二 12345template&lt;class T, class Compare&gt; const T&amp; max(const T&amp; a, const T&amp; b, Compare comp)&#123; return (comp(a, b)) ? b : a;&#125; 版本三 12345template&lt; class T &gt;T max( std::initializer_list&lt;T&gt; ilist)&#123; return *std::max_element(ilist.begin(), ilist.end());&#125; 版本四 12345template&lt; class T, class Compare &gt;T max( std::initializer_list&lt;T&gt; ilist, Compare comp )&#123; return *std::max_element(ilist.begin(), ilist.end(), comp);&#125; 注意&emsp;&emsp;若参数之一是右值，且返回该参数，则以引用捕获 std::max 的结果会产生一个悬垂引用： 123int n = 1;const int&amp; r = std::max(n-1, n+1);// r 为悬垂 示例 1234567891011121314#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;string&gt; int main()&#123; std::cout &lt;&lt; "larger of 1 and 9999: " &lt;&lt; std::max(1, 9999) &lt;&lt; '\n' &lt;&lt; "larger of 'a', and 'b': " &lt;&lt; std::max('a', 'b') &lt;&lt; '\n' &lt;&lt; "longest of \"foo\", \"bar\", and \"hello\": " &lt;&lt; std::max( &#123; "foo", "bar", "hello" &#125;, [](const std::string&amp; s1, const std::string&amp; s2) &#123; return s1.size() &lt; s2.size(); &#125;) &lt;&lt; '\n';&#125; 输出 123larger of 1 and 9999: 9999larger of &apos;a&apos;, and &apos;b&apos;: blongest of &quot;foo&quot;, &quot;bar&quot;, and &quot;hello&quot;: hello min定义 1234567891011template&lt; class T &gt; const T&amp; min( const T&amp; a, const T&amp; b );template&lt; class T, class Compare &gt;const T&amp; min( const T&amp; a, const T&amp; b, Compare comp );template&lt; class T &gt;T min( std::initializer_list&lt;T&gt; ilist );template&lt; class T, class Compare &gt;T min( std::initializer_list&lt;T&gt; ilist, Compare comp ); 功能&emsp;&emsp;返回给定值中的较小者。 1-2) 返回 a 与 b 的较小者。 3-4) 返回 initializer_list ilist 中值的最小者。 (1,3) 版本用 operator&lt; 比较元素， (2,4) 版本用给定的比较函数 comp 。 参数 a, b - 要比较的值 ilist - 拥有要比较的值的 initializer_list cmp - 比较函数对象（即满足比较 (Compare) 要求的对象），若 a 小于 b ，则返回 ​true 。 &emsp;&emsp;比较函数的签名应等价于如下： 1bool cmp(const Type1 &amp;a, const Type2 &amp;b); &emsp;&emsp;虽然签名不必有 const &amp; ，函数也不能修改传递给它的对象，而且必须接受（可为 const 的）类型 Type1 与 Type2 的值，无关乎值类别（从而不允许 Type1 &amp; ，亦不允许 Type1 ，除非 Type1 的移动等价于复制 (C++11 起)）。&emsp;&emsp;类型 Type1 与 Type2 必须使得 T 类型的对象能隐式转换到这两个类型。 ​ 返回值 1-2) a 与 b 的较小者。若值等价，则返回 a 。 3-4) ilist 中的最小值。若有数个等价于最小者的值，则返回最左侧的这种值。 复杂度 1-2) 准确一次比较 3-4) 准确 ilist.size() - 1 次比较 可能的实现版本一 12345template&lt;class T&gt; const T&amp; min(const T&amp; a, const T&amp; b)&#123; return (b &lt; a) ? b : a;&#125; 版本二 12345template&lt;class T, class Compare&gt; const T&amp; min(const T&amp; a, const T&amp; b, Compare comp)&#123; return (comp(b, a)) ? b : a;&#125; 版本三 12345template&lt;class T&gt;T min( std::initializer_list&lt;T&gt; ilist)&#123; return *std::min_element(ilist.begin(), ilist.end());&#125; 版本四 12345template&lt;class T, class Compare&gt;T min(std::initializer_list&lt;T&gt; ilist, Compare comp)&#123; return *std::min_element(ilist.begin(), ilist.end(), comp);&#125; 警告&emsp;&emsp;若参数之一是右值，且返回该参数，则以引用捕获 std::min 的结果会产生一个悬垂引用： 123int n = 1;const int&amp; r = std::min(n-1, n+1);// r 为悬垂 示例 1234567891011121314#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;string&gt; int main()&#123; std::cout &lt;&lt; "smaller of 1 and 9999: " &lt;&lt; std::min(1, 9999) &lt;&lt; '\n' &lt;&lt; "smaller of 'a', and 'b': " &lt;&lt; std::min('a', 'b') &lt;&lt; '\n' &lt;&lt; "shortest of \"foo\", \"bar\", and \"hello\": " &lt;&lt; std::min( &#123; "foo", "bar", "hello" &#125;, [](const std::string&amp; s1, const std::string&amp; s2) &#123; return s1.size() &lt; s2.size(); &#125;) &lt;&lt; '\n';&#125; 输出 123smaller of 1 and 9999: 1smaller of &apos;a&apos;, and &apos;b&apos;: ashortest of &quot;foo&quot;, &quot;bar&quot;, and &quot;hello&quot;: foo 排列操作 &emsp;&emsp;定义于头文件 &lt;algorithm&gt; next_permutation定义 12345template&lt; class BidirIt &gt;bool next_permutation( BidirIt first, BidirIt last );template&lt; class BidirIt, class Compare &gt;bool next_permutation( BidirIt first, BidirIt last, Compare comp ); 功能&emsp;&emsp;变换范围 [first, last) 为来自所有按相对于 operator&lt; 或 comp 的字典序的下个排列。若这种排列存在则返回 true ，否则变换范围为首个排列（如同用 std::sort(first, last) ）并返回 false 。 参数 first, last - 要重排的元素范围 comp - 比较函数对象（即满足比较 (Compare) 要求的对象），若首个参数小于第二个，则返回 ​true 。 &emsp;&emsp;比较函数的签名应等价于如下： 1bool cmp(const Type1 &amp;a, const Type2 &amp;b); &emsp;&emsp;虽然签名不必有 const &amp; ，函数也不能修改传递给它的对象，而且必须接受（可为 const 的）类型 Type1 与 Type2 的值，无关乎值类别（从而不允许 Type1 &amp; ，亦不允许Type1 ，除非 Type1 的移动等价于复制 (C++11 起)）。&emsp;&emsp;类型 Type1 与 Type2 必须使得 BidirIt 类型的对象能在解引用后隐式转换到这两个类型。 ​ 返回值&emsp;&emsp;若新排列按字典序大于旧者则为 true 。若抵达最后重排并重置范围为首个排列则为 false 。 复杂度&emsp;&emsp;至多 N/2 次交换，其中 N = std::distance(first, last) 。 &emsp;&emsp;典型实现在排列的整个序列上，平均每次调用使用约 3 次比较和 1.5 次交换。 可能的实现 12345678910111213141516171819202122232425template&lt;class BidirIt&gt;bool next_permutation(BidirIt first, BidirIt last)&#123; if (first == last) return false; BidirIt i = last; if (first == --i) return false; while (true) &#123; BidirIt i1, i2; i1 = i; if (*--i &lt; *i1) &#123; i2 = last; while (!(*i &lt; *--i2)) ; std::iter_swap(i, i2); std::reverse(i1, last); return true; &#125; if (i == first) &#123; std::reverse(first, last); return false; &#125; &#125;&#125; 示例&emsp;&emsp;下列代码打印字符串 “aba“ 的全部三种排列 123456789101112#include &lt;algorithm&gt;#include &lt;string&gt;#include &lt;iostream&gt; int main()&#123; std::string s = "aba"; std::sort(s.begin(), s.end()); do &#123; std::cout &lt;&lt; s &lt;&lt; '\n'; &#125; while(std::next_permutation(s.begin(), s.end()));&#125; 输出 123aabababaa prev_permutation定义 12345template&lt; class BidirIt &gt;bool prev_permutation( BidirIt first, BidirIt last);template&lt; class BidirIt, class Compare &gt;bool prev_permutation( BidirIt first, BidirIt last, Compare comp); 功能&emsp;&emsp;变换范围 [first, last) 为来自于相对于 operator&lt; 或 comp 的字典序的所有排列集合的上个排列。若这种排列存在则返回 true ，否则变换范围为末排列（如同用 std::sort(first, last); std::reverse(first, last); ）并返回 false 。 返回值&emsp;&emsp;若新排列按字典序前趋旧排列则为 true 。若抵达首个排列并重置范围为最末排列则为 false 。 复杂度&emsp;&emsp;至多 (last-first)/2 次交换。 &emsp;&emsp;典型实现在排列的整个序列上，平均每次调用使用约 3 次比较和 1.5 次交换。 可能的实现 12345678910111213141516171819202122232425template&lt;class BidirIt&gt;bool prev_permutation(BidirIt first, BidirIt last)&#123; if (first == last) return false; BidirIt i = last; if (first == --i) return false; while (1) &#123; BidirIt i1, i2; i1 = i; if (*i1 &lt; *--i) &#123; i2 = last; while (!(*--i2 &lt; *i)) ; std::iter_swap(i, i2); std::reverse(i1, last); return true; &#125; if (i == first) &#123; std::reverse(first, last); return false; &#125; &#125;&#125; 示例下列代码以逆序打印字符串 “abc“ 的所有六个排列 12345678910111213#include &lt;algorithm&gt;#include &lt;string&gt;#include &lt;iostream&gt;#include &lt;functional&gt;int main()&#123; std::string s="abc"; std::sort(s.begin(), s.end(), std::greater&lt;char&gt;()); do &#123; std::cout &lt;&lt; s &lt;&lt; ' '; &#125; while(std::prev_permutation(s.begin(), s.end())); std::cout &lt;&lt; '\n';&#125; 输出 1cba cab bca bac acb abc 参考资料 cppreference.com 算法库]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode：1331-数组序号转换]]></title>
+    <url>%2Fposts%2F20200126111804id.html</url>
+    <content type="text"><![CDATA[LeetCode题目汇总 题目描述&emsp;&emsp;给你一个整数数组 arr ，请你将数组中的每个元素替换为它们排序后的序号。 &emsp;&emsp;序号代表了一个元素有多大。序号编号的规则如下： &emsp;&emsp;序号从 1 开始编号。&emsp;&emsp;一个元素越大，那么序号越大。如果两个元素相等，那么它们的序号相同。&emsp;&emsp;每个数字的序号都应该尽可能地小。 示例 1： 输入：arr = [40,10,20,30]输出：[4,1,2,3]解释：40 是最大的元素。 10 是最小的元素。 20 是第二小的数字。 30 是第三小的数字。 示例 2： 输入：arr = [100,100,100]输出：[1,1,1]解释：所有元素有相同的序号。 示例 3： 输入：arr = [37,12,28,9,100,56,80,5,12]输出：[5,3,4,2,8,6,7,1,3] 提示： 0 &lt;= arr.length &lt;= $10^5$ $-10^9$ &lt;= arr[i] &lt;= $10^9$ 题解解析&emsp;&emsp;定义一个结构体，分别存储每个数字在原始数组中的值和索引，然后对结构体数组进行排序。排序后按照元素索引字段在res数组对应位置中赋值当前元素的序号c，c只有在元素值发生改变时加1。 代码12345678910111213141516171819202122232425262728293031323334353637383940414243class Solution &#123;typedef struct Num&#123; int v; int pos; Num(int iv,int ip)&#123; v=iv; pos=ip; &#125; &#125;Num;static bool cmp(Num n1,Num n2)&#123; return n1.v&lt;n2.v;&#125; public: vector&lt;int&gt; arrayRankTransform(vector&lt;int&gt;&amp; arr) &#123; vector&lt;Num&gt; num; vector&lt;int&gt; res(arr.size(),0); for(int i=0;i&lt;arr.size();i++)&#123; num.push_back(Num(arr[i],i)); &#125; sort(num.begin(),num.end(),cmp); int c=1; for(int i=0;i&lt;num.size();i++)&#123; if(i&gt;0 &amp;&amp; num[i].v!=num[i-1].v) c++; res[num[i].pos]=c; &#125; return res; &#125;&#125;;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>LeetCode</tag>
+        <tag>算法：数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode：1329-将矩阵按对角线排序]]></title>
+    <url>%2Fposts%2F20200126111747id.html</url>
+    <content type="text"><![CDATA[LeetCode题目汇总 题目描述&emsp;&emsp;给你一个 m * n 的整数矩阵 mat ，请你将同一条对角线上的元素（从左上到右下）按升序排序后，返回排好序的矩阵。 示例 1： 输入：mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]输出：[[1,1,1,1],[1,2,2,2],[1,2,3,3]] 提示： m == mat.length n == mat[i].length 1 &lt;= m, n &lt;= 100 1 &lt;= mat[i][j] &lt;= 100 题解解析&emsp;&emsp;将斜对角线的元素取出存到临时数组中排序后再放回即可。 代码123456789101112131415161718192021222324252627282930313233343536373839class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; diagonalSort(vector&lt;vector&lt;int&gt;&gt;&amp; mat) &#123; int w,h; h=mat.size(); w=mat[0].size(); for(int i=0;i&lt;w;i++)&#123; int x,y,j; vector&lt;int&gt; t; for(x=i,y=0;x&lt;w &amp;&amp; y&lt;h;x++,y++)&#123; t.push_back(mat[y][x]); &#125; sort(t.begin(),t.end()); for(x=i,y=0,j=0;x&lt;w &amp;&amp; y&lt;h;x++,y++,j++)&#123; mat[y][x]=t[j]; &#125; &#125; for(int i=1;i&lt;h;i++)&#123; int x,y,j; vector&lt;int&gt; t; for(x=0,y=i;x&lt;w &amp;&amp; y&lt;h;x++,y++)&#123; t.push_back(mat[y][x]); &#125; sort(t.begin(),t.end()); for(x=0,y=i,j=0;x&lt;w &amp;&amp; y&lt;h;x++,y++,j++)&#123; mat[y][x]=t[j]; &#125; &#125; return mat; &#125;&#125;;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>LeetCode</tag>
+        <tag>算法：数组</tag>
+        <tag>算法：排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode：1328-破坏回文串]]></title>
+    <url>%2Fposts%2F20200126111731id.html</url>
+    <content type="text"><![CDATA[LeetCode题目汇总 题目描述&emsp;&emsp;给你一个回文字符串 palindrome ，请你将其中 一个 字符用任意小写英文字母替换，使得结果字符串的字典序最小，且 不是 回文串。 &emsp;&emsp;请你返回结果字符串。如果无法做到，则返回一个空串。 示例 1： 输入：palindrome = “abccba”输出：“aaccba” 示例 2： 输入：palindrome = “a”输出：“” 提示： 1 &lt;= palindrome.length &lt;= 1000 palindrome 只包含小写英文字母。 题解解析&emsp;&emsp;首先对字符串长度小于等于1的做单独处理，直接返回空串。然后根据字符串长度的奇偶性分别处理，在游标走到中间之前，替换遇到的第一个非a字符为a；若游标走到中间，则说明字符串全为a（对于长度为奇数的字符串不考虑正中间一位），此时仅需将字符串最后一位替换为b即可。如此使得替换后的字符串字典序最小。 代码1234567891011121314151617181920212223242526272829303132333435class Solution &#123;public: string breakPalindrome(string palindrome) &#123; if(palindrome.size()&lt;=1) return ""; if(palindrome.size()%2==0) for(int i=0;i&lt;palindrome.size();i++)&#123; if(i&lt;palindrome.size()/2 &amp;&amp;palindrome[i]!='a')&#123; palindrome[i]='a'; break; &#125; if(i==palindrome.size()/2)&#123; palindrome[palindrome.size()-1]='b'; break; &#125; &#125; else&#123; for(int i=0;i&lt;palindrome.size();i++)&#123; if(i==palindrome.size()/2-1 &amp;&amp; palindrome[i]=='a')&#123; palindrome[palindrome.size()-1]='b'; break; &#125; if(i&lt;palindrome.size()/2 &amp;&amp;palindrome[i]!='a')&#123; palindrome[i]='a'; break; &#125; &#125; &#125; return palindrome; &#125;&#125;;]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法题</tag>
+        <tag>LeetCode</tag>
+        <tag>算法：字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[C/CPP参考文档：C Math]]></title>
     <url>%2Fposts%2F20200125221828id.html</url>
     <content type="text"><![CDATA[C/C++参考文档 标准c数学函数 abs语法: 12#include &lt;stdlib.h&gt;int abs( int num ); &emsp;&emsp;功能： 函数返回参数num的绝对值。&emsp;&emsp;例如: 1234int magic_number = 10;cout &lt;&lt; "Enter a guess: ";cin &gt;&gt; x;cout &lt;&lt; "Your guess was " &lt;&lt; abs( magic_number - x ) &lt;&lt; " away from the magic number." &lt;&lt; endl; acos语法: 12#include &lt;math.h&gt;double acos( double arg ); &emsp;&emsp;功能： 函数返回参数arg的反余弦值。参数arg 应当在-1和1之间。 asin语法: 12#include &lt;math.h&gt;double asin( double arg ); &emsp;&emsp;功能： 函数返回参数arg的反正弦值。参数arg 应当在-1和1之间。 atan语法: 12#include &lt;math.h&gt;double atan( double arg ); &emsp;&emsp;功能： 函数返回参数arg的反正切值。 atan2语法: 12#include &lt;math.h&gt;double atan2( double y, double x ); &emsp;&emsp;功能： 函数计算y/x的反正切值，按照参数的符号计算所在的象限。 ceil语法: 12#include &lt;math.h&gt;double ceil( double num ); &emsp;&emsp;功能： 函数返回参数不小于num 的最小整数。例如, 12y = 6.04;x = ceil( y ); &emsp;&emsp;x为7.0. cos语法: 12#include &lt;math.h&gt;double cos( double arg ); &emsp;&emsp;功能： 函数返回参数arg的余弦值，arg以弧度表示给出。 cosh语法: 12#include &lt;math.h&gt;double cosh( double arg ); &emsp;&emsp;功能： 函数返回参数arg的双曲余弦值。 div语法: 12#include &lt;stdlib.h&gt;div_t div( int numerator, int denominator ); &emsp;&emsp;功能： 函数返回参数numerator / denominator的商和余数。结构类型div_t定义在stdlib.h中: 12int quot; // 商数int rem; // 余数 &emsp;&emsp;例, 以下代码显示x/y的商和余数: 123div_t temp;temp = div( x, y );printf( "%d divided by %d yields %d with a remainder of %d\n", x, y, temp.quot, temp.rem ); exp语法: 12#include &lt;math.h&gt;double exp( double arg ); &emsp;&emsp;功能： 函数返回参数returns e (2.7182818)的arg次幂。 fabs语法: 12#include &lt;math.h&gt;double fabs( double arg ); &emsp;&emsp;功能： 函数返回参数arg的绝对值。 floor语法: 12#include &lt;math.h&gt;double floor( double arg ); &emsp;&emsp;功能： 函数返回参数不大于arg的最大整数。例如, 12y = 6.04;x = floor( y ); &emsp;&emsp;x的值为6.0. fmod语法: 12#include &lt;math.h&gt;double fmod( double x, double y ); &emsp;&emsp;功能： 函数返回参数x/y的余数。 frexp语法: 12#include &lt;math.h&gt;double frexp( double num, int *exp ); &emsp;&emsp;功能： 函数将参数num 分成两部分： 0.5 和1之间的尾数（由函数返回）并返回指数exp。转换成如下的科学计数法形式： 1num = mantissa * (2 ^ exp) labs语法: 12#include &lt;stdlib.h&gt;long labs( long num ); &emsp;&emsp;功能： 函数返回参数num的绝对值。 ldexp语法: 12#include &lt;math.h&gt;double ldexp( double num, int exp ); &emsp;&emsp;功能： 函数返回参数num * (2 ^ exp)。如果发生溢出返回HUGE_VAL。 ldiv语法: 12#include &lt;stdlib.h&gt;ldiv_t ldiv( long numerator, long denominator ); &emsp;&emsp;功能： 函数返回参数numerator / denominator的商和余数。结构类型 ldiv_t 定义在stdlib.h中： 12long quot; // 商数 long rem; // 余数 log语法: 12#include &lt;math.h&gt;double log( double num ); &emsp;&emsp;功能： 函数返回参数num的自然对数。如果num为负,产生域错误；如果num 为零，产生范围错误。 log10语法: 12#include &lt;math.h&gt;double log10( double num ); &emsp;&emsp;功能： 函数返回参数num以10为底的对数。如果num为负,产生域错误；如果num 为零，产生范围错误。 modf语法: 12#include &lt;math.h&gt;double modf( double num, double *i ); &emsp;&emsp;功能： 函数将参数num 分割为整数和小数，返回小数部分并将整数部分赋给i。 pow语法: 12#include &lt;math.h&gt;double pow( double base, double exp ); &emsp;&emsp;功能： 函数返回以参数base 为底的exp 次幂。如果base为零或负和exp 小于等于零或非整数时,产生域错误。如果溢出，产生范围错误。 sin语法: 12#include &lt;math.h&gt;double sin( double arg ); &emsp;&emsp;功能： 函数返回参数arg的正弦值，arg以弧度表示给出。 sinh语法: 12#include &lt;math.h&gt;double sinh( double arg ); &emsp;&emsp;功能： 函数返回参数arg的双曲正弦值。 sqrt语法: 12#include &lt;math.h&gt;double sqrt( double num ); &emsp;&emsp;功能： 函数返回参数num的平方根。如果num为负,产生域错误。 tan语法: 12#include &lt;math.h&gt;double tan( double arg ); &emsp;&emsp;功能： 函数返回参数arg的正切值，arg以弧度表示给出。 tanh语法: 12#include &lt;math.h&gt;double tanh( double arg ); &emsp;&emsp;功能： 函数返回参数arg的双曲正切值。]]></content>
@@ -483,8 +559,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：字符串</tag>
         <tag>算法：哈希表</tag>
+        <tag>算法：字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -853,7 +929,7 @@
   <entry>
     <title><![CDATA[C/C++参考文档]]></title>
     <url>%2Fposts%2F20200107194641id.html</url>
-    <content type="text"><![CDATA[基本C/C++ 预处理命令操作符优先级 优先级 操作符 优先级 操作符 1 () &emsp; [] &emsp; -&gt; &emsp; . &emsp; :: &emsp; !&emsp; ~ &emsp;++&emsp; -- 9 &amp; (bitwise AND) 2 - (unary) &emsp; * (dereference) &emsp; &amp; (address of) &emsp; sizeof 10 ^ 3 -&gt;* &emsp; .* 11 | 4 * (multiply) &emsp; / &emsp; % 12 &amp;&amp; 5 + &emsp; - 13 || 6 &lt;&lt; &emsp; &gt;&gt; 14 ? &emsp; : 7 &lt; &emsp; &lt;= &emsp; &gt; &emsp; &gt;= 15 = &emsp; += &emsp; -= &emsp; etc. 8 == &emsp; != 16 , 转义字符 转义字符 描述 \‘ 单引号 \“ 双引号 \\ 反斜杠 \0 空字符 \a 响铃 \b 后退 \f 走纸 \n 换行 \r 回车 \t 水平制表符 \v 垂直制表符 \xnnn 表示十六进制数(nnn) ASCII码表 十进制 八进制 十六进制 字符 描述 十进制 八进制 十六进制 字符 描述 0 0 00 NUL 64 100 40 @ 1 1 01 SOH start of header 65 101 41 A 2 2 02 STX start of text 66 102 42 B 3 3 03 ETX end of text 67 103 43 C 4 4 04 EOT end of transmission 68 104 44 D 5 5 05 ENQ enquiry 69 105 45 E 6 6 06 ACK acknowledge 70 106 46 F 7 7 07 BEL bell 71 107 47 G 8 10 08 BS backspace 72 110 48 H 9 11 09 HT horizontal tab 73 111 49 I 10 12 0A LF line feed 74 112 4A J 11 13 0B VT vertical tab 75 113 4B K 12 14 0C FF form feed 76 114 4C L 13 15 0D CR carriage return 77 115 4D M 14 16 0E SO shift out 78 116 4E N 15 17 0F SI shift in 79 117 4F O 16 20 10 DLE data link escape 80 120 50 P 17 21 11 DC1 no assignment, but usually XON 81 121 51 Q 18 22 12 DC2 82 122 52 R 19 23 13 DC3 no assignment, but usually XOFF 83 123 53 S 20 24 14 DC4 84 124 54 T 21 25 15 NAK negative acknowledge 85 125 55 U 22 26 16 SYN synchronous idle 86 126 56 V 23 27 17 ETB end of transmission block 87 127 57 W 24 30 18 CAN cancel 88 130 58 X 25 31 19 EM end of medium 89 131 59 Y 26 32 1A SUB substitute 90 132 5A Z 27 33 1B ESC escape 91 133 5B [ 28 34 1C FS file seperator 92 134 5C \ 29 35 1D GS group seperator 93 135 5D ] 30 36 1E RS record seperator 94 136 5E ^ 31 37 1F US unit seperator 95 137 5F _ 32 40 20 SPC space 96 140 60 ` 33 41 21 ! 97 141 61 a 34 42 22 “ 98 142 62 b 35 43 23 # 99 143 63 c 36 44 24 $ 100 144 64 d 37 45 25 % 101 145 65 e 38 46 26 &amp; 102 146 66 f 39 47 27 ‘ 103 147 67 g 40 50 28 ( 104 150 68 h 41 51 29 ) 105 151 69 i 42 52 2A * 106 152 6A j 43 53 2B + 107 153 6B k 44 54 2C , 108 154 6C l 45 55 2D - 109 155 6D m 46 56 2E . 110 156 6E n 47 57 2F / 111 157 6F o 48 60 30 0 112 160 70 p 49 61 31 1 113 161 71 q 50 62 32 2 114 162 72 r 51 63 33 3 115 163 73 s 52 64 34 4 116 164 74 t 53 65 35 5 117 165 75 u 54 66 36 6 118 166 76 v 55 67 37 7 119 167 77 w 56 70 38 8 120 170 78 x 57 71 39 9 121 171 79 y 58 72 3A : 122 172 7A z 59 73 3B ; 123 173 7B { 60 74 3C &lt; 124 174 7C | 61 75 3D = 125 175 7D } 62 76 3E &gt; 126 176 7E ~ 63 77 3F ? 127 177 7F DEL delete 基本数据类型&emsp;&emsp;C语言包含5个基本数据类型: void, integer, float, double, 和 char。 类型 描述 void 空类型 int 整型 float 浮点类型 double 双精度浮点类型 char 字符类型 &emsp;&emsp;C++ 定义了另外两个基本数据类型: bool 和 wchar_t. 类型 描述 bool 布尔类型, 值为true 或 false wchar_t 宽字符类型 类型修饰符&emsp;&emsp;一些基本数据类型能够被 signed, unsigned, short, 和 long 修饰。 当类型修饰符单独使用的时候, 默认的类型是 int。 下表是所有可能出现的数据类型: bool char unsigned char signed char int unsigned int signed int short int unsigned short int signed short int long int signed long int unsigned long int float double long double wchar_t 类型大小和表示范围&emsp;&emsp;基本数据类型的大小以及能够表示的数据范围是与编译器和硬件平台有关的。 “cfloat“ (或者 “float.h“) 头文件往往定义了基本数据类型能够表示的数据的最大值和最小值。 你也可以使用 sizeof 来获得类型的大小(字节数) 。 然而, 很多平台使用了一些数据类型的标准大小，如: int 和 float 通常占用 32位, char 占用 8位, double 通常占用64位。 bools 通常以 8位 来实现。 关键字 标准C库 Standard C I/O Standard C String &amp; Character Standard C Math Standard C Time &amp; Date Standard C Memory Other standard C functions C++ C++ I/O C++ Strings C++ 标准模板库(STL)&emsp;&emsp;C++ STL (Standard Template Library标准模板库) 是通用类模板和算法的集合，它提供给程序员一些标准的数据结构的实现如 queues(队列), lists(链表), 和 stacks(栈)等。 &emsp;&emsp;C++ STL 提供给程序员以下三类数据结构的实现: 顺序结构 C++ Vectors C++ Lists C++ Double-Ended Queues 容器适配器 C++ Stacks C++ Queues C++ Priority Queues 联合容器 C++ Bitsets C++ Maps C++ Multimaps C++ Sets C++ Multisets 迭代器&emsp;&emsp;Iterators &emsp;&emsp;程序员使用复杂数据结构的最困难的部分已经由STL完成。]]></content>
+    <content type="text"><![CDATA[基本C/C++ 预处理命令操作符优先级 优先级 操作符 优先级 操作符 1 () &emsp; [] &emsp; -&gt; &emsp; . &emsp; :: &emsp; !&emsp; ~ &emsp;++&emsp; -- 9 &amp; (bitwise AND) 2 - (unary) &emsp; * (dereference) &emsp; &amp; (address of) &emsp; sizeof 10 ^ 3 -&gt;* &emsp; .* 11 | 4 * (multiply) &emsp; / &emsp; % 12 &amp;&amp; 5 + &emsp; - 13 || 6 &lt;&lt; &emsp; &gt;&gt; 14 ? &emsp; : 7 &lt; &emsp; &lt;= &emsp; &gt; &emsp; &gt;= 15 = &emsp; += &emsp; -= &emsp; etc. 8 == &emsp; != 16 , 转义字符 转义字符 描述 \‘ 单引号 \“ 双引号 \\ 反斜杠 \0 空字符 \a 响铃 \b 后退 \f 走纸 \n 换行 \r 回车 \t 水平制表符 \v 垂直制表符 \xnnn 表示十六进制数(nnn) ASCII码表 十进制 八进制 十六进制 字符 描述 十进制 八进制 十六进制 字符 描述 0 0 00 NUL 64 100 40 @ 1 1 01 SOH start of header 65 101 41 A 2 2 02 STX start of text 66 102 42 B 3 3 03 ETX end of text 67 103 43 C 4 4 04 EOT end of transmission 68 104 44 D 5 5 05 ENQ enquiry 69 105 45 E 6 6 06 ACK acknowledge 70 106 46 F 7 7 07 BEL bell 71 107 47 G 8 10 08 BS backspace 72 110 48 H 9 11 09 HT horizontal tab 73 111 49 I 10 12 0A LF line feed 74 112 4A J 11 13 0B VT vertical tab 75 113 4B K 12 14 0C FF form feed 76 114 4C L 13 15 0D CR carriage return 77 115 4D M 14 16 0E SO shift out 78 116 4E N 15 17 0F SI shift in 79 117 4F O 16 20 10 DLE data link escape 80 120 50 P 17 21 11 DC1 no assignment, but usually XON 81 121 51 Q 18 22 12 DC2 82 122 52 R 19 23 13 DC3 no assignment, but usually XOFF 83 123 53 S 20 24 14 DC4 84 124 54 T 21 25 15 NAK negative acknowledge 85 125 55 U 22 26 16 SYN synchronous idle 86 126 56 V 23 27 17 ETB end of transmission block 87 127 57 W 24 30 18 CAN cancel 88 130 58 X 25 31 19 EM end of medium 89 131 59 Y 26 32 1A SUB substitute 90 132 5A Z 27 33 1B ESC escape 91 133 5B [ 28 34 1C FS file seperator 92 134 5C \ 29 35 1D GS group seperator 93 135 5D ] 30 36 1E RS record seperator 94 136 5E ^ 31 37 1F US unit seperator 95 137 5F _ 32 40 20 SPC space 96 140 60 ` 33 41 21 ! 97 141 61 a 34 42 22 “ 98 142 62 b 35 43 23 # 99 143 63 c 36 44 24 $ 100 144 64 d 37 45 25 % 101 145 65 e 38 46 26 &amp; 102 146 66 f 39 47 27 ‘ 103 147 67 g 40 50 28 ( 104 150 68 h 41 51 29 ) 105 151 69 i 42 52 2A * 106 152 6A j 43 53 2B + 107 153 6B k 44 54 2C , 108 154 6C l 45 55 2D - 109 155 6D m 46 56 2E . 110 156 6E n 47 57 2F / 111 157 6F o 48 60 30 0 112 160 70 p 49 61 31 1 113 161 71 q 50 62 32 2 114 162 72 r 51 63 33 3 115 163 73 s 52 64 34 4 116 164 74 t 53 65 35 5 117 165 75 u 54 66 36 6 118 166 76 v 55 67 37 7 119 167 77 w 56 70 38 8 120 170 78 x 57 71 39 9 121 171 79 y 58 72 3A : 122 172 7A z 59 73 3B ; 123 173 7B { 60 74 3C &lt; 124 174 7C | 61 75 3D = 125 175 7D } 62 76 3E &gt; 126 176 7E ~ 63 77 3F ? 127 177 7F DEL delete 基本数据类型&emsp;&emsp;C语言包含5个基本数据类型: void, integer, float, double, 和 char。 类型 描述 void 空类型 int 整型 float 浮点类型 double 双精度浮点类型 char 字符类型 &emsp;&emsp;C++ 定义了另外两个基本数据类型: bool 和 wchar_t. 类型 描述 bool 布尔类型, 值为true 或 false wchar_t 宽字符类型 类型修饰符&emsp;&emsp;一些基本数据类型能够被 signed, unsigned, short, 和 long 修饰。 当类型修饰符单独使用的时候, 默认的类型是 int。 下表是所有可能出现的数据类型: bool char unsigned char signed char int unsigned int signed int short int unsigned short int signed short int long int signed long int unsigned long int float double long double wchar_t 类型大小和表示范围&emsp;&emsp;基本数据类型的大小以及能够表示的数据范围是与编译器和硬件平台有关的。 “cfloat“ (或者 “float.h“) 头文件往往定义了基本数据类型能够表示的数据的最大值和最小值。 你也可以使用 sizeof 来获得类型的大小(字节数) 。 然而, 很多平台使用了一些数据类型的标准大小，如: int 和 float 通常占用 32位, char 占用 8位, double 通常占用64位。 bools 通常以 8位 来实现。 关键字 标准C库 Standard C I/O Standard C String &amp; Character Standard C Math Standard C Time &amp; Date Standard C Memory Other standard C functions C++ C++ I/O C++ Strings C++ Algorithm C++ 标准模板库(STL)&emsp;&emsp;C++ STL (Standard Template Library标准模板库) 是通用类模板和算法的集合，它提供给程序员一些标准的数据结构的实现如 queues(队列), lists(链表), 和 stacks(栈)等。 &emsp;&emsp;C++ STL 提供给程序员以下三类数据结构的实现: 顺序结构 C++ Vectors C++ Lists C++ Double-Ended Queues 容器适配器 C++ Stacks C++ Queues C++ Priority Queues 联合容器 C++ Bitsets C++ Maps C++ Multimaps C++ Sets C++ Multisets 迭代器&emsp;&emsp;Iterators &emsp;&emsp;程序员使用复杂数据结构的最困难的部分已经由STL完成。]]></content>
       <categories>
         <category>计算机</category>
         <category>技术</category>
@@ -1096,8 +1172,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：字符串</tag>
         <tag>算法：哈希表</tag>
+        <tag>算法：字符串</tag>
         <tag>算法：双指针</tag>
         <tag>算法：Sliding Window</tag>
       </tags>
@@ -1194,7 +1270,7 @@
   <entry>
     <title><![CDATA[LeetCode题目汇总]]></title>
     <url>%2Fposts%2F20200103132244id.html</url>
-    <content type="text"><![CDATA[LeetCode官网 &emsp;&emsp;以下都是我自己做过的题目，答案也全是自己做的，和网上大牛的最优解还是有差距。╮(￣▽ ￣)╭ 我的LeetCode主页 # 题名 难度 备注 1 两数之和 简单 2 两数相加 中等 3 无重复字符的最长子串 中等 4 寻找两个有序数组的中位数 困难 7 整数反转 简单 19 删除链表的倒数第N个节点 中等 26 删除排序数组中的重复项 简单 36 有效的数独 中等 48 旋转图像 中等 66 加一 简单 122 买卖股票的最佳时机II 简单 136 只出现一次的数 简单 155 最小栈 简单 189 旋转数组 简单 217 存在重复元素 简单 242 有效字的母异位词 简单 283 移动零 简单 292 Nim游戏 简单 344 反转字符串 简单 350 两个数组的交集II 简单 387 字符串中的第一个唯一字符 简单 1309 解码字母到整数映射 简单 第170场周赛 1313 解压缩编码列表 简单 第17场双周赛 1314 矩阵区域和 中等 第17场双周赛 1315 祖父节点值为偶数的节点和 中等 第17场双周赛 1317 将整数转换为两个无零整数的和 简单 第171场周赛 1318 或运算的最小翻转次数 中等 第171场周赛 1323 6和9组成的最大数字 简单 第172场周赛 1324 竖直打印单词 中等 第172场周赛 1325 删除给定值的叶子节点 中等 第172场周赛]]></content>
+    <content type="text"><![CDATA[LeetCode官网 &emsp;&emsp;以下都是我自己做过的题目，答案也全是自己做的，和网上大牛的最优解还是有差距。╮(￣▽ ￣)╭ 我的LeetCode主页 # 题名 难度 备注 1 两数之和 简单 2 两数相加 中等 3 无重复字符的最长子串 中等 4 寻找两个有序数组的中位数 困难 7 整数反转 简单 19 删除链表的倒数第N个节点 中等 26 删除排序数组中的重复项 简单 36 有效的数独 中等 48 旋转图像 中等 66 加一 简单 122 买卖股票的最佳时机II 简单 136 只出现一次的数 简单 155 最小栈 简单 189 旋转数组 简单 217 存在重复元素 简单 242 有效字的母异位词 简单 283 移动零 简单 292 Nim游戏 简单 344 反转字符串 简单 350 两个数组的交集II 简单 387 字符串中的第一个唯一字符 简单 1309 解码字母到整数映射 简单 第170场周赛 1313 解压缩编码列表 简单 第17场双周赛 1314 矩阵区域和 中等 第17场双周赛 1315 祖父节点值为偶数的节点和 中等 第17场双周赛 1317 将整数转换为两个无零整数的和 简单 第171场周赛 1318 或运算的最小翻转次数 中等 第171场周赛 1323 6和9组成的最大数字 简单 第172场周赛 1324 竖直打印单词 中等 第172场周赛 1325 删除给定值的叶子节点 中等 第172场周赛 1328 破坏回文串 中等 第18场双周赛 1329 将矩阵按对角线排序 中等 第18场双周赛 1331 数组序号转换 简单 第18场双周赛 1333 餐厅过滤器 中等 第173场周赛]]></content>
       <categories>
         <category>计算机</category>
         <category>算法题</category>
@@ -1256,8 +1332,8 @@
         <category>环境</category>
       </categories>
       <tags>
-        <tag>学习日志</tag>
         <tag>环境</tag>
+        <tag>学习日志</tag>
         <tag>装系统</tag>
       </tags>
   </entry>
@@ -1367,8 +1443,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>学习日志</tag>
         <tag>环境</tag>
+        <tag>学习日志</tag>
         <tag>机器学习</tag>
       </tags>
   </entry>
@@ -1559,8 +1635,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Pythonista</tag>
         <tag>环境</tag>
+        <tag>Pythonista</tag>
       </tags>
   </entry>
   <entry>
@@ -1573,8 +1649,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Pythonista</tag>
         <tag>环境</tag>
+        <tag>Pythonista</tag>
       </tags>
   </entry>
   <entry>
@@ -1790,9 +1866,9 @@
         <category>环境</category>
       </categories>
       <tags>
+        <tag>环境</tag>
         <tag>Markdown</tag>
         <tag>VSCode</tag>
-        <tag>环境</tag>
       </tags>
   </entry>
   <entry>
@@ -1898,8 +1974,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>理论</tag>
         <tag>考研</tag>
+        <tag>理论</tag>
         <tag>数学</tag>
         <tag>高次多项式</tag>
         <tag>综合除法</tag>
@@ -1915,8 +1991,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>理论</tag>
         <tag>考研</tag>
+        <tag>理论</tag>
         <tag>数学</tag>
         <tag>高次多项式</tag>
         <tag>综合除法</tag>
@@ -1932,8 +2008,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>理论</tag>
         <tag>考研</tag>
+        <tag>理论</tag>
         <tag>数学</tag>
         <tag>复数</tag>
         <tag>微分方程</tag>
