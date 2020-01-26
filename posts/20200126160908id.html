@@ -57,19 +57,22 @@
   };
 </script>
 
-  <meta name="description" content="CCF-CSP题目汇总 题目编号： 201712-2 试题名称： 游戏 时间限制： 1.0s 内存限制： 256.0MB 问题描述&amp;emsp;&amp;emsp;有n个小朋友围成一圈玩游戏，小朋友从1至n编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在n号小朋友的顺时针方向。&amp;emsp;&amp;emsp;游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友">
-<meta name="keywords" content="算法题,CCF-CSP">
+  <meta name="description" content="前言&amp;emsp;&amp;emsp;最近准备CCF CSP考试，官方指定使用Dev C++。为了在Dev C++中使用一些C++ 11的特性，需要手动开启对C++ 11标准的支持。 正文1.首先创建或打开一个工程。 2.打开Project-&amp;gt;Project Option  3.选择Complier-&amp;gt;Code Generation，在Language standard（-std）下拉列表中选择">
+<meta name="keywords" content="C&#x2F;C++,环境">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CCF-CSP：201712-2游戏">
-<meta property="og:url" content="https://blog.siriyang.cn/posts/20200105211457id.html">
+<meta property="og:title" content="学习日志：Dev-C++ 开启对C++ 11的支持">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200126160908id.html">
 <meta property="og:site_name" content="SiriBlog">
-<meta property="og:description" content="CCF-CSP题目汇总 题目编号： 201712-2 试题名称： 游戏 时间限制： 1.0s 内存限制： 256.0MB 问题描述&amp;emsp;&amp;emsp;有n个小朋友围成一圈玩游戏，小朋友从1至n编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在n号小朋友的顺时针方向。&amp;emsp;&amp;emsp;游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;最近准备CCF CSP考试，官方指定使用Dev C++。为了在Dev C++中使用一些C++ 11的特性，需要手动开启对C++ 11标准的支持。 正文1.首先创建或打开一个工程。 2.打开Project-&amp;gt;Project Option  3.选择Complier-&amp;gt;Code Generation，在Language standard（-std）下拉列表中选择">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-07T08:17:39.183Z">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9ADev-CPP%E5%BC%80%E5%90%AF%E5%AF%B9CPP11%E7%9A%84%E6%94%AF%E6%8C%81/1.jpg-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9ADev-CPP%E5%BC%80%E5%90%AF%E5%AF%B9CPP11%E7%9A%84%E6%94%AF%E6%8C%81/2.jpg-wm">
+<meta property="og:updated_time" content="2020-01-26T08:25:16.449Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CCF-CSP：201712-2游戏">
-<meta name="twitter:description" content="CCF-CSP题目汇总 题目编号： 201712-2 试题名称： 游戏 时间限制： 1.0s 内存限制： 256.0MB 问题描述&amp;emsp;&amp;emsp;有n个小朋友围成一圈玩游戏，小朋友从1至n编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在n号小朋友的顺时针方向。&amp;emsp;&amp;emsp;游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友">
-  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200105211457id">
+<meta name="twitter:title" content="学习日志：Dev-C++ 开启对C++ 11的支持">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;最近准备CCF CSP考试，官方指定使用Dev C++。为了在Dev C++中使用一些C++ 11的特性，需要手动开启对C++ 11标准的支持。 正文1.首先创建或打开一个工程。 2.打开Project-&amp;gt;Project Option  3.选择Complier-&amp;gt;Code Generation，在Language standard（-std）下拉列表中选择">
+<meta name="twitter:image" content="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9ADev-CPP%E5%BC%80%E5%90%AF%E5%AF%B9CPP11%E7%9A%84%E6%94%AF%E6%8C%81/1.jpg-wm">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200126160908id">
 
 
 <script id="page-configurations">
@@ -83,7 +86,7 @@
   };
 </script>
 
-  <title>CCF-CSP：201712-2游戏 | SiriBlog</title>
+  <title>学习日志：Dev-C++ 开启对C++ 11的支持 | SiriBlog</title>
   
 
 
@@ -296,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200105211457id.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200126160908id.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SiriYang">
@@ -310,7 +313,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">CCF-CSP：201712-2游戏
+          <h1 class="post-title" itemprop="name headline">学习日志：Dev-C++ 开启对C++ 11的支持
 
             
           </h1>
@@ -327,19 +330,11 @@
                 
               
 
-              <time title="创建时间：2020-01-05 21:14:57" itemprop="dateCreated datePublished" datetime="2020-01-05T21:14:57+08:00">2020-01-05</time>
+              <time title="创建时间：2020-01-26 16:09:08 / 修改时间：16:25:16" itemprop="dateCreated datePublished" datetime="2020-01-26T16:09:08+08:00">2020-01-26</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-07 16:17:39" itemprop="dateModified" datetime="2020-01-07T16:17:39+08:00">2020-01-07</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -355,14 +350,14 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/算法题/" itemprop="url" rel="index"><span itemprop="name">算法题</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/算法题/CCF-CSP/" itemprop="url" rel="index"><span itemprop="name">CCF-CSP</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
 
                 
                 
@@ -371,7 +366,7 @@
           
 
           
-            <span id="/posts/20200105211457id.html" class="post-meta-item leancloud_visitors" data-flag-title="CCF-CSP：201712-2游戏" title="阅读次数">
+            <span id="/posts/20200126160908id.html" class="post-meta-item leancloud_visitors" data-flag-title="学习日志：Dev-C++ 开启对C++ 11的支持" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -390,8 +385,8 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/posts/20200105211457id.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200105211457id.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/20200126160908id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200126160908id.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -405,7 +400,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>1.3k</span>
+              <span>223</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -428,26 +423,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a href="https://blog.siriyang.cn/posts/20191230204553id.html">CCF-CSP题目汇总</a></p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><strong>编号：</strong> 201712-2</p>
-<p><strong>试题名称：</strong> 游戏</p>
-<p><strong>时间限制：</strong> 1.0s</p>
-<p><strong>内存限制：</strong> 256.0MB</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>&emsp;&emsp;有n个小朋友围成一圈玩游戏，小朋友从1至n编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在n号小朋友的顺时针方向。<br>&emsp;&emsp;游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友的报数是上一个小朋友报的数加1。若一个小朋友报的数为k的倍数或其末位数（即数的个位）为k，则该小朋友被淘汰出局，不再参加以后的报数。当游戏中只剩下一个小朋友时，该小朋友获胜。<br>&emsp;&emsp;例如，当n=5, k=2时：<br>&emsp;&emsp;1号小朋友报数1；<br>&emsp;&emsp;2号小朋友报数2淘汰；<br>&emsp;&emsp;3号小朋友报数3；<br>&emsp;&emsp;4号小朋友报数4淘汰；<br>&emsp;&emsp;5号小朋友报数5；<br>&emsp;&emsp;1号小朋友报数6淘汰；<br>&emsp;&emsp;3号小朋友报数7；<br>&emsp;&emsp;5号小朋友报数8淘汰；<br>&emsp;&emsp;3号小朋友获胜。</p>
-<p>&emsp;&emsp;给定n和k，请问最后获胜的小朋友编号为多少？</p>
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>&emsp;&emsp;输入一行，包括两个整数n和k，意义如题目所述。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>&emsp;&emsp;输出一行，包含一个整数，表示获胜的小朋友编号。</p>
-<h2 id="样例数据"><a href="#样例数据" class="headerlink" title="样例数据"></a>样例数据</h2><p><strong>样例输入1</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 2</span><br></pre></td></tr></table></figure>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&emsp;&emsp;最近准备CCF CSP考试，官方指定使用Dev C++。为了在Dev C++中使用一些C++ 11的特性，需要手动开启对C++ 11标准的支持。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>1.首先创建或打开一个工程。</p>
+<p>2.打开<code>Project-&gt;Project Option</code></p>
+<p><img src="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9ADev-CPP%E5%BC%80%E5%90%AF%E5%AF%B9CPP11%E7%9A%84%E6%94%AF%E6%8C%81/1.jpg-wm" alt></p>
+<p>3.选择<code>Complier-&gt;Code Generation</code>，在<code>Language standard（-std）</code>下拉列表中选择<code>ISO C++ 11</code>即可。</p>
+<p><img src="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9ADev-CPP%E5%BC%80%E5%90%AF%E5%AF%B9CPP11%E7%9A%84%E6%94%AF%E6%8C%81/2.jpg-wm" alt></p>
+<p>4.<strong>保存退出</strong>。</p>
 
-<p><strong>样例输出1</strong><br><code>3</code></p>
-<p><strong>样例输入2</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7 3</span><br></pre></td></tr></table></figure>
-
-<p><strong>样例输出2</strong><br><code>4</code></p>
-<h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>&emsp;&emsp;对于所有评测用例，1 $\le$ n $\le$ 1000，1 $\le$ k $\le$ 9。</p>
-<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&emsp;&emsp;使用一个数组进行模拟，当下标要越界的时候就模<code>n</code>又回到开头，从逻辑上形成收尾相连。数组初始化为0，当有人淘汰的时候将其置为1，淘汰人数加1。然后每一轮找下一个没有被淘汰的人，当只剩一个人的时候结束循环，再遍历数组找到那个获胜的人。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	<span class="keyword">int</span> p[<span class="number">1001</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> out=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (out&lt;n<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (p[i])</span><br><span class="line">			i = (i + <span class="number">1</span>) % n;</span><br><span class="line">		<span class="keyword">if</span> (num % <span class="number">10</span> == k || num % k == <span class="number">0</span>) &#123;</span><br><span class="line">			p[i] = <span class="number">1</span>;</span><br><span class="line">			out++;</span><br><span class="line">		&#125;</span><br><span class="line">		i = (i + <span class="number">1</span>) % n;</span><br><span class="line">		num++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (p[i])</span><br><span class="line">		i = (i + <span class="number">1</span>) % n;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; i+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
 	
@@ -470,35 +453,35 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\20191230204553id.html" rel="bookmark">CCF-CSP题目汇总</a></div>
+      <div class="popular-posts-title"><a href="\posts\20200107212453id.html" rel="bookmark">STL常用模板：Iterator迭代器</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\20191229213455id.html" rel="bookmark">CCF-CSP：201909-1小明种苹果</a></div>
+      <div class="popular-posts-title"><a href="\posts\20200126115533id.html" rel="bookmark">C/CPP参考文档：C++ Algorithm</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\20191229223613id.html" rel="bookmark">CCF-CSP：201909-2小明种苹果（续）</a></div>
+      <div class="popular-posts-title"><a href="\posts\20200118113033id.html" rel="bookmark">重邮18-19年C语言期末考试试卷及答案</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\20191230191132id.html" rel="bookmark">CCF-CSP：201909-3字符画</a></div>
+      <div class="popular-posts-title"><a href="\posts\20200112102040id.html" rel="bookmark">C/CPP参考文档：C++ String</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\20191231194316id.html" rel="bookmark">CCF-CSP：201903-1小中大</a></div>
+      <div class="popular-posts-title"><a href="\posts\20200109182820id.html" rel="bookmark">C/CPP参考文档：关键字</a></div>
       
     </li>
   
@@ -522,7 +505,7 @@
   <!-- 本文标题 -->
   <li>
     <strong>本文标题： </strong>
-    CCF-CSP：201712-2游戏
+    学习日志：Dev-C++ 开启对C++ 11的支持
   </li>
 
   <!-- 本文作者 -->
@@ -534,20 +517,20 @@
   <!-- 创建时间 -->
   <li>
     <strong>创建时间： </strong>
-    2020年01月05日 - 21时01分
+    2020年01月26日 - 16时01分
   </li>
 
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2020年01月07日 - 16时01分
+    2020年01月26日 - 16时01分
   </li>
 
   <!-- 引用链接 -->
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.siriyang.cn/posts/20200105211457id.html" title="CCF-CSP：201712-2游戏">https://blog.siriyang.cn/posts/20200105211457id.html</a>
-    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | CCF-CSP：201712-2游戏](https://blog.siriyang.cn/posts/20200105211457id.html)"  aria-label="复制成功"></i></span>
+    <a href="https://blog.siriyang.cn/posts/20200126160908id.html" title="学习日志：Dev-C++ 开启对C++ 11的支持">https://blog.siriyang.cn/posts/20200126160908id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | 学习日志：Dev-C++ 开启对C++ 11的支持](https://blog.siriyang.cn/posts/20200126160908id.html)"  aria-label="复制成功"></i></span>
   </li>
 
   <!-- 版权声明 -->
@@ -578,24 +561,20 @@
           
         
         <div class="post-tags">
-            <a href="/tags/算法题/" rel="tag"><i class="fa fa-tag"></i> 算法题</a>
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
           
-            <a href="/tags/CCF-CSP/" rel="tag"><i class="fa fa-tag"></i> CCF-CSP</a>
+            <a href="/tags/环境/" rel="tag"><i class="fa fa-tag"></i> 环境</a>
           
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/posts/20200106183324id.html" rel="prev" title="考研复试口语连读（李旭）">
-                <i class="fa fa-chevron-left"></i> 考研复试口语连读（李旭）
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/posts/20200105132121id.html" rel="next" title="CCF-CSP：201712-1最小差值">
-                CCF-CSP：201712-1最小差值 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/20200126125601id.html" rel="next" title="LeetCode：1333-餐厅过滤器">
+                LeetCode：1333-餐厅过滤器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -906,7 +885,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例数据"><span class="nav-text">样例数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据规模和约定"><span class="nav-text">数据规模和约定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解答"><span class="nav-text">解答</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a></li></ol></div>
             
 
           </div>
@@ -1149,55 +1128,6 @@
 
   
 
-  
-    
-      <script type="text/x-mathjax-config">
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
   
 
   
