@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="C/C++参考文档 标准c字符和字符串  atof语法: 12#include &amp;lt;stdlib.h&amp;gt;double atof( const char *str );  功能：将字符串str转换成一个双精度数值并返回结果。 参数str 必须以有效数字开头,但是允许以“E”或“e”除外的任意非数字字符结尾。例如： 1x = atof( &quot;42.0is_the_answer&quot; );  &amp;ems">
+<meta name="keywords" content="C&#x2F;C++,文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++参考文档：C String &amp; Character">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200127104007id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="C/C++参考文档 标准c字符和字符串  atof语法: 12#include &amp;lt;stdlib.h&amp;gt;double atof( const char *str );  功能：将字符串str转换成一个双精度数值并返回结果。 参数str 必须以有效数字开头,但是允许以“E”或“e”除外的任意非数字字符结尾。例如： 1x = atof( &quot;42.0is_the_answer&quot; );  &amp;ems">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-27T03:23:35.666Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C&#x2F;C++参考文档：C String &amp; Character">
+<meta name="twitter:description" content="C/C++参考文档 标准c字符和字符串  atof语法: 12#include &amp;lt;stdlib.h&amp;gt;double atof( const char *str );  功能：将字符串str转换成一个双精度数值并返回结果。 参数str 必须以有效数字开头,但是允许以“E”或“e”除外的任意非数字字符结尾。例如： 1x = atof( &quot;42.0is_the_answer&quot; );  &amp;ems">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200127104007id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C/C++参考文档：C String & Character | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">152</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200127104007id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">C/C++参考文档：C String & Character
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-27 10:40:07 / 修改时间：11:23:35" itemprop="dateCreated datePublished" datetime="2020-01-27T10:40:07+08:00">2020-01-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200127104007id.html" class="post-meta-item leancloud_visitors" data-flag-title="C/C++参考文档：C String & Character" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200127104007id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200127104007id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>7.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>7 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://blog.siriyang.cn/posts/20200107194641id.html">C/C++参考文档</a></p>
+<blockquote class="blockquote-center"><h1 id="标准c字符和字符串"><a href="#标准c字符和字符串" class="headerlink" title="标准c字符和字符串"></a>标准c字符和字符串</h1></blockquote>
+
+<h2 id="atof"><a href="#atof" class="headerlink" title="atof"></a>atof</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">atof</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>将字符串<code>str</code>转换成一个双精度数值并返回结果。 参数<code>str</code> 必须以有效数字开头,但是允许以“<code>E</code>”或“<code>e</code>”除外的任意非数字字符结尾。例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = atof( <span class="string">"42.0is_the_answer"</span> );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>x</code>的值为42.0.</p>
+<hr>
+<h2 id="atoi"><a href="#atoi" class="headerlink" title="atoi"></a>atoi</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">atoi</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>将字符串<code>str</code>转换成一个整数并返回结果。参数<code>str</code> 以数字开头，当函数从<code>str</code> 中读到非数字字符则结束转换并将结果返回。例如，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i = atoi( <span class="string">"512.035"</span> );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>i</code> 的值为 512.</p>
+<hr>
+<h2 id="atol"><a href="#atol" class="headerlink" title="atol"></a>atol</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">atol</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>将字符串转换成长整型数并返回结果。函数会扫描参数<code>str</code>字符串，跳过前面的空格字符，直到遇上数字或正负符号才开始做转换，而再遇到非数字或字符串结束时才结束转换，并将结果返回。例如，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = atol( <span class="string">"1024.0001"</span> );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>x</code>的值为1024L.</p>
+<hr>
+<h2 id="isalnum"><a href="#isalnum" class="headerlink" title="isalnum"></a>isalnum</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isalnum</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是数字或字母字符，函数返回非零值，否则返回零值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="built_in">scanf</span>( <span class="string">"%c"</span>, &amp;c );</span><br><span class="line"><span class="keyword">if</span>( <span class="built_in">isalnum</span>(c) )</span><br><span class="line">  <span class="built_in">printf</span>( <span class="string">"You entered the alphanumeric character %c\n"</span>, c );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="isalpha"><a href="#isalpha" class="headerlink" title="isalpha"></a>isalpha</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isalpha</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是字母字符，函数返回非零值，否则返回零值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="built_in">scanf</span>( <span class="string">"%c"</span>, &amp;c );</span><br><span class="line"><span class="keyword">if</span>( <span class="built_in">isalpha</span>(c) )</span><br><span class="line">  <span class="built_in">printf</span>( <span class="string">"You entered a letter of the alphabet\n"</span> );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="iscntrl"><a href="#iscntrl" class="headerlink" title="iscntrl"></a>iscntrl</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">iscntrl</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是控制字符（0和0x1F之间的字符，或者等于0x7F）函数返回非零值，否则返回零值。 </p>
+<hr>
+<h2 id="isdigit"><a href="#isdigit" class="headerlink" title="isdigit"></a>isdigit</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isdigit</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是0到9之间的数字字符，函数返回非零值，否则返回零值.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="built_in">scanf</span>( <span class="string">"%c"</span>, &amp;c );</span><br><span class="line"><span class="keyword">if</span>( <span class="built_in">isdigit</span>(c) )</span><br><span class="line">  <span class="built_in">printf</span>( <span class="string">"You entered the digit %c\n"</span>, c );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="isgraph"><a href="#isgraph" class="headerlink" title="isgraph"></a>isgraph</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isgraph</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是除空格外的可打印字符（可见的字符），函数返回非零值，否则返回零值。</p>
+<hr>
+<h2 id="islower"><a href="#islower" class="headerlink" title="islower"></a>islower</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">islower</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是小写字母字符，函数返回非零值，否则返回零值。</p>
+<hr>
+<h2 id="isprint"><a href="#isprint" class="headerlink" title="isprint"></a>isprint</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isprint</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是可打印字符（包括空格），函数返回非零值，否则返回零值。</p>
+<hr>
+<h2 id="ispunct"><a href="#ispunct" class="headerlink" title="ispunct"></a>ispunct</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ispunct</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是除字母，数字和空格外可打印字符，函数返回非零值，否则返回零值。</p>
+<hr>
+<h2 id="isspace"><a href="#isspace" class="headerlink" title="isspace"></a>isspace</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isspace</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是空格类字符（即：单空格，制表符，垂直制表符，满页符，回车符，新行符），函数返回非零值，否则返回零值。</p>
+<hr>
+<h2 id="isupper"><a href="#isupper" class="headerlink" title="isupper"></a>isupper</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isupper</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是大写字母字符，函数返回非零值，否则返回零值。</p>
+<hr>
+<h2 id="isxdigit"><a href="#isxdigit" class="headerlink" title="isxdigit"></a>isxdigit</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isxdigit</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>如果参数是十六进制数字字符（即：<code>A-F, a-f, 0-9</code>），函数返回非零值，否则返回零值。</p>
+<hr>
+<h2 id="memchr"><a href="#memchr" class="headerlink" title="memchr"></a>memchr</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memchr</span><span class="params">( <span class="keyword">const</span> <span class="keyword">void</span> *buffer, <span class="keyword">int</span> ch, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数在<code>buffer</code>指向的数组的<code>count</code>个字符的字符串里查找<code>ch</code> 首次出现的位置。返回一个指针，指向<code>ch</code> 在字符串中首次出现的位置, 如果<code>ch</code> 没有在字符串中找到，返回<code>NULL</code>。例如:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> names[] = <span class="string">"Alan Bob Chris X Dave"</span>;</span><br><span class="line"><span class="keyword">if</span>( <span class="built_in">memchr</span>(names,<span class="string">'X'</span>,<span class="built_in">strlen</span>(names)) == <span class="literal">NULL</span> )</span><br><span class="line">  <span class="built_in">printf</span>( <span class="string">"Didn't find an X\n"</span> );</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">printf</span>( <span class="string">"Found an X\n"</span> );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="memcmp"><a href="#memcmp" class="headerlink" title="memcmp"></a>memcmp</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">memcmp</span><span class="params">( <span class="keyword">const</span> <span class="keyword">void</span> *buffer1, <span class="keyword">const</span> <span class="keyword">void</span> *buffer2, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数比较<code>buffer1</code> 和 <code>buffer2</code>的前<code>count</code> 个字符。返回值如下:</p>
+<p><strong>返回值</strong> </p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>less than 0</td>
+<td>buffer1 is less than buffer2</td>
+</tr>
+<tr>
+<td>equal to 0</td>
+<td>buffer1 is equal to buffer2</td>
+</tr>
+<tr>
+<td>greater than 0</td>
+<td>buffer1 is greater than buffer2</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="memcpy"><a href="#memcpy" class="headerlink" title="memcpy"></a>memcpy</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memcpy</span><span class="params">( <span class="keyword">void</span> *to, <span class="keyword">const</span> <span class="keyword">void</span> *from, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数从<code>from</code>中复制<code>count</code> 个字符到<code>to</code>中，并返回<code>to</code>指针。 如果<code>to</code> 和 <code>from</code> 重叠，则函数行为不确定。</p>
+<hr>
+<h2 id="memmove"><a href="#memmove" class="headerlink" title="memmove"></a>memmove</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memmove</span><span class="params">( <span class="keyword">void</span> *to, <span class="keyword">const</span> <span class="keyword">void</span> *from, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong> 与<code>mencpy</code>相同，不同的是当<code>to</code> 和 <code>from</code> 重叠，函数正常仍能工作。</p>
+<hr>
+<h2 id="memset"><a href="#memset" class="headerlink" title="memset"></a>memset</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memset</span><span class="params">( <span class="keyword">void</span> *buffer, <span class="keyword">int</span> ch, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong> 函数拷贝<code>ch</code> 到<code>buffer</code> 从头开始的<code>count</code> 个字符里, 并返回<code>buffer</code>指针。 <code>memset()</code> 可以应用在将一段内存初始化为某个值。例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>( the_array, <span class="string">'\0'</span>, <span class="keyword">sizeof</span>(the_array) );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这是将一个数组的所有分量设置成零的很便捷的方法。</p>
+<hr>
+<h2 id="strcat"><a href="#strcat" class="headerlink" title="strcat"></a>strcat</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strcat</span><span class="params">( <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2 )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数将字符串<code>str2</code> 连接到<code>str1</code>的末端，并返回指针<code>str1</code>。 例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>( <span class="string">"Enter your name: "</span> );</span><br><span class="line"><span class="built_in">scanf</span>( <span class="string">"%s"</span>, name );</span><br><span class="line">title = <span class="built_in">strcat</span>( name, <span class="string">" the Great"</span> );</span><br><span class="line"><span class="built_in">printf</span>( <span class="string">"Hello, %s\n"</span>, title );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="strchr"><a href="#strchr" class="headerlink" title="strchr"></a>strchr</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strchr</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str, <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回一个指向<code>str</code> 中<code>ch</code> 首次出现的位置，当没有在<code>str</code> 中找<code>ch</code>到返回<code>NULL</code>。</p>
+<hr>
+<h2 id="strcmp"><a href="#strcmp" class="headerlink" title="strcmp"></a>strcmp</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcmp</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2 )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>比较字符串<code>str1</code> 和 <code>str2</code>, 返回值如下:</p>
+<p><strong>返回值</strong> </p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>less than 0</td>
+<td>str1 is less than str2</td>
+</tr>
+<tr>
+<td>equal to 0</td>
+<td>str1 is equal to str2</td>
+</tr>
+<tr>
+<td>greater than 0</td>
+<td>str1 is greater than str2</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;例如:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>( <span class="string">"Enter your name: "</span> );</span><br><span class="line"><span class="built_in">scanf</span>( <span class="string">"%s"</span>, name );</span><br><span class="line"><span class="keyword">if</span>( <span class="built_in">strcmp</span>( name, <span class="string">"Mary"</span> ) == <span class="number">0</span> )</span><br><span class="line">  <span class="built_in">printf</span>( <span class="string">"Hello, Dr. Mary!\n"</span> );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="strcoll"><a href="#strcoll" class="headerlink" title="strcoll"></a>strcoll</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcoll</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2 )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>比较字符串<code>str1</code> 和 <code>str2</code>, 很象<code>strcmp</code>。 但是, <code>strcoll()</code> 使用在目前环境中由<code>setlocale()</code>设定的次序进行比较。</p>
+<hr>
+<h2 id="strcpy"><a href="#strcpy" class="headerlink" title="strcpy"></a>strcpy</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strcpy</span><span class="params">( <span class="keyword">char</span> *to, <span class="keyword">const</span> <span class="keyword">char</span> *from )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>复制字符串<code>from</code> 中的字符到字符串<code>to</code>，包括空值结束符。返回值为指针<code>to</code>。</p>
+<hr>
+<h2 id="strcspn"><a href="#strcspn" class="headerlink" title="strcspn"></a>strcspn</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">size_t</span> <span class="built_in">strcspn</span>( <span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2 );</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回<code>str1</code> 开头连续<code>n</code>个字符都不含字符串<code>str2</code>内字符的字符数。</p>
+<hr>
+<h2 id="strerror"><a href="#strerror" class="headerlink" title="strerror"></a>strerror</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strerror</span><span class="params">( <span class="keyword">int</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回一个被定义的与某错误代码相关的错误信息。</p>
+<hr>
+<h2 id="strlen"><a href="#strlen" class="headerlink" title="strlen"></a>strlen</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">size_t</span> <span class="built_in">strlen</span>( <span class="keyword">char</span> *str );</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回字符串<code>str</code> 的长度( 即空值结束符之前字符数目)。</p>
+<hr>
+<h2 id="strncat"><a href="#strncat" class="headerlink" title="strncat"></a>strncat</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strncat</span><span class="params">( <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>将字符串<code>from</code> 中至多<code>count</code>个字符连接到字符串<code>to</code>中，追加空值结束符。返回处理完成的字符串。</p>
+<hr>
+<h2 id="strncmp"><a href="#strncmp" class="headerlink" title="strncmp"></a>strncmp</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strncmp</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>比较字符串<code>str1</code> 和 <code>str2</code>中至多<code>count</code>个字符。返回值如下：</p>
+<p><strong>返回值</strong> </p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>less than 0</td>
+<td>str1 is less than str2</td>
+</tr>
+<tr>
+<td>equal to 0</td>
+<td>str1 is equal to str2</td>
+</tr>
+<tr>
+<td>greater than 0</td>
+<td>str1 is greater than str2</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;如果参数中任一字符串长度小于<code>count</code>, 那么当比较到第一个空值结束符时，就结束处理。</p>
+<hr>
+<h2 id="strncpy"><a href="#strncpy" class="headerlink" title="strncpy"></a>strncpy</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strncpy</span><span class="params">( <span class="keyword">char</span> *to, <span class="keyword">const</span> <span class="keyword">char</span> *from, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>功能：</strong>将字符串<code>from</code> 中至多<code>count</code>个字符复制到字符串<code>to</code>中。如果字符串<code>from</code> 的长度小于<code>count</code>，其余部分用<code>&#39;\0&#39;</code>填补。返回处理完成的字符串。</p>
+<hr>
+<h2 id="strpbrk"><a href="#strpbrk" class="headerlink" title="strpbrk"></a>strpbrk</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strpbrk</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2 )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回一个指针，它指向字符串<code>str2</code>中任意字符在字符串<code>str1</code> 首次出现的位置，如果不存在返回<code>NULL</code>。</p>
+<hr>
+<h2 id="strrchr"><a href="#strrchr" class="headerlink" title="strrchr"></a>strrchr</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strrchr</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str, <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回一个指针，它指向字符<code>ch</code> 在字符串<code>str</code>末次出现的位置，如果匹配失败，返回<code>NULL</code>。</p>
+<hr>
+<h2 id="strspn"><a href="#strspn" class="headerlink" title="strspn"></a>strspn</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">size_t</span> <span class="built_in">strspn</span>( <span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2 );</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回字符串<code>str1</code>中第一个不包含于字符串<code>str2</code>的字符的索引。</p>
+<hr>
+<h2 id="strstr"><a href="#strstr" class="headerlink" title="strstr"></a>strstr</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strstr</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2 )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回一个指针，它指向字符串<code>str2</code> 首次出现于字符串<code>str1</code>中的位置，如果没有找到，返回<code>NULL</code>。</p>
+<hr>
+<h2 id="strtod"><a href="#strtod" class="headerlink" title="strtod"></a>strtod</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">strtod</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *start, <span class="keyword">char</span> **end )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回带符号的字符串<code>start</code>所表示的浮点型数。字符串<code>end</code> 指向所表示的浮点型数之后的部分。如果溢出发生，返回<code>HUGE_VAL</code>或 <code>-HUGE_VAL</code>。</p>
+<hr>
+<h2 id="strtok"><a href="#strtok" class="headerlink" title="strtok"></a>strtok</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strtok</span><span class="params">( <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2 )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回字符串<code>str1</code>中紧接“标记”的部分的指针, 字符串<code>str2</code>是作为标记的分隔符。如果分隔标记没有找到，函数返回<code>NULL</code>。为了将字符串转换成标记，第一次调用<code>str1</code> 指向作为标记的分隔符。之后所以的调用<code>str1</code> 都应为<code>NULL</code>。</p>
+<p>例如:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[] = <span class="string">"now # is the time for all # good men to come to the # aid of their country"</span>;</span><br><span class="line"><span class="keyword">char</span> delims[] = <span class="string">"#"</span>;</span><br><span class="line"><span class="keyword">char</span> *result = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">result = strtok( str, delims );</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>( result != <span class="literal">NULL</span> ) &#123;</span><br><span class="line">    <span class="built_in">printf</span>( <span class="string">"result is \"%s\"\n"</span>, result );</span><br><span class="line">     result = strtok( <span class="literal">NULL</span>, delims );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;以上代码的运行结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result is &quot;now &quot;</span><br><span class="line">result is &quot; is the time for all &quot;</span><br><span class="line">result is &quot; good men to come to the &quot;</span><br><span class="line">result is &quot; aid of their country&quot;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="strtol"><a href="#strtol" class="headerlink" title="strtol"></a>strtol</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">strtol</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *start, <span class="keyword">char</span> **end, <span class="keyword">int</span> base )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数返回带符号的字符串<code>start</code>所表示的长整型数。参数<code>base</code>代表采用的进制方式。指针<code>end</code> 指向<code>start</code>所表示的整型数之后的部分。如果返回值无法用长整型表示，函数则返回<code>LONG_MAX</code>或<code>LONG_MIN</code>。 错误发生时，返回零。</p>
+<hr>
+<h2 id="strtoul"><a href="#strtoul" class="headerlink" title="strtoul"></a>strtoul</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="title">strtoul</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *start, <span class="keyword">char</span> **end, <span class="keyword">int</span> base )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数基本等同 <code>strtol()</code>, 不同的是，它不仅可以返回长整型数，而且可以返回无符号的长整型数。</p>
+<hr>
+<h2 id="strxfrm"><a href="#strxfrm" class="headerlink" title="strxfrm"></a>strxfrm</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">size_t</span> strxfrm( <span class="keyword">char</span> *str1, <span class="keyword">const</span> <span class="keyword">char</span> *str2, <span class="keyword">size_t</span> num );</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数将字符串<code>str2</code> 的前<code>num</code> 个字符存储到字符串<code>str1</code>中。如果<code>strcoll()</code> 处理字符串<code>str1</code> 和旧的字符串<code>str2</code>, 返回值和<code>strcmp()</code>的处理结果一样。</p>
+<hr>
+<h2 id="tolower"><a href="#tolower" class="headerlink" title="tolower"></a>tolower</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">tolower</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数字符<code>ch</code>的小写形式。</p>
+<hr>
+<h2 id="toupper"><a href="#toupper" class="headerlink" title="toupper"></a>toupper</h2><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">toupper</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>功能：</strong>函数字符<code>ch</code>的大写形式。</p>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108151414id.html" rel="bookmark">STL常用模板：Bitset位集合</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200127112219id.html" rel="bookmark">C/C++参考文档：C Time & Date</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200106225519id.html" rel="bookmark">STL常用模板：PriorityQueue优先队列</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200126115533id.html" rel="bookmark">C/CPP参考文档：C++ Algorithm</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200125221828id.html" rel="bookmark">C/CPP参考文档：C Math</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    C/C++参考文档：C String & Character
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年01月27日 - 10时01分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年01月27日 - 11时01分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200127104007id.html" title="C/C++参考文档：C String & Character">https://blog.siriyang.cn/posts/20200127104007id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | C/C++参考文档：C String & Character](https://blog.siriyang.cn/posts/20200127104007id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/文档/" rel="tag"><i class="fa fa-tag"></i> 文档</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/posts/20200127112201id.html" rel="prev" title="C/C++参考文档：C Memory">
+                <i class="fa fa-chevron-left"></i> C/C++参考文档：C Memory
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200126160908id.html" rel="next" title="学习日志：Dev-C++ 开启对C++ 11的支持">
+                学习日志：Dev-C++ 开启对C++ 11的支持 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">152</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#标准c字符和字符串"><span class="nav-text">标准c字符和字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#atof"><span class="nav-text">atof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atoi"><span class="nav-text">atoi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atol"><span class="nav-text">atol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isalnum"><span class="nav-text">isalnum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isalpha"><span class="nav-text">isalpha</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iscntrl"><span class="nav-text">iscntrl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isdigit"><span class="nav-text">isdigit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isgraph"><span class="nav-text">isgraph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#islower"><span class="nav-text">islower</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isprint"><span class="nav-text">isprint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ispunct"><span class="nav-text">ispunct</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isspace"><span class="nav-text">isspace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isupper"><span class="nav-text">isupper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isxdigit"><span class="nav-text">isxdigit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memchr"><span class="nav-text">memchr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memcmp"><span class="nav-text">memcmp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memcpy"><span class="nav-text">memcpy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memmove"><span class="nav-text">memmove</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memset"><span class="nav-text">memset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strcat"><span class="nav-text">strcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strchr"><span class="nav-text">strchr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strcmp"><span class="nav-text">strcmp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strcoll"><span class="nav-text">strcoll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strcpy"><span class="nav-text">strcpy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strcspn"><span class="nav-text">strcspn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strerror"><span class="nav-text">strerror</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strlen"><span class="nav-text">strlen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strncat"><span class="nav-text">strncat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strncmp"><span class="nav-text">strncmp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strncpy"><span class="nav-text">strncpy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strpbrk"><span class="nav-text">strpbrk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strrchr"><span class="nav-text">strrchr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strspn"><span class="nav-text">strspn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strstr"><span class="nav-text">strstr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strtod"><span class="nav-text">strtod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strtok"><span class="nav-text">strtok</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strtol"><span class="nav-text">strtol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strtoul"><span class="nav-text">strtoul</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strxfrm"><span class="nav-text">strxfrm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tolower"><span class="nav-text">tolower</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toupper"><span class="nav-text">toupper</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">693k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:30</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
