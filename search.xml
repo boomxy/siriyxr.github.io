@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[学习日志200129：在AppWishList开发中遇到的一些问题]]></title>
-    <url>%2Fposts%2F20200129180349id.html</url>
-    <content type="text"><![CDATA[Note1&emsp;&emsp;今天在AppWishList开发中遇到这个错误： 1&apos;builtin_function_or_method&apos; object is not subscriptable &emsp;&emsp;错误原因是将”()“写成了”[]“。 1234567891011...prices=[]for i in res: t=Price() t.initByTuple(i)- prices.append[t]+ prices.append(t)... Note2&emsp;&emsp;在pythonista的ui模块中，如果将函数包装成@ui.in_background，将在后台线程中运行，但是如果在构造函数中调用它，数据就会初始化失败，无论是在函数中赋值还是返回值都为None。 Note3&emsp;&emsp;在pythonista中使用webbroswer调用Safai打开链接的语句是： 1webbroswer.open("safari-https://blog.siriyang.cn")]]></content>
+    <title><![CDATA[AppWishList for iOS]]></title>
+    <url>%2Fposts%2F20200202171851id.html</url>
+    <content type="text"></content>
       <categories>
         <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>语法</tag>
+        <tag>Python</tag>
+        <tag>项目</tag>
+        <tag>Pythonista</tag>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[学习日志200129：在AppWishList开发中遇到的一些问题]]></title>
+    <url>%2Fposts%2F20200129180349id.html</url>
+    <content type="text"><![CDATA[2020.01.29Note1&emsp;&emsp;今天在AppWishList开发中遇到这个错误： 1&apos;builtin_function_or_method&apos; object is not subscriptable &emsp;&emsp;错误原因是将”()“写成了”[]“。 1234567891011...prices=[]for i in res: t=Price() t.initByTuple(i)- prices.append[t]+ prices.append(t)... Note2&emsp;&emsp;在pythonista的ui模块中，如果将函数包装成@ui.in_background，将在后台线程中运行，但是如果在构造函数中调用它，数据就会初始化失败，无论是在函数中赋值还是返回值都为None。 Note3&emsp;&emsp;在pythonista中使用webbroswer调用Safai打开链接的语句是： 1webbroswer.open("safari-https://blog.siriyang.cn") Note4&emsp;&emsp;python当要调用比自己上层的模块的时候，使用如下方法： 12345678AppWishList|- tools| |- __init__.py| |- Result.py||- UI |- __init__.py |- MainWindow.py MainWindow.py1234567import sys# 根据需求跳转当前路径sys.path.append("..")from tools.Result import * 2020.01.30Note5&emsp;&emsp;在ui中重载View的layout方法，将会在窗口尺寸旋转改变的时候被调用： 1234567891011121314151617181920212223242526# coding: utf-8# https://forum.omz-software.com/topic/3115/ui-and-device-rotation-monitoring/4import uiclass myView(ui.View): def __init__(self): self.scr_orientation = None self.present('full_screen') def draw(self): print 'orientation = ' + self.scr_orientation def layout(self): if self.width &gt; self.height: self.scr_orientation = 'landscape' else: self.scr_orientation = 'portrait' myView()#orientation = landscape#or#orientation = portrait#there's no orientation = None#and everytime I tilt my device it changes &emsp;&emsp;参考自tdamdouni/Pythonista Note6&emsp;&emsp;之前TableView一直遇到个问题，总有两行在最下面划不出来，结果是TableView尺寸设大了，超出了屏幕。 Note7&emsp;&emsp;当你需要在NavigateView的Head Bar插入ButtonItem时，你需要选择当前NavigateView栈顶的View，而不是NavigateView对象本身。 Note8&emsp;&emsp;当使用Button的时候注意区分属性image和background_image,前者只显示形状和单一颜色，可通过tint_color进行设定；而后者是一个使用Image.resizable_image创建的可伸缩图片。&emsp;&emsp;ButtonItem仅有image属性。 Note9&emsp;&emsp;错误异常代码： 1IndentationError: unexpected indent &emsp;&emsp;错误原因是缩进格式对其错误。我这里遇到偶的情况是把try语句的except注释了，但是又没有写finally，解决方案如下： 12345678try: ...#except Exception as e: #...finally: pass 2020.01.31Note10&emsp;&emsp;从matplotlib.figure到numpy、PIL.Image、ui.Image之间的转换： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546import uifrom PIL import Imageimport ioimport matplotlib.pyplotimport numpydef pil2ui(imgIn): b = io.BytesIO() imgIn.save(b, 'JPEG') imgOut = ui.Image.from_data(b.getvalue()) b.close() return imgOut def fig2data(fig): fig.canvas.draw() w,h=fig.canvas.get_width_height() buf=numpy.fromstring(fig.canvas.tostring_argb(),dtype=numpy.uint8) buf.shape=(w,h,4) buf=numpy.roll(buf,3,axis=2) return buf def fig2pil(fig): buf=fig2data(fig) w,h,d=buf.shape return Image.frombytes("RGBA",(w,h),buf.tostring()) if __name__ == "__main__": figure=matplotlib.pyplot.figure() plot=figure.add_subplot(111) x = numpy.arange(1,100,0.1) y = numpy.sin(x)/x plot.plot(x,y) i=pil2ui(fig2pil(figure)) v=ui.ImageView() v.frame=(0,0,1000,600) v.background_color="white" v.image = i v.present("sheet") Note11&emsp;&emsp;python 字符串和时间格式(datetime)相互转换: &emsp;&emsp;2019-03-17 11：00：00格式转化 123456789import datetime# str转时间格式：dd = '2019-03-17 11:00:00'dd = datetime.datetime.strptime(dd, "%Y-%m-%d %H:%M:%S")print(dd,type(dd))# 时间格式转str:dc = dd.strftime("%Y-%m-%d %H:%M:%S")print(dc,type(dc)) &emsp;&emsp;输出： 122019-03-17 11:00:00 &lt;class &apos;datetime.datetime&apos;&gt;2019-03-17 11:00:00 &lt;class &apos;str&apos;&gt; &emsp;&emsp;20190616格式转化 12345678# str转时间格式：dd = '20190317'dd = datetime.datetime.strptime(dd, "%Y%m%d")print(dd,type(dd))# 时间格式转str:dc = dd.strftime("%Y%m%d")print(dc,type(dc)) Note12&emsp;&emsp;获取一个时间段以内的datetime对象: 123456789101112131415from datetime import datetime, timedeltadef get_date_list(begin_date, end_date): dates = [] date = datetime.strptime(begin_date,"%Y-%m-%d") while date &lt;= datetime.strptime(end_date,"%Y-%m-%d"): dates.append(date) date += timedelta(days=1) return dates]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
+      </categories>
+      <tags>
         <tag>Python</tag>
         <tag>Pythonista</tag>
+        <tag>语法</tag>
       </tags>
   </entry>
   <entry>
@@ -670,8 +688,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：哈希表</tag>
         <tag>算法：字符串</tag>
+        <tag>算法：哈希表</tag>
       </tags>
   </entry>
   <entry>
@@ -1283,8 +1301,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：哈希表</tag>
         <tag>算法：字符串</tag>
+        <tag>算法：哈希表</tag>
         <tag>算法：双指针</tag>
         <tag>算法：Sliding Window</tag>
       </tags>
@@ -1443,8 +1461,8 @@
         <category>环境</category>
       </categories>
       <tags>
-        <tag>学习日志</tag>
         <tag>环境</tag>
+        <tag>学习日志</tag>
         <tag>装系统</tag>
       </tags>
   </entry>
@@ -1554,8 +1572,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>学习日志</tag>
         <tag>环境</tag>
+        <tag>学习日志</tag>
         <tag>机器学习</tag>
       </tags>
   </entry>
@@ -1868,8 +1886,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -1882,8 +1900,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -1896,8 +1914,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>计算机网络</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
