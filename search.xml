@@ -11,8 +11,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>项目</tag>
         <tag>Pythonista</tag>
+        <tag>项目</tag>
         <tag>iOS</tag>
       </tags>
   </entry>
@@ -27,8 +27,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Pythonista</tag>
         <tag>语法</tag>
+        <tag>Pythonista</tag>
       </tags>
   </entry>
   <entry>
@@ -688,8 +688,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：字符串</tag>
         <tag>算法：哈希表</tag>
+        <tag>算法：字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -1301,8 +1301,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：字符串</tag>
         <tag>算法：哈希表</tag>
+        <tag>算法：字符串</tag>
         <tag>算法：双指针</tag>
         <tag>算法：Sliding Window</tag>
       </tags>
