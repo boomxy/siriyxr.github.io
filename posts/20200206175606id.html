@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="前言&amp;emsp;&amp;emsp;最近准备看一下计算机操作系统的书。现在习惯GoodNote上看PDF，并用MarkDown做笔记发布到博客上做知识管理。但大多数PDF都是扫描的图片，没法直接复制文本，以前都是累死累活的靠自己手打，今天突然想到为啥不自己写个脚本OCR一下呢…我人傻了。o(TヘTo)">
+<meta name="keywords" content="Python,Pythonista,项目,iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Pythonista和百度API的高精度文本识别脚本">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200206175606id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;最近准备看一下计算机操作系统的书。现在习惯GoodNote上看PDF，并用MarkDown做笔记发布到博客上做知识管理。但大多数PDF都是扫描的图片，没法直接复制文本，以前都是累死累活的靠自己手打，今天突然想到为啥不自己写个脚本OCR一下呢…我人傻了。o(TヘTo)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1727.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1728.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1729.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1733.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1739.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1737.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1738.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1740.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1742.JPEG-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1741.JPEG-wm">
+<meta property="og:updated_time" content="2020-02-06T10:09:15.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Pythonista和百度API的高精度文本识别脚本">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;最近准备看一下计算机操作系统的书。现在习惯GoodNote上看PDF，并用MarkDown做笔记发布到博客上做知识管理。但大多数PDF都是扫描的图片，没法直接复制文本，以前都是累死累活的靠自己手打，今天突然想到为啥不自己写个脚本OCR一下呢…我人傻了。o(TヘTo)">
+<meta name="twitter:image" content="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1727.JPEG-wm">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200206175606id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>基于Pythonista和百度API的高精度文本识别脚本 | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">59</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">21</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">156</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200206175606id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">基于Pythonista和百度API的高精度文本识别脚本
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-06 17:56:06 / 修改时间：18:09:15" itemprop="dateCreated datePublished" datetime="2020-02-06T17:56:06+08:00">2020-02-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200206175606id.html" class="post-meta-item leancloud_visitors" data-flag-title="基于Pythonista和百度API的高精度文本识别脚本" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200206175606id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200206175606id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>5.1k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&emsp;&emsp;最近准备看一下计算机操作系统的书。现在习惯GoodNote上看PDF，并用MarkDown做笔记发布到博客上做知识管理。但大多数PDF都是扫描的图片，没法直接复制文本，以前都是累死累活的靠自己手打，今天突然想到为啥不自己写个脚本OCR一下呢…我人傻了。o(TヘTo)</p>
+<a id="more"></a>
+
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>&emsp;&emsp;其实要做一个OCR脚本很简单，调接口就完事了，好在百度云的API每天都有免费使用量，腾讯云只能免费体验一段时间。</p>
+<h2 id="注册账号"><a href="#注册账号" class="headerlink" title="注册账号"></a>注册账号</h2><p>&emsp;&emsp;开局一个号，API全靠嫖，你要是没有账号我也没法子了，动动手指而已，注册也没多麻烦。我想现在大多数人应该都是有百度账号的吧，毕竟还要用百度云盘。</p>
+<h2 id="获取API密匙"><a href="#获取API密匙" class="headerlink" title="获取API密匙"></a>获取API密匙</h2><p>&emsp;&emsp;登陆<a href="https://cloud.baidu.com" target="_blank" rel="noopener">百度云</a>，不是云盘那个云，是云计算的云。然后在产品目录搜索“文字识别”。</p>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1727.JPEG-wm" alt></p>
+<hr>
+<p>&emsp;&emsp;然后在这个界面下方可以看到你免费版每天的使用次数，可以识别的种类特别多，我准备选用的是不带坐标信息的通用文字识别高精度版，每天可以白嫖500次，我一个人用的话完全足够了。要真是不够用，用完了大不了切换到普通版本将就着用，正常使用50000次每天不可能不够用，除非你写个<code>for</code>循环使劲糟蹋…</p>
+<p>&emsp;&emsp;后面那一栏的<code>QPS限制</code>是你的并发计算量，也就是说你的免费版本只能并发执行两个识别运算，所以这个限制也决定了只能用来个人体验使用了。</p>
+<p>&emsp;&emsp;然后点击创建应用。</p>
+<hr>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1728.JPEG-wm" alt></p>
+<hr>
+<p>&emsp;&emsp;应用配置这里把名字和备注填好就行了，其他没啥好改的，所有类型的文本识别接口都默认打开了。</p>
+<hr>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1729.JPEG-wm" alt></p>
+<hr>
+<p>&emsp;&emsp;创建好以后进入应用详情页面。上方红框里的内容是待会儿会用到的API访问密钥，这个一定要保存好，不要被别人知道了，尤其是像python这种脚本代码在分享传播之前最好把密钥删掉。调用接口除了使用密钥以外还可以使用一些其他类似证书授权的方法，我这里就不在多做解释了。</p>
+<p>&emsp;&emsp;下方红框的URL决定了之后你要使用哪个版本的API。</p>
+<p>&emsp;&emsp;点击左上方的查看文档也有API各种语言的示例教程和更多使用方法，以后开发其他的项目时可以来这里学习。</p>
+<hr>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1733.JPEG-wm" alt></p>
+<h2 id="配置代码"><a href="#配置代码" class="headerlink" title="配置代码"></a>配置代码</h2><p>&emsp;&emsp;首先拷贝下方的代码到自己的pythonista中，然后在<code>分享扩展面板</code>将其导入，之后这里将作为程序启动的入口。</p>
+<hr>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1739.JPEG-wm" alt></p>
+<hr>
+<p>&emsp;&emsp;在使用之前首先要配置一点信息，就是我们上面注册账号获得的API密钥，并在下面填上你要选择使用的相应版本的接口链接，我默认已经为你填上了<code>通用文本高精度</code>版本了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># API_key 为官网获取的AK， Secret_Key 为官网获取的SK</span></span><br><span class="line">API_key=<span class="string">"[换成自己的key]"</span></span><br><span class="line">Secret_Key=<span class="string">"[换成自己的key]"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#你所选用的API识别接口</span></span><br><span class="line">API_URL=<span class="string">"https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>&emsp;&emsp;你需要选择一张图片，并将它分享到分享面板或者复制到粘贴板再打开分享面板都可以，代码会先查找是否有分享的图片，没有的话再检查粘贴板里有没有图片。比如说我这里是GoodNote中框选的一张截图。</p>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1737.JPEG-wm" alt></p>
+<hr>
+<p>&emsp;&emsp;然后选择<code>运行Pythonista代码</code>，并启动之前导入的代码。</p>
+<hr>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1738.JPEG-wm" alt></p>
+<hr>
+<p>&emsp;&emsp;整个窗口有两个页面，一个是你选择识别的图片，还有一个是识别的结果。</p>
+<hr>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1740.JPEG-wm" alt></p>
+<hr>
+<p>&emsp;&emsp;程序会自动将识别结果复制到你的粘贴板，顶行将会显示一些提示信息。API传回的识别结果是一行一句的，所以有多个段落的话我也不知道哪些是一段的，所以干脆就全部拼接起来，由用户自己分段。我个人用的习惯是一次识别一段话，顶多也就两三段，打两个回车就好了。</p>
+<hr>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1742.JPEG-wm" alt></p>
+<hr>
+<p>&emsp;&emsp;这是没有拼接的样子，虽然在有多段和小标题的情况下可以明显的将其区分出来，但是后面大整段都被分成一行一行的并不方便使用。</p>
+<hr>
+<p><img src="http://img.siriyang.cn/%E5%9F%BA%E4%BA%8EPythonista%E5%92%8C%E7%99%BE%E5%BA%A6API%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%96%87%E6%9C%AC%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/IMG_1741.JPEG-wm" alt></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">@author:SiriYang</span></span><br><span class="line"><span class="string">@file: ImageToText.py</span></span><br><span class="line"><span class="string">@time: 2020.2.6 12:27</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ui</span><br><span class="line"><span class="keyword">import</span> console</span><br><span class="line"><span class="keyword">import</span> appex</span><br><span class="line"><span class="keyword">import</span> clipboard</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">通用文字识别（高精度版）</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># API_key 为官网获取的AK， Secret_Key 为官网获取的SK</span></span><br><span class="line">API_key=<span class="string">"[换成自己的key]"</span></span><br><span class="line">Secret_Key=<span class="string">"[换成自己的key]"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#你所选用的API识别接口</span></span><br><span class="line">API_URL=<span class="string">"https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">imgToText</span><span class="params">(image)</span>:</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">global</span> API_key</span><br><span class="line">	<span class="keyword">global</span> Secret_Key</span><br><span class="line">	<span class="keyword">global</span> API_URL</span><br><span class="line">	</span><br><span class="line">	text_result=<span class="string">""</span></span><br><span class="line">	words_result_num=<span class="number">0</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		host = <span class="string">'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=&#123;AK&#125;&amp;client_secret=&#123;SK&#125;'</span>.format(AK=API_key,SK=Secret_Key)</span><br><span class="line">		access_token = <span class="string">""</span></span><br><span class="line">		response = requests.get(host)</span><br><span class="line">		<span class="keyword">if</span> response:</span><br><span class="line">			access_token = response.json()[<span class="string">'access_token'</span>]</span><br><span class="line">			</span><br><span class="line">		<span class="comment"># 二进制方式打开图片文件</span></span><br><span class="line">		b = io.BytesIO()</span><br><span class="line">		image.save(b, <span class="string">'JPEG'</span>)</span><br><span class="line">		img_data = base64.b64encode(b.getvalue())</span><br><span class="line">		b.close()</span><br><span class="line">		</span><br><span class="line">		params = &#123;<span class="string">"image"</span>:img_data&#125;</span><br><span class="line">		request_url = API_URL + <span class="string">"?access_token="</span> + access_token</span><br><span class="line">		headers = &#123;<span class="string">'content-type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>&#125;</span><br><span class="line">		response = requests.post(request_url, data=params, headers=headers)</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> response:</span><br><span class="line">			json_data=response.json()</span><br><span class="line">			words_result_num=int(json_data[<span class="string">'words_result_num'</span>])</span><br><span class="line">			<span class="keyword">for</span> i <span class="keyword">in</span> json_data[<span class="string">'words_result'</span>]:</span><br><span class="line">				text_result+=i[<span class="string">'words'</span>]</span><br><span class="line">	<span class="keyword">except</span> Exception:</span><br><span class="line">		text_result=<span class="string">"识别失败！"</span></span><br><span class="line">		words_result_num=<span class="number">-1</span></span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> text_result,words_result_num</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pil2ui</span><span class="params">(imgIn)</span>:</span></span><br><span class="line">	b = io.BytesIO()</span><br><span class="line">	imgIn.save(b, <span class="string">'JPEG'</span>)</span><br><span class="line">	imgOut = ui.Image.from_data(b.getvalue())</span><br><span class="line">	b.close()</span><br><span class="line">	<span class="keyword">return</span> imgOut</span><br><span class="line">	</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span><span class="params">(ui.View)</span>:</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,img)</span>:</span></span><br><span class="line">		self.img=img</span><br><span class="line">		self.txt=<span class="string">"正在识别，请稍等..."</span></span><br><span class="line">		self.rows=<span class="number">0</span></span><br><span class="line">		</span><br><span class="line">		self.name=<span class="string">"图片文字识别"</span></span><br><span class="line">		self.frame=(<span class="number">0</span>,<span class="number">0</span>,<span class="number">600</span>,<span class="number">500</span>)</span><br><span class="line">		self.background_color=<span class="string">'white'</span></span><br><span class="line">					</span><br><span class="line">		self.imgView=ui.ImageView()</span><br><span class="line">		self.textView=ui.TextView()</span><br><span class="line">		self.switchBtn=ui.SegmentedControl()</span><br><span class="line">		</span><br><span class="line">		self.add_subview(self.imgView)</span><br><span class="line">		self.add_subview(self.textView)</span><br><span class="line">		self.add_subview(self.switchBtn)</span><br><span class="line">		</span><br><span class="line">		self.loadUI()</span><br><span class="line">		</span><br><span class="line">		self.present(<span class="string">'sheet'</span>)</span><br><span class="line">		</span><br><span class="line">		self.recognize()</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">loadUI</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.imgView.content_mode=ui.CONTENT_SCALE_ASPECT_FIT</span><br><span class="line">		self.imgView.image=pil2ui(self.img)</span><br><span class="line">		</span><br><span class="line">		self.textView.text=self.txt</span><br><span class="line">		self.textView.font=(<span class="string">"&lt;system&gt;"</span>,<span class="number">16</span>)</span><br><span class="line">		</span><br><span class="line">		self.switchBtn.segments=[<span class="string">'图片'</span>,<span class="string">'文本'</span>]</span><br><span class="line">		self.switchBtn.action=self.switch_Act</span><br><span class="line">		self.switchBtn.selected_index=<span class="number">0</span></span><br><span class="line">		self.imgView.hidden=<span class="literal">False</span></span><br><span class="line">		self.textView.hidden=<span class="literal">True</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">layout</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.imgView.frame=(<span class="number">0</span>,<span class="number">0</span>,self.width,self.height<span class="number">-50</span>)</span><br><span class="line">		</span><br><span class="line">		self.textView.frame=(<span class="number">0</span>,<span class="number">0</span>,self.width,self.height<span class="number">-50</span>)</span><br><span class="line">		</span><br><span class="line">		self.switchBtn.frame=(<span class="number">0</span>,self.height<span class="number">-50</span>,self.width,<span class="number">50</span>)</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">recognize</span><span class="params">(self)</span>:</span></span><br><span class="line">		</span><br><span class="line">		self.txt,self.rows=imgToText(self.img)</span><br><span class="line">		<span class="keyword">if</span> self.rows&gt;=<span class="number">0</span>:</span><br><span class="line">			info=<span class="string">"识别成功，识别结果共&#123;row&#125;行，&#123;len&#125;字，已拷贝到粘贴板！\n\n"</span>.format(row=self.rows,len=len(self.txt.replace(<span class="string">" "</span>,<span class="string">""</span>).replace(<span class="string">"\n"</span>,<span class="string">""</span>)))</span><br><span class="line">			self.textView.text=info+self.txt</span><br><span class="line">	</span><br><span class="line">			clipboard.set(self.txt)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			self.textView.text=self.txt</span><br><span class="line">			console.alert(<span class="string">"错误"</span>,self.txt,<span class="string">"确定"</span>,hide_cancel_button=<span class="literal">True</span>)</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">switch_Act</span><span class="params">(self,sender)</span>:</span></span><br><span class="line">		<span class="keyword">if</span>(self.switchBtn.selected_index==<span class="number">0</span>):</span><br><span class="line">			self.imgView.hidden=<span class="literal">False</span></span><br><span class="line">			self.textView.hidden=<span class="literal">True</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			self.imgView.hidden=<span class="literal">True</span></span><br><span class="line">			self.textView.hidden=<span class="literal">False</span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> appex.is_running_extension():</span><br><span class="line">		print(<span class="string">'这个脚本必须在分享扩展面板使用!'</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	</span><br><span class="line">	orgImg = appex.get_image()</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> orgImg:</span><br><span class="line">		orgImg = clipboard.get_image()</span><br><span class="line">				</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> orgImg:</span><br><span class="line">		console.alert(<span class="string">"错误"</span>,<span class="string">"没有找到图片！"</span>,<span class="string">"确定"</span>,hide_cancel_button=<span class="literal">True</span>)</span><br><span class="line">		<span class="keyword">return</span> </span><br><span class="line">	</span><br><span class="line">	v=MainWindow(orgImg)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200202171851id.html" rel="bookmark">AppWishList for iOS</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200129180349id.html" rel="bookmark">学习日志200129：在AppWishList开发中遇到的一些问题</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20191029224349id.html" rel="bookmark">Pythonista下Pythonista Tools Installer安装教程</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20191029224207id.html" rel="bookmark">Pythonista下stash安装教程</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20191227233812id.html" rel="bookmark">学习日志：心率检测系统环境配置过程中的坑</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    基于Pythonista和百度API的高精度文本识别脚本
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年02月06日 - 17时02分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年02月06日 - 18时02分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200206175606id.html" title="基于Pythonista和百度API的高精度文本识别脚本">https://blog.siriyang.cn/posts/20200206175606id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | 基于Pythonista和百度API的高精度文本识别脚本](https://blog.siriyang.cn/posts/20200206175606id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/Pythonista/" rel="tag"><i class="fa fa-tag"></i> Pythonista</a>
+          
+            <a href="/tags/项目/" rel="tag"><i class="fa fa-tag"></i> 项目</a>
+          
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200202171851id.html" rel="next" title="AppWishList for iOS">
+                AppWishList for iOS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册账号"><span class="nav-text">注册账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取API密匙"><span class="nav-text">获取API密匙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置代码"><span class="nav-text">配置代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">709k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:45</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
