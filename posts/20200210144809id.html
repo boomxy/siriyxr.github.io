@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="正文&amp;emsp;&amp;emsp;接下来进入第二阶段任务二的实验中来。 &amp;emsp;&amp;emsp;要想在之前实验的基础上再有提升有以下几个方向：  继续特征工程加入新特征，通过不断过拟合得到特征重要性的数据，然后筛选保留重要特征，剔除无用特征且保持auc不变。 参数调优，不过这个方法能力有限，只能小范围优化，无法得到质的飞跃。 换用其它算法进行训练，并进行模型融合。  &amp;emsp;&amp;emsp;我接下来首先">
+<meta name="keywords" content="考研,复试,机器学习,数据挖掘,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习日志：X-Data数据工程基础实践（九）">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200210144809id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="正文&amp;emsp;&amp;emsp;接下来进入第二阶段任务二的实验中来。 &amp;emsp;&amp;emsp;要想在之前实验的基础上再有提升有以下几个方向：  继续特征工程加入新特征，通过不断过拟合得到特征重要性的数据，然后筛选保留重要特征，剔除无用特征且保持auc不变。 参数调优，不过这个方法能力有限，只能小范围优化，无法得到质的飞跃。 换用其它算法进行训练，并进行模型融合。  &amp;emsp;&amp;emsp;我接下来首先">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-11T04:15:51.945Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习日志：X-Data数据工程基础实践（九）">
+<meta name="twitter:description" content="正文&amp;emsp;&amp;emsp;接下来进入第二阶段任务二的实验中来。 &amp;emsp;&amp;emsp;要想在之前实验的基础上再有提升有以下几个方向：  继续特征工程加入新特征，通过不断过拟合得到特征重要性的数据，然后筛选保留重要特征，剔除无用特征且保持auc不变。 参数调优，不过这个方法能力有限，只能小范围优化，无法得到质的飞跃。 换用其它算法进行训练，并进行模型融合。  &amp;emsp;&amp;emsp;我接下来首先">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200210144809id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>学习日志：X-Data数据工程基础实践（九） | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">61</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">21</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">167</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200210144809id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">学习日志：X-Data数据工程基础实践（九）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-10 14:48:09" itemprop="dateCreated datePublished" datetime="2020-02-10T14:48:09+08:00">2020-02-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-11 12:15:51" itemprop="dateModified" datetime="2020-02-11T12:15:51+08:00">2020-02-11</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/" itemprop="url" rel="index"><span itemprop="name">考研</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/复试/" itemprop="url" rel="index"><span itemprop="name">复试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200210144809id.html" class="post-meta-item leancloud_visitors" data-flag-title="学习日志：X-Data数据工程基础实践（九）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200210144809id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200210144809id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>10k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>9 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>&emsp;&emsp;接下来进入第二阶段<strong>任务二</strong>的实验中来。</p>
+<p>&emsp;&emsp;要想在之前实验的基础上再有提升有以下几个方向：</p>
+<ol>
+<li>继续特征工程加入新特征，通过不断过拟合得到特征重要性的数据，然后筛选保留重要特征，剔除无用特征且保持auc不变。</li>
+<li>参数调优，不过这个方法能力有限，只能小范围优化，无法得到质的飞跃。</li>
+<li>换用其它算法进行训练，并进行模型融合。</li>
+</ol>
+<p>&emsp;&emsp;我接下来首先准备尝试的是模型融合，这个是最能立竿见影的。通过百度查阅资料，我准备选用<code>LightGBM</code>作为新的算法进行训练，该算法是在之前<code>XGBoost</code>的基础上进行优化得来的，至于会好多少还是只有试了才知道。</p>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>&emsp;&emsp;中文文档：<a href="https://lightgbm.apachecn.org/#/" target="_blank" rel="noopener">LightGBM 中文文档</a><br>&emsp;&emsp;参考这篇博客进行代码实现：<a href="https://www.cnblogs.com/wanglei5205/p/8654041.html" target="_blank" rel="noopener">【集成学习】lightgbm使用案例</a></p>
+<p>&emsp;&emsp;由于之前特征工程已经做好了，直接拿过来训练就行，所以实现还是很快的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">@author:SiriYang</span></span><br><span class="line"><span class="string">@file:lgbm_train.py</span></span><br><span class="line"><span class="string">@time:2020/2/10 13:59</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model_lgbm</span><span class="params">(train, validate, test)</span>:</span></span><br><span class="line"></span><br><span class="line">    y = train[<span class="string">'label'</span>]</span><br><span class="line">    X = train.drop([<span class="string">'User_id'</span>, <span class="string">'Coupon_id'</span>, <span class="string">'Date_received'</span>, <span class="string">'label'</span>],axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    val_y=validate[<span class="string">'label'</span>]</span><br><span class="line">    val_X=validate.drop([<span class="string">'User_id'</span>, <span class="string">'Coupon_id'</span>, <span class="string">'Date_received'</span>, <span class="string">'label'</span>],axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    test_X=test.drop([<span class="string">'User_id'</span>, <span class="string">'Coupon_id'</span>, <span class="string">'Date_received'</span>],axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建成lgb特征的数据集格式</span></span><br><span class="line">    lgb_train = lgb.Dataset(X, y, free_raw_data=<span class="literal">False</span>)</span><br><span class="line">    lgb_eval = lgb.Dataset(val_X, val_y, reference=lgb_train, free_raw_data=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将参数写成字典下形式</span></span><br><span class="line">    params = &#123;</span><br><span class="line">        <span class="string">'task'</span>: <span class="string">'train'</span>,</span><br><span class="line">        <span class="string">'boosting_type'</span>: <span class="string">'gbdt'</span>,  <span class="comment"># 设置提升类型</span></span><br><span class="line">        <span class="string">'objective'</span>: <span class="string">'regression'</span>,  <span class="comment"># 目标函数</span></span><br><span class="line">        <span class="string">'metric'</span>: &#123;<span class="string">'l2'</span>, <span class="string">'auc'</span>&#125;,  <span class="comment"># 评估函数</span></span><br><span class="line">        <span class="string">'num_leaves'</span>: <span class="number">31</span>,  <span class="comment"># 叶子节点数</span></span><br><span class="line">        <span class="string">'learning_rate'</span>: <span class="number">0.05</span>,  <span class="comment"># 学习速率</span></span><br><span class="line">        <span class="string">'feature_fraction'</span>: <span class="number">0.9</span>,  <span class="comment"># 建树的特征选择比例</span></span><br><span class="line">        <span class="string">'bagging_fraction'</span>: <span class="number">0.8</span>,  <span class="comment"># 建树的样本采样比例</span></span><br><span class="line">        <span class="string">'bagging_freq'</span>: <span class="number">5</span>,  <span class="comment"># k 意味着每 k 次迭代执行bagging</span></span><br><span class="line">        <span class="string">'verbose'</span>: <span class="number">1</span>  <span class="comment"># &lt;0 显示致命的, =0 显示错误 (警告), &gt;0 显示信息</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 训练 cv and train</span></span><br><span class="line">    print(<span class="string">'Start training...'</span>)</span><br><span class="line">    gbm = lgb.train(params, lgb_train, num_boost_round=<span class="number">3000</span>, valid_sets=lgb_eval, early_stopping_rounds=<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保存模型到文件</span></span><br><span class="line">    print(<span class="string">'Save model...'</span>)</span><br><span class="line">    gbm.save_model(<span class="string">'./model/lgbm/'</span> + datetime.now().strftime(<span class="string">'%d_%H%M'</span>) + <span class="string">'_model.txt'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 预测</span></span><br><span class="line">    print(<span class="string">'Start predicting...'</span>)</span><br><span class="line">    predict=gbm.predict(test_X, num_iteration=gbm.best_iteration)</span><br><span class="line">    <span class="comment"># 处理结果</span></span><br><span class="line">    predict = pd.DataFrame(predict, columns=[<span class="string">'prob'</span>])</span><br><span class="line">    result = pd.concat([test[[<span class="string">'User_id'</span>, <span class="string">'Coupon_id'</span>, <span class="string">'Date_received'</span>]], predict], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 特征重要性</span></span><br><span class="line">    feat_importance = pd.DataFrame(X.columns.tolist(), columns=[<span class="string">'feature_name'</span>])</span><br><span class="line">    feat_importance[<span class="string">'importance'</span>] = list(gbm.feature_importance())</span><br><span class="line">    feat_importance = feat_importance.sort_values(by=<span class="string">'importance'</span>, ascending=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result,feat_importance</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    start = datetime.now()</span><br><span class="line">    print(start.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br><span class="line"></span><br><span class="line">    train = pd.read_csv(<span class="string">r'./prepared_dataset/train.csv'</span>)</span><br><span class="line">    validate = pd.read_csv(<span class="string">"./prepared_dataset/validate.csv"</span>)</span><br><span class="line">    test = pd.read_csv(<span class="string">"./prepared_dataset/test.csv"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 训练</span></span><br><span class="line">    result,feat_importance= model_lgbm(train, validate, test)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保存</span></span><br><span class="line">    result.to_csv(<span class="string">r'./output_files/lgbm/'</span> + datetime.now().strftime(<span class="string">'%d_%H%M'</span>) + <span class="string">'_test.csv'</span>, index=<span class="literal">False</span>, header=<span class="literal">None</span>)</span><br><span class="line">    feat_importance.to_csv(<span class="string">r'./output_files/lgbm/'</span> + datetime.now().strftime(<span class="string">'%d_%H%M'</span>) + <span class="string">'_feat_importance.csv'</span>)</span><br><span class="line"></span><br><span class="line">    print(feat_importance)</span><br><span class="line">    feat_importance.plot(kind=<span class="string">'bar'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    print(datetime.now().strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br><span class="line">    print(<span class="string">'time costed is: %d min'</span> % (int((datetime.now() - start).seconds) / <span class="number">60</span>))</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;没想到这个算法的训练速度贼快，不到半分钟就结束了，一共训练了102轮就提前结束，由于模型参数都是直接抄过来的还没调优，本以为提交结果会很差，结果没想到有0.7711分，使用<code>XGB</code>可是得训练半个小时才有这个成绩，看来<code>LightGBM</code>的优越确实名不虚传。</p>
+<h2 id="调优"><a href="#调优" class="headerlink" title="调优"></a>调优</h2><p>&emsp;&emsp;接下来进行参数调优，看看单模型上限是多少。<br>&emsp;&emsp;参考博客：<a href="https://www.imooc.com/article/43784?block_id=tuijian_wz" target="_blank" rel="noopener">LightGBM 调参方法（具体操作）</a></p>
+<h3 id="训练轮数n-estimators调优"><a href="#训练轮数n-estimators调优" class="headerlink" title="训练轮数n_estimators调优"></a>训练轮数n_estimators调优</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">@author:SiriYang</span></span><br><span class="line"><span class="string">@file:lgbm_modify.py</span></span><br><span class="line"><span class="string">@time:2020/2/10 15:28</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    start = datetime.now()</span><br><span class="line">    print(start.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br><span class="line"></span><br><span class="line">    train = pd.read_csv(<span class="string">r'./prepared_dataset/train.csv'</span>)</span><br><span class="line"></span><br><span class="line">    y = train[<span class="string">'label'</span>]</span><br><span class="line">    X = train.drop([<span class="string">'User_id'</span>, <span class="string">'Coupon_id'</span>, <span class="string">'Date_received'</span>, <span class="string">'label'</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># n_estimators调优</span></span><br><span class="line">    params = &#123;<span class="string">'boosting_type'</span>: <span class="string">'gbdt'</span>,</span><br><span class="line">              <span class="string">'objective'</span>: <span class="string">'regression'</span>,</span><br><span class="line">              <span class="string">'learning_rate'</span>: <span class="number">0.1</span>,</span><br><span class="line">              <span class="string">'metric'</span>: &#123;<span class="string">'l2'</span>, <span class="string">'auc'</span>&#125;,</span><br><span class="line">              <span class="string">'num_leaves'</span>: <span class="number">31</span>,</span><br><span class="line">              <span class="string">'max_depth'</span>: <span class="number">6</span>,</span><br><span class="line">              <span class="string">'subsample'</span>: <span class="number">0.8</span>,</span><br><span class="line">              <span class="string">'colsample_bytree'</span>: <span class="number">0.8</span>,</span><br><span class="line">              <span class="string">'feature_fraction'</span>: <span class="number">0.9</span>,  <span class="comment"># 建树的特征选择比例</span></span><br><span class="line">              <span class="string">'bagging_fraction'</span>: <span class="number">0.8</span>,  <span class="comment"># 建树的样本采样比例</span></span><br><span class="line">              <span class="string">'bagging_freq'</span>: <span class="number">5</span>,  <span class="comment"># k 意味着每 k 次迭代执行bagging</span></span><br><span class="line">              <span class="string">'verbose'</span>: <span class="number">1</span>  <span class="comment"># &lt;0 显示致命的, =0 显示错误 (警告), &gt;0 显示信息</span></span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">    data_train = lgb.Dataset(X, y, free_raw_data=<span class="literal">False</span>)</span><br><span class="line">    cv_results = lgb.cv(</span><br><span class="line">        params, data_train, num_boost_round=<span class="number">1000</span>, nfold=<span class="number">5</span>, stratified=<span class="literal">False</span>, shuffle=<span class="literal">True</span>, metrics=<span class="string">'auc'</span>,</span><br><span class="line">        early_stopping_rounds=<span class="number">50</span>, verbose_eval=<span class="number">50</span>, show_stdv=<span class="literal">True</span>, seed=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'best n_estimators:'</span>, len(cv_results[<span class="string">'auc-mean'</span>]))</span><br><span class="line">    print(<span class="string">'best cv score:'</span>, cv_results[<span class="string">'auc-mean'</span>][<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    print(datetime.now().strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br><span class="line">    print(<span class="string">'time costed is: %d min'</span> % (int((datetime.now() - start).seconds) / <span class="number">60</span>))</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;首先把学习率设高一点<code>0.1</code>,得到一个最佳训练轮数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">best n_estimators: 340</span><br><span class="line">best cv score: 0.8918884497963833</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;接下来把这个数据带到后面的调优中使用。</p>
+<h3 id="max-depth-和-num-leaves调优"><a href="#max-depth-和-num-leaves调优" class="headerlink" title="max_depth 和 num_leaves调优"></a>max_depth 和 num_leaves调优</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># max_depth 和 num_leaves调优</span></span><br><span class="line">model_lgb = lgb.LGBMRegressor(objective=<span class="string">'regression'</span>, num_leaves=<span class="number">31</span>,</span><br><span class="line">                              learning_rate=<span class="number">0.1</span>, n_estimators=<span class="number">340</span>, max_depth=<span class="number">6</span>,subsample=<span class="number">0.8</span>,colsample_bytree=<span class="number">0.8</span>,</span><br><span class="line">                              metric=<span class="string">'auc'</span>, bagging_fraction=<span class="number">0.8</span>, feature_fraction=<span class="number">0.9</span>,bagging_freq=<span class="number">5</span>,verbose=<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">params_test1 = &#123;<span class="string">'max_depth'</span>: range(<span class="number">3</span>, <span class="number">8</span>, <span class="number">2</span>), <span class="string">'num_leaves'</span>: range(<span class="number">20</span>, <span class="number">170</span>, <span class="number">30</span>)</span><br><span class="line">                &#125;</span><br><span class="line">gsearch1 = GridSearchCV(estimator=model_lgb, param_grid=params_test1, scoring=<span class="string">'roc_auc'</span>, cv=<span class="number">5</span>,</span><br><span class="line">                        verbose=<span class="number">-1</span>, n_jobs=<span class="number">4</span>)</span><br><span class="line">gsearch1.fit(X, y)</span><br><span class="line">print(gsearch1.grid_scores_, gsearch1.best_params_, gsearch1.best_score_)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;&apos;max_depth&apos;: 7, &apos;num_leaves&apos;: 20&#125;</span><br><span class="line">0.8879466433288299</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;&apos;max_depth&apos;: 12, &apos;num_leaves&apos;: 15&#125;</span><br><span class="line">0.8890450909039307</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;&apos;max_depth&apos;: 13, &apos;num_leaves&apos;: 18&#125; 0.8894765240894891</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;&apos;max_depth&apos;: 13, &apos;num_leaves&apos;: 18&#125;</span><br><span class="line">0.8894765240894891</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;线上得分上升到0.7731</p>
+<h3 id="min-data-in-leaf-min-child-samples-和-min-sum-hessian-in-leaf-min-child-weight-调优"><a href="#min-data-in-leaf-min-child-samples-和-min-sum-hessian-in-leaf-min-child-weight-调优" class="headerlink" title="min_data_in_leaf(min_child_samples) 和 min_sum_hessian_in_leaf(min_child_weight) 调优"></a>min_data_in_leaf(min_child_samples) 和 min_sum_hessian_in_leaf(min_child_weight) 调优</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">params_test3 = &#123;<span class="string">'min_child_samples'</span>: [<span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>], <span class="string">'min_child_weight'</span>: [<span class="number">0.001</span>, <span class="number">0.002</span>]</span><br><span class="line">                &#125;</span><br><span class="line">model_lgb = lgb.LGBMRegressor(objective=<span class="string">'regression'</span>, num_leaves=<span class="number">18</span>, learning_rate=<span class="number">0.1</span>, n_estimators=<span class="number">340</span>,</span><br><span class="line">                              max_depth=<span class="number">13</span>, subsample=<span class="number">0.8</span>, colsample_bytree=<span class="number">0.8</span>, metric=<span class="string">'auc'</span>, bagging_fraction=<span class="number">0.8</span>,</span><br><span class="line">                              feature_fraction=<span class="number">0.9</span>, bagging_freq=<span class="number">5</span>, verbose=<span class="number">-1</span>)</span><br><span class="line">gsearch3 = GridSearchCV(estimator=model_lgb, param_grid=params_test3, scoring=<span class="string">'roc_auc'</span>, cv=<span class="number">5</span>,</span><br><span class="line">                        verbose=<span class="number">-1</span>, n_jobs=<span class="number">4</span>)</span><br><span class="line">gsearch3.fit(X, y)</span><br><span class="line">print(gsearch3.grid_scores_, gsearch3.best_params_, gsearch3.best_score_)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;&apos;min_child_samples&apos;: 20, &apos;min_child_weight&apos;: 0.001&#125;</span><br><span class="line"> 0.8894765240894891</span><br></pre></td></tr></table></figure>
+
+<h3 id="feature-fraction-和-bagging-fraction-调优"><a href="#feature-fraction-和-bagging-fraction-调优" class="headerlink" title="feature_fraction 和 bagging_fraction 调优"></a>feature_fraction 和 bagging_fraction 调优</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">params_test4 = &#123;<span class="string">'feature_fraction'</span>: [<span class="number">0.5</span>, <span class="number">0.6</span>, <span class="number">0.7</span>, <span class="number">0.8</span>, <span class="number">0.9</span>], <span class="string">'bagging_fraction'</span>: [<span class="number">0.6</span>, <span class="number">0.7</span>, <span class="number">0.8</span>, <span class="number">0.9</span>, <span class="number">1.0</span>]</span><br><span class="line">                &#125;</span><br><span class="line">model_lgb = lgb.LGBMRegressor(objective=<span class="string">'regression'</span>, num_leaves=<span class="number">18</span>, learning_rate=<span class="number">0.1</span>, n_estimators=<span class="number">340</span>,</span><br><span class="line">                               max_depth=<span class="number">13</span>, subsample=<span class="number">0.8</span>, colsample_bytree=<span class="number">0.8</span>, metric=<span class="string">'auc'</span>, bagging_fraction=<span class="number">0.8</span>,</span><br><span class="line">                               feature_fraction=<span class="number">0.9</span>,min_child_samples=<span class="number">20</span>,min_child_weight=<span class="number">0.001</span>, bagging_freq=<span class="number">5</span>, verbose=<span class="number">-1</span>)</span><br><span class="line">gsearch4 = GridSearchCV(estimator=model_lgb, param_grid=params_test4, scoring=<span class="string">'roc_auc'</span>, cv=<span class="number">5</span>,</span><br><span class="line">                        verbose=<span class="number">1</span>, n_jobs=<span class="number">4</span>)</span><br><span class="line">gsearch4.fit(X, y)</span><br><span class="line">print(gsearch4.grid_scores_, gsearch4.best_params_, gsearch4.best_score_)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;&apos;bagging_fraction&apos;: 1.0, &apos;feature_fraction&apos;: 0.8&#125;</span><br><span class="line">0.8895620932443743</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">params_test5=&#123;    <span class="string">'feature_fraction'</span>: [<span class="number">0.62</span>, <span class="number">0.65</span>, <span class="number">0.68</span>, <span class="number">0.7</span>, <span class="number">0.72</span>, <span class="number">0.75</span>, <span class="number">0.78</span> ]</span><br><span class="line">&#125;</span><br><span class="line">model_lgb = lgb.LGBMRegressor(objective=<span class="string">'regression'</span>,num_leaves=<span class="number">80</span>,</span><br><span class="line">                              learning_rate=<span class="number">0.1</span>, n_estimators=<span class="number">43</span>, max_depth=<span class="number">7</span>, </span><br><span class="line">                              metric=<span class="string">'rmse'</span>,  min_child_samples=<span class="number">20</span>)</span><br><span class="line">gsearch5 = GridSearchCV(estimator=model_lgb, param_grid=params_test5, scoring=<span class="string">'neg_mean_squared_error'</span>, cv=<span class="number">5</span>, verbose=<span class="number">1</span>, n_jobs=<span class="number">4</span>)</span><br><span class="line">gsearch5.fit(df_train, y_train)</span><br><span class="line">gsearch5.grid_scores_, gsearch5.best_params_, gsearch5.best_score_</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;&apos;feature_fraction&apos;: 0.82&#125;</span><br><span class="line">0.8895911006088235</span><br></pre></td></tr></table></figure>
+
+<h3 id="正则化参数"><a href="#正则化参数" class="headerlink" title="正则化参数"></a>正则化参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">params_test6 = &#123;<span class="string">'reg_alpha'</span>: [<span class="number">0</span>, <span class="number">0.001</span>, <span class="number">0.01</span>, <span class="number">0.03</span>, <span class="number">0.08</span>, <span class="number">0.3</span>, <span class="number">0.5</span>],</span><br><span class="line">                <span class="string">'reg_lambda'</span>: [<span class="number">0</span>, <span class="number">0.001</span>, <span class="number">0.01</span>, <span class="number">0.03</span>, <span class="number">0.08</span>, <span class="number">0.3</span>, <span class="number">0.5</span>]</span><br><span class="line">                &#125;</span><br><span class="line">model_lgb = lgb.LGBMRegressor(objective=<span class="string">'regression'</span>, num_leaves=<span class="number">18</span>, learning_rate=<span class="number">0.1</span>, n_estimators=<span class="number">340</span>,</span><br><span class="line">                              max_depth=<span class="number">13</span>, subsample=<span class="number">0.8</span>, colsample_bytree=<span class="number">0.8</span>, metric=<span class="string">'auc'</span>, bagging_fraction=<span class="number">1.0</span>,</span><br><span class="line">                              feature_fraction=<span class="number">0.82</span>, min_child_samples=<span class="number">20</span>, min_child_weight=<span class="number">0.001</span>, bagging_freq=<span class="number">5</span>,</span><br><span class="line">                              verbose=<span class="number">-1</span>)</span><br><span class="line">gsearch6 = GridSearchCV(estimator=model_lgb, param_grid=params_test6, scoring=<span class="string">'roc_auc'</span>, cv=<span class="number">5</span>,</span><br><span class="line">                        verbose=<span class="number">1</span>, n_jobs=<span class="number">4</span>)</span><br><span class="line">gsearch6.fit(X, y)</span><br><span class="line">print(gsearch6.grid_scores_, gsearch6.best_params_, gsearch6.best_score_)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;&apos;reg_alpha&apos;: 0.5, &apos;reg_lambda&apos;: 0.5&#125;</span><br><span class="line">0.8904085279222402</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;&apos;reg_alpha&apos;: 0.6, &apos;reg_lambda&apos;: 0.6&#125;</span><br><span class="line">0.8904402510041289</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;&apos;reg_alpha&apos;: 0.58, &apos;reg_lambda&apos;: 0.56&#125;</span><br><span class="line">0.8905777734829009</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;经过漫长的调参，最后的结果并不理想，线上得分最高只有0.7703</p>
+<h2 id="模型融合"><a href="#模型融合" class="headerlink" title="模型融合"></a>模型融合</h2><p>&emsp;&emsp;接下来尝试模型融合，将两种模型最好的预测数据通过循环以0.1为步长尝试各种比例线性加权融合以后，提交得出最好成绩为0.7770，融合比例为 XGBoost x 0.5 + LightGBM x 0.5平均混合。</p>
+<h2 id="2020-2-11更新"><a href="#2020-2-11更新" class="headerlink" title="2020.2.11更新"></a>2020.2.11更新</h2><p>&emsp;&emsp;今天早上起来看代码，突然发现自己傻逼了，之前直接抄的别人的代码过来用，结果发现他用的目标函数是<code>regression</code>，而我要做的是二分类<code>binary</code>。更换目标函数后再进行训练，单模型得分直接0.7772，但是进行模型融合以后最高只有0.7753。</p>
+<p>&emsp;&emsp;都说学习率越低越好，我反而越低学出来越差，就把学习率调高了，结果效果还更好:0.7824。以XGBoost x 0.2 + LightGBM x 0.8融合后最高得分为0.7863。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">params = &#123;</span><br><span class="line">        <span class="string">'task'</span>: <span class="string">'train'</span>,</span><br><span class="line">        <span class="string">'boosting_type'</span>: <span class="string">'gbdt'</span>,  <span class="comment"># 设置提升类型</span></span><br><span class="line">        <span class="string">'objective'</span>: <span class="string">'binary'</span>,  <span class="comment"># 目标函数</span></span><br><span class="line">        <span class="string">'metric'</span>: &#123;<span class="string">'l2'</span>, <span class="string">'auc'</span>&#125;,  <span class="comment"># 评估函数</span></span><br><span class="line">        <span class="string">'max_depth'</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="string">'num_leaves'</span>: <span class="number">18</span>,  <span class="comment"># 叶子节点数</span></span><br><span class="line">        <span class="string">'learning_rate'</span>: <span class="number">0.1</span>,  <span class="comment"># 学习速率</span></span><br><span class="line">        <span class="string">'feature_fraction'</span>: <span class="number">0.9</span>,  <span class="comment"># 建树的特征选择比例</span></span><br><span class="line">        <span class="string">'bagging_fraction'</span>: <span class="number">0.8</span>,  <span class="comment"># 建树的样本采样比例</span></span><br><span class="line">        <span class="string">'min_child_samples'</span>: <span class="number">20</span>,</span><br><span class="line">        <span class="string">'min_child_weight'</span>: <span class="number">0.001</span>,</span><br><span class="line">        <span class="string">'bagging_freq'</span>: <span class="number">5</span>,  <span class="comment"># k 意味着每 k 次迭代执行bagging</span></span><br><span class="line">        <span class="string">'verbose'</span>: <span class="number">1</span>  <span class="comment"># &lt;0 显示致命的, =0 显示错误 (警告), &gt;0 显示信息</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\2020111162813id.html" rel="bookmark">学习日志：X-Data数据工程基础实践（四）</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200212105301id.html" rel="bookmark">学习日志：X-Data数据工程基础实践（十）</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200204165028id.html" rel="bookmark">学习日志200204：X-Data数据工程基础实践过程中遇到的问题</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200117170434id.html" rel="bookmark">学习日志：X-Data数据工程基础实践（六）</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200114151515id.html" rel="bookmark">学习日志：X-Data数据工程基础实践（五）</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    学习日志：X-Data数据工程基础实践（九）
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年02月10日 - 14时02分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年02月11日 - 12时02分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200210144809id.html" title="学习日志：X-Data数据工程基础实践（九）">https://blog.siriyang.cn/posts/20200210144809id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | 学习日志：X-Data数据工程基础实践（九）](https://blog.siriyang.cn/posts/20200210144809id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/考研/" rel="tag"><i class="fa fa-tag"></i> 考研</a>
+          
+            <a href="/tags/复试/" rel="tag"><i class="fa fa-tag"></i> 复试</a>
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/数据挖掘/" rel="tag"><i class="fa fa-tag"></i> 数据挖掘</a>
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/posts/20200212105301id.html" rel="prev" title="学习日志：X-Data数据工程基础实践（十）">
+                <i class="fa fa-chevron-left"></i> 学习日志：X-Data数据工程基础实践（十）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200207112455id.html" rel="next" title="学习日志：X-Data数据工程基础实践（八）">
+                学习日志：X-Data数据工程基础实践（八） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">167</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#训练"><span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调优"><span class="nav-text">调优</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练轮数n-estimators调优"><span class="nav-text">训练轮数n_estimators调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max-depth-和-num-leaves调优"><span class="nav-text">max_depth 和 num_leaves调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#min-data-in-leaf-min-child-samples-和-min-sum-hessian-in-leaf-min-child-weight-调优"><span class="nav-text">min_data_in_leaf(min_child_samples) 和 min_sum_hessian_in_leaf(min_child_weight) 调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#feature-fraction-和-bagging-fraction-调优"><span class="nav-text">feature_fraction 和 bagging_fraction 调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则化参数"><span class="nav-text">正则化参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型融合"><span class="nav-text">模型融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-2-11更新"><span class="nav-text">2020.2.11更新</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">780k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">11:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
