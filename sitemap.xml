@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.siriyang.cn/404.html</loc>
+    
+    <lastmod>2020-02-25T01:26:03.445Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.siriyang.cn/posts/20200219143029id.html</loc>
     
     <lastmod>2020-02-19T07:56:15.521Z</lastmod>
@@ -807,14 +814,14 @@
   </url>
   
   <url>
-    <loc>https://blog.siriyang.cn/posts/20200103135249id.html</loc>
+    <loc>https://blog.siriyang.cn/posts/20200102232002id.html</loc>
     
     <lastmod>2020-01-04T15:27:49.081Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.siriyang.cn/posts/20200102232002id.html</loc>
+    <loc>https://blog.siriyang.cn/posts/20200103135249id.html</loc>
     
     <lastmod>2020-01-04T15:27:49.081Z</lastmod>
     
