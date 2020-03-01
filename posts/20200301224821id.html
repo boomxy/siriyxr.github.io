@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="【2019】常用的信道复用技术包括哪几种类型?&amp;emsp;&amp;emsp;常用的信道复用包括：频分复用、时分复用、波分复用、码分复用。 【2019】网络层有哪些常用协议?&amp;emsp;&amp;emsp;网络层常用的协议有IP、ARP、RARP、ICMP、IGMP等。 【2019】简述电子邮件系统中使用的协议及相应功能。&amp;emsp;&amp;emsp;电子邮件系统主要使用SMTP和POP3两个协议。&amp;emsp;&amp;ems">
+<meta name="keywords" content="考研,计算机网络,真题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="考研计算机网络简答题背诵">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200301224821id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="【2019】常用的信道复用技术包括哪几种类型?&amp;emsp;&amp;emsp;常用的信道复用包括：频分复用、时分复用、波分复用、码分复用。 【2019】网络层有哪些常用协议?&amp;emsp;&amp;emsp;网络层常用的协议有IP、ARP、RARP、ICMP、IGMP等。 【2019】简述电子邮件系统中使用的协议及相应功能。&amp;emsp;&amp;emsp;电子邮件系统主要使用SMTP和POP3两个协议。&amp;emsp;&amp;ems">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-01T14:51:01.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="考研计算机网络简答题背诵">
+<meta name="twitter:description" content="【2019】常用的信道复用技术包括哪几种类型?&amp;emsp;&amp;emsp;常用的信道复用包括：频分复用、时分复用、波分复用、码分复用。 【2019】网络层有哪些常用协议?&amp;emsp;&amp;emsp;网络层常用的协议有IP、ARP、RARP、ICMP、IGMP等。 【2019】简述电子邮件系统中使用的协议及相应功能。&amp;emsp;&amp;emsp;电子邮件系统主要使用SMTP和POP3两个协议。&amp;emsp;&amp;ems">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200301224821id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>考研计算机网络简答题背诵 | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">63</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">172</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200301224821id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">考研计算机网络简答题背诵
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-01 22:48:21 / 修改时间：22:51:01" itemprop="dateCreated datePublished" datetime="2020-03-01T22:48:21+08:00">2020-03-01</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/" itemprop="url" rel="index"><span itemprop="name">考研</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200301224821id.html" class="post-meta-item leancloud_visitors" data-flag-title="考研计算机网络简答题背诵" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200301224821id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200301224821id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>8.9k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>8 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="【2019】常用的信道复用技术包括哪几种类型"><a href="#【2019】常用的信道复用技术包括哪几种类型" class="headerlink" title="【2019】常用的信道复用技术包括哪几种类型?"></a>【2019】常用的信道复用技术包括哪几种类型?</h4><p>&emsp;&emsp;常用的信道复用包括：频分复用、时分复用、波分复用、码分复用。</p>
+<h4 id="【2019】网络层有哪些常用协议"><a href="#【2019】网络层有哪些常用协议" class="headerlink" title="【2019】网络层有哪些常用协议?"></a>【2019】网络层有哪些常用协议?</h4><p>&emsp;&emsp;网络层常用的协议有IP、ARP、RARP、ICMP、IGMP等。</p>
+<h4 id="【2019】简述电子邮件系统中使用的协议及相应功能。"><a href="#【2019】简述电子邮件系统中使用的协议及相应功能。" class="headerlink" title="【2019】简述电子邮件系统中使用的协议及相应功能。"></a>【2019】简述电子邮件系统中使用的协议及相应功能。</h4><p>&emsp;&emsp;电子邮件系统主要使用SMTP和POP3两个协议。<br>&emsp;&emsp;SMTP用于用户代理向邮件服务器发送邮件和邮件服务器之间发送、接收邮件。<br>&emsp;&emsp;POP3用于用户代理向邮件服务器读取邮件。</p>
+<h4 id="【2019】简述以太网-CSMA-CD-协议的工作过程。"><a href="#【2019】简述以太网-CSMA-CD-协议的工作过程。" class="headerlink" title="【2019】简述以太网 CSMA/CD 协议的工作过程。"></a>【2019】简述以太网 CSMA/CD 协议的工作过程。</h4><p>&emsp;&emsp;以太网CSMA/CD的工作流程为：</p>
+<ol>
+<li>先听后发：先侦听信道是否空闲，如果空闲则发送数据，否则继续侦听直到信道空闲。</li>
+<li>边听边发：一边发送一边继续侦听有无其他站点发送的电信号。</li>
+<li>冲突停发：一旦发生冲突立即停止发送数据，取而代之传输一个48比特的拥塞信号。</li>
+<li>随即重发：在发生冲突后采用二进制退避算法等待一个随机时间后再开始侦听信道发送数据。</li>
+</ol>
+<h4 id="【2019】主动攻击有哪几种常见的方式"><a href="#【2019】主动攻击有哪几种常见的方式" class="headerlink" title="【2019】主动攻击有哪几种常见的方式?"></a>【2019】主动攻击有哪几种常见的方式?</h4><p>&emsp;&emsp;主动攻击的常见方式有：中断、篡改、伪造。<br>&emsp;&emsp;被动攻击为：截获。</p>
+<h4 id="【2018】因特网的发展大致分为哪几个阶段-每个阶段的主要特点是什么"><a href="#【2018】因特网的发展大致分为哪几个阶段-每个阶段的主要特点是什么" class="headerlink" title="【2018】因特网的发展大致分为哪几个阶段?每个阶段的主要特点是什么?"></a>【2018】因特网的发展大致分为哪几个阶段?每个阶段的主要特点是什么?</h4><p>&emsp;&emsp;从单个网络APPANET向互联网发展：TCP/IP协议的初步成型；<br>&emsp;&emsp;建成三级结构的Internet：分为主干网、地区网和校园网；<br>&emsp;&emsp;形成多层次ISP结构的Internet：ISP首次出现。<br>【教材课后习题1-5】</p>
+<h4 id="【2018】物理层的基本功能是什么-物理层的接口有哪几个方面的特性-各包含什么内容"><a href="#【2018】物理层的基本功能是什么-物理层的接口有哪几个方面的特性-各包含什么内容" class="headerlink" title="【2018】物理层的基本功能是什么?物理层的接口有哪几个方面的特性?各包含什么内容?"></a>【2018】物理层的基本功能是什么?物理层的接口有哪几个方面的特性?各包含什么内容?</h4><p>&emsp;&emsp;物理层的基本功能是在物理媒体上为数据端设备透明的传输原始比特流。</p>
+<ol>
+<li>机械特性：指明接口所用的接线器的形状和尺寸、引线数目和排列、固定和锁定装置等等。</li>
+<li>电气特性：指明在接口电缆的各条线上出现的电压的范围。</li>
+<li>功能特性：指明某条线上出现的某一电平的电压表示何意。</li>
+<li>过程特性：说明对于不同功能的各种可能事件的出现顺序。<br>【教材课后习题2-5】</li>
+</ol>
+<h4 id="【2018】IP-数据报中的首部检验和并不检验数据报中的数据。这样做的最大好处是什么-坏处是什么"><a href="#【2018】IP-数据报中的首部检验和并不检验数据报中的数据。这样做的最大好处是什么-坏处是什么" class="headerlink" title="【2018】IP 数据报中的首部检验和并不检验数据报中的数据。这样做的最大好处是什么?坏处是什么?"></a>【2018】IP 数据报中的首部检验和并不检验数据报中的数据。这样做的最大好处是什么?坏处是什么?</h4><p>&emsp;&emsp;好处：不检验数据部分可以加快检验的过程，使转发分组更快。<br>&emsp;&emsp;坏处：数据部分出现差错时不能及早发现。即使是到达了终点，目的主机中的IP也仍然不检查数据部分是否正确。当IP数据报的数据部分送交上面的运输层时，运输层的TCP才检查收到的数据有无差错。<br>【教材课后习题4-11】</p>
+<h4 id="【2018】使用-TCP-对实时话音数据的传输有没有什么问题-使用-UDP-在传送数据文件时会有什-么问题"><a href="#【2018】使用-TCP-对实时话音数据的传输有没有什么问题-使用-UDP-在传送数据文件时会有什-么问题" class="headerlink" title="【2018】使用 TCP 对实时话音数据的传输有没有什么问题?使用 UDP 在传送数据文件时会有什 么问题?"></a>【2018】使用 TCP 对实时话音数据的传输有没有什么问题?使用 UDP 在传送数据文件时会有什 么问题?</h4><p>&emsp;&emsp;对实时话音数据的传输是不能使用TCP的。这是因为TCP传输话音数据时，只要一出现差错或丢失，TCP就要重传。这就产生了额外的时延，有时这种时延会达到很高的数值，使接收方无法容忍。<br>&emsp;&emsp;实施话音数据传输使用UDP时，虽然有可能丢掉几个分组并不通知发送方重传，话音质量会差一点，但仍然能听懂，同时能保证实时性。因此只要应用程序接收这样的服务质量就可以使用UDP。<br>【教材课后习题5-15】</p>
+<h4 id="【2018】假定要从已知的-URL-获得一个万维网文档。若该万维网服务器的-IP-地址开始时并不知道。试问：除-HTTP-外，还需要什么应用层协议和传输层协议"><a href="#【2018】假定要从已知的-URL-获得一个万维网文档。若该万维网服务器的-IP-地址开始时并不知道。试问：除-HTTP-外，还需要什么应用层协议和传输层协议" class="headerlink" title="【2018】假定要从已知的 URL 获得一个万维网文档。若该万维网服务器的 IP 地址开始时并不知道。试问：除 HTTP 外，还需要什么应用层协议和传输层协议?"></a>【2018】假定要从已知的 URL 获得一个万维网文档。若该万维网服务器的 IP 地址开始时并不知道。试问：除 HTTP 外，还需要什么应用层协议和传输层协议?</h4><p>&emsp;&emsp;应用层协议需要DNS。<br>&emsp;&emsp;运输层协议需要的是UDP（DNS使用）和TCP（HTTP使用）。<br>【教材课后习题6-10】</p>
+<h4 id="【2017】为什么要使用信道复用技术-常用的信道复用技术有哪些"><a href="#【2017】为什么要使用信道复用技术-常用的信道复用技术有哪些" class="headerlink" title="【2017】为什么要使用信道复用技术?常用的信道复用技术有哪些?"></a>【2017】为什么要使用信道复用技术?常用的信道复用技术有哪些?</h4><p>&emsp;&emsp;许多用户通过复用技术就可以共同使用一个共享信道来进行通信。虽然复用要付出一定代价，但如果复用的信道数量较大，总的来看，在经济上还是合算的。常用的复用技术有：频分多路复用、时分多路复用、码分多路复用、波分多路复用。<br>【教材课后习题 2-13】</p>
+<h4 id="【2017】以太网使用的载波监听多点接入-碰撞检测协议是以争用方式接入到共享信道。这与传统的时分复用-TDM-相比优缺点如何"><a href="#【2017】以太网使用的载波监听多点接入-碰撞检测协议是以争用方式接入到共享信道。这与传统的时分复用-TDM-相比优缺点如何" class="headerlink" title="【2017】以太网使用的载波监听多点接入/碰撞检测协议是以争用方式接入到共享信道。这与传统的时分复用 TDM 相比优缺点如何?"></a>【2017】以太网使用的载波监听多点接入/碰撞检测协议是以争用方式接入到共享信道。这与传统的时分复用 TDM 相比优缺点如何?</h4><p>&emsp;&emsp;网络上负荷较轻时，CSMA/CD协议很灵活，哪个站想发送就发送，而且发生碰撞的概率很小。如果使用时分复用TDM，效率就比较低。但网络负荷很重时，CSMA/CD协议引起的碰撞很多，重传经常发生，因而效率大大降低。但这时TDM效率就很高。</p>
+<h4 id="【2017】当某个路由器发现一-IP-数据报的检验和有差错时，为什么采取丢弃的办法而不是要求源站重传此数据报-计算首部检验和为什么不采用-CRC-检验码"><a href="#【2017】当某个路由器发现一-IP-数据报的检验和有差错时，为什么采取丢弃的办法而不是要求源站重传此数据报-计算首部检验和为什么不采用-CRC-检验码" class="headerlink" title="【2017】当某个路由器发现一 IP 数据报的检验和有差错时，为什么采取丢弃的办法而不是要求源站重传此数据报?计算首部检验和为什么不采用 CRC 检验码?"></a>【2017】当某个路由器发现一 IP 数据报的检验和有差错时，为什么采取丢弃的办法而不是要求源站重传此数据报?计算首部检验和为什么不采用 CRC 检验码?</h4><p>&emsp;&emsp;IP首部中的源地址也可能变成错误的，要求错误的源地址重传数据报是没有意义的。<br>&emsp;&emsp;不使用CRC可减少路由器进行校验的时间。<br>【教材课后习题 4-12】</p>
+<h4 id="【2017】为什么说-UDP-是面向报文的，而-TCP-是面向字节流的"><a href="#【2017】为什么说-UDP-是面向报文的，而-TCP-是面向字节流的" class="headerlink" title="【2017】为什么说 UDP 是面向报文的，而 TCP 是面向字节流的?"></a>【2017】为什么说 UDP 是面向报文的，而 TCP 是面向字节流的?</h4><p>&emsp;&emsp;发送方 UDP 对应用程序交下来的报文，在添加首部后就向下交付 IP 层。UDP 对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。接收方 UDP 对 IP 层交上来的 UDP 用户数据报，在去除首部后就原封不动地交付上层的应用进程，一次交付一个完整的报文。<br>&emsp;&emsp;发送方TCP对应用程序交下来的报文数据块，视为无结构的字节流（无边界约束，可分拆/合并），但维持各字节顺序。<br>【教材课后习题 5-8】</p>
+<h4 id="【2017】简述-SMTP-通信的三个阶段。"><a href="#【2017】简述-SMTP-通信的三个阶段。" class="headerlink" title="【2017】简述 SMTP 通信的三个阶段。"></a>【2017】简述 SMTP 通信的三个阶段。</h4><ol>
+<li>连接建立：发件人的邮件送到发送方邮件服务器的邮件缓存以后，SMTP客户就每隔一定时间对邮件缓存扫描一次。如发现有邮件，就使用SMTP的熟知端口（25）与接收方的邮件服务器建立TCP连接。</li>
+<li>邮件传送：邮件的传送从MAIL命令开始。MAIL命令后有发件人的地址。下面跟着一个或多个RCPT命令，取决于把同一个邮件发送给一个或多个联系人。再下面就是DATA命令，表示开始发送邮件内容了。</li>
+<li>连接释放：邮件发送完毕后，SMTP客户端应发送QUIT命令。SMTP服务器如同意释放TCP连接，邮件传送全部过程结束。<br>【教材课后习题 6-23】</li>
+</ol>
+<h4 id="【2016】物理层要解决哪些问题？物理层的主要特点是什么？"><a href="#【2016】物理层要解决哪些问题？物理层的主要特点是什么？" class="headerlink" title="【2016】物理层要解决哪些问题？物理层的主要特点是什么？"></a>【2016】物理层要解决哪些问题？物理层的主要特点是什么？</h4><p>物理层要解决的主要问题：</p>
+<ol>
+<li>物理层尽可能屏蔽掉物理设备、传输媒体和通信手段的不同，使上面的数据链路层感觉不到这些差异的存在，而专注于完成本层的协议与服务</li>
+<li>给其用户（数据链路层）在一条物理的传输媒体上传送和接收比特流（一般为串行按顺序传输等比特流）的能力。因此，物理层应解决物理连接的建立、维护和释放问题</li>
+<li>在两个相邻系统之间唯一的标识数据电路</li>
+</ol>
+<p>物理层的特点：</p>
+<ol>
+<li>由于在OSI之前，许多规程或协议已经制定出来了，而且在数据通信领域中，这些物理规程已被许多商品化的设备所采用。加之，物理层协议涉及的范围广泛，所以至今没有按OSI的抽象模型制定一套新的物理层协议，而是沿用已存在的物理规程，将物理层确定为描述与传输媒体接口的机械、电器、功能和规程特性</li>
+<li>由于物理连接方式很多，传输媒体种类也很多，因此，具体的物理协议相当复杂。<br>【教材课后习题 2-1】</li>
+</ol>
+<h4 id="【2016】RIP使用UDP，OSPF使用IP，而BGP使用TCP。这样做有何优点？为什么RIP周期性地和邻站交换路由信息而GBP却不这样做？"><a href="#【2016】RIP使用UDP，OSPF使用IP，而BGP使用TCP。这样做有何优点？为什么RIP周期性地和邻站交换路由信息而GBP却不这样做？" class="headerlink" title="【2016】RIP使用UDP，OSPF使用IP，而BGP使用TCP。这样做有何优点？为什么RIP周期性地和邻站交换路由信息而GBP却不这样做？"></a>【2016】RIP使用UDP，OSPF使用IP，而BGP使用TCP。这样做有何优点？为什么RIP周期性地和邻站交换路由信息而GBP却不这样做？</h4><ol>
+<li>RIP只和邻站交换信息，使用UDP无可靠保障，但开销小，可以满脑子足RIP的要求；OSPF使用可靠的洪泛法，直接使用IP，灵活、开销小；BGP需要交换整个路由表和更新信息，TCP提供可靠交付以减小带宽消耗。</li>
+<li>RIP使用不保证可靠交付的UDP，因此必须不断的（周期性）和邻站交换信息才能使路由信息及时得到更新。但BGP使用保证可靠交付的TCP，因此不必这样做。<br>【教材课后习题 4-39】</li>
+</ol>
+<h4 id="【2016】叙述IEEE802-3以太网采用的介质访问控制协议及其工作原理"><a href="#【2016】叙述IEEE802-3以太网采用的介质访问控制协议及其工作原理" class="headerlink" title="【2016】叙述IEEE802.3以太网采用的介质访问控制协议及其工作原理"></a>【2016】叙述IEEE802.3以太网采用的介质访问控制协议及其工作原理</h4><p>&emsp;&emsp;CSMA/CD协议的工作原理是：某站点想发送数据时，必须首先侦听信道。如果信道空闲，立即发送数据并进行冲突检测；如果信道忙，继续侦听信道，直到信道变为空闲后才继续发送数据，并进行冲突检测。如果站点在发送数据过程中检测到冲突，它将立即停止发送数据并等待一个随机长时间，重复上述过程。</p>
+<h4 id="【2016】一个应用程序用UDP-到IP层把数据报再划分为4个数据报片发送出去，结果前两个数据报片丢失，后两个到达目的站。过了一段时间应用程序重传UDP-而IP层仍然划分为4个数据报片来传送。结果这次前两个到达目的站而后两个丢失。试问在目的站能否将这两次传输的4个数据报片组装成完整的数据报-假定目的站第一次收到的后两个数据报片仍然保存在目的站的缓存中。"><a href="#【2016】一个应用程序用UDP-到IP层把数据报再划分为4个数据报片发送出去，结果前两个数据报片丢失，后两个到达目的站。过了一段时间应用程序重传UDP-而IP层仍然划分为4个数据报片来传送。结果这次前两个到达目的站而后两个丢失。试问在目的站能否将这两次传输的4个数据报片组装成完整的数据报-假定目的站第一次收到的后两个数据报片仍然保存在目的站的缓存中。" class="headerlink" title="【2016】一个应用程序用UDP,到IP层把数据报再划分为4个数据报片发送出去，结果前两个数据报片丢失，后两个到达目的站。过了一段时间应用程序重传UDP,而IP层仍然划分为4个数据报片来传送。结果这次前两个到达目的站而后两个丢失。试问在目的站能否将这两次传输的4个数据报片组装成完整的数据报?假定目的站第一次收到的后两个数据报片仍然保存在目的站的缓存中。"></a>【2016】一个应用程序用UDP,到IP层把数据报再划分为4个数据报片发送出去，结果前两个数据报片丢失，后两个到达目的站。过了一段时间应用程序重传UDP,而IP层仍然划分为4个数据报片来传送。结果这次前两个到达目的站而后两个丢失。试问在目的站能否将这两次传输的4个数据报片组装成完整的数据报?假定目的站第一次收到的后两个数据报片仍然保存在目的站的缓存中。</h4><p>&emsp;&emsp;数据报丢失重传时，IP数据报的标示字段会有另一个表示符。仅当标示相同的IP数据报片才能组成一个IP数据报。前两个IP数据报片的标识符与后两个IP数据报片的标识符不同，因此不能组装成一个IP数据报。<br>【教材课后习题 5-12】</p>
+<h4 id="【2016】基于万维网的电子邮件系统有什么特点？，在传送邮件时使用什么协议？"><a href="#【2016】基于万维网的电子邮件系统有什么特点？，在传送邮件时使用什么协议？" class="headerlink" title="【2016】基于万维网的电子邮件系统有什么特点？，在传送邮件时使用什么协议？"></a>【2016】基于万维网的电子邮件系统有什么特点？，在传送邮件时使用什么协议？</h4><ol>
+<li>便捷性与灵活性。不管在什么地方，只要能上网，在打开万维网浏览器之后，就可以收发电子邮件。这时，邮件系统中的用户代理就是普通的万维网。</li>
+<li>电子邮件从浏览器到邮件服务器使用HTTP协议，在两个邮件服务器之间传送时使用SMTP。<br>【教材课后习题 6-31】</li>
+</ol>
+<h4 id="【2015】什么叫ARP？在以太网中ARP有什么重要作用？"><a href="#【2015】什么叫ARP？在以太网中ARP有什么重要作用？" class="headerlink" title="【2015】什么叫ARP？在以太网中ARP有什么重要作用？"></a>【2015】什么叫ARP？在以太网中ARP有什么重要作用？</h4><p>&emsp;&emsp;ARP即地址解析协议，是根据IP地址获取物理地址的一个TCP/IP协议。负责将某个IP地址解析成对应的MAC地址。</p>
+<h4 id="【2015】域名系统的功能是什么？命名为什么要分布授权？"><a href="#【2015】域名系统的功能是什么？命名为什么要分布授权？" class="headerlink" title="【2015】域名系统的功能是什么？命名为什么要分布授权？"></a>【2015】域名系统的功能是什么？命名为什么要分布授权？</h4><ol>
+<li>域名系统是因特网的一项核心服务，它作为可将域名和IP地址相互映射的一个分布式数据库，能够使人更方便的访问互联网，而不用去记住能够被机器直接读取的IP地址。</li>
+<li>当前因特网采用的是层次型命名机制，将名字空间分成若干子空间，每个机构负责进一步划分，授权给下一级机构管理。这样一来，名字空间呈现一种树形结构，树上每一结点都有相应标号。通过层次化的名字结构，减轻了单个机构的管理工作量，提高了效率。</li>
+</ol>
+<h4 id="【2015】为什么以太网中要限定最小帧长和最大帧长？"><a href="#【2015】为什么以太网中要限定最小帧长和最大帧长？" class="headerlink" title="【2015】为什么以太网中要限定最小帧长和最大帧长？"></a>【2015】为什么以太网中要限定最小帧长和最大帧长？</h4><p>&emsp;&emsp;传统以太网是共享性局域网，待用CSMA/CD协议，最小帧长必须大于整个网络的最大时延位（最大时延内可传输的数据位）。如果帧长度的太小，就可能出现网络上同时有两个帧在传播，就会产生冲突而造成网络无法发送数据。如果数据帧太长，会出现现有的工作站长时间发送数据失败，而且可能超出接收端缓冲区大小，造成缓冲溢出。由于多方面限制，每个以太网都有最小为64B，最大为1518B的长度规定，小于或者大于着限制都可视为错误的数据帧，一般的以太网转发设备会丢弃这些数据帧。<br>【14年简答1题原题】</p>
+<h4 id="【2015】怎样通过公钥机制实现身份鉴别？怎样通过对称密钥机制实现身份鉴别？"><a href="#【2015】怎样通过公钥机制实现身份鉴别？怎样通过对称密钥机制实现身份鉴别？" class="headerlink" title="【2015】怎样通过公钥机制实现身份鉴别？怎样通过对称密钥机制实现身份鉴别？"></a>【2015】怎样通过公钥机制实现身份鉴别？怎样通过对称密钥机制实现身份鉴别？</h4><p>&emsp;&emsp;公钥加密过程：</p>
+<ol>
+<li>网络中的每个端系统都产生一对可用于将它接收的报文进行加密和解密的密钥。</li>
+<li>每个系统都通过把自己的加密密钥放进一个登记本或者文件来公布它，这就是公开密钥。另一个密钥则是自己私有的。</li>
+<li>如果A想给B发送一个报文，A就用B的公开密钥加密这个报文。</li>
+<li>B收到这个报文后就用它的保密密钥解密报文。其他所有收到这个报文的人都无法解密，因为B才有B的私有密钥。</li>
+</ol>
+<p>&emsp;&emsp;对称密钥机制实现身份鉴别：<br>&emsp;&emsp;对称密钥加密的原理是通过一个对称密钥对数据进行加密，（如A有用对称密钥对数据进行加密后将加密的数据和密钥一并传送给B方，B放采用同一个密钥对这个加密数据进行解密，因为双方使用一个密钥故称对称加密）</p>
+<h4 id="【2015】简述碰撞域与广播域的概念。在什么互联方式下两者范围是相同的，什么情况下两者是不同的？"><a href="#【2015】简述碰撞域与广播域的概念。在什么互联方式下两者范围是相同的，什么情况下两者是不同的？" class="headerlink" title="【2015】简述碰撞域与广播域的概念。在什么互联方式下两者范围是相同的，什么情况下两者是不同的？"></a>【2015】简述碰撞域与广播域的概念。在什么互联方式下两者范围是相同的，什么情况下两者是不同的？</h4><p>&emsp;&emsp;碰撞域也称冲突域，是指连接在同一导线上的所有工作站的集合，或者说是同一物理网段上所有的结点的集合或以太网上竞争同一带宽的结点集合。这个与代表了冲突在其中发生并传播的区域，这个区域可以被认为是共享的。在OSI模型中，碰撞域看作第一层的概念。<br>&emsp;&emsp;广播域是接受同样广播消息的结点的集合。由于许多设备极易产生广播，所以如果不维护，就会消耗大量的带宽，降低网络的效率。广播域被认为是OSI模型中的第二层的概念。<br>&emsp;&emsp;碰撞域和广播域相同的都是会在同一个网段内发生，不同的是碰撞域有交换机可以区分，广播域只能由路由器来划分。</p>
+<h4 id="【2014】简要说明为什么以太网协议有最小帧长和最大帧长限制。"><a href="#【2014】简要说明为什么以太网协议有最小帧长和最大帧长限制。" class="headerlink" title="【2014】简要说明为什么以太网协议有最小帧长和最大帧长限制。"></a>【2014】简要说明为什么以太网协议有最小帧长和最大帧长限制。</h4><p>&emsp;&emsp;传统以太网是共享性局域网，待用CSMA/CD协议，最小帧长必须大于整个网络的最大时延位（最大时延内可传输的数据位）。如果帧长度的太小，就可能出现网络上同时有两个帧在传播，就会产生冲突而造成网络无法发送数据。如果数据帧太长，会出现现有的工作站长时间发送数据失败，而且可能超出接收端缓冲区大小，造成缓冲溢出。由于多方面限制，每个以太网都有最小为64B，最大为1518B的长度规定，小于或者大于着限制都可视为错误的数据帧，一般的以太网转发设备会丢弃这些数据帧。<br>【13年简答4题原题】</p>
+<h4 id="【2014】简述什么是重放攻击，怎样防止？"><a href="#【2014】简述什么是重放攻击，怎样防止？" class="headerlink" title="【2014】简述什么是重放攻击，怎样防止？"></a>【2014】简述什么是重放攻击，怎样防止？</h4><ol>
+<li>入侵者C可以从网络上截获A发给B的报文。C并不需要破译这个报文(因为这可能很花很多时间)而可以直接把这个由A加密的报文发送给B，使B误认为C就是A。然后B 就向伪装是A的C发送许多本来应当发送给A的报文。这就叫做重放攻击。</li>
+<li>为了对付重放攻击，可以使用不重数。不重数就是一个不重复使用的大随机数，即“一次一数”。<br>【教材课后习题 7-14】</li>
+</ol>
+<h4 id="【2013】网络信息交换过程，为什么需要报文鉴别？"><a href="#【2013】网络信息交换过程，为什么需要报文鉴别？" class="headerlink" title="【2013】网络信息交换过程，为什么需要报文鉴别？"></a>【2013】网络信息交换过程，为什么需要报文鉴别？</h4><p>&emsp;&emsp;在信息安全领域中，为了对付主动攻击中的参数篡改和伪造，所以要使用报文鉴别。</p>
+<h4 id="【2013】简述无线局域网MAC协议有哪些特点，为什么不能使用CSMA-CD协议。"><a href="#【2013】简述无线局域网MAC协议有哪些特点，为什么不能使用CSMA-CD协议。" class="headerlink" title="【2013】简述无线局域网MAC协议有哪些特点，为什么不能使用CSMA/CD协议。"></a>【2013】简述无线局域网MAC协议有哪些特点，为什么不能使用CSMA/CD协议。</h4><p>&emsp;&emsp;无线局域网MAC协议的特点为：</p>
+<ol>
+<li>预约传递，发送方在发送数据的同时向其他站点通知自己传输数据所需要的时间长度。以使在该段时间内其他站点不发送数据。</li>
+<li>ACK帧，如果接受失败，则不采取任何行动。</li>
+<li>RTS/CTS帧，是碰撞避免机制，主要解决隐蔽站问题。</li>
+</ol>
+<p>&emsp;&emsp;无线局域网CSMA/CD不使用的原因：接收信号的强度往往会远小于发送信号的强度，且在无线介质上信号强度动态变化范围很广。在无线通信中并非所有站都能听见对方，存在隐蔽站问题。</p>
+<p>【教材课后习题 9-7】</p>
+<h4 id="【2013】简述为什么以太网协议有最小帧长和最大帧长限制。"><a href="#【2013】简述为什么以太网协议有最小帧长和最大帧长限制。" class="headerlink" title="【2013】简述为什么以太网协议有最小帧长和最大帧长限制。"></a>【2013】简述为什么以太网协议有最小帧长和最大帧长限制。</h4><p>&emsp;&emsp;传统以太网是共享性局域网，待用CSMA/CD协议，最小帧长必须大于整个网络的最大时延位（最大时延内可传输的数据位）。如果帧长度的太小，就可能出现网络上同时有两个帧在传播，就会产生冲突而造成网络无法发送数据。如果数据帧太长，会出现现有的工作站长时间发送数据失败，而且可能超出接收端缓冲区大小，造成缓冲溢出。由于多方面限制，每个以太网都有最小为64B，最大为1518B的长度规定，小于或者大于着限制都可视为错误的数据帧，一般的以太网转发设备会丢弃这些数据帧。<br>【12年简答6题原题】</p>
+<h4 id="【2013】简述WebRTC（Web-Real-Time-Communication）技术。"><a href="#【2013】简述WebRTC（Web-Real-Time-Communication）技术。" class="headerlink" title="【2013】简述WebRTC（Web Real-Time Communication）技术。"></a>【2013】简述WebRTC（Web Real-Time Communication）技术。</h4><p>&emsp;&emsp;WebRTC，即网页实时通信。是一个支持网页浏览器进行时实时语音对话或者视频对话的技术，实现了基于网页的视频会议，通过浏览器提供简单的JavaScript就可达到实时通信。</p>
+<h4 id="【2013】简述显示路由选择的特点。"><a href="#【2013】简述显示路由选择的特点。" class="headerlink" title="【2013】简述显示路由选择的特点。"></a>【2013】简述显示路由选择的特点。</h4><p>&emsp;&emsp;由交换路由器或ATM交换机组成的网络。提前为数据分组，指明了预定义路径，由于预定义了路径,数据分组在每一节点交换,因此不再需要在沿途每一节点上做出路由选择决定。<br>【教材课后习题 10-13】</p>
+<h4 id="【2012】简述什么是重放攻击，怎样防止？"><a href="#【2012】简述什么是重放攻击，怎样防止？" class="headerlink" title="【2012】简述什么是重放攻击，怎样防止？"></a>【2012】简述什么是重放攻击，怎样防止？</h4><ol>
+<li>入侵者C可以从网络上截获A发给B的报文。C并不需要破译这个报文(因为这可能很花很多时间)而可以直接把这个由A加密的报文发送给B，使B误认为C就是A。然后B 就向伪装是A的C发送许多本来应当发送给A的报文。这就叫做重放攻击。</li>
+<li>为了对付重放攻击，可以使用不重数。不重数就是一个不重复使用的大随机数，即“一次一数”。<br>【教材课后习题 7-14】</li>
+</ol>
+<h4 id="【2012】简述什么是IP网络？"><a href="#【2012】简述什么是IP网络？" class="headerlink" title="【2012】简述什么是IP网络？"></a>【2012】简述什么是IP网络？</h4><p>&emsp;&emsp;IP网络就是在网络层主要使用IP协议，可以把互联以后的计算机网络看成一个虚拟互连网络。使用IP网后，当IP网上主机进行通信时，就好像在一个单网络上通信一样，他们看不见互连的各网的具体异构细节。</p>
+<h4 id="【2012】证明为什么网络协议不可能设计成100-可靠的。"><a href="#【2012】证明为什么网络协议不可能设计成100-可靠的。" class="headerlink" title="【2012】证明为什么网络协议不可能设计成100%可靠的。"></a>【2012】证明为什么网络协议不可能设计成100%可靠的。</h4><p>&emsp;&emsp;若要保证网络的100%可靠，则不管是哪一方每一次发送信息都需要对方进行确认，以确保正确收到。但设想按这个思路，当要断开连接发送最后一个信息时，若不经过对方确认都不能保证100%可靠，但若对方确认则自己还有给予确认回复，这样下去这个过程将是无限循环永无止尽的。<br>&emsp;&emsp;所以任何协议都不可能是100%可靠的，总有一方需要在收到消息后不再回复。</p>
+<h4 id="【2012】简要说明为什么以太网协议有最小帧长和最大帧长限制。"><a href="#【2012】简要说明为什么以太网协议有最小帧长和最大帧长限制。" class="headerlink" title="【2012】简要说明为什么以太网协议有最小帧长和最大帧长限制。"></a>【2012】简要说明为什么以太网协议有最小帧长和最大帧长限制。</h4><p>&emsp;&emsp;传统以太网是共享性局域网，待用CSMA/CD协议，最小帧长必须大于整个网络的最大时延位（最大时延内可传输的数据位）。如果帧长度的太小，就可能出现网络上同时有两个帧在传播，就会产生冲突而造成网络无法发送数据。如果数据帧太长，会出现现有的工作站长时间发送数据失败，而且可能超出接收端缓冲区大小，造成缓冲溢出。由于多方面限制，每个以太网都有最小为64B，最大为1518B的长度规定，小于或者大于着限制都可视为错误的数据帧，一般的以太网转发设备会丢弃这些数据帧。</p>
+<h4 id="【2011】简述IPv4到IPv6的过度技术有哪些。"><a href="#【2011】简述IPv4到IPv6的过度技术有哪些。" class="headerlink" title="【2011】简述IPv4到IPv6的过度技术有哪些。"></a>【2011】简述IPv4到IPv6的过度技术有哪些。</h4><p>&emsp;&emsp;目前解决过度问题基本技术主要有三种：双协议栈，隧道技术，NAT-PT</p>
+<ol>
+<li>双协议栈：采用该技术的结点同时运行IPv4和IPv6两套协议栈。</li>
+<li>隧道技术：随到技术提供了一种以现有IPv4路由器体系来传递IPv6数据的方法：将IPv6的分组作物结构意义的数据，封装在IPv4数据报中，被IPv4网络传输。</li>
+<li>NAT-PT：转换网关除了要进行IPv4地址和IPv6地址的转换，还要包括协议和翻译。转换网关作为通信的中间设备，可在IPv4和IPv6网络之间转换IP报文的地址，同时根据协议不同对分组做相应的语义翻译，从而使纯IPv4和IPv6站点之间能够透明通信。<br>【教材课后习题 10-10】</li>
+</ol>
+<h4 id="【2011】简述协议与服务的关系。"><a href="#【2011】简述协议与服务的关系。" class="headerlink" title="【2011】简述协议与服务的关系。"></a>【2011】简述协议与服务的关系。</h4><p>&emsp;&emsp;网络协议是保证网络正常通信的规范，在七层的网络结构中，每一层有不同的网络协议来保障本层、上层的通信，上层协议在下层网络结构中，而服务是承载于某一层网络协议上的具体应用。</p>
+<ol>
+<li>协议的实现保证了能够向上一层提供服务，使用本层服务的实体是透明的。</li>
+<li>协议是“水平的”，即协议是控制对等实体之间通信的规范，但服务是“垂直的”，即服务是由下层向上层通过层间接口提供的。</li>
+<li>并非在一个层内完成的全部功能都称之为服务，只有那些能够被高一层实体看得见的功能才能被称为“服务”。<br>【教材课后习题 1-21】</li>
+</ol>
+<h4 id="【2011】简述帧中继有哪些优点。"><a href="#【2011】简述帧中继有哪些优点。" class="headerlink" title="【2011】简述帧中继有哪些优点。"></a>【2011】简述帧中继有哪些优点。</h4><p>&emsp;&emsp;帧中继和分组交换类似，但却以比分组容量大的帧为单位而不是以分组为单位进行传输，他在网络上的中间结点对数据不进行误码纠错。帧中继技术在保持分组交换技术的灵活及低费用的同时，缩短了传输时延，提高传输速度。因此，他成了当今实现局域网互联，局域网与广域网连接等应用等理想解决方案。通过帧中继网实现异地网络互联，具有可靠性高、协议透明传输、高速廉价的优点。</p>
+<h4 id="【2011】简述计算机网络通信通常面临的安全威胁有哪些。"><a href="#【2011】简述计算机网络通信通常面临的安全威胁有哪些。" class="headerlink" title="【2011】简述计算机网络通信通常面临的安全威胁有哪些。"></a>【2011】简述计算机网络通信通常面临的安全威胁有哪些。</h4><p>&emsp;&emsp;目前在计算机通信过程中面临的主要威胁有：截获、中断、篡改、伪造的威胁。第一个属于被动攻击，后三个属于主动攻击。<br>【教材课后习题 7-1】</p>
+<h4 id="【2011】简述什么是移动自组网。"><a href="#【2011】简述什么是移动自组网。" class="headerlink" title="【2011】简述什么是移动自组网。"></a>【2011】简述什么是移动自组网。</h4><p>&emsp;&emsp;移动自组网络是由多个移动结点组成的多跳无线网络。这些移动结点处在一个局域区域内，每个节点都具有路由功能，通过存储转发技术帮助其他结点构成通信链路。</p>
+<h4 id="【2011】请主要从协议效率入手，分析比较链路层的停止等待协议，连续ARQ协议和选择重传ARQ协议各自的优缺点。"><a href="#【2011】请主要从协议效率入手，分析比较链路层的停止等待协议，连续ARQ协议和选择重传ARQ协议各自的优缺点。" class="headerlink" title="【2011】请主要从协议效率入手，分析比较链路层的停止等待协议，连续ARQ协议和选择重传ARQ协议各自的优缺点。"></a>【2011】请主要从协议效率入手，分析比较链路层的停止等待协议，连续ARQ协议和选择重传ARQ协议各自的优缺点。</h4><ol>
+<li>停止等待协议是发出一个帧后得到确认才发出下一个，降低了信道利用率。</li>
+<li>后退N帧协议在发送完一个帧后，不用停下来等待确认，而是可以连续发送多个数据帧。收到确认帧时，仍可发送数据，这样就减少了等待时间，整个通信的吞吐量提高。如果前一个帧在超时时间内未得到确认，就认为丢失或被破坏，需要重发出错帧及其后面所有数据帧。这样就可能把正确的数据帧重传一遍，降低了传送效率。</li>
+<li>选择重传协议在发送过程中，如果一个数据帧计时器超时，认为该帧丢失或被破坏，接收端只把出错的帧丢弃，其后面的数据帧保存在缓存中，并向发送端回复NAK。发送端收到NAK后，只发出出错的帧。选择重传协议可以避免重复传送那些正确到达的数据帧。但是接收端要设置具有相当容量的缓存空间，这在许多情况下是不够经济的。</li>
+</ol>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211107id.html" rel="bookmark">重邮2012计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301221431id.html" rel="bookmark">重邮计算机网络（803）相关资料整理</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211136id.html" rel="bookmark">重邮2018计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211130id.html" rel="bookmark">重邮2017计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211125id.html" rel="bookmark">重邮2015计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    考研计算机网络简答题背诵
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年03月01日 - 22时03分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年03月01日 - 22时03分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200301224821id.html" title="考研计算机网络简答题背诵">https://blog.siriyang.cn/posts/20200301224821id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | 考研计算机网络简答题背诵](https://blog.siriyang.cn/posts/20200301224821id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/考研/" rel="tag"><i class="fa fa-tag"></i> 考研</a>
+          
+            <a href="/tags/计算机网络/" rel="tag"><i class="fa fa-tag"></i> 计算机网络</a>
+          
+            <a href="/tags/真题/" rel="tag"><i class="fa fa-tag"></i> 真题</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200301221431id.html" rel="next" title="重邮计算机网络（803）相关资料整理">
+                重邮计算机网络（803）相关资料整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">172</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#【2019】常用的信道复用技术包括哪几种类型"><span class="nav-text">【2019】常用的信道复用技术包括哪几种类型?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2019】网络层有哪些常用协议"><span class="nav-text">【2019】网络层有哪些常用协议?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2019】简述电子邮件系统中使用的协议及相应功能。"><span class="nav-text">【2019】简述电子邮件系统中使用的协议及相应功能。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2019】简述以太网-CSMA-CD-协议的工作过程。"><span class="nav-text">【2019】简述以太网 CSMA/CD 协议的工作过程。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2019】主动攻击有哪几种常见的方式"><span class="nav-text">【2019】主动攻击有哪几种常见的方式?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2018】因特网的发展大致分为哪几个阶段-每个阶段的主要特点是什么"><span class="nav-text">【2018】因特网的发展大致分为哪几个阶段?每个阶段的主要特点是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2018】物理层的基本功能是什么-物理层的接口有哪几个方面的特性-各包含什么内容"><span class="nav-text">【2018】物理层的基本功能是什么?物理层的接口有哪几个方面的特性?各包含什么内容?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2018】IP-数据报中的首部检验和并不检验数据报中的数据。这样做的最大好处是什么-坏处是什么"><span class="nav-text">【2018】IP 数据报中的首部检验和并不检验数据报中的数据。这样做的最大好处是什么?坏处是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2018】使用-TCP-对实时话音数据的传输有没有什么问题-使用-UDP-在传送数据文件时会有什-么问题"><span class="nav-text">【2018】使用 TCP 对实时话音数据的传输有没有什么问题?使用 UDP 在传送数据文件时会有什 么问题?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2018】假定要从已知的-URL-获得一个万维网文档。若该万维网服务器的-IP-地址开始时并不知道。试问：除-HTTP-外，还需要什么应用层协议和传输层协议"><span class="nav-text">【2018】假定要从已知的 URL 获得一个万维网文档。若该万维网服务器的 IP 地址开始时并不知道。试问：除 HTTP 外，还需要什么应用层协议和传输层协议?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2017】为什么要使用信道复用技术-常用的信道复用技术有哪些"><span class="nav-text">【2017】为什么要使用信道复用技术?常用的信道复用技术有哪些?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2017】以太网使用的载波监听多点接入-碰撞检测协议是以争用方式接入到共享信道。这与传统的时分复用-TDM-相比优缺点如何"><span class="nav-text">【2017】以太网使用的载波监听多点接入/碰撞检测协议是以争用方式接入到共享信道。这与传统的时分复用 TDM 相比优缺点如何?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2017】当某个路由器发现一-IP-数据报的检验和有差错时，为什么采取丢弃的办法而不是要求源站重传此数据报-计算首部检验和为什么不采用-CRC-检验码"><span class="nav-text">【2017】当某个路由器发现一 IP 数据报的检验和有差错时，为什么采取丢弃的办法而不是要求源站重传此数据报?计算首部检验和为什么不采用 CRC 检验码?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2017】为什么说-UDP-是面向报文的，而-TCP-是面向字节流的"><span class="nav-text">【2017】为什么说 UDP 是面向报文的，而 TCP 是面向字节流的?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2017】简述-SMTP-通信的三个阶段。"><span class="nav-text">【2017】简述 SMTP 通信的三个阶段。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2016】物理层要解决哪些问题？物理层的主要特点是什么？"><span class="nav-text">【2016】物理层要解决哪些问题？物理层的主要特点是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2016】RIP使用UDP，OSPF使用IP，而BGP使用TCP。这样做有何优点？为什么RIP周期性地和邻站交换路由信息而GBP却不这样做？"><span class="nav-text">【2016】RIP使用UDP，OSPF使用IP，而BGP使用TCP。这样做有何优点？为什么RIP周期性地和邻站交换路由信息而GBP却不这样做？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2016】叙述IEEE802-3以太网采用的介质访问控制协议及其工作原理"><span class="nav-text">【2016】叙述IEEE802.3以太网采用的介质访问控制协议及其工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2016】一个应用程序用UDP-到IP层把数据报再划分为4个数据报片发送出去，结果前两个数据报片丢失，后两个到达目的站。过了一段时间应用程序重传UDP-而IP层仍然划分为4个数据报片来传送。结果这次前两个到达目的站而后两个丢失。试问在目的站能否将这两次传输的4个数据报片组装成完整的数据报-假定目的站第一次收到的后两个数据报片仍然保存在目的站的缓存中。"><span class="nav-text">【2016】一个应用程序用UDP,到IP层把数据报再划分为4个数据报片发送出去，结果前两个数据报片丢失，后两个到达目的站。过了一段时间应用程序重传UDP,而IP层仍然划分为4个数据报片来传送。结果这次前两个到达目的站而后两个丢失。试问在目的站能否将这两次传输的4个数据报片组装成完整的数据报?假定目的站第一次收到的后两个数据报片仍然保存在目的站的缓存中。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2016】基于万维网的电子邮件系统有什么特点？，在传送邮件时使用什么协议？"><span class="nav-text">【2016】基于万维网的电子邮件系统有什么特点？，在传送邮件时使用什么协议？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2015】什么叫ARP？在以太网中ARP有什么重要作用？"><span class="nav-text">【2015】什么叫ARP？在以太网中ARP有什么重要作用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2015】域名系统的功能是什么？命名为什么要分布授权？"><span class="nav-text">【2015】域名系统的功能是什么？命名为什么要分布授权？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2015】为什么以太网中要限定最小帧长和最大帧长？"><span class="nav-text">【2015】为什么以太网中要限定最小帧长和最大帧长？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2015】怎样通过公钥机制实现身份鉴别？怎样通过对称密钥机制实现身份鉴别？"><span class="nav-text">【2015】怎样通过公钥机制实现身份鉴别？怎样通过对称密钥机制实现身份鉴别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2015】简述碰撞域与广播域的概念。在什么互联方式下两者范围是相同的，什么情况下两者是不同的？"><span class="nav-text">【2015】简述碰撞域与广播域的概念。在什么互联方式下两者范围是相同的，什么情况下两者是不同的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2014】简要说明为什么以太网协议有最小帧长和最大帧长限制。"><span class="nav-text">【2014】简要说明为什么以太网协议有最小帧长和最大帧长限制。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2014】简述什么是重放攻击，怎样防止？"><span class="nav-text">【2014】简述什么是重放攻击，怎样防止？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2013】网络信息交换过程，为什么需要报文鉴别？"><span class="nav-text">【2013】网络信息交换过程，为什么需要报文鉴别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2013】简述无线局域网MAC协议有哪些特点，为什么不能使用CSMA-CD协议。"><span class="nav-text">【2013】简述无线局域网MAC协议有哪些特点，为什么不能使用CSMA/CD协议。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2013】简述为什么以太网协议有最小帧长和最大帧长限制。"><span class="nav-text">【2013】简述为什么以太网协议有最小帧长和最大帧长限制。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2013】简述WebRTC（Web-Real-Time-Communication）技术。"><span class="nav-text">【2013】简述WebRTC（Web Real-Time Communication）技术。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2013】简述显示路由选择的特点。"><span class="nav-text">【2013】简述显示路由选择的特点。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2012】简述什么是重放攻击，怎样防止？"><span class="nav-text">【2012】简述什么是重放攻击，怎样防止？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2012】简述什么是IP网络？"><span class="nav-text">【2012】简述什么是IP网络？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2012】证明为什么网络协议不可能设计成100-可靠的。"><span class="nav-text">【2012】证明为什么网络协议不可能设计成100%可靠的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2012】简要说明为什么以太网协议有最小帧长和最大帧长限制。"><span class="nav-text">【2012】简要说明为什么以太网协议有最小帧长和最大帧长限制。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2011】简述IPv4到IPv6的过度技术有哪些。"><span class="nav-text">【2011】简述IPv4到IPv6的过度技术有哪些。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2011】简述协议与服务的关系。"><span class="nav-text">【2011】简述协议与服务的关系。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2011】简述帧中继有哪些优点。"><span class="nav-text">【2011】简述帧中继有哪些优点。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2011】简述计算机网络通信通常面临的安全威胁有哪些。"><span class="nav-text">【2011】简述计算机网络通信通常面临的安全威胁有哪些。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2011】简述什么是移动自组网。"><span class="nav-text">【2011】简述什么是移动自组网。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【2011】请主要从协议效率入手，分析比较链路层的停止等待协议，连续ARQ协议和选择重传ARQ协议各自的优缺点。"><span class="nav-text">【2011】请主要从协议效率入手，分析比较链路层的停止等待协议，连续ARQ协议和选择重传ARQ协议各自的优缺点。</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">796k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">12:04</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
