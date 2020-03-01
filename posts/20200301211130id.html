@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="重庆邮电大学2017年硕士研究生入学 《计算机网络（803）》真题答案解析">
+<meta name="keywords" content="考研,计算机网络,真题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重邮2017计算机网络（803）答案解析">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200301211130id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="重庆邮电大学2017年硕士研究生入学 《计算机网络（803）》真题答案解析">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-01T13:45:14.763Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重邮2017计算机网络（803）答案解析">
+<meta name="twitter:description" content="重庆邮电大学2017年硕士研究生入学 《计算机网络（803）》真题答案解析">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200301211130id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>重邮2017计算机网络（803）答案解析 | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">63</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">170</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200301211130id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">重邮2017计算机网络（803）答案解析
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-01 21:11:30 / 修改时间：21:45:14" itemprop="dateCreated datePublished" datetime="2020-03-01T21:11:30+08:00">2020-03-01</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/" itemprop="url" rel="index"><span itemprop="name">考研</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200301211130id.html" class="post-meta-item leancloud_visitors" data-flag-title="重邮2017计算机网络（803）答案解析" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200301211130id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200301211130id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>4.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+            <div class="post-description">重庆邮电大学2017年硕士研究生入学 《计算机网络（803）》真题答案解析</div>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://blog.siriyang.cn/posts/20190918233305id.html">重邮2017计算机网络（803）真题</a></p>
+<h2 id="一、单选题"><a href="#一、单选题" class="headerlink" title="一、单选题"></a>一、单选题</h2><p><strong>1.</strong> B<br>&emsp;&emsp;10BASE-5及10BASE-T、100BASE-T、吉比特、10吉比特使用的媒体访问控制方法都是CSMA/CD；IEEE 802.11无线网使用的是CSMA/CA。<br>&emsp;&emsp;D选项FDDI是光线分布数字接口，不是媒体访问控制方法。</p>
+<p><strong>2.</strong> C<br>&emsp;&emsp;协议是“水平”的，服务是“垂直”的。在A第4层加上的在B中第4层被读出。</p>
+<p><strong>3.</strong> C<br>&emsp;&emsp;10BASE-T的数据传输速率为10Mb/s，每个码元对应一个二进制数，由于曼切斯特每个码元由两个电平组成，所以由奈奎斯特定理公式$10M=\frac{B}{2}\log_2(2)$得B=20M</p>
+<p><strong>4.</strong> B<br>&emsp;&emsp;1坚持是一直监听信道，一旦监听到信道空闲就立即发送报文；非减持在监听到信道繁忙后会随机等待一个时间；p坚持会以p的概率发送，1-p的概率等待。相对来说1坚持冲突概率最高。</p>
+<table>
+<thead>
+<tr>
+<th>信道状态</th>
+<th>1-坚持</th>
+<th>非坚持</th>
+<th>p-坚持</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空闲</td>
+<td>立即发送数据</td>
+<td>立即发送数据</td>
+<td>以概率p发送数据， 以概率1-p推迟到下一个时隙</td>
+</tr>
+<tr>
+<td>忙</td>
+<td>继续坚持侦听</td>
+<td>放弃侦听，等待一个随机的时间后再侦听</td>
+<td>持续侦听，等待下一个时隙 在侦听</td>
+</tr>
+</tbody></table>
+<p><strong>5.</strong> B<br>&emsp;&emsp;物理层传输单位是比特；数据链路层传输单位是帧；网络层传输单位是分组；传输层传输单位是报文。</p>
+<p><strong>6.</strong> C<br>&emsp;&emsp;WAN是广域网；MAN是城域网；LAN是局域网；PAN是个人区域网；PDN是公用数据网络。校园网属于局域网。</p>
+<p><strong>7.</strong> C<br>&emsp;&emsp;由于不考虑热噪声，所以采用奈奎斯特定理进行计算，传送速率$=2\times 6 \log_2(16)=48M$。</p>
+<p><strong>8.</strong> A<br>&emsp;&emsp;虽然OSI参考模型分了很多层，但最终都只有物理层是在实体信道上进行信号收发到操作，而高层实际上都是在逻辑信道上进行处理，没有接触传输介质实体。</p>
+<p><strong>9.</strong> C<br>&emsp;&emsp;C类IP地址的网络号范围是在192.0.0～223.255.255之间。</p>
+<p><strong>10.</strong> A<br>&emsp;&emsp;UDP属于传输层协议，其他三个均属于网络层协议。</p>
+<p><strong>11.</strong> D<br>&emsp;&emsp;SNMP简单网络管理协议（Simple Network Management Protocol ），在传输层是基于UDP的。<br>&emsp;&emsp;由于SNMP要管理网络上的多台主机，如果每一台都要进行一个TCP链接显然是不明智的，使用无连接的UDP更为方便。</p>
+<p><strong>12.</strong> A<br>&emsp;&emsp;Base64编码把报文划分成1024个单元，每个单元3字节。每个单元被编码为4字节，所以共有4096个字节。如果把这些字节每80字节划分为一行，将需要52行，所以需要添加52个CR和52个LF。$4096+52\times 2=4200$。<br> 【14年简答3题原题】</p>
+<p><strong>13.</strong> A<br>&emsp;&emsp;数据传输速率在数值上每秒传输的比特数，也就是带宽。</p>
+<p><strong>14.</strong> D<br>&emsp;&emsp;光纤通信的原理是光的全反射，所以不会受到电磁干扰或噪声的影响。</p>
+<p><strong>15.</strong> B<br>&emsp;&emsp;100BASE-T、10BASE-T的最大长度都是100米，10BASE5是500米。</p>
+<p><strong>16.</strong> C<br>&emsp;&emsp;万维网传输使用的协议是HTTP超文本传输协议。</p>
+<p><strong>17.</strong> C<br> &emsp;&emsp;TCP连接的建立被称为“三次握手”，连接的断开被称为“四次握手”。其他三个选项均是TCP协议拥塞控制的内容。</p>
+<p><strong>18.</strong> B<br>&emsp;&emsp;VLAN之间要进行通信要涉及到网络层的子网路由，必须使用三层设备，即路由器、三层交换机等。</p>
+<p><strong>19.</strong> C<br>&emsp;&emsp;如果采用共享以太网，则每台计算机均分带宽；如果采用交换以太网，则每台计算机带宽与网络总带宽相同，独占带宽，这也是交换机最大的优势。<br>【16年单选3题类似】</p>
+<p><strong>20.</strong> B<br>&emsp;&emsp;OSI/ISO参考模型中，网络层的主要功能是路由选择、拥塞控制与网络连接；传输层提供可靠的端到端服务，透明的传送报文；数据链路层在通信实体之间传送以帧为单位的数据；表示层提供数据格式转换、数据加密与解密、数据压缩与恢复的功能。<br>【16年单选7题原题】</p>
+<h2 id="二、多选题"><a href="#二、多选题" class="headerlink" title="二、多选题"></a>二、多选题</h2><p><strong>21.</strong> AB<br>&emsp;&emsp;网络的传输方式可分为点对点（一对一）和广播式（多对多）。</p>
+<p><strong>22.</strong> BD<br>&emsp;&emsp;VLAN之间要进行通信要涉及到网络层的子网路由，必须使用三层设备，即路由器、三层交换机等。</p>
+<p><strong>23.</strong> BD<br>&emsp;&emsp;集线器工作在物理层，B错误；网桥能隔离冲突域，但不能隔离广播域，D错误。</p>
+<p><strong>24.</strong> ABCD<br>&emsp;&emsp;物理层技术特性有：机械特性、电器特性、功能特性、规程特性。</p>
+<p><strong>25.</strong> AB<br>&emsp;&emsp;子网掩码中“1”对应网络部分，“0”对应主机部分，网络部分又由网络号和子网号组成。子网掩码用于计算出IP地址的子网号，可将网络进一步划分为多个规模相同的子网络。</p>
+<h2 id="三、填空题"><a href="#三、填空题" class="headerlink" title="三、填空题"></a>三、填空题</h2><p><strong>26.</strong> 面向无连接服务</p>
+<p><strong>27.</strong> .html</p>
+<p><strong>28.</strong> 草案标准<br>&emsp;&emsp;由于“草案标准”容易和“互联网草案”混淆，从2011年10月起取消了“草案标准”这个阶段[RFC 6410]</p>
+<p><strong>29.</strong> 主机号</p>
+<p><strong>30.</strong> 71%<br>&emsp;&emsp;由题干“隔层均采用最下开销”可知，TCP首部和网络层首部均为20B，以太网数据链路层MAC帧封装信息为18B，所以142/(142+58)=71%。</p>
+<h2 id="四、判断题"><a href="#四、判断题" class="headerlink" title="四、判断题"></a>四、判断题</h2><p><strong>31.</strong> F<br>&emsp;&emsp;OSPF是一种链路状态路由协议。RIP是基于距离向量的路由协议。</p>
+<p><strong>32.</strong> F<br>&emsp;&emsp;分组交换又分为数据报和虚电路两种，其中数据报是无连接，虚电路是面向连接的。</p>
+<p><strong>33.</strong> T<br>&emsp;&emsp;局域网主要是广播式网络，仅有物理层和数据链路层两层。</p>
+<p><strong>34.</strong> F<br>&emsp;&emsp;卫星通信由于在大气中传播信号，有被截获的可能。</p>
+<p><strong>35.</strong> T</p>
+<p><strong>36.</strong> F<br>&emsp;&emsp;IP属于网络层协议。</p>
+<p><strong>37.</strong> T<br>&emsp;&emsp;协议三要素是语义、语法和同步。这里的同步并不是狭义的同频，而是广义的在一定条件下应当发生什么事情，因此有时同步也称规则或时序。</p>
+<p><strong>38.</strong> F<br>&emsp;&emsp;采用争用型介质控制方法则会有冲突的现象，即使是CSMA/CA也不是完全避免冲突。但若采用令牌环网则没有冲突，令牌环网的环仅是逻辑上的环，物理上也可以是总线星型。也可使用多路复用技术解决冲突问题。</p>
+<p><strong>39.</strong> T</p>
+<p><strong>40.</strong> T<br>&emsp;&emsp;被动攻击主要是指截获，可在用户不知情的情况下获得用户数据信息。<br>&emsp;&emsp;主动攻击分为：中断、篡改、伪造</p>
+<p><strong>41.</strong> F<br>&emsp;&emsp;数据报是无连接的，每个分组报文走的路线不一定相同，到达顺序也不一定和发送顺序相同。</p>
+<p><strong>42.</strong> F<br>&emsp;&emsp;WAN是广域网；MAN是城域网；LAN是局域网；PAN是个人区域网。通过首字母缩写对应的英文单词来进行记忆。</p>
+<p><strong>43.</strong> T</p>
+<p><strong>44.</strong> T</p>
+<p><strong>45.</strong> F<br>&emsp;&emsp;高层协议管理的是传输层及以上，管理的应用会话，而传输特性取决于下三层。</p>
+<h2 id="五、名词解释"><a href="#五、名词解释" class="headerlink" title="五、名词解释"></a>五、名词解释</h2><p><strong>46.</strong> 无源光网络</p>
+<p><strong>47.</strong> 密码认证协议</p>
+<p><strong>48.</strong> 开放最短路径优先</p>
+<p><strong>49.</strong> 通用网关接口</p>
+<p><strong>50.</strong> 数据加密标准</p>
+<h2 id="六、计算与简答题"><a href="#六、计算与简答题" class="headerlink" title="六、计算与简答题"></a>六、计算与简答题</h2><p><strong>51.</strong><br>&emsp;&emsp;许多用户通过复用技术就可以共同使用一个共享信道来进行通信。虽然复用要付出一定代价，但如果复用的信道数量较大，总的来看，在经济上还是合算的。常用的复用技术有：频分多路复用、时分多路复用、码分多路复用、波分多路复用。<br>【教材课后习题 2-13】</p>
+<p><strong>52.</strong><br>&emsp;&emsp;网络上负荷较轻时，CSMA/CD协议很灵活，哪个站想发送就发送，而且发生碰撞的概率很小。如果使用时分复用TDM，效率就比较低。但网络负荷很重时，CSMA/CD协议引起的碰撞很多，重传经常发生，因而效率大大降低。但这时TDM效率就很高。</p>
+<p><strong>53.</strong><br>&emsp;&emsp;IP首部中的源地址也可能变成错误的，要求错误的源地址重传数据报是没有意义的。<br>&emsp;&emsp;不使用CRC可减少路由器进行校验的时间。<br>【教材课后习题 4-12】</p>
+<p><strong>54.</strong><br>&emsp;&emsp;发送方 UDP 对应用程序交下来的报文，在添加首部后就向下交付 IP 层。UDP 对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。接收方 UDP 对 IP 层交上来的 UDP 用户数据报，在去除首部后就原封不动地交付上层的应用进程，一次交付一个完整的报文。<br>&emsp;&emsp;发送方TCP对应用程序交下来的报文数据块，视为无结构的字节流（无边界约束，可分拆/合并），但维持各字节顺序。<br>【教材课后习题 5-8】</p>
+<p><strong>55.</strong><br>&emsp;&emsp;解析IP地址需要的时间是RTT1+RTT2+…+RTTn<br>若采用HTTP/1.0:<br>&emsp;&emsp;建立TCP连接和请求万维网文档需要4RTTw<br>&emsp;&emsp;共用时间RTT1+RTT2+…+RTTn+4RTTw<br>若采用HTTP/1.1:<br>&emsp;&emsp;建立TCP连接和请求万维网文档需要3RTTw<br>&emsp;&emsp;共用时间RTT1+RTT2+…+RTTn+3RTTw</p>
+<p>&emsp;&emsp;<strong>由于本题网页中只有一张图片，所以HTTP/1.1采用流水线和非流水线都一样</strong><br>【12年计算与综合5题类似，教材课后习题 6-15】</p>
+<p><strong>56.</strong></p>
+<ol>
+<li>连接建立：发件人的邮件送到发送方邮件服务器的邮件缓存以后，SMTP客户就每隔一定时间对邮件缓存扫描一次。如发现有邮件，就使用SMTP的熟知端口（25）与接收方的邮件服务器建立TCP连接。</li>
+<li>邮件传送：邮件的传送从MAIL命令开始。MAIL命令后有发件人的地址。下面跟着一个或多个RCPT命令，取决于把同一个邮件发送给一个或多个联系人。再下面就是DATA命令，表示开始发送邮件内容了。</li>
+<li>连接释放：邮件发送完毕后，SMTP客户端应发送QUIT命令。SMTP服务器如同意释放TCP连接，邮件传送全部过程结束。<br>【教材课后习题 6-23】</li>
+</ol>
+<h2 id="七、综合题"><a href="#七、综合题" class="headerlink" title="七、综合题"></a>七、综合题</h2><p><strong>57.</strong><br>（1）交换机、路由器</p>
+<p>（2）星型结构</p>
+<p>（3）DNS的主要功能是将域名转化为IP地址</p>
+<p>（4）IP过滤技术的实现是由管理员配置IP分组过滤表，IP过滤器根据IP分组中报头的源地址、目的地址、端口号等信息，对来往的IP分组进行过滤，允许或者禁止某些IP地址的访问。</p>
+<p><strong>58.</strong><br>（1）<br>&emsp;&emsp;A属于192.168.75.16/28<br>&emsp;&emsp;B、C属于192.168.75.144/28<br>&emsp;&emsp;D、E属于192.168.75.160/28</p>
+<p>&emsp;&emsp;<strong>子网掩码都相同，计算过后直接比较网络部分是否相同。</strong></p>
+<p>（2）192.168.75.160</p>
+<p>&emsp;&emsp;<strong>网络地址为网络号+子网号</strong></p>
+<p>（3）192.168.75.19～192.168.75.30与192.168.75.17</p>
+<p>&emsp;&emsp;<strong>注意：A的地址已经被使用，要排除掉。全0和全1的主机号也不能使用。</strong></p>
+<p>（4）192.168.75.175，主机D、E与该主机都能收到。</p>
+<p>&emsp;&emsp;<strong>该主机IP地址最后八位为10100100，可见子网号与D、E相同，属于统一网段，可以收到其广播，将主机部分全部置1得出广播地址为10101111即175</strong></p>
+<p>（5）三层交换机或路由器</p>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211141id.html" rel="bookmark">重邮2019计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211705id.html" rel="bookmark">重邮2016计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211125id.html" rel="bookmark">重邮2015计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211119id.html" rel="bookmark">重邮2014计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200301211113id.html" rel="bookmark">重邮2013计算机网络（803）答案解析</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    重邮2017计算机网络（803）答案解析
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年03月01日 - 21时03分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年03月01日 - 21时03分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200301211130id.html" title="重邮2017计算机网络（803）答案解析">https://blog.siriyang.cn/posts/20200301211130id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | 重邮2017计算机网络（803）答案解析](https://blog.siriyang.cn/posts/20200301211130id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/考研/" rel="tag"><i class="fa fa-tag"></i> 考研</a>
+          
+            <a href="/tags/计算机网络/" rel="tag"><i class="fa fa-tag"></i> 计算机网络</a>
+          
+            <a href="/tags/真题/" rel="tag"><i class="fa fa-tag"></i> 真题</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/posts/20200301211136id.html" rel="prev" title="重邮2018计算机网络（803）答案解析">
+                <i class="fa fa-chevron-left"></i> 重邮2018计算机网络（803）答案解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200301211125id.html" rel="next" title="重邮2015计算机网络（803）答案解析">
+                重邮2015计算机网络（803）答案解析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">170</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、单选题"><span class="nav-text">一、单选题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、多选题"><span class="nav-text">二、多选题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、填空题"><span class="nav-text">三、填空题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、判断题"><span class="nav-text">四、判断题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、名词解释"><span class="nav-text">五、名词解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、计算与简答题"><span class="nav-text">六、计算与简答题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、综合题"><span class="nav-text">七、综合题</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">786k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">11:55</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
