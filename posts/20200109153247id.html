@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="前言&amp;emsp;&amp;emsp;KMeans算法本身说起来还算简单，但具体实现起来还是不容易啊。 正文&amp;emsp;&amp;emsp;今天来完成任务一的实验四：实现Kmeans算法，并测试5个数据集。 代码&amp;emsp;&amp;emsp;要导入的包有： 123import numpy as npimport pandas as pdimport matplotlib.pyplot as plt  工具函数&amp;emsp;">
+<meta name="keywords" content="Python,机器学习,考研,复试,数据挖掘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习日志：X-Data数据工程基础实践（三）">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200109153247id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;KMeans算法本身说起来还算简单，但具体实现起来还是不容易啊。 正文&amp;emsp;&amp;emsp;今天来完成任务一的实验四：实现Kmeans算法，并测试5个数据集。 代码&amp;emsp;&amp;emsp;要导入的包有： 123import numpy as npimport pandas as pdimport matplotlib.pyplot as plt  工具函数&amp;emsp;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/cost1.png-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/kmeans1.png-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/cost2.png-wm">
+<meta property="og:image" content="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/kmeans2.png-wm">
+<meta property="og:updated_time" content="2020-02-09T06:18:17.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习日志：X-Data数据工程基础实践（三）">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;KMeans算法本身说起来还算简单，但具体实现起来还是不容易啊。 正文&amp;emsp;&amp;emsp;今天来完成任务一的实验四：实现Kmeans算法，并测试5个数据集。 代码&amp;emsp;&amp;emsp;要导入的包有： 123import numpy as npimport pandas as pdimport matplotlib.pyplot as plt  工具函数&amp;emsp;">
+<meta name="twitter:image" content="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/cost1.png-wm">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200109153247id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>学习日志：X-Data数据工程基础实践（三） | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">64</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">185</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200109153247id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">学习日志：X-Data数据工程基础实践（三）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-09 15:32:47" itemprop="dateCreated datePublished" datetime="2020-01-09T15:32:47+08:00">2020-01-09</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 14:18:17" itemprop="dateModified" datetime="2020-02-09T14:18:17+08:00">2020-02-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/" itemprop="url" rel="index"><span itemprop="name">考研</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/考研/复试/" itemprop="url" rel="index"><span itemprop="name">复试</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200109153247id.html" class="post-meta-item leancloud_visitors" data-flag-title="学习日志：X-Data数据工程基础实践（三）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200109153247id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200109153247id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>8.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>8 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&emsp;&emsp;<code>KMeans</code>算法本身说起来还算简单，但具体实现起来还是不容易啊。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>&emsp;&emsp;今天来完成<strong>任务一</strong>的实验四：实现Kmeans算法，并测试5个数据集。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>&emsp;&emsp;要导入的包有：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+<h3 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h3><p>&emsp;&emsp;懒得去找数据集了，还是使用随机数生成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">   data=np.random.rand(<span class="number">100</span>)*<span class="number">100</span></span><br><span class="line"></span><br><span class="line">   data.resize((<span class="number">50</span>,<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">   plt.scatter(data[:,<span class="number">0</span>],data[:,<span class="number">1</span>])</span><br><span class="line">   plt.show()</span><br><span class="line"></span><br><span class="line">   d=&#123;<span class="string">'X'</span>:pd.Series(data[:,<span class="number">0</span>]),</span><br><span class="line">      <span class="string">'Y'</span>:pd.Series(data[:,<span class="number">1</span>])&#125;</span><br><span class="line"></span><br><span class="line">   df=pd.DataFrame(d)</span><br><span class="line"></span><br><span class="line">   df.to_csv(<span class="string">"./testdata.csv"</span>, encoding=<span class="string">"utf-8-sig"</span>, header=<span class="literal">True</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;接下来的两个函数在之后的寻找K和计算聚类都会用到。<br>&emsp;&emsp;根据数据集和选取的K值随机生成k个初始点：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">randCent</span><span class="params">(dataMat, k)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    为给定数据集构建一个包含K个随机质心的集合,</span></span><br><span class="line"><span class="string">    随机质心必须要在整个数据集的边界之内,这可以通过找到数据集每一维的最小和最大值来完成</span></span><br><span class="line"><span class="string">    然后生成0到1.0之间的随机数并通过取值范围和最小值,以便确保随机点在数据的边界之内</span></span><br><span class="line"><span class="string">    :param dataMat:</span></span><br><span class="line"><span class="string">    :param k:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 获取样本数与特征值</span></span><br><span class="line">    m, n = np.shape(dataMat)</span><br><span class="line">    <span class="comment"># 初始化质心,创建(k,n)个以零填充的矩阵</span></span><br><span class="line">    centroids = np.mat(np.zeros((k, n)))</span><br><span class="line">    <span class="comment"># 循环遍历特征值</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="comment"># 计算每一列的最小值</span></span><br><span class="line">        minJ = min(dataMat[:, j])</span><br><span class="line">        <span class="comment"># 计算每一列的范围值</span></span><br><span class="line">        rangeJ = float(max(dataMat[:, j]) - minJ)</span><br><span class="line">        <span class="comment"># 计算每一列的质心,并将值赋给centroids</span></span><br><span class="line">        centroids[:, j] = np.mat(minJ + rangeJ * np.random.rand(k, <span class="number">1</span>))</span><br><span class="line">    <span class="comment"># 返回质心</span></span><br><span class="line">    <span class="keyword">return</span> centroids</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;计算欧式距离：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distEclud</span><span class="params">(vecA, vecB)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    欧氏距离计算函数</span></span><br><span class="line"><span class="string">    :param vecA:</span></span><br><span class="line"><span class="string">    :param vecB:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> np.sqrt(np.sum(np.power(vecA - vecB, <span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
+
+<h3 id="findBestK"><a href="#findBestK" class="headerlink" title="findBestK"></a>findBestK</h3><p>&emsp;&emsp;首先确定该数据集K的最佳取值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cost</span><span class="params">(dataMat, k, distMeas=distEclud, createCent=randCent,iterNum=<span class="number">300</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    计算误差的多少，通过这个方法来确定 k 为多少比较合适，这个其实就是一个简化版的 kMeans</span></span><br><span class="line"><span class="string">    :param dataMat: 数据集</span></span><br><span class="line"><span class="string">    :param k: 簇的数目</span></span><br><span class="line"><span class="string">    :param distMeans: 计算距离</span></span><br><span class="line"><span class="string">    :param createCent: 创建初始质心</span></span><br><span class="line"><span class="string">    :param iterNum：默认迭代次数</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 获取样本数和特征数</span></span><br><span class="line">    m, n = np.shape(dataMat)</span><br><span class="line">    <span class="comment"># 初始化一个矩阵来存储每个点的簇分配结果</span></span><br><span class="line">    <span class="comment"># clusterAssment包含两个列:一列记录簇索引值,第二列存储误差(误差是指当前点到簇质心的距离,后面会使用该误差来评价聚类的效果)</span></span><br><span class="line">    clusterAssment = np.mat(np.zeros((m, <span class="number">2</span>)))</span><br><span class="line">    <span class="comment"># 创建质心,随机K个质心</span></span><br><span class="line">    centroids = createCent(dataMat, k)</span><br><span class="line">    clusterChanged = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">while</span> iterNum &gt; <span class="number">0</span>:</span><br><span class="line">        clusterChanged = <span class="literal">False</span></span><br><span class="line">        <span class="comment"># 遍历所有数据找到距离每个点最近的质心,</span></span><br><span class="line">        <span class="comment"># 可以通过对每个点遍历所有质心并计算点到每个质心的距离来完成</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            minDist = np.inf</span><br><span class="line">            minIndex = <span class="number">-1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</span><br><span class="line">                <span class="comment"># 计算数据点到质心的距离</span></span><br><span class="line">                <span class="comment"># 计算距离是使用distMeas参数给出的距离公式,默认距离函数是distEclud</span></span><br><span class="line">                distJI = distMeas(centroids[j, :], dataMat[i, :])</span><br><span class="line">                <span class="comment"># 如果距离比minDist(最小距离)还小,更新minDist(最小距离)和最小质心的index(索引)</span></span><br><span class="line">                <span class="keyword">if</span> distJI &lt; minDist:</span><br><span class="line">                    minDist = distJI</span><br><span class="line">                    minIndex = j</span><br><span class="line">            <span class="comment"># 更新簇分配结果为最小质心的index(索引),minDist(最小距离)的平方</span></span><br><span class="line">            clusterAssment[i, :] = minIndex, minDist ** <span class="number">2</span></span><br><span class="line">            iterNum -= <span class="number">1</span>;</span><br><span class="line">        <span class="comment"># print(centroids)</span></span><br><span class="line">        <span class="comment"># 遍历所有质心并更新它们的取值</span></span><br><span class="line">        <span class="keyword">for</span> cent <span class="keyword">in</span> range(k):</span><br><span class="line">            <span class="comment"># 通过数据过滤来获得给定簇的所有点</span></span><br><span class="line">            ptsInClust = dataMat[np.nonzero(clusterAssment[:, <span class="number">0</span>].A == cent)[<span class="number">0</span>]]</span><br><span class="line">            <span class="comment"># 计算所有点的均值,axis=0表示沿矩阵的列方向进行均值计算</span></span><br><span class="line">            centroids[cent, :] = np.mean(ptsInClust, axis=<span class="number">0</span>)</span><br><span class="line">    <span class="comment"># 返回给定迭代次数后误差的值</span></span><br><span class="line">    <span class="keyword">return</span> np.mat(clusterAssment[:,<span class="number">1</span>].sum(<span class="number">0</span>))[<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    df=pd.read_csv(<span class="string">"./testdata.csv"</span>)</span><br><span class="line">    data=df.values</span><br><span class="line">    dataMat=np.matrix(data)</span><br><span class="line"></span><br><span class="line">    res=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">20</span>):</span><br><span class="line">        res.append([i,cost(dataMat,i)])</span><br><span class="line"></span><br><span class="line">    res=np.matrix(res)</span><br><span class="line"></span><br><span class="line">    plt.plot(res[:,<span class="number">0</span>],res[:,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    plt.title(<span class="string">'Find the best K'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'K'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'meandistortions'</span>)</span><br><span class="line"></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="KMeans"><a href="#KMeans" class="headerlink" title="KMeans"></a>KMeans</h3><p>&emsp;&emsp;最后选取一个较好的聚类结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kMeans</span><span class="params">(dataMat, k, distMeas=distEclud, createCent=randCent)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    创建K个质心,然后将每个点分配到最近的质心,再重新计算质心。</span></span><br><span class="line"><span class="string">    这个过程重复数次,直到数据点的簇分配结果不再改变为止</span></span><br><span class="line"><span class="string">    :param dataMat: 数据集</span></span><br><span class="line"><span class="string">    :param k: 簇的数目</span></span><br><span class="line"><span class="string">    :param distMeans: 计算距离</span></span><br><span class="line"><span class="string">    :param createCent: 创建初始质心</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 获取样本数和特征数</span></span><br><span class="line">    m, n = np.shape(dataMat)</span><br><span class="line">    <span class="comment"># 初始化一个矩阵来存储每个点的簇分配结果</span></span><br><span class="line">    <span class="comment"># clusterAssment包含两个列:一列记录簇索引值,第二列存储误差(误差是指当前点到簇质心的距离,后面会使用该误差来评价聚类的效果)</span></span><br><span class="line">    clusterAssment = np.mat(np.zeros((m, <span class="number">2</span>)))</span><br><span class="line">    <span class="comment"># 创建质心,随机K个质心</span></span><br><span class="line">    centroids = createCent(dataMat, k)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化标志变量,用于判断迭代是否继续,如果True,则继续迭代</span></span><br><span class="line">    clusterChanged = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">while</span> clusterChanged:</span><br><span class="line">        clusterChanged = <span class="literal">False</span></span><br><span class="line">        <span class="comment"># 遍历所有数据找到距离每个点最近的质心,</span></span><br><span class="line">        <span class="comment"># 可以通过对每个点遍历所有质心并计算点到每个质心的距离来完成</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            minDist = np.inf <span class="comment"># 初始化为无穷大</span></span><br><span class="line">            minIndex = <span class="number">-1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</span><br><span class="line">                <span class="comment"># 计算数据点到质心的距离</span></span><br><span class="line">                <span class="comment"># 计算距离是使用distMeas参数给出的距离公式,默认距离函数是distEclud</span></span><br><span class="line">                distJI = distMeas(centroids[j, :], dataMat[i, :])</span><br><span class="line">                <span class="comment"># 如果距离比minDist(最小距离)还小,更新minDist(最小距离)和最小质心的index(索引)</span></span><br><span class="line">                <span class="keyword">if</span> distJI &lt; minDist:</span><br><span class="line">                    minDist = distJI</span><br><span class="line">                    minIndex = j</span><br><span class="line">            <span class="comment"># 如果任一点的簇分配结果发生改变,则更新clusterChanged标志</span></span><br><span class="line">            <span class="keyword">if</span> clusterAssment[i, <span class="number">0</span>] != minIndex: clusterChanged = <span class="literal">True</span></span><br><span class="line">            <span class="comment"># 更新簇分配结果为最小质心的index(索引),minDist(最小距离)的平方</span></span><br><span class="line">            clusterAssment[i, :] = minIndex, minDist ** <span class="number">2</span></span><br><span class="line">        <span class="comment"># print(centroids)</span></span><br><span class="line">        <span class="comment"># 遍历所有质心并更新它们的取值</span></span><br><span class="line">        <span class="keyword">for</span> cent <span class="keyword">in</span> range(k):</span><br><span class="line">            <span class="comment"># 通过数据过滤来获得给定簇的所有点</span></span><br><span class="line">            ptsInClust = dataMat[np.nonzero(clusterAssment[:, <span class="number">0</span>].A == cent)[<span class="number">0</span>]]</span><br><span class="line">            <span class="comment"># 计算所有点的均值,axis=0表示沿矩阵的列方向进行均值计算</span></span><br><span class="line">            centroids[cent, :] = np.mean(ptsInClust, axis=<span class="number">0</span>)</span><br><span class="line">    <span class="comment"># 返回所有的类质心与点分配结果</span></span><br><span class="line">    <span class="keyword">return</span> centroids, clusterAssment</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    df=pd.read_csv(<span class="string">"./testdata.csv"</span>)</span><br><span class="line">    data=df.values</span><br><span class="line">    dataMat=np.matrix(data)</span><br><span class="line">    k=<span class="number">6</span></span><br><span class="line">    res1,res2=kMeans(dataMat,k)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">        x=[]</span><br><span class="line">        y=[]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(df)):</span><br><span class="line">            <span class="keyword">if</span> res2[j,<span class="number">0</span>]==i:</span><br><span class="line">                x.append(data[j,<span class="number">0</span>])</span><br><span class="line">                y.append(data[j,<span class="number">1</span>])</span><br><span class="line">        plt.scatter(x, y)</span><br><span class="line"></span><br><span class="line">        plt.scatter(res1[i,<span class="number">0</span>],res1[i,<span class="number">1</span>], marker=<span class="string">'^'</span>,c = <span class="string">'r'</span>,s=<span class="number">300</span>)</span><br><span class="line"></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验结果及数据"><a href="#实验结果及数据" class="headerlink" title="实验结果及数据"></a>实验结果及数据</h2><p>&emsp;&emsp;随机生成的数据终究效果不怎么好，最后还是去网上找了两个样例数据来试试（真香）。</p>
+<h3 id="数据1"><a href="#数据1" class="headerlink" title="数据1"></a>数据1</h3><p><strong>findeBestK</strong><br><img src="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/cost1.png-wm" alt></p>
+<p><strong>KMeans</strong><br><img src="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/kmeans1.png-wm" alt></p>
+<p><strong>数据</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">X,Y</span><br><span class="line">1.658985,4.285136</span><br><span class="line">-3.453687,3.424321</span><br><span class="line">4.838138,-1.151539</span><br><span class="line">-5.379713,-3.362104</span><br><span class="line">0.972564,2.924086</span><br><span class="line">-3.567919,1.531611</span><br><span class="line">0.450614,-3.302219</span><br><span class="line">-3.487105,-1.724432</span><br><span class="line">2.668759,1.594842</span><br><span class="line">-3.156485,3.191137</span><br><span class="line">3.165506,-3.999838</span><br><span class="line">-2.786837,-3.099354</span><br><span class="line">4.208187,2.984927</span><br><span class="line">-2.123337,2.943366</span><br><span class="line">0.704199,-0.479481</span><br><span class="line">-0.392370,-3.963704</span><br><span class="line">2.831667,1.574018</span><br><span class="line">-0.790153,3.343144</span><br><span class="line">2.943496,-3.357075</span><br><span class="line">-3.195883,-2.283926</span><br><span class="line">2.336445,2.875106</span><br><span class="line">-1.786345,2.554248</span><br><span class="line">2.190101,-1.906020</span><br><span class="line">-3.403367,-2.778288</span><br><span class="line">1.778124,3.880832</span><br><span class="line">-1.688346,2.230267</span><br><span class="line">2.592976,-2.054368</span><br><span class="line">-4.007257,-3.207066</span><br><span class="line">2.257734,3.387564</span><br><span class="line">-2.679011,0.785119</span><br><span class="line">0.939512,-4.023563</span><br><span class="line">-3.674424,-2.261084</span><br><span class="line">2.046259,2.735279</span><br><span class="line">-3.189470,1.780269</span><br><span class="line">4.372646,-0.822248</span><br><span class="line">-2.579316,-3.497576</span><br><span class="line">1.889034,5.190400</span><br><span class="line">-0.798747,2.185588</span><br><span class="line">2.836520,-2.658556</span><br><span class="line">-3.837877,-3.253815</span><br><span class="line">2.096701,3.886007</span><br><span class="line">-2.709034,2.923887</span><br><span class="line">3.367037,-3.184789</span><br><span class="line">-2.121479,-4.232586</span><br><span class="line">2.329546,3.179764</span><br><span class="line">-3.284816,3.273099</span><br><span class="line">3.091414,-3.815232</span><br><span class="line">-3.762093,-2.432191</span><br><span class="line">3.542056,2.778832</span><br><span class="line">-1.736822,4.241041</span><br><span class="line">2.127073,-2.983680</span><br><span class="line">-4.323818,-3.938116</span><br><span class="line">3.792121,5.135768</span><br><span class="line">-4.786473,3.358547</span><br><span class="line">2.624081,-3.260715</span><br><span class="line">-4.009299,-2.978115</span><br><span class="line">2.493525,1.963710</span><br><span class="line">-2.513661,2.642162</span><br><span class="line">1.864375,-3.176309</span><br><span class="line">-3.171184,-3.572452</span><br><span class="line">2.894220,2.489128</span><br><span class="line">-2.562539,2.884438</span><br><span class="line">3.491078,-3.947487</span><br><span class="line">-2.565729,-2.012114</span><br><span class="line">3.332948,3.983102</span><br><span class="line">-1.616805,3.573188</span><br><span class="line">2.280615,-2.559444</span><br><span class="line">-2.651229,-3.103198</span><br><span class="line">2.321395,3.154987</span><br><span class="line">-1.685703,2.939697</span><br><span class="line">3.031012,-3.620252</span><br><span class="line">-4.599622,-2.185829</span><br><span class="line">4.196223,1.126677</span><br><span class="line">-2.133863,3.093686</span><br><span class="line">4.668892,-2.562705</span><br><span class="line">-2.793241,-2.149706</span><br><span class="line">2.884105,3.043438</span><br><span class="line">-2.967647,2.848696</span><br><span class="line">4.479332,-1.764772</span><br><span class="line">-4.905566,-2.911070</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据2"><a href="#数据2" class="headerlink" title="数据2"></a>数据2</h3><p><strong>数据</strong></p>
+<p><strong>findeBestK</strong><br><img src="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/cost2.png-wm" alt></p>
+<p><strong>KMeans</strong><br><img src="http://img.siriyang.cn/%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%9AX-Data%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AE%9E%E8%B7%B5/3/kmeans2.png-wm" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">3.275154,2.957587</span><br><span class="line">-3.344465,2.603513</span><br><span class="line">0.355083,-3.376585</span><br><span class="line">1.852435,3.547351</span><br><span class="line">-2.078973,2.552013</span><br><span class="line">-0.993756,-0.884433</span><br><span class="line">2.682252,4.007573</span><br><span class="line">-3.087776,2.878713</span><br><span class="line">-1.565978,-1.256985</span><br><span class="line">2.441611,0.444826</span><br><span class="line">-0.659487,3.111284</span><br><span class="line">-0.459601,-2.618005</span><br><span class="line">2.177680,2.387793</span><br><span class="line">-2.920969,2.917485</span><br><span class="line">-0.028814,-4.168078</span><br><span class="line">3.625746,2.119041</span><br><span class="line">-3.912363,1.325108</span><br><span class="line">-0.551694,-2.814223</span><br><span class="line">2.855808,3.483301</span><br><span class="line">-3.594448,2.856651</span><br><span class="line">0.421993,-2.372646</span><br><span class="line">1.650821,3.407572</span><br><span class="line">-2.082902,3.384412</span><br><span class="line">-0.718809,-2.492514</span><br><span class="line">4.513623,3.841029</span><br><span class="line">-4.822011,4.607049</span><br><span class="line">-0.656297,-1.449872</span><br><span class="line">1.919901,4.439368</span><br><span class="line">-3.287749,3.918836</span><br><span class="line">-1.576936,-2.977622</span><br><span class="line">3.598143,1.975970</span><br><span class="line">-3.977329,4.900932</span><br><span class="line">-1.791080,-2.184517</span><br><span class="line">3.914654,3.559303</span><br><span class="line">-1.910108,4.166946</span><br><span class="line">-1.226597,-3.317889</span><br><span class="line">1.148946,3.345138</span><br><span class="line">-2.113864,3.548172</span><br><span class="line">0.845762,-3.589788</span><br><span class="line">2.629062,3.535831</span><br><span class="line">-1.640717,2.990517</span><br><span class="line">-1.881012,-2.485405</span><br><span class="line">4.606999,3.510312</span><br><span class="line">-4.366462,4.023316</span><br><span class="line">0.765015,-3.001270</span><br><span class="line">3.121904,2.173988</span><br><span class="line">-4.025139,4.652310</span><br><span class="line">-0.559558,-3.840539</span><br><span class="line">4.376754,4.863579</span><br><span class="line">-1.874308,4.032237</span><br><span class="line">-0.089337,-3.026809</span><br><span class="line">3.997787,2.518662</span><br><span class="line">-3.082978,2.884822</span><br><span class="line">0.845235,-3.454465</span><br><span class="line">1.327224,3.358778</span><br><span class="line">-2.889949,3.596178</span><br><span class="line">-0.966018,-2.839827</span><br><span class="line">2.960769,3.079555</span><br><span class="line">-3.275518,1.577068</span><br><span class="line">0.639276,-3.412840</span><br></pre></td></tr></table></figure>
+
+<h2 id="2020-2-4更新"><a href="#2020-2-4更新" class="headerlink" title="2020.2.4更新"></a>2020.2.4更新</h2><blockquote>
+<p>0117第一次评测：<br>代码实现了Kmeans算法，并进行了算法优缺点分析以及对5个数据集的算法测试，采用了手肘法选出了每个数据集的最优K值。</p>
+</blockquote>
+<p>&emsp;&emsp;按照1月17号提交结果的评测来看需要进行算法优缺点分析。</p>
+<blockquote>
+<p>算法分析：<br>优点：Kmenans算法是最基础的无监督聚类算法，原理简单，实现容易。<br>缺点：</p>
+<ol>
+<li>收敛较慢</li>
+<li>算法时间复杂度比较高 O(nkt)</li>
+<li>不能发现非凸形状的簇</li>
+<li>需要事先确定超参数K</li>
+<li>对噪声和离群点敏感</li>
+<li>结果不一定是全局最优，只能保证局部最优</li>
+</ol>
+</blockquote>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>&emsp;&emsp;网上<code>KMeans</code>的博客教程非常多，但代码多多少少都有点问题。这个代码算是比较好的了，注释非常详细，但一开始还是有个bug，调了老半天才弄好。就是在求欧式距离那个函数里，原来使用的求和函数是<code>sum</code>，但是用这个求和函数计算<code>numpy</code>矩阵算不出来，导致后面一直报错，最后换成<code>numpy.sum</code>就OK了。<br>&emsp;&emsp;还有一个问题就是原作者一开始使用的是手动读取分割文本数据，我直接调用的pandas函数，导致读进来的数据格式有点不一样，也跑不成。后来调试发现他把数据都转成了<code>numpy</code>矩阵，而我用的是<code>list</code>矩阵，之后手动转换一下就解决了。<br>&emsp;&emsp;感觉做机器学习这些最麻烦的就是数据格式的处理，尤其是不能把<code>numpy</code>和<code>list</code>随便混用，不然后面多半要翻车。不过随着不断练习，数据处理经验逐渐丰富，越往后做起来会更得心应手一些。</p>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200114151515id.html" rel="bookmark">学习日志：X-Data数据工程基础实践（五）</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200212105301id.html" rel="bookmark">学习日志：X-Data数据工程基础实践（十）</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200207112455id.html" rel="bookmark">学习日志：X-Data数据工程基础实践（八）</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200205125426id.html" rel="bookmark">学习日志：X-Data数据工程基础实践（七）</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200204165028id.html" rel="bookmark">学习日志200204：X-Data数据工程基础实践过程中遇到的问题</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    学习日志：X-Data数据工程基础实践（三）
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年01月09日 - 15时01分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年02月09日 - 14时02分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200109153247id.html" title="学习日志：X-Data数据工程基础实践（三）">https://blog.siriyang.cn/posts/20200109153247id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | 学习日志：X-Data数据工程基础实践（三）](https://blog.siriyang.cn/posts/20200109153247id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/考研/" rel="tag"><i class="fa fa-tag"></i> 考研</a>
+          
+            <a href="/tags/复试/" rel="tag"><i class="fa fa-tag"></i> 复试</a>
+          
+            <a href="/tags/数据挖掘/" rel="tag"><i class="fa fa-tag"></i> 数据挖掘</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/posts/20200109180432id.html" rel="prev" title="C/CPP参考文档：预处理命令">
+                <i class="fa fa-chevron-left"></i> C/CPP参考文档：预处理命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200108190000id.html" rel="next" title="学习日志：X-Data数据工程基础实践（二）">
+                学习日志：X-Data数据工程基础实践（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">185</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工具函数"><span class="nav-text">工具函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findBestK"><span class="nav-text">findBestK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KMeans"><span class="nav-text">KMeans</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果及数据"><span class="nav-text">实验结果及数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据1"><span class="nav-text">数据1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据2"><span class="nav-text">数据2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-2-4更新"><span class="nav-text">2020.2.4更新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">879k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">13:19</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
