@@ -67,7 +67,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.siriyang.cn/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3C%E6%8C%87%E9%92%88%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.png-wm">
 <meta property="og:image" content="http://img.siriyang.cn/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3C%E6%8C%87%E9%92%88%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C.png-wm">
-<meta property="og:updated_time" content="2020-01-07T12:07:06.349Z">
+<meta property="og:updated_time" content="2020-03-05T14:40:19.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解C指针》学习笔记">
 <meta name="twitter:description" content="1 认识指针1.1 指针和内存    作用域 生命周期    全局内存 整个文件 应用程序的生命周期   静态内存 声明它的函数内部 应用程序的生命周期   自动内存（局部内存） 声明它的函数内部 限制在函数执行时间内   动态内存 由引用该内存的指针决定 直到内存释放   1.1.2 声明指针&amp;emsp;&amp;emsp;星号两边的空白符无关紧要，下面的声明都是等价的： 1234int* pi;int">
@@ -218,7 +218,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">185</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">186</span></a>
 
   </li>
       
@@ -341,7 +341,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-07 20:07:06" itemprop="dateModified" datetime="2020-01-07T20:07:06+08:00">2020-01-07</time>
+                <time title="修改时间：2020-03-05 22:40:19" itemprop="dateModified" datetime="2020-03-05T22:40:19+08:00">2020-03-05</time>
               </span>
             
           
@@ -803,7 +803,7 @@
 <h2 id="4-4-用realloc调整数组长度"><a href="#4-4-用realloc调整数组长度" class="headerlink" title="4.4 用realloc调整数组长度"></a>4.4 用realloc调整数组长度</h2><p>&emsp;&emsp;如果<code>realloc</code>分配成功，我们不需要释放<code>buffer</code>，因为<code>realloc</code>会把原来的缓冲区复制到新的缓冲区，再把旧的释放。如果试图释放<code>buffer</code>，十有八九程序会终止，因为我们试图重复释放同一块内存。</p>
 <h2 id="4-7-指针和多维数组"><a href="#4-7-指针和多维数组" class="headerlink" title="4.7 指针和多维数组"></a>4.7 指针和多维数组</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> matrix[<span class="number">2</span>][<span class="number">5</span>] = &#123;...&#125;</span><br><span class="line"><span class="keyword">int</span> (*pmatrix)[<span class="number">5</span>] = matrix;</span><br></pre></td></tr></table></figure>
 
-<p>&emsp;&emsp;上面的整条声明语句将<code>pmatrix</code>定义为一个指向二维数组的指针，该二维数组的元素类型是整数，每列有5个元素。如果我们把括号去掉就声明了5. 元素的数组，数组元素的类型是整数指针。</p>
+<p>&emsp;&emsp;上面的整条声明语句将<code>pmatrix</code>定义为一个指向二维数组的指针，该二维数组的元素类型是整数，每列有5个元素。如果我们把括号去掉就声明了5个元素的数组，数组元素的类型是整数指针。</p>
 <p>&emsp;&emsp;<code>matrix+1</code>得到的是数组的第二行，要得到数组第一行的第一个元素应使用<code>*(matrix[0]+1)</code>。</p>
 <h2 id="4-8-传递多维数组"><a href="#4-8-传递多维数组" class="headerlink" title="4.8 传递多维数组"></a>4.8 传递多维数组</h2><p>&emsp;&emsp;要传递<code>matrix</code>，可以这么写：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display2DArray</span><span class="params">(<span class="keyword">int</span> arr[][<span class="number">5</span>], <span class="keyword">int</span> rows)</span></span>&#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
@@ -1148,7 +1148,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2020年01月07日 - 20时01分
+    2020年03月05日 - 22时03分
   </li>
 
   <!-- 引用链接 -->
@@ -1266,7 +1266,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">185</span>
+          <span class="site-state-item-count">186</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1561,12 +1561,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">883k</span>
+    <span title="站点总字数">894k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:23</span>
+    <span title="站点阅读时长">13:33</span>
 </div>
 
         
