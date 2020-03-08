@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="SiriBlog">
 <meta property="og:description" content="CCF-CSP题目汇总 题目试题编号：    201312-2试题名称：    ISBN号码时间限制：    1.0s内存限制：    256.0MB 问题描述&amp;emsp;&amp;emsp;每一本正式出版的图书都有一个ISBN号码与之对应，ISBN码包括9位数字、1位识别码和3位分隔符，其规定格式如“x-xxx-xxxxx-x”，其中符号“-”是分隔符（键盘上的减号），最后一位是识别码，例如0-670-">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-17T14:25:47.660Z">
+<meta property="og:updated_time" content="2020-03-08T14:33:19.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCF-CSP：201312-2ISBN号码">
 <meta name="twitter:description" content="CCF-CSP题目汇总 题目试题编号：    201312-2试题名称：    ISBN号码时间限制：    1.0s内存限制：    256.0MB 问题描述&amp;emsp;&amp;emsp;每一本正式出版的图书都有一个ISBN号码与之对应，ISBN码包括9位数字、1位识别码和3位分隔符，其规定格式如“x-xxx-xxxxx-x”，其中符号“-”是分隔符（键盘上的减号），最后一位是识别码，例如0-670-">
@@ -327,11 +327,19 @@
                 
               
 
-              <time title="创建时间：2020-01-17 22:20:47 / 修改时间：22:25:47" itemprop="dateCreated datePublished" datetime="2020-01-17T22:20:47+08:00">2020-01-17</time>
+              <time title="创建时间：2020-01-17 22:20:47" itemprop="dateCreated datePublished" datetime="2020-01-17T22:20:47+08:00">2020-01-17</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-08 22:33:19" itemprop="dateModified" datetime="2020-03-08T22:33:19+08:00">2020-03-08</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -420,7 +428,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a href="https://blog.siriyang.cn/posts/20191230204553id.html">CCF-CSP题目汇总</a></p>
+        <p><a href="/posts/20191230204553id.html">CCF-CSP题目汇总</a></p>
 <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><strong>试题编号：</strong>    201312-2<br><strong>试题名称：</strong>    ISBN号码<br><strong>时间限制：</strong>    1.0s<br><strong>内存限制：</strong>    256.0MB</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>&emsp;&emsp;每一本正式出版的图书都有一个ISBN号码与之对应，ISBN码包括9位数字、1位识别码和3位分隔符，其规定格式如“x-xxx-xxxxx-x”，其中符号“<code>-</code>”是分隔符（键盘上的减号），最后一位是识别码，例如0-670-82162-4就是一个标准的ISBN码。ISBN码的首位数字表示书籍的出版语言，例如0代表英语；第一个分隔符“<code>-</code>”之后的三位数字代表出版社，例如670代表维京出版社；第二个分隔之后的五位数字代表该书在出版社的编号；最后一位为识别码。<br>&emsp;&emsp;识别码的计算方法如下：<br>&emsp;&emsp;首位数字乘以1加上次位数字乘以2….以此类推，用所得的结果<code>mod</code> 11，所得的余数即为识别码，如果余数为10，则识别码为大写字母<code>X</code>。例如ISBN号码0-670-82162-4中的识别码4是这样得到的：对067082162这9个数字，从左至右，分别乘以1，2，… ，9，再求和，即0×1+6×2+…+2×9=158，然后取158 <code>mod</code> 11的结果4作为识别码。<br>&emsp;&emsp;编写程序判断输入的ISBN号码中识别码是否正确，如果正确，则仅输出“<code>Right</code>”；如果错误，则输出是正确的ISBN号码。</p>
 <h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>&emsp;&emsp;输入只有一行，是一个字符序列，表示一本书的ISBN号码（保证输入符合ISBN号码的格式要求）。</p>
@@ -530,7 +538,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2020年01月17日 - 22时01分
+    2020年03月08日 - 22时03分
   </li>
 
   <!-- 引用链接 -->
