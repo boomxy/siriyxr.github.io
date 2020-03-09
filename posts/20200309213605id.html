@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="C/C++参考文档 标准c输入输出函数  clearerr语法:  12#include &amp;lt;stdio.h&amp;gt;void clearerr( FILE *stream );  &amp;emsp;&amp;emsp;clearerr函数重置错误标记和给出的流的EOF指针. 当发生错误时,你可以使用perror()判断实际上发生了何种错误.   fclose语法:  12#include &amp;lt;stdio">
+<meta name="keywords" content="C&#x2F;C++,文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;CPP参考文档：C I&#x2F;O">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200309213605id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="C/C++参考文档 标准c输入输出函数  clearerr语法:  12#include &amp;lt;stdio.h&amp;gt;void clearerr( FILE *stream );  &amp;emsp;&amp;emsp;clearerr函数重置错误标记和给出的流的EOF指针. 当发生错误时,你可以使用perror()判断实际上发生了何种错误.   fclose语法:  12#include &amp;lt;stdio">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-09T14:28:55.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C&#x2F;CPP参考文档：C I&#x2F;O">
+<meta name="twitter:description" content="C/C++参考文档 标准c输入输出函数  clearerr语法:  12#include &amp;lt;stdio.h&amp;gt;void clearerr( FILE *stream );  &amp;emsp;&amp;emsp;clearerr函数重置错误标记和给出的流的EOF指针. 当发生错误时,你可以使用perror()判断实际上发生了何种错误.   fclose语法:  12#include &amp;lt;stdio">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200309213605id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C/CPP参考文档：C I/O | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">64</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">189</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200309213605id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">C/CPP参考文档：C I/O
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-09 21:36:05 / 修改时间：22:28:55" itemprop="dateCreated datePublished" datetime="2020-03-09T21:36:05+08:00">2020-03-09</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200309213605id.html" class="post-meta-item leancloud_visitors" data-flag-title="C/CPP参考文档：C I/O" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200309213605id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200309213605id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>10k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>9 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="/posts/20200107194641id.html">C/C++参考文档</a></p>
+<blockquote class="blockquote-center"><h1 id="标准c输入输出函数"><a href="#标准c输入输出函数" class="headerlink" title="标准c输入输出函数"></a>标准c输入输出函数</h1></blockquote>
+
+<h3 id="clearerr"><a href="#clearerr" class="headerlink" title="clearerr"></a>clearerr</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clearerr</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>clearerr</code>函数重置错误标记和给出的流的<code>EOF</code>指针. 当发生错误时,你可以使用<code>perror()</code>判断实际上发生了何种错误. </p>
+<hr>
+<h3 id="fclose"><a href="#fclose" class="headerlink" title="fclose"></a>fclose</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fclose</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>fclose()</code>关闭给出的文件流, 释放已关联到流的所有缓冲区. <code>fclose()</code>执行成功时返回0,否则返回<code>EOF</code>. </p>
+<hr>
+<h3 id="feof"><a href="#feof" class="headerlink" title="feof"></a>feof</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">feof</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>feof()</code>在到达给出的文件流的文件尾时返回一个非零值. </p>
+<hr>
+<h3 id="ferror"><a href="#ferror" class="headerlink" title="ferror"></a>ferror</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ferror</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>ferror()</code>函数检查<code>stream</code>(流)中的错误, 如果没发生错误返回0,否则返回非零. 如果发生错误, 使用<code>perror()</code>检测发生什么错误. </p>
+<hr>
+<h3 id="fflush"><a href="#fflush" class="headerlink" title="fflush"></a>fflush</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fflush</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;如果给出的文件流是一个输出流,那么<code>fflush()</code>把输出到缓冲区的内容写入文件. 如果给出的文件流是输入类型的,那么<code>fflush()</code>会清除输入缓冲区. <code>fflush()</code>在调试时很实用,特别是对于在程序中输出到屏幕前发生错误片段时. 直接调用 <code>fflush( STDOUT )</code>输出可以保证你的调试输出可以在正确的时间输出. </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>( <span class="string">"Before first call\n"</span> );</span><br><span class="line">fflush( STDOUT );</span><br><span class="line">shady_function();</span><br><span class="line"><span class="built_in">printf</span>( <span class="string">"Before second call\n"</span> );</span><br><span class="line">fflush( STDOUT );</span><br><span class="line">dangerous_dereference();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="fgetc"><a href="#fgetc" class="headerlink" title="fgetc"></a>fgetc</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetc</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>fgetc()</code>函数返回来自<code>stream</code>(流)中的下一个字符,如果到达文件尾或者发生错误时返回<code>EOF</code>. </p>
+<hr>
+<h3 id="fgetpos"><a href="#fgetpos" class="headerlink" title="fgetpos"></a>fgetpos</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetpos</span><span class="params">( FILE *stream, <span class="keyword">fpos_t</span> *position )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>fgetpos()</code>函数保存给出的文件流(<code>stream</code>)的位置指针到给出的位置变量(<code>position</code>)中. <code>position</code>变量是<code>fpos_t</code>类型的(它在<code>stdio.h</code>中定义)并且是可以控制在<code>FILE</code>中每个可能的位置对象. <code>fgetpos()</code>执行成功时返回0,失败时返回一个非零值. </p>
+<hr>
+<h3 id="fgets"><a href="#fgets" class="headerlink" title="fgets"></a>fgets</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">fgets</span><span class="params">( <span class="keyword">char</span> *str, <span class="keyword">int</span> num, FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>fgets()</code>从给出的文件流中读取<code>[num - 1]</code>个字符并且把它们转储到<code>str</code>(字符串)中. <code>fgets()</code>在到达行末时停止,在这种情况下,<code>str</code>(字符串)将会被一个新行符结束. 如果<code>fgets()</code>达到<code>[num - 1]</code>个字符或者遇到<code>EOF</code>, <code>str</code>(字符串)将会以<code>null</code>结束.<code>fgets()</code>成功时返回<code>str</code>(字符串),失败时返回<code>NULL</code>. </p>
+<hr>
+<h3 id="fopen"><a href="#fopen" class="headerlink" title="fopen"></a>fopen</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function">FILE *<span class="title">fopen</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *fname, <span class="keyword">const</span> <span class="keyword">char</span> *mode )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>fopen()</code>函数打开由<code>fname</code>(文件名)指定的文件, 并返回一个关联该文件的流.如果发生错误, <code>fopen()</code>返回<code>NULL</code>. <code>mode</code>(方式)是用于决定文件的用途(例如 用于输入,输出,等等) </p>
+<table>
+<thead>
+<tr>
+<th>Mode(方式)</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“r”</td>
+<td>打开一个用于读取的文本文件</td>
+</tr>
+<tr>
+<td>“w”</td>
+<td>创建一个用于写入的文本文件</td>
+</tr>
+<tr>
+<td>“a”</td>
+<td>附加到一个文本文件</td>
+</tr>
+<tr>
+<td>“rb”</td>
+<td>打开一个用于读取的二进制文件</td>
+</tr>
+<tr>
+<td>“wb”</td>
+<td>创建一个用于写入的二进制文件</td>
+</tr>
+<tr>
+<td>“ab”</td>
+<td>附加到一个二进制文件</td>
+</tr>
+<tr>
+<td>“r+”</td>
+<td>打开一个用于读/写的文本文件</td>
+</tr>
+<tr>
+<td>“w+”</td>
+<td>创建一个用于读/写的文本文件</td>
+</tr>
+<tr>
+<td>“a+”</td>
+<td>打开一个用于读/写的文本文件</td>
+</tr>
+<tr>
+<td>“rb+”</td>
+<td>打开一个用于读/写的二进制文件</td>
+</tr>
+<tr>
+<td>“wb+”</td>
+<td>创建一个用于读/写的二进制文件</td>
+</tr>
+<tr>
+<td>“ab+”</td>
+<td>打开一个用于读/写的二进制文件</td>
+</tr>
+</tbody></table>
+<p><strong>示例:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line">FILE *input = fopen( <span class="string">"stuff"</span>, <span class="string">"r"</span> );</span><br><span class="line">ch = getc( input );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="fprintf"><a href="#fprintf" class="headerlink" title="fprintf"></a>fprintf</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fprintf</span><span class="params">( FILE *stream, <span class="keyword">const</span> <span class="keyword">char</span> *format, ... )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>fprintf()</code>函数根据指定的<code>format</code>(格式)(格式)发送信息(参数)到由<code>stream</code>(流)指定的文件. <code>fprintf()</code>只能和<code>printf()</code>一样工作. <code>fprintf()</code>的返回值是输出的字符数,发生错误时返回一个负值. </p>
+<p><strong>示例:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> name[<span class="number">20</span>] = <span class="string">"Mary"</span>;</span><br><span class="line">FILE *out;</span><br><span class="line">out = fopen( <span class="string">"output.txt"</span>, <span class="string">"w"</span> );</span><br><span class="line"><span class="keyword">if</span>( out != <span class="literal">NULL</span> )</span><br><span class="line">  <span class="built_in">fprintf</span>( out, <span class="string">"Hello %s\n"</span>, name );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="fputc"><a href="#fputc" class="headerlink" title="fputc"></a>fputc</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputc</span><span class="params">( <span class="keyword">int</span> ch, FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>fputc()</code>把给出的字符<code>ch</code>写到给出的输出流. 返回值是字符, 发生错误时返回值是<code>EOF</code>. </p>
+<hr>
+<h3 id="fputs"><a href="#fputs" class="headerlink" title="fputs"></a>fputs</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputs</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str, FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>fputs()</code>函数把<code>str</code>(字符串)指向的字符写到给出的输出流. 成功时返回非负值, 失败时返回<code>EOF</code>. </p>
+<hr>
+<h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fread</span><span class="params">( <span class="keyword">void</span> *buffer, <span class="keyword">size_t</span> size, <span class="keyword">size_t</span> num, FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>fread()</code>读取<code>[num]</code>个对象(每个对象大小为<code>size</code>(大小)指定的字节数),并把它们替换到由<code>buffer</code>(缓冲区)指定的数组. 数据来自给出的输入流. 函数的返回值是读取的内容数量… </p>
+<p>&emsp;&emsp;使用<code>feof()</code>或<code>ferror()</code>判断到底发生哪个错误. </p>
+<hr>
+<h3 id="freopen"><a href="#freopen" class="headerlink" title="freopen"></a>freopen</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function">FILE *<span class="title">freopen</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *fname, <span class="keyword">const</span> <span class="keyword">char</span> *mode, FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>freopen()</code>函数常用于再分配一个以存在的流给一个不同的文件和方式(<code>mode</code>).在调用本函数后,给出的文件流将会用<code>mode</code>(方式)指定的访问模式引用<code>fname</code>(文件名). <code>freopen()</code>的返回值是新的文件流,发生错误时返回<code>NULL</code>. </p>
+<hr>
+<h3 id="fscanf"><a href="#fscanf" class="headerlink" title="fscanf"></a>fscanf</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fscanf</span><span class="params">( FILE *stream, <span class="keyword">const</span> <span class="keyword">char</span> *format, ... )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>fscanf()</code>以<code>scanf()</code>的执行方式从给出的文件流中读取数据. <code>fscanf()</code>的返回值是事实上已赋值的变量的数,如果未进行任何分配时返回<code>EOF</code>. </p>
+<hr>
+<h3 id="fseek"><a href="#fseek" class="headerlink" title="fseek"></a>fseek</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fseek</span><span class="params">( FILE *stream, <span class="keyword">long</span> offset, <span class="keyword">int</span> origin )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>fseek()</code>为给出的流设置位置数据. <code>origin</code>的值应该是下列值其中之一(在<code>stdio.h</code>中定义): </p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SEEK_SET</td>
+<td>从文件的开始处开始搜索</td>
+</tr>
+<tr>
+<td>SEEK_CUR</td>
+<td>从当前位置开始搜索</td>
+</tr>
+<tr>
+<td>SEEK_END</td>
+<td>从文件的结束处开始搜索</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;<code>fseek()</code>成功时返回0,失败时返回非零. 你可以使用<code>fseek()</code>移动超过一个文件,但是不能在开始处之前. 使用<code>fseek()</code>清除关联到流的<code>EOF</code>标记. </p>
+<hr>
+<h3 id="fsetpos"><a href="#fsetpos" class="headerlink" title="fsetpos"></a>fsetpos</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fsetpos</span><span class="params">( FILE *stream, <span class="keyword">const</span> <span class="keyword">fpos_t</span> *position )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>fsetpos()</code>函数把给出的流的位置指针移到由<code>position</code>对象指定的位置. <code>fpos_t</code>是在<code>stdio.h</code>中定义的. <code>fsetpos()</code>执行成功返回0,失败时返回非零. </p>
+<hr>
+<h3 id="ftell"><a href="#ftell" class="headerlink" title="ftell"></a>ftell</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">ftell</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>ftell()</code>函数返回<code>stream</code>(流)当前的文件位置,如果发生错误返回-1. </p>
+<hr>
+<h3 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite"></a>fwrite</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fwrite</span><span class="params">( <span class="keyword">const</span> <span class="keyword">void</span> *buffer, <span class="keyword">size_t</span> size, <span class="keyword">size_t</span> count, FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>fwrite()</code>函数从数组<code>buffer</code>(缓冲区)中, 写<code>count</code>个大小为<code>size</code>(大小)的对象到<code>stream</code>(流)指定的流. 返回值是已写的对象的数量. </p>
+<hr>
+<h3 id="getc"><a href="#getc" class="headerlink" title="getc"></a>getc</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getc</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>getc()</code>函数从<code>stream</code>(流)获取并返回下一个字符,如果到达文件尾返回<code>EOF</code>. <code>getc()</code>和<code>fgetc()</code>是一样的. 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line">FILE *input = fopen( <span class="string">"stuff"</span>, <span class="string">"r"</span> );</span><br><span class="line"></span><br><span class="line">ch = getc( input );</span><br><span class="line"><span class="keyword">while</span>( ch != EOF ) &#123;</span><br><span class="line">  <span class="built_in">printf</span>( <span class="string">"%c"</span>, ch );</span><br><span class="line">  ch = getc( input );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="getchar"><a href="#getchar" class="headerlink" title="getchar"></a>getchar</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getchar</span><span class="params">( <span class="keyword">void</span> )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>getchar()</code>函数从<code>STDIN</code>(标准输入)获取并返回下一个字符,如果到达文件尾返回<code>EOF</code>. </p>
+<hr>
+<h3 id="gets"><a href="#gets" class="headerlink" title="gets"></a>gets</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">gets</span><span class="params">( <span class="keyword">char</span> *str )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>gets()</code>函数从<code>STDIN</code>(标准输入)读取字符并把它们加载到<code>str</code>(字符串)里,直到遇到新行(<code>\n</code>)或到达<code>EOF</code>. 新行字符翻译为一个<code>null</code>中断符. <code>gets()</code>的返回值是读入的字符串,如果错误返回<code>NULL</code>. </p>
+<hr>
+<h3 id="perror"><a href="#perror" class="headerlink" title="perror"></a>perror</h3><p><strong>语法:</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">perror</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *str )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>perror()</code>函数打印<code>str</code>(字符串)和一个相应的执行定义的错误消息到全局变量<code>errno</code>中. </p>
+<hr>
+<h3 id="printf"><a href="#printf" class="headerlink" title="printf"></a>printf</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printf</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *format, ... )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>printf()</code>函数根据<code>format</code>(格式)给出的格式打印输出到<code>STDOUT</code>(标准输出)和其它参数中. </p>
+<p>&emsp;&emsp;字符串<code>format</code>(格式)由两类项目组成 - 显示到屏幕上的字符和定义<code>printf()</code>显示的其它参数. 基本上, 你可以指定一个包含文本在内的<code>format</code>(格式)字符串,也可以是映射到<code>printf()</code>其它参数的”特殊”字符. 例如本代码 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> name[<span class="number">20</span>] = <span class="string">"Bob"</span>;</span><br><span class="line"><span class="keyword">int</span> age = <span class="number">21</span>;</span><br><span class="line"><span class="built_in">printf</span>( <span class="string">"Hello %s, you are %d years old\n"</span>, name, age );</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;显示下列输出: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Bob, you are 21 years old</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>%s</code> 表示, “在这里插入首个参数,一个字符串.” <code>%d</code> 表示第二个参数(一个整数)应该放置在那里. 不同的”<code>%-codes</code>“表示不同的变量类型, 也可以限制变量的长度. </p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%c</td>
+<td>字符</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>带符号整数</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>带符号整数</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>科学计数法, 使用小写”e”</td>
+</tr>
+<tr>
+<td>%E</td>
+<td>科学计数法, 使用大写”E”</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>使用%e或%f中较短的一个</td>
+</tr>
+<tr>
+<td>%G</td>
+<td>使用%E或%f中较短的一个</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>八进制</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>一串字符</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>无符号整数</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>无符号十六进制数, 用小写字母</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>无符号十六进制数, 用大写字母</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>一个指针</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>参数应该是一个指向一个整数的指针指向的是字符数放置的位置</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>一个’%’符号</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;一个位于一个%和格式化命令间的整数担当着一个最小字段宽度说明符,并且加上足够多的空格或0使输出足够长. 如果你想填充0,在最小字段宽度说明符前放置0. 你可以使用一个精度修饰符,它可以根据使用的格式代码而有不同的含义. </p>
+<p>&emsp;&emsp;用<code>%e</code>, <code>%E</code>和 <code>%f</code>,精度修饰符让你指定想要的小数位数. 例如, </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%12.6f</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;将会至少显示12位数字,并带有6位小数的浮点数. </p>
+<p>&emsp;&emsp;用<code>%g</code>和 <code>%G,</code> 精度修饰符决定显示的有效数的位数最大值.<br>&emsp;&emsp;用<code>%s</code>,精度修饰符简单的表示一个最大的最大长度, 以补充句点前的最小字段长度.<br>&emsp;&emsp;所有的<code>printf()</code>的输出都是右对齐的,除非你在%符号后放置了负号. 例如, </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%-12.4f</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;将会显示12位字符,4位小数位的浮点数并且左对齐. 你可以修改带字母<code>l</code>和<code>h</code>,<code>%d</code>, <code>%i</code>, <code>%o</code>, <code>%u</code>和 <code>%x</code> 等类型说明符指定长型和短型数据类型 (例如 <code>%hd</code> 表示一个短整数). <code>%e</code>, <code>%f</code>和 <code>%g</code> 类型说明符,可以在它们前面放置<code>l</code>指出跟随的是一个<code>double</code>. <code>%g</code>, <code>%f</code>和 <code>%e</code> 类型说明符可以置于字符’<code>#</code>‘前保证出现小数点, 即使没有小数位. 带<code>%x</code>类型说明符的’<code>#</code>‘字符的使用, 表示显示十六进制数时应该带’<code>0x</code>‘前缀. 带<code>%o</code>类型说明符的’<code>#</code>‘字符的使用, 表示显示八进制数时应该带一个’<code>0</code>‘前缀. </p>
+<p>&emsp;&emsp;你可以在输出字符串中包含 连续的Escape序列. </p>
+<p>&emsp;&emsp;<code>printf()</code>的返回值是打印的字符数,如果发生错误则返回一个负值. </p>
+<hr>
+<h3 id="putc"><a href="#putc" class="headerlink" title="putc"></a>putc</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">putc</span><span class="params">( <span class="keyword">int</span> ch, FILE *stream )</span></span>;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">&amp;emsp;&amp;emsp;`putc()`函数把字符`ch`写到`stream`(流)中. 返回值是写入的字符, 发生错误时返回`EOF`. 例如: </span><br><span class="line"></span><br><span class="line">```C++</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    FILE *input;</span><br><span class="line">    input = fopen( <span class="string">"temp.cpp"</span>, <span class="string">"r"</span> );</span><br><span class="line">    ch = getc( input );</span><br><span class="line">    <span class="keyword">while</span>( ch != EOF ) &#123;</span><br><span class="line">      <span class="built_in">printf</span>( <span class="string">"%c"</span>, ch );</span><br><span class="line">      ch = getc( input );</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;显示”<code>temp.cpp</code>“的内容到屏幕. </p>
+<hr>
+<h3 id="putchar"><a href="#putchar" class="headerlink" title="putchar"></a>putchar</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">putchar</span><span class="params">( <span class="keyword">int</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>putchar()</code>函数把<code>ch</code>写到<code>STDOUT</code>(标准输出). 代码 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">putchar</span>( ch );</span><br></pre></td></tr></table></figure>
+
+<p>和 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">putc( ch, STDOUT );</span><br></pre></td></tr></table></figure>
+
+<p>一样. </p>
+<p>&emsp;&emsp;<code>putchar()</code>的返回值是被写的字符, 发生错误时返回<code>EOF</code>. </p>
+<hr>
+<h3 id="puts"><a href="#puts" class="headerlink" title="puts"></a>puts</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">puts</span><span class="params">( <span class="keyword">char</span> *str )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>puts()</code>把<code>str</code>(字符串)写到<code>STDOUT</code>(标准输出)上. <code>puts()</code>成功时返回非负值, 失败时返回<code>EOF</code>. </p>
+<hr>
+<h3 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">remove</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *fname )</span></span>;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">&amp;emsp;&amp;emsp;`remove()`函数删除由`fname`(文件名)指定的文件. `remove()`成功时返回<span class="number">0</span>,如果发生错误返回非零. </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">##<span class="meta"># rename </span></span><br><span class="line">**语法:**  </span><br><span class="line"></span><br><span class="line">```C++</span><br><span class="line">  <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">rename</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *oldfname, <span class="keyword">const</span> <span class="keyword">char</span> *newfname )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>rename()</code>更改文件<code>oldfname</code>的名称为<code>newfname</code>. <code>rename()</code>成功时返回0,错误时返回非零. </p>
+<hr>
+<h3 id="rewind"><a href="#rewind" class="headerlink" title="rewind"></a>rewind</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewind</span><span class="params">( FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>rewind()</code>把文件指针移到由<code>stream</code>(流)指定的开始处, 同时清除和流相关的错误和<code>EOF</code>标记. </p>
+<hr>
+<h3 id="scanf"><a href="#scanf" class="headerlink" title="scanf"></a>scanf</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanf</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *format, ... )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>scanf()</code>函数根据由<code>format</code>(格式)指定的格式从<code>stdin</code>(标准输入)读取,并保存数据到其它参数. 它和<code>printf()</code>有点类似. <code>format</code>(格式)字符串由控制字符,空白字符和非空白字符组成. 控制字符以一个<code>%</code>符号开始,如下: </p>
+<table>
+<thead>
+<tr>
+<th>控制字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%c</td>
+<td>一个单一的字符</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>一个十进制整数</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>一个整数</td>
+</tr>
+<tr>
+<td>%e, %f, %g</td>
+<td>一个浮点数</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>一个八进制数</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>一个字符串</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>一个十六进制数</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>一个指针</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>一个等于读取字符数量的整数</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>一个无符号整数</td>
+</tr>
+<tr>
+<td>%[]</td>
+<td>一个字符集</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>一个精度符号</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;<code>scanf()</code>读取匹配<code>format</code>(格式)字符串的输入. 当读取到一个控制字符, 它把值放置到下一个变量. 空白(tabs, 空格等等)会跳过. 非空白字符和输入匹配, 然后丢弃. 如果是一个在%符号和控制符间的数量, 那么只有指定数量的字符转换到变量中. 如果<code>scanf()</code>遇到一个字符集(用<code>%[]</code>控制字符表示), 那么在括号中的任意字符都会读取到变量中. <code>scanf()</code>的返回值是成功赋值的变量数量, 发生错误时返回<code>EOF</code>. </p>
+<hr>
+<h3 id="setbuf"><a href="#setbuf" class="headerlink" title="setbuf"></a>setbuf</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setbuf</span><span class="params">( FILE *stream, <span class="keyword">char</span> *buffer )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>setbuf()</code>函数设置<code>stream</code>(流)使用<code>buffer</code>(缓冲区),如果<code>buffer</code>(缓冲区)是<code>null</code>,关闭缓冲. 如果使用非标准缓冲尺寸, 它应该由<code>BUFSIZ</code>字符决定长度. </p>
+<hr>
+<h3 id="setvbuf"><a href="#setvbuf" class="headerlink" title="setvbuf"></a>setvbuf</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setvbuf</span><span class="params">( FILE *stream, <span class="keyword">char</span> *buffer, <span class="keyword">int</span> mode, <span class="keyword">size_t</span> size )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>setvbuf()</code>设置用于<code>stream</code>(流)的缓冲区到<code>buffer</code>(缓冲区),其大小为<code>size</code>(大小). <code>mode</code>(方式)可以是: </p>
+<ul>
+<li><code>_IOFBF</code>, 表示完全缓冲 </li>
+<li><code>_IOLBF</code>, 表示线缓冲 </li>
+<li><code>_IONBF</code>, 表示无缓存 </li>
+</ul>
+<hr>
+<h3 id="sprintf"><a href="#sprintf" class="headerlink" title="sprintf"></a>sprintf</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sprintf</span><span class="params">( <span class="keyword">char</span> *buffer, <span class="keyword">const</span> <span class="keyword">char</span> *format, ... )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>sprintf()</code>函数和<code>printf()</code>类似, 只是把输出发送到<code>buffer</code>(缓冲区)中.返回值是写入的字符数量. 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> <span class="built_in">string</span>[<span class="number">50</span>];</span><br><span class="line"><span class="keyword">int</span> file_number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sprintf</span>( <span class="built_in">string</span>, <span class="string">"file.%d"</span>, file_number );</span><br><span class="line">file_number++;</span><br><span class="line">output_file = fopen( <span class="built_in">string</span>, <span class="string">"w"</span> );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="sscanf"><a href="#sscanf" class="headerlink" title="sscanf"></a>sscanf</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sscanf</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *buffer, <span class="keyword">const</span> <span class="keyword">char</span> *format, ... )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>sscanf()</code>和<code>scanf()</code>类似, 只是输入从<code>buffer</code>(缓冲区)中读取. </p>
+<hr>
+<h3 id="tmpfile"><a href="#tmpfile" class="headerlink" title="tmpfile"></a>tmpfile</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function">FILE *<span class="title">tmpfile</span><span class="params">( <span class="keyword">void</span> )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>tempfile()</code>用一个独特的文件名打开一个临时文件,并返回一个到该文件的指针.如果发生错误则返回<code>null</code>. </p>
+<hr>
+<h3 id="tmpnam"><a href="#tmpnam" class="headerlink" title="tmpnam"></a>tmpnam</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">tmpnam</span><span class="params">( <span class="keyword">char</span> *name )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<code>tmpnam()</code>函数创建一个独特的文件名并保存在<code>name</code>中. <code>tmpnam()</code>最多可以调用<code>TMP_MAX</code>指定的次数. </p>
+<hr>
+<h3 id="ungetc"><a href="#ungetc" class="headerlink" title="ungetc"></a>ungetc</h3><p><strong>语法:</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ungetc</span><span class="params">( <span class="keyword">int</span> ch, FILE *stream )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数<code>ungetc()</code>把字符<code>ch</code>放回到<code>stream</code>(流)中. </p>
+<hr>
+<h3 id="vprintf-vfprintf和-vsprintf"><a href="#vprintf-vfprintf和-vsprintf" class="headerlink" title="vprintf, vfprintf和 vsprintf"></a>vprintf, vfprintf和 vsprintf</h3><p><strong>语法:</strong> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">vprintf</span><span class="params">( <span class="keyword">char</span> *format, va_list arg_ptr )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">vfprintf</span><span class="params">( FILE *stream, <span class="keyword">const</span> <span class="keyword">char</span> *format, va_list arg_ptr )</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">vsprintf</span><span class="params">( <span class="keyword">char</span> *buffer, <span class="keyword">char</span> *format, va_list arg_ptr )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这些函数和<code>printf()</code>非常相似, <code>fprintf()</code>和 <code>sprintf()</code>的不同在于参数列表是一个指向一系列参数的指针. <code>va_list</code>在<code>STDARG.H</code>中定义,并且也可以被<code>va_arg()</code>使用. 例如: </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">error</span><span class="params">( <span class="keyword">char</span> *fmt, ... )</span> </span>&#123;</span><br><span class="line">  va_list args;</span><br><span class="line">  </span><br><span class="line">  va_start( args, fmt );</span><br><span class="line">  <span class="built_in">fprintf</span>( <span class="built_in">stderr</span>, <span class="string">"Error: "</span> );</span><br><span class="line">  <span class="built_in">vfprintf</span>( <span class="built_in">stderr</span>, fmt, args );</span><br><span class="line">  <span class="built_in">fprintf</span>( <span class="built_in">stderr</span>, <span class="string">"\n"</span> );</span><br><span class="line">  va_end( args );</span><br><span class="line">  <span class="built_in">exit</span>( <span class="number">1</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200127112219id.html" rel="bookmark">C/C++参考文档：C Time & Date</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200108153950id.html" rel="bookmark">STL常用模板：Map字典</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200127104007id.html" rel="bookmark">C/C++参考文档：C String & Character</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200126115533id.html" rel="bookmark">C/CPP参考文档：C++ Algorithm</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200125221828id.html" rel="bookmark">C/CPP参考文档：C Math</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    C/CPP参考文档：C I/O
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年03月09日 - 21时03分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年03月09日 - 22时03分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200309213605id.html" title="C/CPP参考文档：C I/O">https://blog.siriyang.cn/posts/20200309213605id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | C/CPP参考文档：C I/O](https://blog.siriyang.cn/posts/20200309213605id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/文档/" rel="tag"><i class="fa fa-tag"></i> 文档</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200308180439id.html" rel="next" title="成都大学如何在校外访问知网">
+                成都大学如何在校外访问知网 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">189</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#标准c输入输出函数"><span class="nav-text">标准c输入输出函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#clearerr"><span class="nav-text">clearerr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fclose"><span class="nav-text">fclose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#feof"><span class="nav-text">feof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ferror"><span class="nav-text">ferror</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fflush"><span class="nav-text">fflush</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fgetc"><span class="nav-text">fgetc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fgetpos"><span class="nav-text">fgetpos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fgets"><span class="nav-text">fgets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fopen"><span class="nav-text">fopen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fprintf"><span class="nav-text">fprintf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputc"><span class="nav-text">fputc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputs"><span class="nav-text">fputs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fread"><span class="nav-text">fread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#freopen"><span class="nav-text">freopen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fscanf"><span class="nav-text">fscanf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fseek"><span class="nav-text">fseek</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fsetpos"><span class="nav-text">fsetpos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ftell"><span class="nav-text">ftell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fwrite"><span class="nav-text">fwrite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getc"><span class="nav-text">getc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getchar"><span class="nav-text">getchar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gets"><span class="nav-text">gets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#perror"><span class="nav-text">perror</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#printf"><span class="nav-text">printf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#putc"><span class="nav-text">putc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#putchar"><span class="nav-text">putchar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#puts"><span class="nav-text">puts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove"><span class="nav-text">remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rewind"><span class="nav-text">rewind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scanf"><span class="nav-text">scanf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setbuf"><span class="nav-text">setbuf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setvbuf"><span class="nav-text">setvbuf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sprintf"><span class="nav-text">sprintf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sscanf"><span class="nav-text">sscanf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmpfile"><span class="nav-text">tmpfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmpnam"><span class="nav-text">tmpnam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ungetc"><span class="nav-text">ungetc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vprintf-vfprintf和-vsprintf"><span class="nav-text">vprintf, vfprintf和 vsprintf</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">916k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">13:52</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！（填写昵称和邮箱可以在评论被回复的时候收到邮件通知）',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>
