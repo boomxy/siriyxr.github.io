@@ -68,7 +68,9 @@
 <meta property="og:image" content="http://img.siriyang.cn/%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%89%E8%B0%AD%E6%B5%A9%E5%BC%BA%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png">
 <meta property="og:image" content="http://img.siriyang.cn/%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%89%E8%B0%AD%E6%B5%A9%E5%BC%BA%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.png">
 <meta property="og:image" content="http://img.siriyang.cn/%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%89%E8%B0%AD%E6%B5%A9%E5%BC%BA%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.png">
-<meta property="og:updated_time" content="2020-03-10T14:24:11.179Z">
+<meta property="og:image" content="http://img.siriyang.cn/%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%89%E8%B0%AD%E6%B5%A9%E5%BC%BA%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.png">
+<meta property="og:image" content="http://img.siriyang.cn/%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%89%E8%B0%AD%E6%B5%A9%E5%BC%BA%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.png">
+<meta property="og:updated_time" content="2020-03-11T13:53:11.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《C语言程序设计（第五版）谭浩强》学习笔记">
 <meta name="twitter:description" content="《C语言程序设计（第四版）谭浩强》学习笔记 1 程序设计和C语言1.4 最简单的C语言程序&amp;emsp;&amp;emsp;C语言允许用两种注释方式: &amp;emsp;&amp;emsp;（1）以//开始的单行注释。如上面介绍的注释。这种注释可以单独占一行,也可以出现在一行中其他内容的右侧。此种注释的范围从//开始,以换行符结束。也就是说这种注释不能跨行。如果注释内容一行内写不下,可以用多个单行注释,如下面两行是连续的">
@@ -331,11 +333,19 @@
                 
               
 
-              <time title="创建时间：2020-03-10 19:13:33 / 修改时间：22:24:11" itemprop="dateCreated datePublished" datetime="2020-03-10T19:13:33+08:00">2020-03-10</time>
+              <time title="创建时间：2020-03-10 19:13:33" itemprop="dateCreated datePublished" datetime="2020-03-10T19:13:33+08:00">2020-03-10</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-11 21:53:11" itemprop="dateModified" datetime="2020-03-11T21:53:11+08:00">2020-03-11</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -401,7 +411,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>5.6k</span>
+              <span>8.7k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -411,7 +421,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>5 分钟</span>
+              <span>8 分钟</span>
             </span>
           
 
@@ -538,46 +548,49 @@
 <p><strong>变量赋初值</strong></p>
 <p>&emsp;&emsp;不能写成<code>int a= b=c= 3;</code></p>
 <h3 id="3-5-数据的输入输出"><a href="#3-5-数据的输入输出" class="headerlink" title="3.5 数据的输入输出"></a>3.5 数据的输入输出</h3><h4 id="3-5-1-输入输出举例"><a href="#3-5-1-输入输出举例" class="headerlink" title="3.5.1 输入输出举例"></a>3.5.1 输入输出举例</h4><p>&emsp;&emsp;<code>printf</code>在使用格式声明，输出小数位小于实际小数位时按四舍五人处理。<br>&emsp;&emsp;如果输出多个数据,各占一行,而用同一个格式声明（如<code>%7.2f</code>）,即使输出的数据整数部分值不同，但输出时上下行必然按小数点对齐，使输出数据整齐美观。</p>
-<!-- p66 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h4 id="3-5-2-有关数据输入输出的概念"><a href="#3-5-2-有关数据输入输出的概念" class="headerlink" title="3.5.2 有关数据输入输出的概念"></a>3.5.2 有关数据输入输出的概念</h4><p>&emsp;&emsp;C语言本身不提供输入输出语句，没有输人输出语句就可以避免在编译阶段处理与硬件有关的问题，可以使编译系统简化，而且通用性强，可移植性好，在各种型号的计算机和不同的编译环境下都能适用，便于在各种计算机上实现。</p>
+<p>&emsp;&emsp;这两种<code>#include</code>指令形式的区别是:用尖括号形式（如<code>&lt;stdio.h&gt;</code>）时，编译系统从存放C编译系统的子目录中去找所要包含的文件（如<code>stdio.h</code>），这称为<strong>标准方式</strong>。如果用双撇号形式（如<code>&quot;stdio.h&quot;</code>），在编译时，编译系统先在用户的当前目录（一般是用户存放源程序文件的子目录）中寻找要包含的文件，若找不到，再按标准方式查找。如果用<code>#include</code>指令是为了使用系统库函数，因而要包含系统提供的相应头文件，这时以用标准方式为宜，以提高效率。如果用户想包含的头文件不是系统提供的相应头文件,而是用户自己编写的文件（这种文件一般都存放在用户当前目录中），这时应当用双撇号形式，否则会找不到所需的文件。</p>
+<h4 id="3-5-3-用printf函数输出数据"><a href="#3-5-3-用printf函数输出数据" class="headerlink" title="3.5.3 用printf函数输出数据"></a>3.5.3 用printf函数输出数据</h4><p>&emsp;&emsp;<code>c</code>格式符用来输出一个字符。如果整数比较大，则把它的最后一个字节的信息以字符形式输出。</p>
+<p>&emsp;&emsp;<code>f</code>格式符用来输出实数（包括单、双精度、长双精度），以小数形式输出不指定输出数据的长度，由系统根据数据的实际情况决定数据所占的列数。系统处理的方法一般是:实数中的整数部分全部输出，小数部分输出6位。</p>
+<p>&emsp;&emsp;指定数据宽度和小数位数,用<code>%m.nf</code>。对其后一位采取四舍五人方法处理。如果把小数部分指定为0，则不仅不输出小数，而且小数点也不输出。</p>
+<p>&emsp;&emsp;输出的数据向左对齐，用<code>%-m.nf</code>。在<code>m.n</code>的前面加一个负号，其作用与<code>%m.nf</code>形式作用基本相同，但当数据长度不超过<code>m</code>时，数据向左靠，右端补空格。如:</p>
+<p>&emsp;&emsp;<code>e</code>格式符。用格式声明<code>%e</code>指定以指数形式输出实数。格式符<code>e</code>也可以写成大写<code>E</code>形式，此时输出的数据中的指数不是以小写字母<code>e</code>表示而以大写字母<code>E</code>表示。</p>
+<p>&emsp;&emsp;<code>i</code>格式符。作用与<code>d</code>格式符相同，按十进制整型数据的实际长度输出。</p>
+<p>&emsp;&emsp;<code>o</code>格式符。以八进制整数形式输出。将内存单元中的各位的值（0或1）按八进制形式输出，因此输出的数值不带符号，即将符号位也一起作为八进制数的一部分输出。按内存单元中实际的二进制数按3位一组构成八进制数形式，</p>
+<p>&emsp;&emsp;<code>x</code>格式符。以十六进制数形式输出整数。</p>
+<p>&emsp;&emsp;<code>u</code>格式符。用来输出无符号（<code>unsigned</code>）型数据，以十进制整数形式输出。</p>
+<p>&emsp;&emsp;<code>g</code>格式符。用来输出浮点数，系统自动选<code>f</code>格式或<code>e</code>格式输出，选择其中长度较短的格式，不输出无意义的0。</p>
+<p>&emsp;&emsp;除了<code>X</code>，<code>E</code>，<code>G</code>外，其他格式字符必须用小写字母，如<code>%d</code>不能写成<code>%D</code>。如果想输出字符“<code>%</code>”，应该在“格式控制字符串”中用连续两个“<code>%</code>”表示</p>
+<p><img src="http://img.siriyang.cn/%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%89%E8%B0%AD%E6%B5%A9%E5%BC%BA%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.png" alt></p>
+<p><img src="http://img.siriyang.cn/%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%89%E8%B0%AD%E6%B5%A9%E5%BC%BA%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.png" alt></p>
+<h4 id="3-5-4-用scanf函数输入数据"><a href="#3-5-4-用scanf函数输入数据" class="headerlink" title="3.5.4 用scanf函数输入数据"></a>3.5.4 用scanf函数输入数据</h4><p>&emsp;&emsp;<code>*</code>，本输人项在读人后不赋给相应的变量</p>
+<p>&emsp;&emsp;如果在格式控制字符串中除了格式声明以外还有其他字符，则在输入数据时在对应的位置上应输人与这些字符相同的字符。</p>
+<p>&emsp;&emsp;在用“<code>%c</code>”格式声明输人字符时,空格字符和“转义字符”中的字符都作为有效字符输入。</p>
+<p>&emsp;&emsp;输入数值时，在两个数值之间需要插入空格（或其他分隔符），以使系统能区分两个数值。在连续输入字符时，在两个字符之间不要插入空格或其他分隔符。</p>
+<p>&emsp;&emsp;在输人数值数据时，如输人空格、回车、Tab键或遇非法字符（不属于数值的字符），认为该数据结束。</p>
+<h4 id="3-5-5-字符输入输出函数"><a href="#3-5-5-字符输入输出函数" class="headerlink" title="3.5.5 字符输入输出函数"></a>3.5.5 字符输入输出函数</h4><p>&emsp;&emsp;用<code>putchar</code>函数既可以输出能在显示器屏幕上显示的字符，也可以输出屏幕控制字符。</p>
+<p>&emsp;&emsp;<code>getchar</code> 函数没有参数。按Enter键后,字符才送到计算机中。</p>
+<p>&emsp;&emsp;执行<code>getchar</code> 函数不仅可以从输入设备获得一个可显示的字符，而且可以获得在屏幕上无法显示的字符，如控制字符。</p>
+<h2 id="4-选择结构程序设计"><a href="#4-选择结构程序设计" class="headerlink" title="4 选择结构程序设计"></a>4 选择结构程序设计</h2><h3 id="4-2-用if语句实现选择结构"><a href="#4-2-用if语句实现选择结构" class="headerlink" title="4.2 用if语句实现选择结构"></a>4.2 用if语句实现选择结构</h3><h4 id="4-2-2-if语句的一般形式"><a href="#4-2-2-if语句的一般形式" class="headerlink" title="4.2.2 if语句的一般形式"></a>4.2.2 if语句的一般形式</h4><p>&emsp;&emsp;<code>if</code>语句无论写在几行上，都是一个整体，属于同一个语句。</p>
+<h3 id="4-4-逻辑运算符和逻辑表达式"><a href="#4-4-逻辑运算符和逻辑表达式" class="headerlink" title="4.4 逻辑运算符和逻辑表达式"></a>4.4 逻辑运算符和逻辑表达式</h3><h4 id="4-4-1-逻辑运算符及其优先次序"><a href="#4-4-1-逻辑运算符及其优先次序" class="headerlink" title="4.4.1 逻辑运算符及其优先次序"></a>4.4.1 逻辑运算符及其优先次序</h4><p>&emsp;&emsp;“<code>!</code>“为三者中最高的。</p>
+<h3 id="4-6-选择结构的嵌套"><a href="#4-6-选择结构的嵌套" class="headerlink" title="4.6 选择结构的嵌套"></a>4.6 选择结构的嵌套</h3><p>&emsp;&emsp;<code>else</code>总是与它上面的最近的未配对的<code>if</code>配对。</p>
+<h3 id="4-7-用switch语句实现多分支选择结构"><a href="#4-7-用switch语句实现多分支选择结构" class="headerlink" title="4.7 用switch语句实现多分支选择结构"></a>4.7 用switch语句实现多分支选择结构</h3><p>&emsp;&emsp;在执行完一个<code>case</code>标号后面的语句后，就从此标号开始执行下去，不再进行判断。</p>
+<p>&emsp;&emsp;在<code>case</code>子句中虽然包含了一个以上执行语句，但可以不必用花括号括起来，会自动顺序执行本<code>case</code>标号后面所有的语句。当然加上花括号也可以。</p>
+<h2 id="5-循环结构程序设计"><a href="#5-循环结构程序设计" class="headerlink" title="5 循环结构程序设计"></a>5 循环结构程序设计</h2><h3 id="5-4-用for语句实现循环"><a href="#5-4-用for语句实现循环" class="headerlink" title="5.4 用for语句实现循环"></a>5.4 用for语句实现循环</h3><p>&emsp;&emsp;C99允许在<code>for</code>语句的“表达式1”中定义变量并赋初值。显然，这可以使程序简练，灵活方便。但应注意:所定义的变量的有效范围只限于<code>for</code>循环中，在循环外不能使用此变量。</p>
+<h3 id="5-7-改变循环执行的状态"><a href="#5-7-改变循环执行的状态" class="headerlink" title="5.7 改变循环执行的状态"></a>5.7 改变循环执行的状态</h3><h4 id="5-7-1-用break语句提前终止循环"><a href="#5-7-1-用break语句提前终止循环" class="headerlink" title="5.7.1 用break语句提前终止循环"></a>5.7.1 用break语句提前终止循环</h4><p>&emsp;&emsp;<code>break</code>语句只能用于循环语句和<code>switch</code>语句之中，而不能单独使用</p>
+<h2 id="6-利用数组处理批量数据"><a href="#6-利用数组处理批量数据" class="headerlink" title="6 利用数组处理批量数据"></a>6 利用数组处理批量数据</h2><h3 id="6-1-怎样定义和引用一维数组"><a href="#6-1-怎样定义和引用一维数组" class="headerlink" title="6.1 怎样定义和引用一维数组"></a>6.1 怎样定义和引用一维数组</h3><h4 id="6-1-1-怎样定义一维数组"><a href="#6-1-1-怎样定义一维数组" class="headerlink" title="6.1.1 怎样定义一维数组"></a>6.1.1 怎样定义一维数组</h4><p>&emsp;&emsp;常量表达式中可以包括常量和符号常量，如“<code>int a[3+5];</code>“是合法的。不能包含变量,如“<code>int a[n];</code>“是不合法的。也就是说,C语言不允许对数组的大小作动态定义,即数组的大小不依赖于程序运行过程中变量的值。</p>
+<h4 id="6-1-3-一维数组的初始化"><a href="#6-1-3-一维数组的初始化" class="headerlink" title="6.1.3 一维数组的初始化"></a>6.1.3 一维数组的初始化</h4><p>&emsp;&emsp;在定义数组时对全部数组元素赋予初值。</p>
+<p>&emsp;&emsp;可以只给数组中的一部分元素赋值。</p>
+<p>&emsp;&emsp;如果想使一个数组中全部元素值为0,可以写成<code>int a[10]= {0};</code>，未赋值的部分元素自动设定为0。</p>
+<p>&emsp;&emsp;在对全部数组元素赋初值时，由于数据的个数已经确定,因此可以不指定数组长度。</p>
+<p>&emsp;&emsp;如果在定义数值型数组时，指定了数组的长度并对之初始化，凡未被“初始化列表”指定初始化的数组元素，系统会自动把它们初始化为0如果是字符型数组，则初始化为’<code>\0</code>‘，如果是指针型数组，则初始化为<code>NULL</code>,即空指针。</p>
+<h3 id="6-2-怎样定义和引用二维数组"><a href="#6-2-怎样定义和引用二维数组" class="headerlink" title="6.2 怎样定义和引用二维数组"></a>6.2 怎样定义和引用二维数组</h3><h4 id="6-2-3-二维数组的初始化"><a href="#6-2-3-二维数组的初始化" class="headerlink" title="6.2.3 二维数组的初始化"></a>6.2.3 二维数组的初始化</h4><p>&emsp;&emsp;分行给二维数组赋初值。</p>
+<p>&emsp;&emsp;可以将所有数据写在一个花括号内，按数组元素在内存中的排列顺序对各元素赋初值。</p>
+<p>&emsp;&emsp;可以对部分元素赋初值。</p>
+<p>&emsp;&emsp;如果对全部元素都赋初值（即提供全部初始数据）,则定义数组时对第1维的长度可以不指定,但第2维的长度不能省。</p>
+<p>&emsp;&emsp;在定义时也可以只对部分元素赋初值而省略第1维的长度，但应分行赋初值。</p>
+<h3 id="6-3-字符数组"><a href="#6-3-字符数组" class="headerlink" title="6.3 字符数组"></a>6.3 字符数组</h3><h4 id="6-3-2-字符数组的初始化"><a href="#6-3-2-字符数组的初始化" class="headerlink" title="6.3.2 字符数组的初始化"></a>6.3.2 字符数组的初始化</h4><p>&emsp;&emsp;如果花括号中提供的初值个数（即字符个数)大于数组长度，则出现语法错误。如果初值个数小于数组长度，则只将这些字符赋给数组中前面那些元素，其余的元素自动定为空字符（即’<code>\0</code>‘）。</p>
+<!-- P179 -->
 
 
 
@@ -700,7 +713,7 @@
   <!-- 修改时间 -->
   <li>
     <strong>修改时间： </strong>
-    2020年03月10日 - 22时03分
+    2020年03月11日 - 21时03分
   </li>
 
   <!-- 引用链接 -->
@@ -1096,7 +1109,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-程序设计和C语言"><span class="nav-text">1 程序设计和C语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-最简单的C语言程序"><span class="nav-text">1.4 最简单的C语言程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-C语言程序的结构"><span class="nav-text">1.4.2 C语言程序的结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-算法——程序的灵魂"><span class="nav-text">2 算法——程序的灵魂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-程序-算法-数据结构"><span class="nav-text">2.1 程序=算法+数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-算法的特性"><span class="nav-text">2.4 算法的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-怎样表示一个算法"><span class="nav-text">2.5 怎样表示一个算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3-三种基本结构和改进的流程图"><span class="nav-text">2.5.3 三种基本结构和改进的流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-4-用N-S流程图表示算法"><span class="nav-text">2.5.4 用N-S流程图表示算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-结构化程序设计方法"><span class="nav-text">2.6 结构化程序设计方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-最简单的C程序设计——顺序程序设计"><span class="nav-text">3 最简单的C程序设计——顺序程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-数据的表现形式及其运算"><span class="nav-text">3.2 数据的表现形式及其运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-常量和变量"><span class="nav-text">3.2.1 常量和变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-整型数据"><span class="nav-text">3.2.3 整型数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-字符型数据"><span class="nav-text">3.2.4 字符型数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-5-浮点型数据"><span class="nav-text">3.2.5 浮点型数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-6-怎样确定常量的类型"><span class="nav-text">3.2.6 怎样确定常量的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-运算符和表达式"><span class="nav-text">3.3 运算符和表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-基本的算术运算符"><span class="nav-text">3.3.2 基本的算术运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-自增（-）、自减（–）运算符"><span class="nav-text">3.3.3 自增（++）、自减（–）运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-算术表达式和运算符的优先级与结合性"><span class="nav-text">3.3.4 算术表达式和运算符的优先级与结合性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-6-强制类型转换运算符"><span class="nav-text">3.3.6 强制类型转换运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-C语句"><span class="nav-text">3.4 C语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-C语句的作用和分类"><span class="nav-text">3.4.1 C语句的作用和分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-2-最基本的语句——赋值语句"><span class="nav-text">3.4.2 最基本的语句——赋值语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-数据的输入输出"><span class="nav-text">3.5 数据的输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-1-输入输出举例"><span class="nav-text">3.5.1 输入输出举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源下载"><span class="nav-text">资源下载</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-程序设计和C语言"><span class="nav-text">1 程序设计和C语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-最简单的C语言程序"><span class="nav-text">1.4 最简单的C语言程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-C语言程序的结构"><span class="nav-text">1.4.2 C语言程序的结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-算法——程序的灵魂"><span class="nav-text">2 算法——程序的灵魂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-程序-算法-数据结构"><span class="nav-text">2.1 程序=算法+数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-算法的特性"><span class="nav-text">2.4 算法的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-怎样表示一个算法"><span class="nav-text">2.5 怎样表示一个算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3-三种基本结构和改进的流程图"><span class="nav-text">2.5.3 三种基本结构和改进的流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-4-用N-S流程图表示算法"><span class="nav-text">2.5.4 用N-S流程图表示算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-结构化程序设计方法"><span class="nav-text">2.6 结构化程序设计方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-最简单的C程序设计——顺序程序设计"><span class="nav-text">3 最简单的C程序设计——顺序程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-数据的表现形式及其运算"><span class="nav-text">3.2 数据的表现形式及其运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-常量和变量"><span class="nav-text">3.2.1 常量和变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-整型数据"><span class="nav-text">3.2.3 整型数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-字符型数据"><span class="nav-text">3.2.4 字符型数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-5-浮点型数据"><span class="nav-text">3.2.5 浮点型数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-6-怎样确定常量的类型"><span class="nav-text">3.2.6 怎样确定常量的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-运算符和表达式"><span class="nav-text">3.3 运算符和表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-基本的算术运算符"><span class="nav-text">3.3.2 基本的算术运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-自增（-）、自减（–）运算符"><span class="nav-text">3.3.3 自增（++）、自减（–）运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-算术表达式和运算符的优先级与结合性"><span class="nav-text">3.3.4 算术表达式和运算符的优先级与结合性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-6-强制类型转换运算符"><span class="nav-text">3.3.6 强制类型转换运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-C语句"><span class="nav-text">3.4 C语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-C语句的作用和分类"><span class="nav-text">3.4.1 C语句的作用和分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-2-最基本的语句——赋值语句"><span class="nav-text">3.4.2 最基本的语句——赋值语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-数据的输入输出"><span class="nav-text">3.5 数据的输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-1-输入输出举例"><span class="nav-text">3.5.1 输入输出举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-2-有关数据输入输出的概念"><span class="nav-text">3.5.2 有关数据输入输出的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-3-用printf函数输出数据"><span class="nav-text">3.5.3 用printf函数输出数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-4-用scanf函数输入数据"><span class="nav-text">3.5.4 用scanf函数输入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-5-字符输入输出函数"><span class="nav-text">3.5.5 字符输入输出函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-选择结构程序设计"><span class="nav-text">4 选择结构程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-用if语句实现选择结构"><span class="nav-text">4.2 用if语句实现选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-2-if语句的一般形式"><span class="nav-text">4.2.2 if语句的一般形式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-逻辑运算符和逻辑表达式"><span class="nav-text">4.4 逻辑运算符和逻辑表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-1-逻辑运算符及其优先次序"><span class="nav-text">4.4.1 逻辑运算符及其优先次序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-选择结构的嵌套"><span class="nav-text">4.6 选择结构的嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-用switch语句实现多分支选择结构"><span class="nav-text">4.7 用switch语句实现多分支选择结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-循环结构程序设计"><span class="nav-text">5 循环结构程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-用for语句实现循环"><span class="nav-text">5.4 用for语句实现循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-改变循环执行的状态"><span class="nav-text">5.7 改变循环执行的状态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-7-1-用break语句提前终止循环"><span class="nav-text">5.7.1 用break语句提前终止循环</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-利用数组处理批量数据"><span class="nav-text">6 利用数组处理批量数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-怎样定义和引用一维数组"><span class="nav-text">6.1 怎样定义和引用一维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-1-怎样定义一维数组"><span class="nav-text">6.1.1 怎样定义一维数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-3-一维数组的初始化"><span class="nav-text">6.1.3 一维数组的初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-怎样定义和引用二维数组"><span class="nav-text">6.2 怎样定义和引用二维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-3-二维数组的初始化"><span class="nav-text">6.2.3 二维数组的初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-字符数组"><span class="nav-text">6.3 字符数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-2-字符数组的初始化"><span class="nav-text">6.3.2 字符数组的初始化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源下载"><span class="nav-text">资源下载</span></a></li></ol></div>
             
 
           </div>
@@ -1123,12 +1136,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">921k</span>
+    <span title="站点总字数">924k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:58</span>
+    <span title="站点阅读时长">14:01</span>
 </div>
 
         
