@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[学习日志200316：C/C++数据输入练习]]></title>
+    <url>%2Fposts%2F20200316215357id.html</url>
+    <content type="text"><![CDATA[A+B I题目地址 &emsp;&emsp;此题只要求用户求A+B的和，第一行会提前告诉你有几组数据，然后第二行开始到结束为测试用例。 样例输入 12321 23 4 样例输出 1237 C语言 12345678910111213#include&lt;stdio.h&gt;int main()&#123; int n; int a,b; scanf("%d",&amp;n); while(n--) &#123; scanf("%d%d",&amp;a,&amp;b); printf("%d\n",a+b); &#125; return 0;&#125; C++ 1234567891011121314#include &lt;iostream&gt;using namespace std;int main()&#123; int n; int a,b; cin&gt;&gt;n; while(n--) &#123; cin&gt;&gt;a&gt;&gt;b; cout&lt;&lt;a+b&lt;&lt;endl; &#125; return 0;&#125; A+B II题目地址 &emsp;&emsp;依然是A+B，但此类题目往往说明测试数据有多组但没说具体有几组。则默认是到文件(后台测试用例在文件里)末尾结束EOF，如果手动在控制台输入则没有EOF。我们则可以采用循环的方式不断接收测试用例，并且每接收一组输出一组(不必全部输入再全部输出，因为OJ只比对一次最后的结果)。 样例输入 121 23 4 样例输出 1237 C语言 12345678#include&lt;stdio.h&gt;int main()&#123; int a,b; while(~scanf("%d%d",&amp;a,&amp;b)) //利用scanf的返回值 printf("%d\n",a+b); return 0;&#125; C++ 123456789#include&lt;iostream&gt;using namespace std;int main()&#123; int a,b; while(cin&gt;&gt;a&gt;&gt;b) cout&lt;&lt;(a+b)&lt;&lt;endl; return 0;&#125; A+B III题目地址 &emsp;&emsp;继续是A+B，不同的是题目中说明，有多组数据，但是以A和B都为0时结束，则此时，就要做判断。不能依然输出0。 样例输入 1231 23 40 0 样例输出 1237 C语言 123456789101112#include&lt;stdio.h&gt;int main()&#123; int a,b; while(~scanf("%d%d",&amp;a,&amp;b)) &#123; if(a==0&amp;&amp;b==0) break; printf("%d\n",a+b); &#125; return 0;&#125; C++ 1234567891011121314#include &lt;iostream&gt;using namespace std;int main()&#123; int a,b; while(true) &#123; cin&gt;&gt;a&gt;&gt;b; if(a==0&amp;&amp;b==0) break; cout&lt;&lt;a+b&lt;&lt;endl; &#125; return 0;&#125; A+B IV题目链接 &emsp;&emsp;此类题目是求n个数的和，输第一行会提前告诉你有几组数据，然后第二行开始到结束为测试用例，且每行第一个数字代表该行之后有多少个数字要求和。 样例输入 12324 1 2 3 45 1 2 3 4 5 样例输出 121015 C语言 12345678910111213141516171819#include &lt;stdio.h&gt;int main()&#123; int n; scanf("%d",&amp;n); while(n--) &#123; int k; scanf("%d",&amp;k); int sum=0; for(int i=0;i&lt;k;i++)&#123; int t; scanf("%d",&amp;t); sum+=t; &#125; printf("%d\n",sum); &#125; return 0;&#125; C++ 1234567891011121314151617181920#include &lt;iostream&gt;using namespace std;int main()&#123; int n; cin&gt;&gt;n; while(n--) &#123; int k; cin&gt;&gt;k; int sum=0; for(int i=0;i&lt;k;i++)&#123; int t; cin&gt;&gt;t; sum+=t; &#125; cout&lt;&lt;sum&lt;&lt;endl; &#125; return 0;&#125; A+B V题目链接 &emsp;&emsp;此类题目是求n个数的和，输入为先输入一个n，然后后面跟n个数字，求这n个数字的和。同样有多组数据，当n=0时结束。 样例输入 1234 1 2 3 45 1 2 3 4 50 样例输出 121015 C语言 12345678910111213141516171819#include &lt;stdio.h&gt;int main()&#123; int n; while(1) &#123; scanf("%d",&amp;n); if(n==0) break; int sum=0; for(int i=0;i&lt;n;i++)&#123; int t; scanf("%d",&amp;t); sum+=t; &#125; printf("%d\n",sum); &#125; return 0;&#125; C++ 1234567891011121314151617181920#include &lt;iostream&gt;using namespace std;int main()&#123; int n; while(true) &#123; cin&gt;&gt;n; if(n==0) break; int sum=0; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; sum+=t; &#125; cout&lt;&lt;sum&lt;&lt;endl; &#125; return 0;&#125; A+B VI题目链接 &emsp;&emsp;输入有若干行数据，但没告诉你具体有几行。每行第一个数字代表该行之后有多少个数字要求和。 样例输入 124 1 2 3 45 1 2 3 4 5 样例输出 121015 C语言 12345678910111213141516#include &lt;stdio.h&gt;int main()&#123; int n; while(~scanf("%d",&amp;n)) &#123; int sum=0; for(int i=0;i&lt;n;i++)&#123; int t; scanf("%d",&amp;t); sum+=t; &#125; printf("%d\n",sum); &#125; return 0;&#125; C++ 1234567891011121314151617#include &lt;iostream&gt;using namespace std;int main()&#123; int n; while(cin&gt;&gt;n) &#123; int sum=0; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; sum+=t; &#125; cout&lt;&lt;sum&lt;&lt;endl; &#125; return 0;&#125; 参考资料 『ACM入门』蓝桥杯ACM训练系统基本输入输出教程]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法题</category>
+        <category>技术</category>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[重邮2018考研复试C语言程序设计答案]]></title>
     <url>%2Fposts%2F20200312193322id.html</url>
     <content type="text"><![CDATA[重邮2018考研复试C语言程序设计真题 一、根据程序功能，填写相应代码（每小题4分，共20分）1、 1234567891011#include &lt;stdio.h&gt;void main()&#123; int x,y,z; for(x=0;x&lt;=20;x++) for(y=1;y&lt;=33;y++) &#123; z=100-x-y; if (z%3==0 &amp;&amp; 5*x+3*y+z/3==100) printf(&quot;\n%d,%d,%d&quot;,x,y,z); &#125;&#125; 2、 1234567891011#include &lt;stdio.h&gt;void main()&#123; int r,m,n; scanf(&quot;%d,%d&quot;,&amp;m,&amp;n); if((r=m)&lt;n) &#123; r=n;n=m;m=r; &#125; while(r) &#123; r=m%n;m=n;n=r; &#125; printf(&quot;%d&quot;,m);&#125; 3、 123456789101112131415161718192021#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;void main()&#123; FILE *fp; int num=0; char c; if((fp=fopen(&quot;fname.txt&quot;,&quot;r&quot;))==NULL) &#123; printf(&quot;Open error\n&quot;); exit(0); &#125; c=fgetc(fp); while(c) &#123; num++; fgetc(fp); &#125; printf(&quot;num=%ld\n&quot;,num); fclose(fp);&#125; 4、 123456789101112131415#include &lt;stdio.h&gt;void main()&#123; int n,k; n=0; scanf(&quot;%d&quot;,&amp;k); while(k&gt;10) &#123; printf(&quot;%d&quot;,k%10); k=k/10; n++; &#125; printf(&quot;%d&quot;,k,n++); printf(&quot;\nn=%d\n&quot;,n);&#125; 5、 12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;void main()&#123; int a[10][10],i,j,k=0,m,n; printf(&quot;Enter n(n&lt;10):&quot;); scanf(&quot;%d&quot;,&amp;n); if(n%2==0) m=n/2; else m=n/2+1; for(i=0;i&lt;m;i++) &#123; for(j=i;j&lt;n-i;j++) a[i][j]=k++; for(j=i+1;j&lt;n-i;j++) a[j][n-i-1]=k++; for(j=n-i-2;j&gt;=i;j--) a[n-i-1][j]=k++; for(j=n-i-2;j&gt;=i+1;j--) a[j][i]=k++; &#125; for(i=0;i&lt;n;i++) &#123; for(j=0;j&lt;n;j++) printf(&quot;%5d&quot;,a[i][j]); printf(&quot;\n&quot;); &#125;&#125; 二、程序改错（每小题5分，共10分）1、 1234567891011121314151617181920212223242526#include &lt;stdio.h&gt;+ #include &lt;math.h&gt;double root(double x1)&#123; double x2,f1,f; while(1) &#123; f=2*x1*x1*x1-4*x1*x1+3*x1-6; f1=6*x1*x1-8*x1+3; x2=x1-f/f1;- if(fabs(x2-x1)&lt;1e-10)continue;+ if(fabs(x2-x1)&lt;1e-10)break;- x2=x1;+ x1=x2; &#125; return x1;&#125;void main()&#123; double x0=1.5,x;- x=root(x);+ x=root(x0); printf("\n x=%f",x); printf("\n f=%f",2*x*x*x-4*x*x+3*x-6); getch();&#125; 2、 123456789101112131415161718192021222324#include &lt;stdio.h&gt;void main()&#123;+ long fib(int n); int s; int i=0; do &#123; s=fib(i); printf("Fib(%d)=%ld\n",i,s); printf("Input Fibonacci Number:"); scanf("%d",&amp;i);- &#125;while(i&gt;0)+ &#125;while(i&gt;0);&#125;long fib(int n)&#123;- if(n==0|n==1)+ if(n==0||n==1) return n; else- return fib(n-1)+fib(n);+ return fib(n-2)+fib(n-1);&#125; 三、读程序写结果（每小题5分，共20分）1、 1234wang 90wang 98wang 99wang 100 2、 16 3、 1abcdeeewxy 4、 12abcdeabcde 四、读程序或函数写功能（每小题5分，共10）1、 &emsp;&emsp;求n的位数。 2、&emsp;&emsp;判断输入的m是否是素数。 五、算法设计及编码（共40分）1、 流程图 代码 123456789101112131415161718#include &lt;stdio.h&gt;float charge(float hours)&#123; if(hours&lt;3.0) return 2.0; else if(hours&lt;19.0) return 2.0+0.5*(hours-3.0); else return 10.0;&#125; int main()&#123; float hours; scanf("%f",&amp;hours); printf("%f",charge(hours)); return 0;&#125; 2、 流程图 代码 1234567891011121314151617181920212223#include &lt;stdio.h&gt;void hanoi(int from,int by,int to,int n)&#123; if(n==1) printf("Move %d from %d to %d\n",1,from,to); else&#123; hanoi(from,to,by,n-1); printf("Move %d from %d to %d\n",n,from,to); hanoi(by,from,to,n-1); &#125; &#125;int main() &#123; int n; scanf("%d",&amp;n); hanoi(1,2,3,n); return 0;&#125; 3、 流程图 代码 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#include &lt;stdio.h&gt;#include &lt;string.h&gt;void exchange(const char *pln, char *pOut)&#123; char tmp[255] = &#123; 0 &#125;; int tlen = 0;//tmp的长度 int Olen = 0;//pOut的长度 int lb, le, rb, re;//这四个变量用于标记前后两个单词的首尾字母 //初始化，首先找到首尾单词 lb = 0; for (le = 0; pln[le] != ' '&amp;&amp;pln[le] != 0; le++); re = strlen(pln); for (rb = re; rb &gt; 0 &amp;&amp; pln[rb-1] != ' '; rb--); while (lb &lt; rb) &#123; //先将前面非A开头的单词拷贝到pln while (lb &lt; rb &amp;&amp; pln[lb] != 'A') &#123; for (int i = lb; i &lt; le; i++) pOut[Olen++] = pln[i]; pOut[Olen++] = ' '; lb = ++le; for (; pln[le] != ' '&amp;&amp;pln[le] != 0; le++); &#125; //将后面非N结尾的单词逆序拷贝到tmp while (lb &lt; rb &amp;&amp; pln[re-1] != 'N') &#123; for (int i = re-1; i &gt;= rb; i--) tmp[tlen++] = pln[i]; tmp[tlen++] = ' '; re = --rb; for (; rb &gt; 0 &amp;&amp; pln[rb-1] != ' '; rb--); &#125; if (lb &lt; rb) &#123; //将A开头的单词逆序拷贝到tmp for (int i = le-1; i &gt;= lb; i--) tmp[tlen++] = pln[i]; tmp[tlen++] = ' '; lb = ++le; for (; pln[le] != ' '&amp;&amp;pln[le] != 0; le++); //将N结尾的单词拷贝到pOut for (int i = rb; i &lt; re; i++) pOut[Olen++] = pln[i]; pOut[Olen++] = ' '; re = --rb; for (; rb &gt; 0 &amp;&amp; pln[rb-1] != ' '; rb--); &#125; &#125; //如果rb==lb，则将最后一个单词拷贝到pOut for (int i = lb;rb==lb &amp;&amp; i &lt;= le; i++) pOut[Olen++] = pln[i]; //将tmp中的字符串逆序拷贝到pOut(去掉最末尾多余的空格) for (int i = tlen-2; i &gt;= 0; i--) pOut[Olen++] = tmp[i];&#125;int main()&#123; char str[255] = &#123; 0 &#125;, result[255] = &#123; 0 &#125;; gets(str); exchange(str, result); printf("%s", result); return 0;&#125;]]></content>
@@ -9,8 +23,8 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>考研</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -22,8 +36,8 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>考研</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -121,7 +135,7 @@
   <entry>
     <title><![CDATA[C语言基础编程练习题]]></title>
     <url>%2Fposts%2F20200303105746id.html</url>
-    <content type="text"><![CDATA[排序 题目描述&emsp;&emsp;用对10个整数从小到大排序。 输入&emsp;&emsp;10个整数 输出&emsp;&emsp;排序好的10个整数 样例输入 14 85 3 234 45 345 345 122 30 12 样例输出 13 4 12 30 45 85 122 234 345 345 代码 冒泡排序12345678910111213141516171819202122232425#include &lt;stdio.h&gt;int main() &#123; int num[10]=&#123;0&#125;; int n=10; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); for(i=0;i&lt;n;i++) for(j=i+1;j&lt;n;j++)&#123; if(num[j]&lt;num[i])&#123; int t=num[j]; num[j]=num[i]; num[i]=t; &#125; &#125; for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 选择排序12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;int main() &#123; int num[10]=&#123;0&#125;; int n=10,min,t; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); for(i=0;i&lt;n;i++)&#123; min=i; for(j=i;j&lt;n;j++)&#123; if(num[j]&lt;num[min])&#123; min=j; &#125; &#125; t=num[i]; num[i]=num[min]; num[min]=t; &#125; for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 插入排序1234567891011121314151617181920212223242526#include &lt;stdio.h&gt;int main() &#123; int num[10]=&#123;0&#125;; int n=10,t; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); for(i=0;i&lt;n;i++)&#123; t=num[i]; j=i-1; while(j&gt;=0 &amp;&amp; t&lt;num[j])&#123; num[j+1]=num[j]; j--; &#125; num[j+1]=t; &#125; for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 希尔排序123456789101112131415161718192021222324252627282930#include &lt;stdio.h&gt;int main() &#123; int num[10]=&#123;0&#125;; int n=10,t,d; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); d=n/2; while(d&gt;=1)&#123; for(i=d;i&lt;n;i++)&#123; t=num[i]; j=i-d; while(j&gt;=0 &amp;&amp; t&lt;num[j])&#123; num[j+d]=num[j]; j-=d; &#125; num[j+d]=t; &#125; d/=2; &#125; for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 归并排序123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#include &lt;stdio.h&gt;void merge(int num[],int n1,int n2,int n3)&#123; int tmp[10]=&#123;0&#125;; int i,j,k; i=n1; j=n2+1; k=0; while(i&lt;=n2&amp;&amp;j&lt;=n3)&#123; if(num[i]&lt;num[j]) tmp[k++]=num[i++]; else tmp[k++]=num[j++]; &#125; while(i&lt;=n2) tmp[k++]=num[i++]; while(j&lt;=n3) tmp[k++]=num[j++]; for(i=n1,k=0;i&lt;=n3;i++,k++) num[i]=tmp[k];&#125;void mergesort(int num[],int begin,int end)&#123; if(begin&lt;end)&#123; int mid=(begin+end)/2; mergesort(num,begin,mid); mergesort(num,mid+1,end); merge(num,begin,mid,end); &#125;&#125;int main() &#123; int num[10]=&#123;0&#125;; int n=10,t,d; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); mergesort(num,0,n-1); for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 快速排序12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;stdio.h&gt;void quicksort(int num[],int begin,int end)&#123; int i,j,t; i=begin; j=end; t=num[i]; while(i&lt;j)&#123; while(i&lt;j &amp;&amp; t&lt;num[j])j--; if(i&lt;j)&#123; num[i]=num[j]; i++; &#125; while(i&lt;j &amp;&amp; t&gt;=num[i])i++; if(i&lt;j)&#123; num[j]=num[i]; j--; &#125; &#125; num[i]=t; if(begin&lt;i) quicksort(num,begin,i-1); if(i&lt;end) quicksort(num,i+1,end);&#125;int main() &#123; int num[10]=&#123;0&#125;; int n=10,t,d; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); quicksort(num,0,n-1); for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 最大公约数与最小公倍数 题目描述&emsp;&emsp;输入两个正整数m和n，求其最大公约数和最小公倍数。 输入&emsp;&emsp;两个整数 输出&emsp;&emsp;最大公约数，最小公倍数 样例输入 15 7 样例输出 11 35 代码 12345678910111213141516171819202122232425#include&lt;stdio.h&gt;int main()&#123; int a,b; scanf("%d%d",&amp;a,&amp;b); if(a&lt;b)&#123; int t=a; a=b; b=t; &#125; int p=a*b; int r; while(b!=0)&#123; r=a%b; a=b; b=r; &#125; printf("%d %d\n",a,p/a); return 0;&#125; 水仙花数 题目描述&emsp;&emsp;打印出所有”水仙花数”，所谓”水仙花数”是指一个三位数，其各位数字立方和等于该本身。 例如：153是一个水仙花数，因为$153=1^3+5^3+3^3$。 输入&emsp;&emsp;无 输出&emsp;&emsp;输出每一个水仙花数，一个数占一行 代码 12345678910111213141516#include&lt;stdio.h&gt;int main()&#123; for(int i =100 ;i&lt;1000;i++)&#123; int n1,n2,n3,t; t=i; n1=t%10; t/=10; n2=t%10; t/=10; n3=t%10; if(n1*n1*n1+n2*n2*n2+n3*n3*n3==i) printf("%d\n",i); &#125; return 0;&#125; 完全数 题目描述&emsp;&emsp;一个数如果恰好等于不包含它本身所有因子之和，这个数就称为”完数”。 例如，6的因子为1、2、3，而6=1+2+3，因此6是”完数”。 编程序找出N之内的所有完数，并按下面格式输出其因子 输入&emsp;&emsp;N 输出&emsp;&emsp;? its factors are ? ? ? 样例输入 11000 样例输出 1236 its factors are 1 2 3 28 its factors are 1 2 4 7 14 496 its factors are 1 2 4 8 16 31 62 124 248 代码 1234567891011121314151617181920212223242526#include&lt;stdio.h&gt;int main()&#123; int n; scanf("%d",&amp;n); for(int i=2;i&lt;=n;i++)&#123; int s=0; for(int j=1;j&lt;i;j++)&#123; if((i%j)==0)s+=j; &#125; if(i==s)&#123; printf("%d its factors are",i); for(int j=1;j&lt;i;j++) if(i%j==0) printf(" %d",j); printf("\n"); &#125; &#125; return 0;&#125; 亲密数 题目描述&emsp;&emsp;两个不同的自然数A和B，如果整数A的全部因子(包括1，不包括A本身)之和等于B；且整数B的全部因子(包括1，不包括B本身)之和等于A，则将整数A和B称为亲密数。求3000以内的全部亲密数。 输入&emsp;&emsp;无 输出&emsp;&emsp;3000以内的全部亲密数(输出格式:(A,B)，不加换行，不加分隔符号)&emsp;&emsp;一对亲密数只输出一次, 小的在前 样例输入&emsp;&emsp;无 样例输出 1(220,284)(1184,1210)(2620,2924) 代码 12345678910111213141516171819#include&lt;stdio.h&gt;int main()&#123; int a, i, b, n; printf("There are following friendly--numbers pair smaller than 3000:\n"); for( a=1; a&lt;3000; a++ ) /*穷举3000以内的全部整数*/ &#123; for( b=0, i=1; i&lt;=a/2; i++) /*计算数a的各因子，各因子之和存放于b*/ if(!(a%i)) b+=i; for( n=0, i=1; i&lt;=b/2; i++ ) /*计算b的各因子，各因子之和存于n*/ if(!(b%i)) n+=i; if(n==a &amp;&amp; a&lt;b) /*使每对亲密数只输出一次*/ printf("(%d,%d)", a, b); /*若n=a，则a和b是一对亲密数，输出*/ &#125; return 0;&#125; 自守数 题目描述&emsp;&emsp;自守数是指一个数的平方的尾数等于该数自身的自然数。&emsp;&emsp;例如：&emsp;&emsp;25^2=625&emsp;&emsp;76^2=5776&emsp;&emsp;9376^2=87909376&emsp;&emsp;请求出200000以内的自守数? 输入&emsp;&emsp;无 输出&emsp;&emsp;200000以内的自守数(包括0, 数之间用两个空格分开，末尾无空格) 样例输入&emsp;&emsp;无 样例输出 10 1 5 6 25 76 376 625 9376 90625 109376 代码 12345678910111213141516171819202122#include &lt;stdio.h&gt;#include &lt;math.h&gt;int main()&#123; printf("0"); for(int i=1;i&lt;=200000;i++)&#123; int len=0; for(int j=i;j&gt;0;j/=10,len++); int tail=0,t=i; for(int j=0;j&lt;len;j++)&#123; tail+=(i*(t%10)%(int)pow(10,len-j))*pow(10,j); t/=10; &#125; tail%=(int)pow(10,len); if(tail==i) printf(" %d",i); &#125; return 0;&#125; 求N之内的素数 题目描述&emsp;&emsp;求之N内的素数。 输入&emsp;&emsp;N 输出&emsp;&emsp;0～N的素数 样例输入 1100 样例输出 123456789101112131415161718192021222324252357111317192329313741434753596167717379838997 代码 筛选法12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;#include &lt;math.h&gt;int main() &#123; int num[10000]=&#123;0&#125;; int n; int i,j; scanf("%d",&amp;n); for(i=2;i&lt;=n;i++) num[i]=i; for(i=2;i&lt;sqrt(n);i++)&#123; for(j=i+1;j&lt;=n;j++)&#123; if(num[i]!=0 &amp;&amp; num[j]!=0) if(num[j]%num[i]==0) num[j]=0; &#125; &#125; for(i=2;i&lt;=n;i++) if(num[i]!=0) printf("%d\n",i); return 0;&#125; 枚举法123456789101112131415161718192021222324#include &lt;stdio.h&gt;int main() &#123; int n; scanf("%d",&amp;n); if(n&gt;=2) printf("2\n"); for(int i=3;i&lt;n;i+=2)&#123; int f=1; for(int j=3;j&lt;i/2;j++) if(i%j==0)&#123; f=0; break; &#125; if(f) printf("%d\n",i); &#125; return 0;&#125; 猴子吃桃的问题 题目描述&emsp;&emsp;猴子吃桃问题。猴子第一天摘下若干个桃子，当即吃了一半，还不过瘾，又多吃了一个。 第二天早上又将剩下的桃子吃掉一半，又多吃一个。以后每天早上都吃了前一天剩下的一半零一个。 到第N天早上想再吃时，见只剩下一个桃子了。求第一天共摘多少桃子。 输入&emsp;&emsp;N输出&emsp;&emsp;桃子总数 样例输入 110 样例输出 11534 代码 1234567891011121314151617#include &lt;stdio.h&gt;int main() &#123; int n; int res=1; scanf("%d",&amp;n); for(int i=1;i&lt;n;i++)&#123; res=(res+1)*2; &#125; printf("%d",res); return 0;&#125; 迭代法求平方根 题目描述&emsp;&emsp;用迭代法求平方根 &emsp;&emsp;公式：求a的平方根的迭代公式为： X[n+1]=(X[n]+a/X[n])/2 要求前后两次求出的差的绝对值少于0.00001。 输出保留3位小数 输入&emsp;&emsp;X 输出&emsp;&emsp;X的平方根 样例输入 14 样例输出 12.000 代码 1234567891011121314151617181920#include&lt;stdio.h&gt;int main()&#123; int X; scanf("%d",&amp;X); double x0,x1; x0=X/2; x1=(x0+X/x0)/2; do&#123; x0=x1; x1=(x0+X/x0)/2; &#125;while(x0-x1&gt;=1e-5); printf("%.3f",x1); return 0;&#125; 百钱百鸡问题 题目描述&emsp;&emsp;中国古代数学家张丘建在他的《算经》中提出了著名的“百钱买百鸡问题”：鸡翁一，值钱五，鸡母一，值钱三，鸡雏三，值钱一，百钱买百鸡，问翁、母、雏各几何？&emsp;&emsp;翻译过来就是：一只公鸡值五钱，一只母鸡值三钱，三只小鸡值一钱，用一百钱买一百只鸡，请问公鸡、母鸡、小鸡各多少只？ 输入&emsp;&emsp;无输入 输出&emsp;&emsp;给出所有的解，每组解占一行&emsp;&emsp;解的顺序：按“字典序”排列，即公鸡数少的在前；公鸡数相同，母鸡数少的在前&emsp;&emsp;格式: 1cock=%d,hen=%d,chicken=%d\n 样例输入&emsp;&emsp;无 样例输出 1234cock=0,hen=25,chicken=75cock=4,hen=18,chicken=78cock=8,hen=11,chicken=81cock=12,hen=4,chicken=84 代码 12345678910111213#include &lt;stdio.h&gt;int main() &#123; for(int i=0;i*5&lt;=100;i++)&#123; for(int j=0;i*5+j*3&lt;=100;j++)&#123; if((100-i*5-j*3)*3+i+j==100) printf("cock=%d,hen=%d,chicken=%d\n",i,j,(100-i*5-j*3)*3); &#125; &#125; return 0;&#125; 三天打鱼两天晒网 题目描述&emsp;&emsp;如果一个渔夫从 2011 年 1 月 1 日开始每三天打一次渔，两天晒一次网，编程实现当输入 2011 1 月 1 日以后的任意一天，输出该渔夫是在打渔还是在晒网。 输入&emsp;&emsp;需要判断的日期 输出&emsp;&emsp;打鱼还是晒网 样例输入 12011 1 4 样例输出 1晒网 代码 12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;stdio.h&gt;int leap(int a) /*自定义函数leap()用来指定输入的年份是否为闰年*/&#123; if (a%4==0&amp;&amp;a%100!=0||a%400==0) /* 闰年判定条件 */ return 1; /*是闰年返回1*/ else return 0; /*不是闰年返回O*/&#125;int number(int year,int month,int day) /*自定义函数 number() 计算输入日期距2011年1月1日共有多少天*/&#123; int sum = 0, i, j, k; int a[12]=&#123;31,28,31,30,31,30,31,31,30,31,30,31&#125;; /*数组a存放平年每月的天数*/ int b[12]=&#123;31,29,31,30,31,30,31,31,30,31,30,31&#125;; /*数组b存放闰年每月的天数*/ if(leap(year)==1) /*判断是否为闰年*/ for(i=0;i&lt;month-1;i++) sum+=b[i]; /*是闰年，累加数组b前m-1个月份的天数*/ else for(i=0;i&lt;month-1;i++) sum+=a[i]; /*不是闰年，累加数组a前m-1个月份的天数*/ for(j=2011;j&lt;year;j++) if (leap(j)==i) sum+=366; /*2011年到输入的年份是闰年的加366*/ else sum+=365; /*2011年到输入的年份不是闰年的加365*/ sum+=day; /*将前面累加的结果加上日期，求出总天数*/ return sum; /*返回计算的天数*/&#125;int main()&#123; int year,month,day,n; scanf("%d%d%d",&amp;year,&amp;month,&amp;day); /*输入年月日*/ n=number(year,month,day); /*调用函数 number()*/ if((n%5)&lt;4&amp;&amp;(n%5)&gt;0) /*余数是1或2或3时说明在打渔，否则在晒网*/ printf("打鱼\n"); else printf("晒网\n"); return 0;&#125; 单词个数统计 题目描述&emsp;&emsp;编写一个程序，输入一个字符串（长度不超过80），然后统计出该字符串当中包含有多少个单词。例如：字符串“this is a book”当中包含有4个单词。 输入&emsp;&emsp;输入一个字符串，由若干个单词组成，单词之间用一个空格隔开。 输出&emsp;&emsp;输出一个整数，即单词的个数。 样例输入 1this is a book 样例输出 14 代码 1234567891011121314151617181920212223242526#include &lt;stdio.h&gt;int main() &#123; char str[255]=&#123;0&#125;; gets(str);//使用gets可将带空格的整行字符串读入 int w=0,sum=0; for(int i=0;str[i]!='\0';i++)&#123; if(str[i]!=' ')&#123; if(w==0)&#123; w=1; sum++; &#125; &#125; else&#123; w=0; &#125; &#125; printf("%d",sum); return 0;&#125; 杨辉三角 题目描述&emsp;&emsp;还记得中学时候学过的杨辉三角吗？具体的定义这里不再描述，你可以参考以下的图形：&emsp;&emsp;&emsp;&emsp;1&emsp;&emsp;&emsp;&emsp;1 1&emsp;&emsp;&emsp;&emsp;1 2 1&emsp;&emsp;&emsp;&emsp;1 3 3 1&emsp;&emsp;&emsp;&emsp;1 4 6 4 1&emsp;&emsp;&emsp;&emsp;1 5 10 10 5 1 输入&emsp;&emsp;输入数据包含多个测试实例，每个测试实例的输入只包含一个正整数n（1＜=n＜=30），表示将要输出的杨辉三角的层数。 输出&emsp;&emsp;对应于每一个输入，请输出相应层数的杨辉三角，每一层的整数之间用一个空格隔开，每一个杨辉三角后面加一个空行。 样例输入 12 3 样例输出 12345611 111 11 2 1 代码 12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;int main() &#123; int num[1000]=&#123;0&#125;; int n; while(~scanf("%d",&amp;n))&#123; for(int i=1;i&lt;=n;i++)&#123; for(int j=i-1;j&gt;=0;j--)&#123; if(j==0) num[j]=1; else if(j==i-1) num[j]=1; else num[j]=num[j]+num[j-1]; &#125; for(int j=0;j&lt;i;j++) printf("%d ",num[j]); printf("\n"); &#125; printf("\n"); &#125; return 0;&#125; 汉诺塔 题目描述&emsp;&emsp;汉诺塔是一种古老的游戏。&emsp;&emsp;一共3个柱子，标号为1,2,3&emsp;&emsp;1号柱子有从大到小一共n个盘子。&emsp;&emsp;每次移动最上方的一个盘子，可以移动到其他的柱子。&emsp;&emsp;任何一个盘子，都不能叠在比它更小的盘子的上方。&emsp;&emsp;请把盘子从1号柱子，全部移动到3号柱子。 输入&emsp;&emsp;一个数，n，表示盘子的数量（n&lt;=10） 输出&emsp;&emsp;输出若干行。&emsp;&emsp;每次操作，输出一行。输出“Move x from x to x”的格式。&emsp;&emsp;最小盘子的编号为1，最大盘子的编号为n。 样例输入 14 样例输出 123456789101112131415Move 1 from 1 to 2Move 2 from 1 to 3Move 1 from 2 to 3Move 3 from 1 to 2Move 1 from 3 to 1Move 2 from 3 to 2Move 1 from 1 to 2Move 4 from 1 to 3Move 1 from 2 to 3Move 2 from 2 to 1Move 1 from 3 to 1Move 3 from 2 to 3Move 1 from 1 to 2Move 2 from 1 to 3Move 1 from 2 to 3 代码 1234567891011121314151617181920212223#include &lt;stdio.h&gt;void hanoi(int from,int by,int to,int n)&#123; if(n==1) printf("Move %d from %d to %d\n",1,from,to); else&#123; hanoi(from,to,by,n-1); printf("Move %d from %d to %d\n",n,from,to); hanoi(by,from,to,n-1); &#125; &#125;int main() &#123; int n; scanf("%d",&amp;n); hanoi(1,2,3,n); return 0;&#125; 判断回文字符串 代码 支持中英文混合的版本1234567891011121314151617181920212223242526272829303132333435363738#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main()&#123; char str[255]; int len=0; int res=1; scanf("%s",str); len=strlen(str); for(int i=0,j=len-1;i&lt;j;i++,j--)&#123; if(str[i]&lt;0)&#123; if(i+1==j) break; if(!(str[i]==str[j-1] &amp;&amp; str[i+1]==str[j]))&#123; res=0; break; &#125; i++; j--; &#125; else&#123; if(!(str[i]==str[j]))&#123; res=0; break; &#125; &#125; &#125; if(res) printf("Yes\n"); else printf("No\n"); return 0;&#125; 求回文素数 题目描述&emsp;&emsp;小王对既是素数又是回文的数特别感兴趣。比如说151既是素数又是个回文。现在小王想要你帮助他找出某个范围内的素数回文数，请你写个程序找出 a 跟b 之间满足条件的数。(5 &lt;= a &lt; b &lt;= 100,000,000); 输入&emsp;&emsp;输入a和b(5 &lt;= a &lt; b &lt;= 100,000,000) 输出&emsp;&emsp;按从小到大输出a，b之间所有满足条件的素数回文数 样例输入 15 500 样例输出 1234567891011125711101131151181191313353373383 代码 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;math.h&gt;int isPrime(int n)&#123; if(n==2) return 1; if(n%2==0) return 0; for(int i=3;i&lt;=sqrt(n);i++) if(n%i==0) return 0; return 1;&#125;int isPalindrome(int n)&#123; char str[255]=&#123;0&#125;; sprintf(str,"%d",n); int len=strlen(str); for(int i=0;i&lt;len/2;i++) if(str[i]!=str[len-i-1]) return 0; return 1;&#125;int main()&#123; int a,b; scanf("%d %d",&amp;a,&amp;b); for(int i=a;i&lt;=b;i++) if(isPrime(i) &amp;&amp; isPalindrome(i)) printf("%d\n",i); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[排序 题目描述&emsp;&emsp;用对10个整数从小到大排序。 输入&emsp;&emsp;10个整数 输出&emsp;&emsp;排序好的10个整数 样例输入 14 85 3 234 45 345 345 122 30 12 样例输出 13 4 12 30 45 85 122 234 345 345 代码 冒泡排序12345678910111213141516171819202122232425#include &lt;stdio.h&gt;int main() &#123; int num[10]=&#123;0&#125;; int n=10; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); for(i=0;i&lt;n;i++) for(j=i+1;j&lt;n;j++)&#123; if(num[j]&lt;num[i])&#123; int t=num[j]; num[j]=num[i]; num[i]=t; &#125; &#125; for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 选择排序12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;int main() &#123; int num[10]=&#123;0&#125;; int n=10,min,t; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); for(i=0;i&lt;n;i++)&#123; min=i; for(j=i;j&lt;n;j++)&#123; if(num[j]&lt;num[min])&#123; min=j; &#125; &#125; t=num[i]; num[i]=num[min]; num[min]=t; &#125; for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 插入排序1234567891011121314151617181920212223242526#include &lt;stdio.h&gt;int main() &#123; int num[10]=&#123;0&#125;; int n=10,t; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); for(i=0;i&lt;n;i++)&#123; t=num[i]; j=i-1; while(j&gt;=0 &amp;&amp; t&lt;num[j])&#123; num[j+1]=num[j]; j--; &#125; num[j+1]=t; &#125; for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 希尔排序123456789101112131415161718192021222324252627282930#include &lt;stdio.h&gt;int main() &#123; int num[10]=&#123;0&#125;; int n=10,t,d; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); d=n/2; while(d&gt;=1)&#123; for(i=d;i&lt;n;i++)&#123; t=num[i]; j=i-d; while(j&gt;=0 &amp;&amp; t&lt;num[j])&#123; num[j+d]=num[j]; j-=d; &#125; num[j+d]=t; &#125; d/=2; &#125; for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 归并排序123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#include &lt;stdio.h&gt;void merge(int num[],int n1,int n2,int n3)&#123; int tmp[10]=&#123;0&#125;; int i,j,k; i=n1; j=n2+1; k=0; while(i&lt;=n2&amp;&amp;j&lt;=n3)&#123; if(num[i]&lt;num[j]) tmp[k++]=num[i++]; else tmp[k++]=num[j++]; &#125; while(i&lt;=n2) tmp[k++]=num[i++]; while(j&lt;=n3) tmp[k++]=num[j++]; for(i=n1,k=0;i&lt;=n3;i++,k++) num[i]=tmp[k];&#125;void mergesort(int num[],int begin,int end)&#123; if(begin&lt;end)&#123; int mid=(begin+end)/2; mergesort(num,begin,mid); mergesort(num,mid+1,end); merge(num,begin,mid,end); &#125;&#125;int main() &#123; int num[10]=&#123;0&#125;; int n=10,t,d; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); mergesort(num,0,n-1); for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 快速排序12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;stdio.h&gt;void quicksort(int num[],int begin,int end)&#123; int i,j,t; i=begin; j=end; t=num[i]; while(i&lt;j)&#123; while(i&lt;j &amp;&amp; t&lt;num[j])j--; if(i&lt;j)&#123; num[i]=num[j]; i++; &#125; while(i&lt;j &amp;&amp; t&gt;=num[i])i++; if(i&lt;j)&#123; num[j]=num[i]; j--; &#125; &#125; num[i]=t; if(begin&lt;i) quicksort(num,begin,i-1); if(i&lt;end) quicksort(num,i+1,end);&#125;int main() &#123; int num[10]=&#123;0&#125;; int n=10,t,d; int i,j; for(i=0;i&lt;n;i++) scanf("%d",num+i); quicksort(num,0,n-1); for(i=0;i&lt;n;i++) printf("%d ",num[i]); return 0;&#125; 最大公约数与最小公倍数 题目描述&emsp;&emsp;输入两个正整数m和n，求其最大公约数和最小公倍数。 输入&emsp;&emsp;两个整数 输出&emsp;&emsp;最大公约数，最小公倍数 样例输入 15 7 样例输出 11 35 代码 12345678910111213141516171819202122232425#include&lt;stdio.h&gt;int main()&#123; int a,b; scanf("%d%d",&amp;a,&amp;b); if(a&lt;b)&#123; int t=a; a=b; b=t; &#125; int p=a*b; int r; while(b!=0)&#123; r=a%b; a=b; b=r; &#125; printf("%d %d\n",a,p/a); return 0;&#125; 水仙花数 题目描述&emsp;&emsp;打印出所有”水仙花数”，所谓”水仙花数”是指一个三位数，其各位数字立方和等于该本身。 例如：153是一个水仙花数，因为$153=1^3+5^3+3^3$。 输入&emsp;&emsp;无 输出&emsp;&emsp;输出每一个水仙花数，一个数占一行 代码 12345678910111213141516#include&lt;stdio.h&gt;int main()&#123; for(int i =100 ;i&lt;1000;i++)&#123; int n1,n2,n3,t; t=i; n1=t%10; t/=10; n2=t%10; t/=10; n3=t%10; if(n1*n1*n1+n2*n2*n2+n3*n3*n3==i) printf("%d\n",i); &#125; return 0;&#125; 完全数 题目描述&emsp;&emsp;一个数如果恰好等于不包含它本身所有因子之和，这个数就称为”完数”。 例如，6的因子为1、2、3，而6=1+2+3，因此6是”完数”。 编程序找出N之内的所有完数，并按下面格式输出其因子 输入&emsp;&emsp;N 输出&emsp;&emsp;? its factors are ? ? ? 样例输入 11000 样例输出 1236 its factors are 1 2 3 28 its factors are 1 2 4 7 14 496 its factors are 1 2 4 8 16 31 62 124 248 代码 1234567891011121314151617181920212223242526#include&lt;stdio.h&gt;int main()&#123; int n; scanf("%d",&amp;n); for(int i=2;i&lt;=n;i++)&#123; int s=0; for(int j=1;j&lt;i;j++)&#123; if((i%j)==0)s+=j; &#125; if(i==s)&#123; printf("%d its factors are",i); for(int j=1;j&lt;i;j++) if(i%j==0) printf(" %d",j); printf("\n"); &#125; &#125; return 0;&#125; 亲密数 题目描述&emsp;&emsp;两个不同的自然数A和B，如果整数A的全部因子(包括1，不包括A本身)之和等于B；且整数B的全部因子(包括1，不包括B本身)之和等于A，则将整数A和B称为亲密数。求3000以内的全部亲密数。 输入&emsp;&emsp;无 输出&emsp;&emsp;3000以内的全部亲密数(输出格式:(A,B)，不加换行，不加分隔符号)&emsp;&emsp;一对亲密数只输出一次, 小的在前 样例输入&emsp;&emsp;无 样例输出 1(220,284)(1184,1210)(2620,2924) 代码 12345678910111213141516171819#include&lt;stdio.h&gt;int main()&#123; int a, i, b, n; printf("There are following friendly--numbers pair smaller than 3000:\n"); for( a=1; a&lt;3000; a++ ) /*穷举3000以内的全部整数*/ &#123; for( b=0, i=1; i&lt;=a/2; i++) /*计算数a的各因子，各因子之和存放于b*/ if(!(a%i)) b+=i; for( n=0, i=1; i&lt;=b/2; i++ ) /*计算b的各因子，各因子之和存于n*/ if(!(b%i)) n+=i; if(n==a &amp;&amp; a&lt;b) /*使每对亲密数只输出一次*/ printf("(%d,%d)", a, b); /*若n=a，则a和b是一对亲密数，输出*/ &#125; return 0;&#125; 自守数 题目描述&emsp;&emsp;自守数是指一个数的平方的尾数等于该数自身的自然数。&emsp;&emsp;例如：&emsp;&emsp;25^2=625&emsp;&emsp;76^2=5776&emsp;&emsp;9376^2=87909376&emsp;&emsp;请求出200000以内的自守数? 输入&emsp;&emsp;无 输出&emsp;&emsp;200000以内的自守数(包括0, 数之间用两个空格分开，末尾无空格) 样例输入&emsp;&emsp;无 样例输出 10 1 5 6 25 76 376 625 9376 90625 109376 代码 12345678910111213141516171819202122#include &lt;stdio.h&gt;#include &lt;math.h&gt;int main()&#123; printf("0"); for(int i=1;i&lt;=200000;i++)&#123; int len=0; for(int j=i;j&gt;0;j/=10,len++); int tail=0,t=i; for(int j=0;j&lt;len;j++)&#123; tail+=(i*(t%10)%(int)pow(10,len-j))*pow(10,j); t/=10; &#125; tail%=(int)pow(10,len); if(tail==i) printf(" %d",i); &#125; return 0;&#125; 求N之内的素数 题目描述&emsp;&emsp;求之N内的素数。 输入&emsp;&emsp;N 输出&emsp;&emsp;0～N的素数 样例输入 1100 样例输出 123456789101112131415161718192021222324252357111317192329313741434753596167717379838997 代码 筛选法12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;#include &lt;math.h&gt;int main() &#123; int num[10000]=&#123;0&#125;; int n; int i,j; scanf("%d",&amp;n); for(i=2;i&lt;=n;i++) num[i]=i; for(i=2;i&lt;sqrt(n);i++)&#123; for(j=i+1;j&lt;=n;j++)&#123; if(num[i]!=0 &amp;&amp; num[j]!=0) if(num[j]%num[i]==0) num[j]=0; &#125; &#125; for(i=2;i&lt;=n;i++) if(num[i]!=0) printf("%d\n",i); return 0;&#125; 枚举法123456789101112131415161718192021222324#include &lt;stdio.h&gt;int main() &#123; int n; scanf("%d",&amp;n); if(n&gt;=2) printf("2\n"); for(int i=3;i&lt;n;i+=2)&#123; int f=1; for(int j=3;j&lt;i/2;j++) if(i%j==0)&#123; f=0; break; &#125; if(f) printf("%d\n",i); &#125; return 0;&#125; 猴子吃桃的问题 题目描述&emsp;&emsp;猴子吃桃问题。猴子第一天摘下若干个桃子，当即吃了一半，还不过瘾，又多吃了一个。 第二天早上又将剩下的桃子吃掉一半，又多吃一个。以后每天早上都吃了前一天剩下的一半零一个。 到第N天早上想再吃时，见只剩下一个桃子了。求第一天共摘多少桃子。 输入&emsp;&emsp;N输出&emsp;&emsp;桃子总数 样例输入 110 样例输出 11534 代码 1234567891011121314151617#include &lt;stdio.h&gt;int main() &#123; int n; int res=1; scanf("%d",&amp;n); for(int i=1;i&lt;n;i++)&#123; res=(res+1)*2; &#125; printf("%d",res); return 0;&#125; 迭代法求平方根 题目描述&emsp;&emsp;用迭代法求平方根 &emsp;&emsp;公式：求a的平方根的迭代公式为： X[n+1]=(X[n]+a/X[n])/2 要求前后两次求出的差的绝对值少于0.00001。 输出保留3位小数 输入&emsp;&emsp;X 输出&emsp;&emsp;X的平方根 样例输入 14 样例输出 12.000 代码 1234567891011121314151617181920#include&lt;stdio.h&gt;int main()&#123; int X; scanf("%d",&amp;X); double x0,x1; x0=X/2; x1=(x0+X/x0)/2; do&#123; x0=x1; x1=(x0+X/x0)/2; &#125;while(x0-x1&gt;=1e-5); printf("%.3f",x1); return 0;&#125; 百钱百鸡问题 题目描述&emsp;&emsp;中国古代数学家张丘建在他的《算经》中提出了著名的“百钱买百鸡问题”：鸡翁一，值钱五，鸡母一，值钱三，鸡雏三，值钱一，百钱买百鸡，问翁、母、雏各几何？&emsp;&emsp;翻译过来就是：一只公鸡值五钱，一只母鸡值三钱，三只小鸡值一钱，用一百钱买一百只鸡，请问公鸡、母鸡、小鸡各多少只？ 输入&emsp;&emsp;无输入 输出&emsp;&emsp;给出所有的解，每组解占一行&emsp;&emsp;解的顺序：按“字典序”排列，即公鸡数少的在前；公鸡数相同，母鸡数少的在前&emsp;&emsp;格式: 1cock=%d,hen=%d,chicken=%d\n 样例输入&emsp;&emsp;无 样例输出 1234cock=0,hen=25,chicken=75cock=4,hen=18,chicken=78cock=8,hen=11,chicken=81cock=12,hen=4,chicken=84 代码 12345678910111213#include &lt;stdio.h&gt;int main() &#123; for(int i=0;i*5&lt;=100;i++)&#123; for(int j=0;i*5+j*3&lt;=100;j++)&#123; if((100-i*5-j*3)*3+i+j==100) printf("cock=%d,hen=%d,chicken=%d\n",i,j,(100-i*5-j*3)*3); &#125; &#125; return 0;&#125; 判断闰年 题目描述&emsp;&emsp;给年份year，定义一个宏，以判别该年份是否闰年。提示：宏名可以定义为LEAP_YEAR，形参为y，既定义宏的形式为 #define LEAP_YEAR(y) （读者设计的字符串） 输入&emsp;&emsp;一个年份 输出&emsp;&emsp;根据是否闰年输出，是输出”L”,否输出”N” 样例输入 12000 样例输出 1L 代码 12345678910111213141516#include &lt;stdio.h&gt;#define LEAP_YEAR(y) ((y%4==0 &amp;&amp; y%100!=0)||(y%400==0))?1:0int main()&#123; int year; scanf("%d",&amp;year); if(LEAP_YEAR(year)) printf("L"); else printf("N"); return 0;&#125; 三天打鱼两天晒网 题目描述&emsp;&emsp;如果一个渔夫从 2011 年 1 月 1 日开始每三天打一次渔，两天晒一次网，编程实现当输入 2011 1 月 1 日以后的任意一天，输出该渔夫是在打渔还是在晒网。 输入&emsp;&emsp;需要判断的日期 输出&emsp;&emsp;打鱼还是晒网 样例输入 12011 1 4 样例输出 1晒网 代码 12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;stdio.h&gt;int leap(int a) /*自定义函数leap()用来指定输入的年份是否为闰年*/&#123; if (a%4==0&amp;&amp;a%100!=0||a%400==0) /* 闰年判定条件 */ return 1; /*是闰年返回1*/ else return 0; /*不是闰年返回O*/&#125;int number(int year,int month,int day) /*自定义函数 number() 计算输入日期距2011年1月1日共有多少天*/&#123; int sum = 0, i, j, k; int a[12]=&#123;31,28,31,30,31,30,31,31,30,31,30,31&#125;; /*数组a存放平年每月的天数*/ int b[12]=&#123;31,29,31,30,31,30,31,31,30,31,30,31&#125;; /*数组b存放闰年每月的天数*/ if(leap(year)==1) /*判断是否为闰年*/ for(i=0;i&lt;month-1;i++) sum+=b[i]; /*是闰年，累加数组b前m-1个月份的天数*/ else for(i=0;i&lt;month-1;i++) sum+=a[i]; /*不是闰年，累加数组a前m-1个月份的天数*/ for(j=2011;j&lt;year;j++) if (leap(j)==i) sum+=366; /*2011年到输入的年份是闰年的加366*/ else sum+=365; /*2011年到输入的年份不是闰年的加365*/ sum+=day; /*将前面累加的结果加上日期，求出总天数*/ return sum; /*返回计算的天数*/&#125;int main()&#123; int year,month,day,n; scanf("%d%d%d",&amp;year,&amp;month,&amp;day); /*输入年月日*/ n=number(year,month,day); /*调用函数 number()*/ if((n%5)&lt;4&amp;&amp;(n%5)&gt;0) /*余数是1或2或3时说明在打渔，否则在晒网*/ printf("打鱼\n"); else printf("晒网\n"); return 0;&#125; 单词个数统计 题目描述&emsp;&emsp;编写一个程序，输入一个字符串（长度不超过80），然后统计出该字符串当中包含有多少个单词。例如：字符串“this is a book”当中包含有4个单词。 输入&emsp;&emsp;输入一个字符串，由若干个单词组成，单词之间用一个空格隔开。 输出&emsp;&emsp;输出一个整数，即单词的个数。 样例输入 1this is a book 样例输出 14 代码 1234567891011121314151617181920212223242526#include &lt;stdio.h&gt;int main() &#123; char str[255]=&#123;0&#125;; gets(str);//使用gets可将带空格的整行字符串读入 int w=0,sum=0; for(int i=0;str[i]!='\0';i++)&#123; if(str[i]!=' ')&#123; if(w==0)&#123; w=1; sum++; &#125; &#125; else&#123; w=0; &#125; &#125; printf("%d",sum); return 0;&#125; 杨辉三角 题目描述&emsp;&emsp;还记得中学时候学过的杨辉三角吗？具体的定义这里不再描述，你可以参考以下的图形：&emsp;&emsp;&emsp;&emsp;1&emsp;&emsp;&emsp;&emsp;1 1&emsp;&emsp;&emsp;&emsp;1 2 1&emsp;&emsp;&emsp;&emsp;1 3 3 1&emsp;&emsp;&emsp;&emsp;1 4 6 4 1&emsp;&emsp;&emsp;&emsp;1 5 10 10 5 1 输入&emsp;&emsp;输入数据包含多个测试实例，每个测试实例的输入只包含一个正整数n（1＜=n＜=30），表示将要输出的杨辉三角的层数。 输出&emsp;&emsp;对应于每一个输入，请输出相应层数的杨辉三角，每一层的整数之间用一个空格隔开，每一个杨辉三角后面加一个空行。 样例输入 12 3 样例输出 12345611 111 11 2 1 代码 12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;int main() &#123; int num[1000]=&#123;0&#125;; int n; while(~scanf("%d",&amp;n))&#123; for(int i=1;i&lt;=n;i++)&#123; for(int j=i-1;j&gt;=0;j--)&#123; if(j==0) num[j]=1; else if(j==i-1) num[j]=1; else num[j]=num[j]+num[j-1]; &#125; for(int j=0;j&lt;i;j++) printf("%d ",num[j]); printf("\n"); &#125; printf("\n"); &#125; return 0;&#125; 汉诺塔 题目描述&emsp;&emsp;汉诺塔是一种古老的游戏。&emsp;&emsp;一共3个柱子，标号为1,2,3&emsp;&emsp;1号柱子有从大到小一共n个盘子。&emsp;&emsp;每次移动最上方的一个盘子，可以移动到其他的柱子。&emsp;&emsp;任何一个盘子，都不能叠在比它更小的盘子的上方。&emsp;&emsp;请把盘子从1号柱子，全部移动到3号柱子。 输入&emsp;&emsp;一个数，n，表示盘子的数量（n&lt;=10） 输出&emsp;&emsp;输出若干行。&emsp;&emsp;每次操作，输出一行。输出“Move x from x to x”的格式。&emsp;&emsp;最小盘子的编号为1，最大盘子的编号为n。 样例输入 14 样例输出 123456789101112131415Move 1 from 1 to 2Move 2 from 1 to 3Move 1 from 2 to 3Move 3 from 1 to 2Move 1 from 3 to 1Move 2 from 3 to 2Move 1 from 1 to 2Move 4 from 1 to 3Move 1 from 2 to 3Move 2 from 2 to 1Move 1 from 3 to 1Move 3 from 2 to 3Move 1 from 1 to 2Move 2 from 1 to 3Move 1 from 2 to 3 代码 1234567891011121314151617181920212223#include &lt;stdio.h&gt;void hanoi(int from,int by,int to,int n)&#123; if(n==1) printf("Move %d from %d to %d\n",1,from,to); else&#123; hanoi(from,to,by,n-1); printf("Move %d from %d to %d\n",n,from,to); hanoi(by,from,to,n-1); &#125; &#125;int main() &#123; int n; scanf("%d",&amp;n); hanoi(1,2,3,n); return 0;&#125; 判断回文字符串 代码 支持中英文混合的版本1234567891011121314151617181920212223242526272829303132333435363738#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main()&#123; char str[255]; int len=0; int res=1; scanf("%s",str); len=strlen(str); for(int i=0,j=len-1;i&lt;j;i++,j--)&#123; if(str[i]&lt;0)&#123; if(i+1==j) break; if(!(str[i]==str[j-1] &amp;&amp; str[i+1]==str[j]))&#123; res=0; break; &#125; i++; j--; &#125; else&#123; if(!(str[i]==str[j]))&#123; res=0; break; &#125; &#125; &#125; if(res) printf("Yes\n"); else printf("No\n"); return 0;&#125; 求回文素数 题目描述&emsp;&emsp;小王对既是素数又是回文的数特别感兴趣。比如说151既是素数又是个回文。现在小王想要你帮助他找出某个范围内的素数回文数，请你写个程序找出 a 跟b 之间满足条件的数。(5 &lt;= a &lt; b &lt;= 100,000,000); 输入&emsp;&emsp;输入a和b(5 &lt;= a &lt; b &lt;= 100,000,000) 输出&emsp;&emsp;按从小到大输出a，b之间所有满足条件的素数回文数 样例输入 15 500 样例输出 1234567891011125711101131151181191313353373383 代码 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;math.h&gt;int isPrime(int n)&#123; if(n==2) return 1; if(n%2==0) return 0; for(int i=3;i&lt;=sqrt(n);i++) if(n%i==0) return 0; return 1;&#125;int isPalindrome(int n)&#123; char str[255]=&#123;0&#125;; sprintf(str,"%d",n); int len=strlen(str); for(int i=0;i&lt;len/2;i++) if(str[i]!=str[len-i-1]) return 0; return 1;&#125;int main()&#123; int a,b; scanf("%d %d",&amp;a,&amp;b); for(int i=a;i&lt;=b;i++) if(isPrime(i) &amp;&amp; isPalindrome(i)) printf("%d\n",i); return 0;&#125;]]></content>
       <categories>
         <category>计算机</category>
         <category>算法题</category>
@@ -141,8 +155,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -155,8 +169,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -169,8 +183,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -183,8 +197,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -197,8 +211,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -211,8 +225,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -225,8 +239,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -239,8 +253,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -253,8 +267,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -267,8 +281,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -281,8 +295,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -295,8 +309,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -309,8 +323,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -347,8 +361,8 @@
         <category>Python</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>机器学习</tag>
+        <tag>Python</tag>
         <tag>PyQt5</tag>
       </tags>
   </entry>
@@ -361,11 +375,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -377,11 +391,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -393,11 +407,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -425,11 +439,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -441,11 +455,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -475,8 +489,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>语法</tag>
         <tag>Pythonista</tag>
+        <tag>语法</tag>
       </tags>
   </entry>
   <entry>
@@ -573,8 +587,8 @@
         <category>C/C++</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>环境</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1001,8 +1015,8 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>考研</tag>
+        <tag>C/C++</tag>
         <tag>真题</tag>
       </tags>
   </entry>
@@ -1029,11 +1043,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1133,11 +1147,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1271,11 +1285,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1369,8 +1383,8 @@
       <tags>
         <tag>算法题</tag>
         <tag>LeetCode</tag>
-        <tag>算法：链表</tag>
         <tag>算法：双指针</tag>
+        <tag>算法：链表</tag>
       </tags>
   </entry>
   <entry>
@@ -1410,11 +1424,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1426,11 +1440,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1800,11 +1814,11 @@
         <category>复试</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>考研</tag>
         <tag>复试</tag>
         <tag>机器学习</tag>
         <tag>数据挖掘</tag>
+        <tag>Python</tag>
         <tag>环境</tag>
       </tags>
   </entry>
@@ -2118,8 +2132,8 @@
         <category>环境</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>机器学习</tag>
+        <tag>Python</tag>
         <tag>环境</tag>
         <tag>学习日志</tag>
       </tags>
@@ -2311,8 +2325,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Pythonista</tag>
         <tag>环境</tag>
+        <tag>Pythonista</tag>
       </tags>
   </entry>
   <entry>
@@ -2325,8 +2339,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Pythonista</tag>
         <tag>环境</tag>
+        <tag>Pythonista</tag>
       </tags>
   </entry>
   <entry>
@@ -2433,8 +2447,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -2447,8 +2461,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -2461,8 +2475,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>计算机网络</tag>
         <tag>真题</tag>
+        <tag>计算机网络</tag>
       </tags>
   </entry>
   <entry>
@@ -2623,8 +2637,8 @@
         <category>离散数学</category>
       </categories>
       <tags>
-        <tag>离散数学</tag>
         <tag>理论</tag>
+        <tag>离散数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2651,8 +2665,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>理论</tag>
         <tag>数学</tag>
+        <tag>理论</tag>
         <tag>高次多项式</tag>
         <tag>综合除法</tag>
         <tag>余数定理</tag>
@@ -2668,8 +2682,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>理论</tag>
         <tag>数学</tag>
+        <tag>理论</tag>
         <tag>高次多项式</tag>
         <tag>综合除法</tag>
         <tag>因式分解</tag>
@@ -2685,8 +2699,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>理论</tag>
         <tag>数学</tag>
+        <tag>理论</tag>
         <tag>复数</tag>
         <tag>微分方程</tag>
       </tags>
