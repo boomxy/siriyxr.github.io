@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[片单]]></title>
+    <url>%2Fposts%2F20200317113125id.html</url>
+    <content type="text"><![CDATA[20202020.03.14 恶魔城：第一季、第二季 2020.03.10 怪诞小镇：第一季 神探伽利略：第一季 我的三体之章北海传 穷豪旅游记：第一季、第二季 2020.03.06 天使降临到我身边 2020.03.2 我们的父辈 2020.02.17 仁医 2020.02.08 高堡奇人 2020.01.10 曼达洛人：第一季 2020.01.02 瑞克和莫迪：第四季 20192019.08.11 黑袍纠察队：第一季 2019.08.02 黄石：第一季、第二季 2019.05.18 切尔诺贝利 2019.04.15 权力的游戏：第八季 2019.03.20 爱.死亡和机器人 2019.02.07 流浪地球 猎魔人：第一季 这个勇者明明超强却过分谨慎 动物狂想曲：第一季 人生一串：第一季 刀剑神域:爱丽丝篇 异界战争 我的英雄学院 轮到你了 龙马传 真田丸 青春猪头少年不会梦到怀梦美少女 青春猪头少年不会梦到兔女郎学姐 辉夜大小姐想让我告白~天才们的恋爱头脑战~ 鬼灭之刃 食戟之灵 灵能百分百：第一季、第二季 约定的梦幻岛：第一季 关于我转生成史莱姆这件事：第一季 多罗罗 老友记：第一季~第五季 李狗嗨 半泽直树 龙樱 死亡笔记 西部世界：第二季 南方公园 20182018.07.13 我不是药神 工作细胞 埃罗芒阿老师 我的妹妹不可能这么可爱 后街女孩 中二病也要谈恋爱 小林家的龙女仆 女神异闻录 永生之酒 新世纪福音战士 20172017.08.25 极盗车神 2017.07.31 战狼2 2017.01.08 血战钢锯岭 2017.01.07 星球大战外传：侠盗一号 逃避可耻但有用 四重奏 新参者 IT狂人 黑镜 西部世界：第一季 20162016.09.02 星际迷航3：超越星辰 2016.08.29 谍影重重5 2016.08.26 冰川时代5：星际碰撞 2016.08.02 爱宠大机密 2016.07.22 绝地逃亡 2016.06.26 独立日：卷土重来 2016.06.09 魔兽 2016.06.08 X战警：天启 2016.03.04 疯狂动物城 2016.01.23 功夫熊猫3 神探夏洛克 绝命毒师 纸牌屋 权力的游戏：第一季~第七季 20152015.11.29 火星救援 2015.07.17 西游记之大圣归来 2015.05.16 复仇者联盟2 2015.04.04 王牌特工：特工学院 2015.01.23 霍比特人：五军之战 20142014.11.15 马达加斯加的企鹅 星际穿越 2014.10.10 银河护卫队 2014.08.14 驯龙高手2 2014.07.03 变形金刚4：绝迹重生 2014.06.06 明日边缘 2014.05.24 X战警：逆转未来 2014.05.10 超凡蜘蛛侠2 2014.05.01 催眠大师 2014.04.30 同桌的你 2014.04.25 里约大冒险2 2014.04.05 美国队长2]]></content>
+      <categories>
+        <category>生活</category>
+        <category>影视</category>
+      </categories>
+      <tags>
+        <tag>影视</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[学习日志200316：C/C++数据输入练习]]></title>
     <url>%2Fposts%2F20200316215357id.html</url>
     <content type="text"><![CDATA[A+B I题目地址 &emsp;&emsp;此题只要求用户求A+B的和，第一行会提前告诉你有几组数据，然后第二行开始到结束为测试用例。 样例输入 12321 23 4 样例输出 1237 C语言 12345678910111213#include&lt;stdio.h&gt;int main()&#123; int n; int a,b; scanf("%d",&amp;n); while(n--) &#123; scanf("%d%d",&amp;a,&amp;b); printf("%d\n",a+b); &#125; return 0;&#125; C++ 1234567891011121314#include &lt;iostream&gt;using namespace std;int main()&#123; int n; int a,b; cin&gt;&gt;n; while(n--) &#123; cin&gt;&gt;a&gt;&gt;b; cout&lt;&lt;a+b&lt;&lt;endl; &#125; return 0;&#125; A+B II题目地址 &emsp;&emsp;依然是A+B，但此类题目往往说明测试数据有多组但没说具体有几组。则默认是到文件(后台测试用例在文件里)末尾结束EOF，如果手动在控制台输入则没有EOF。我们则可以采用循环的方式不断接收测试用例，并且每接收一组输出一组(不必全部输入再全部输出，因为OJ只比对一次最后的结果)。 样例输入 121 23 4 样例输出 1237 C语言 12345678#include&lt;stdio.h&gt;int main()&#123; int a,b; while(~scanf("%d%d",&amp;a,&amp;b)) //利用scanf的返回值 printf("%d\n",a+b); return 0;&#125; C++ 123456789#include&lt;iostream&gt;using namespace std;int main()&#123; int a,b; while(cin&gt;&gt;a&gt;&gt;b) cout&lt;&lt;(a+b)&lt;&lt;endl; return 0;&#125; A+B III题目地址 &emsp;&emsp;继续是A+B，不同的是题目中说明，有多组数据，但是以A和B都为0时结束，则此时，就要做判断。不能依然输出0。 样例输入 1231 23 40 0 样例输出 1237 C语言 123456789101112#include&lt;stdio.h&gt;int main()&#123; int a,b; while(~scanf("%d%d",&amp;a,&amp;b)) &#123; if(a==0&amp;&amp;b==0) break; printf("%d\n",a+b); &#125; return 0;&#125; C++ 1234567891011121314#include &lt;iostream&gt;using namespace std;int main()&#123; int a,b; while(true) &#123; cin&gt;&gt;a&gt;&gt;b; if(a==0&amp;&amp;b==0) break; cout&lt;&lt;a+b&lt;&lt;endl; &#125; return 0;&#125; A+B IV题目链接 &emsp;&emsp;此类题目是求n个数的和，输第一行会提前告诉你有几组数据，然后第二行开始到结束为测试用例，且每行第一个数字代表该行之后有多少个数字要求和。 样例输入 12324 1 2 3 45 1 2 3 4 5 样例输出 121015 C语言 12345678910111213141516171819#include &lt;stdio.h&gt;int main()&#123; int n; scanf("%d",&amp;n); while(n--) &#123; int k; scanf("%d",&amp;k); int sum=0; for(int i=0;i&lt;k;i++)&#123; int t; scanf("%d",&amp;t); sum+=t; &#125; printf("%d\n",sum); &#125; return 0;&#125; C++ 1234567891011121314151617181920#include &lt;iostream&gt;using namespace std;int main()&#123; int n; cin&gt;&gt;n; while(n--) &#123; int k; cin&gt;&gt;k; int sum=0; for(int i=0;i&lt;k;i++)&#123; int t; cin&gt;&gt;t; sum+=t; &#125; cout&lt;&lt;sum&lt;&lt;endl; &#125; return 0;&#125; A+B V题目链接 &emsp;&emsp;此类题目是求n个数的和，输入为先输入一个n，然后后面跟n个数字，求这n个数字的和。同样有多组数据，当n=0时结束。 样例输入 1234 1 2 3 45 1 2 3 4 50 样例输出 121015 C语言 12345678910111213141516171819#include &lt;stdio.h&gt;int main()&#123; int n; while(1) &#123; scanf("%d",&amp;n); if(n==0) break; int sum=0; for(int i=0;i&lt;n;i++)&#123; int t; scanf("%d",&amp;t); sum+=t; &#125; printf("%d\n",sum); &#125; return 0;&#125; C++ 1234567891011121314151617181920#include &lt;iostream&gt;using namespace std;int main()&#123; int n; while(true) &#123; cin&gt;&gt;n; if(n==0) break; int sum=0; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; sum+=t; &#125; cout&lt;&lt;sum&lt;&lt;endl; &#125; return 0;&#125; A+B VI题目链接 &emsp;&emsp;输入有若干行数据，但没告诉你具体有几行。每行第一个数字代表该行之后有多少个数字要求和。 样例输入 124 1 2 3 45 1 2 3 4 5 样例输出 121015 C语言 12345678910111213141516#include &lt;stdio.h&gt;int main()&#123; int n; while(~scanf("%d",&amp;n)) &#123; int sum=0; for(int i=0;i&lt;n;i++)&#123; int t; scanf("%d",&amp;t); sum+=t; &#125; printf("%d\n",sum); &#125; return 0;&#125; C++ 1234567891011121314151617#include &lt;iostream&gt;using namespace std;int main()&#123; int n; while(cin&gt;&gt;n) &#123; int sum=0; for(int i=0;i&lt;n;i++)&#123; int t; cin&gt;&gt;t; sum+=t; &#125; cout&lt;&lt;sum&lt;&lt;endl; &#125; return 0;&#125; 参考资料 『ACM入门』蓝桥杯ACM训练系统基本输入输出教程]]></content>
@@ -424,8 +436,8 @@
         <category>Python</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Python</tag>
+        <tag>iOS</tag>
         <tag>Pythonista</tag>
         <tag>项目</tag>
       </tags>
@@ -472,8 +484,8 @@
         <category>Python</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Python</tag>
+        <tag>iOS</tag>
         <tag>Pythonista</tag>
         <tag>项目</tag>
       </tags>
@@ -2229,8 +2241,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2243,8 +2255,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2271,8 +2283,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2311,8 +2323,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2393,8 +2405,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2433,8 +2445,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2502,8 +2514,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2543,8 +2555,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2609,8 +2621,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2651,8 +2663,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
