@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Pythonista中文文档 reminders — 访问iOS上的提醒事项数据库&amp;emsp;&amp;emsp;reminders模块提供读/写访问iOS上的提醒事项数据库。提醒事项以Reminder类和提醒列表Calendar类进行呈现。  注意：当你第一次使用任何函数去访问你的提醒事项时，系统会自动弹出一个权限对话框。如果你拒绝访问，大多数函数会返回空数据。如果你之后改变了想法，你可以在系统设置的隐">
+<meta name="keywords" content="Python,Pythonista,文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pythonista中文文档：reminders">
+<meta property="og:url" content="https://blog.siriyang.cn/posts/20200322114426id.html">
+<meta property="og:site_name" content="SiriBlog">
+<meta property="og:description" content="Pythonista中文文档 reminders — 访问iOS上的提醒事项数据库&amp;emsp;&amp;emsp;reminders模块提供读/写访问iOS上的提醒事项数据库。提醒事项以Reminder类和提醒列表Calendar类进行呈现。  注意：当你第一次使用任何函数去访问你的提醒事项时，系统会自动弹出一个权限对话框。如果你拒绝访问，大多数函数会返回空数据。如果你之后改变了想法，你可以在系统设置的隐">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-22T06:04:03.439Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pythonista中文文档：reminders">
+<meta name="twitter:description" content="Pythonista中文文档 reminders — 访问iOS上的提醒事项数据库&amp;emsp;&amp;emsp;reminders模块提供读/写访问iOS上的提醒事项数据库。提醒事项以Reminder类和提醒列表Calendar类进行呈现。  注意：当你第一次使用任何函数去访问你的提醒事项时，系统会自动弹出一个权限对话框。如果你拒绝访问，大多数函数会返回空数据。如果你之后改变了想法，你可以在系统设置的隐">
+  <link rel="canonical" href="https://blog.siriyang.cn/posts/20200322114426id">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Pythonista中文文档：reminders | SiriBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SiriBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">siriyang的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>排行榜</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">68</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">24</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">204</span></a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-lab">
+      
+    
+      
+    
+
+    <a href="/lab" rel="section"><i class="menu-item-icon fa fa-fw fa-flask"></i> <br>lab</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.siriyang.cn/posts/20200322114426id.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SiriYang">
+      <meta itemprop="description" content="苦逼的考研党">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SiriBlog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">Pythonista中文文档：reminders
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-22 11:44:26 / 修改时间：14:04:03" itemprop="dateCreated datePublished" datetime="2020-03-22T11:44:26+08:00">2020-03-22</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/技术/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/posts/20200322114426id.html" class="post-meta-item leancloud_visitors" data-flag-title="Pythonista中文文档：reminders" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/20200322114426id.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/20200322114426id.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>4.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="/posts/20200321202131id.html">Pythonista中文文档</a></p>
+<h1 id="reminders-—-访问iOS上的提醒事项数据库"><a href="#reminders-—-访问iOS上的提醒事项数据库" class="headerlink" title="reminders — 访问iOS上的提醒事项数据库"></a>reminders — 访问iOS上的提醒事项数据库</h1><p>&emsp;&emsp;<code>reminders</code>模块提供读/写访问iOS上的提醒事项数据库。提醒事项以<code>Reminder</code>类和提醒列表<code>Calendar</code>类进行呈现。</p>
+<blockquote>
+<p>注意：当你第一次使用任何函数去访问你的提醒事项时，系统会自动弹出一个权限对话框。如果你拒绝访问，大多数函数会返回空数据。如果你之后改变了想法，你可以在系统设置的隐私页面设置Pythonista访问提醒事项的权限。</p>
+</blockquote>
+<hr>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="浏览已存在的提醒"><a href="#浏览已存在的提醒" class="headerlink" title="浏览已存在的提醒"></a>浏览已存在的提醒</h3><p>&emsp;&emsp;使用<code>get_reminders()</code>浏览数据库中的所有提醒事项。通过<code>completed</code>参数，你可以按照完成状态（是否已检查）来过滤列表中的提醒事项。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> reminders</span><br><span class="line">todo = reminders.get_reminders(completed=<span class="literal">False</span>)</span><br><span class="line">print(<span class="string">'TODO List'</span>)</span><br><span class="line">print(<span class="string">'========='</span>)</span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> todo:</span><br><span class="line">    print(<span class="string">'[ ] '</span> + r.title)</span><br><span class="line">done = reminders.get_reminders(completed=<span class="literal">True</span>)</span><br><span class="line">print(<span class="string">'DONE'</span>)</span><br><span class="line">print(<span class="string">'===='</span>)</span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> done:</span><br><span class="line">    print(<span class="string">'[x] '</span> + r.title)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="添加新提醒"><a href="#添加新提醒" class="headerlink" title="添加新提醒"></a>添加新提醒</h3><p>&emsp;&emsp;要添加新的提醒，只需创建一个<code>Reminder</code>对象，设置其标题，截止日期等，然后调用其<code>Reminder.save()</code>方法即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> reminders</span><br><span class="line">r = reminders.Reminder()</span><br><span class="line">r.title = <span class="string">'Added from Pythonista'</span></span><br><span class="line">r.save()</span><br><span class="line">print(<span class="string">'Reminder added'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;您可以在提醒事项应用中拥有多个提醒列表。这些列表由<code>Calendar</code>模块中的对象表示。如果没有明确指定，提醒将添加到默认列表/日历中。要将提醒添加到其他列表，只需通过相应<code>Calendar</code>创建提醒。</p>
+<p>&emsp;&emsp;以下示例查找标题为“Pythonista”的日历，并向其添加新的提醒（如果存在）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> reminders</span><br><span class="line">all_calendars = reminders.get_all_calendars()</span><br><span class="line"><span class="keyword">for</span> calendar <span class="keyword">in</span> all_calendars:</span><br><span class="line">    <span class="keyword">if</span> calendar.title == <span class="string">'Pythonista'</span>:</span><br><span class="line">        r = reminders.Reminder(calendar)</span><br><span class="line">        r.title = <span class="string">'New Reminder in Pythonista List'</span></span><br><span class="line">        r.save()</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'Could not find calendar named "Pythonista"'</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="添加日历"><a href="#添加日历" class="headerlink" title="添加日历"></a>添加日历</h3><p>&emsp;&emsp;您还可以通过编程方式创建新的日历。本示例添加一个标题为Pythonista的日历（如果尚不存在）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> reminders</span><br><span class="line">all_calendars = reminders.get_all_calendars()</span><br><span class="line"><span class="keyword">for</span> calendar <span class="keyword">in</span> all_calendars:</span><br><span class="line">    <span class="keyword">if</span> calendar.title == <span class="string">'Pythonista'</span>:</span><br><span class="line">        print(<span class="string">'Calendar "Pythonista" already exists'</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    new_calendar = reminders.Calendar()</span><br><span class="line">    new_calendar.title = <span class="string">'Pythonista'</span></span><br><span class="line">    new_calendar.save()</span><br><span class="line">    print(<span class="string">'New calendar added'</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="添加警报"><a href="#添加警报" class="headerlink" title="添加警报"></a>添加警报</h3><p>&emsp;&emsp;提醒在实际提醒您某些事情（例如显示通知）时会更加有用。为此，您必须在提醒中添加一个或多个<code>Alarm</code>。<code>Alarm</code>可以在特定时间或在到达/离开某地理位置时触发。</p>
+<p>&emsp;&emsp;首先让我们看看基于日期/时间的警报。本示例添加了一个新的提醒，该提醒会从现在开始25分钟后触发通知：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> reminders</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">r = reminders.Reminder()</span><br><span class="line">r.title = <span class="string">'Take a break!'</span></span><br><span class="line">minutes = <span class="number">25</span></span><br><span class="line">due = datetime.datetime.now() + datetime.timedelta(minutes=minutes)</span><br><span class="line"><span class="comment"># 注意：这里我们将警报时间和提醒截止日期设为相同时间，但他们也可以不一样。</span></span><br><span class="line">r.due_date = due</span><br><span class="line">a = reminders.Alarm()</span><br><span class="line">a.date = due</span><br><span class="line">r.alarms = [a]</span><br><span class="line">r.save()</span><br><span class="line">print(<span class="string">'You will be reminded in %i minutes.'</span> % minutes)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;要添加基于地理位置的警报，您必须指定标题，纬度和经度。您还可以指定半径，以及进入或离开该半径时是否应触发警报：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> reminders</span><br><span class="line"></span><br><span class="line">r = reminders.Reminder()</span><br><span class="line">r.title = <span class="string">'Take a selfie'</span></span><br><span class="line"></span><br><span class="line">a = reminders.Alarm()</span><br><span class="line">lat, lng = <span class="number">37.332224</span>, <span class="number">-122.030780</span></span><br><span class="line">radius = <span class="number">500</span> <span class="comment"># 单位为米</span></span><br><span class="line">title = <span class="string">'1 Infinite Loop'</span></span><br><span class="line">a.location = (title, lat, lng, radius)</span><br><span class="line">a.proximity = <span class="string">'enter'</span></span><br><span class="line">r.alarms = [a]</span><br><span class="line">r.save()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>reminders.<strong>get_reminders</strong>(calendar=None, completed=None)</p>
+<p>&emsp;&emsp;返回给定日历（或所有日历）中的所有提醒。</p>
+<p>&emsp;&emsp;如果省略calendar参数或为None，则返回所有日历中的所有提醒。</p>
+<p>&emsp;&emsp;<code>completed</code> 参数可以通过完成状态来过滤提醒：</p>
+<ul>
+<li>None （默认）：返回所有提醒</li>
+<li>True ：仅返回已完成（已检查）的提醒</li>
+<li>False ：仅返回尚未完成的提醒</li>
+</ul>
+<hr>
+<p>reminders.<strong>get_all_calendars</strong>()</p>
+<p>&emsp;&emsp;返回所有可用日历（Calendar对象）的列表。日历代表提醒列表。</p>
+<hr>
+<p>reminders.<strong>get_default_calendar</strong>()</p>
+<p>&emsp;&emsp;返回默认情况下提醒所添加到的日历。</p>
+<hr>
+<p>reminders.<strong>get_calendar</strong>(calendar_id)</p>
+<p>&emsp;&emsp;通过唯一标识符返回特定日历。如果没有对应的日历则返回<code>None</code>。</p>
+<hr>
+<p>reminders.<strong>delete_reminder</strong>(reminder)</p>
+<p>&emsp;&emsp;从数据库删除一个提醒。</p>
+<p>&emsp;&emsp;如果删除成功则返回<code>True</code>，否则返回<code>Fales</code>。</p>
+<hr>
+<p>reminders.<strong>delete_calendar</strong>(calendar)</p>
+<p>&emsp;&emsp;从数据库删除一个日历。</p>
+<p>&emsp;&emsp;如果删除成功则返回<code>True</code>，否则返回<code>Fales</code>。</p>
+<hr>
+<h3 id="Calendar-对象"><a href="#Calendar-对象" class="headerlink" title="Calendar 对象"></a>Calendar 对象</h3><p>class reminders.<strong>Calendar</strong></p>
+<p>&emsp;&emsp;<code>Calendar</code>对象代表提醒列表。每个提醒都属于一个日历，你可以使用该<code>get_reminders()</code>函数检索特定日历的提醒。要获取新提醒的默认日历，请使用<code>get_default_calendar()</code>。每个日历都有一个唯一的标识符可以使你准确地（使用函数<code>get_calendar()</code>）检索它，无论标题是否更改。</p>
+<hr>
+<h3 id="Calendar-属性"><a href="#Calendar-属性" class="headerlink" title="Calendar 属性"></a>Calendar 属性</h3><p>Calendar.<strong>title</strong></p>
+<p>&emsp;&emsp;提醒列表的标题（string/unicode）</p>
+<hr>
+<p>Calendar.<strong>identifier</strong></p>
+<p>&emsp;&emsp;日历的唯一标识符（只读，string）。</p>
+<p>&emsp;&emsp;即使它的标题可能已更改，它也可以用于以后检索此特定日历。</p>
+<hr>
+<h3 id="Calendar-方法"><a href="#Calendar-方法" class="headerlink" title="Calendar 方法"></a>Calendar 方法</h3><p>Calendar.<strong>save</strong>()</p>
+<p>&emsp;&emsp;将更改保存到数据库（仅保存日历的元数据，必须使用对象自己的<code>Reminder.save()</code>方法保存日历内的提醒）。</p>
+<hr>
+<h3 id="Reminder-对象"><a href="#Reminder-对象" class="headerlink" title="Reminder 对象"></a>Reminder 对象</h3><p>class reminders.<strong>Reminder</strong>([calendar])</p>
+<p>&emsp;&emsp;<code>Reminder</code>对象表示列表中的单个提醒。提醒可以具有多个附加<code>Alarm</code>对象，这些对象确定系统何时/何地/是否显示提醒通知。</p>
+<p>&emsp;&emsp;提醒始终包含在<code>Calendar</code>代表的提醒的列表中。如果你在初始化<code>Reminder</code>时未指定特定<code>Calendar</code>，则将会使用默认日历。</p>
+<hr>
+<h3 id="Reminder-属性"><a href="#Reminder-属性" class="headerlink" title="Reminder 属性"></a>Reminder 属性</h3><p>Reminder.<strong>alarms</strong></p>
+<p>&emsp;&emsp;与该提醒关联的<code>Alarm</code>对象列表。</p>
+<blockquote>
+<p>注意：该值表示副本/快照；除非您重新分配属性，否则就地更改列表不会更改警报。</p>
+</blockquote>
+<hr>
+<p>Reminder.<strong>completed</strong></p>
+<p>&emsp;&emsp;提醒是否已完成（检查）（boolean）。</p>
+<hr>
+<p>Reminder.<strong>completion_date</strong></p>
+<p>&emsp;&emsp;该提醒完成（检查）的日期，如果它尚未完成则为<code>None</code>。</p>
+<hr>
+<p>Reminder.<strong>due_date</strong></p>
+<p>&emsp;&emsp;提醒的截止日期。</p>
+<blockquote>
+<p>注意：设置到期日期与设置警报不同。虽然提醒事项应用中显示了日期到期，但您也不会收到通知，除非您还添加了<code>Alarm</code>（通过设置提醒的<code>alarms</code>属性）。</p>
+</blockquote>
+<hr>
+<p>Reminder.<strong>notes</strong></p>
+<p>&emsp;&emsp;提醒的其他说明 （string/unicode）。</p>
+<hr>
+<p>Reminder.<strong>priority</strong></p>
+<p>&emsp;&emsp;提醒的优先级（0 =无优先级，1 =最高优先级，9 =最低优先级）。</p>
+<hr>
+<p>Reminder.<strong>title</strong></p>
+<p>&emsp;&emsp;提醒的标题（string/unicode）。</p>
+<hr>
+<p>Reminder.<strong>url</strong></p>
+<p>&emsp;&emsp;与提醒关联的URL。</p>
+<hr>
+<h3 id="Reminder-方法"><a href="#Reminder-方法" class="headerlink" title="Reminder 方法"></a>Reminder 方法</h3><p>Reminder.<strong>save</strong>()</p>
+<p>&emsp;&emsp;保存您对数据库所做的更改（例如，在更改<code>title</code>或<code>completed</code>属性后）。</p>
+<hr>
+<h3 id="Alarm-对象"><a href="#Alarm-对象" class="headerlink" title="Alarm 对象"></a>Alarm 对象</h3><p>class reminders.<strong>Alarm</strong></p>
+<p>&emsp;&emsp;<code>Alarm</code>对象表示与提醒关联的警报。警报可以在特定时间触发，也可以在进入/离开地理位置时触发。您可以通过设置<code>Reminder.alarms</code>属性将<code>Alarm</code>与提醒相关联。</p>
+<hr>
+<h3 id="Alarm-属性"><a href="#Alarm-属性" class="headerlink" title="Alarm 属性"></a>Alarm 属性</h3><p>Alarm.<strong>date</strong></p>
+<p>&emsp;&emsp;触发警报的绝对日期（datetime对象）。</p>
+<hr>
+<p>Alarm.<strong>location</strong></p>
+<p>&emsp;&emsp;基于地理位置的警报的标题，坐标和半径。该位置以3元组或4元组<code>(title, latitude, longitude[, radius])</code>表示。默认情况下，半径设置为100m。</p>
+<hr>
+<p>Alarm.<strong>proximity</strong></p>
+<p>&emsp;&emsp;确定进入或离开指定区域时是否触发基于位置的警报。可能的值是’<code>enter</code>‘，’<code>leave</code>‘和’<code>none</code>‘。</p>
+
+    </div>
+
+	
+	
+	<div>
+		<div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+	</div>
+	
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200322104714id.html" rel="bookmark">Pythonista中文文档：speech</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200321221045id.html" rel="bookmark">Pythonista中文文档：shortcuts</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200321214419id.html" rel="bookmark">Pythonista中文文档：clipboard</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200321202131id.html" rel="bookmark">Pythonista中文文档</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\20200321225039id.html" rel="bookmark">Pythonista中文文档：keychain</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+    
+    
+		
+		
+		<div>
+			<!-- JS库 clipboard 拷贝内容到粘贴板-->
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+<!-- JS库 sweetalert 显示提示信息-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<ul class="post-copyright">
+
+  <!-- 本文标题 -->
+  <li>
+    <strong>本文标题： </strong>
+    Pythonista中文文档：reminders
+  </li>
+
+  <!-- 本文作者 -->
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>
+    SiriYang
+  </li>
+
+  <!-- 创建时间 -->
+  <li>
+    <strong>创建时间： </strong>
+    2020年03月22日 - 11时03分
+  </li>
+
+  <!-- 修改时间 -->
+  <li>
+    <strong>修改时间： </strong>
+    2020年03月22日 - 14时03分
+  </li>
+
+  <!-- 引用链接 -->
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.siriyang.cn/posts/20200322114426id.html" title="Pythonista中文文档：reminders">https://blog.siriyang.cn/posts/20200322114426id.html</a>
+    <span class="copy-path"  title="点击复制引用链接"><i style="cursor: pointer" class="fa fa-clipboard" data-clipboard-text="[SiriYang's Blog | Pythonista中文文档：reminders](https://blog.siriyang.cn/posts/20200322114426id.html)"  aria-label="复制成功"></i></span>
+  </li>
+
+  <!-- 版权声明 -->
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+<script>
+  var clipboard = new ClipboardJS('.fa-clipboard');
+  clipboard.on('success', function(target){
+    var message = document.createElement('div');
+    message.innerHTML = '<i class="fa fa-check-circle message-icon"></i><span class="message-content">' + target.trigger.getAttribute('aria-label') + '</span>';
+    swal({
+      content: message,
+      className: "copy-success-message",
+      timer: 1000,
+      button: false
+    });
+  });
+</script>
+		</div>
+		
+	
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/Pythonista/" rel="tag"><i class="fa fa-tag"></i> Pythonista</a>
+          
+            <a href="/tags/文档/" rel="tag"><i class="fa fa-tag"></i> 文档</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/posts/20200322104714id.html" rel="next" title="Pythonista中文文档：speech">
+                Pythonista中文文档：speech <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+	<a href="/about">
+    <img class="site-author-image" itemprop="image"
+      src="/images/touxiang.jpg"
+      alt="SiriYang">
+	</a>
+  <p class="site-author-name" itemprop="name">SiriYang</p>
+  <div class="site-description motion-element" itemprop="description">苦逼的考研党</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">204</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/SiriYXR" title="GitHub &rarr; https://github.com/SiriYXR" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:www.yangxinruei@qq.com" title="E-Mail &rarr; mailto:www.yangxinruei@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://148.70.9.122" title="http://148.70.9.122" rel="noopener" target="_blank">siriyang的网站</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://xteddy.github.io" title="https://xteddy.github.io" rel="noopener" target="_blank">Bdongs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+<br/>
+<!-- Insert clustrmaps.com -->
+<script type='text/javascript' id='clustrmaps' src= '//cdn.clustrmaps.com/map_v2.js?cl=f4f4f4&w=300&t=tt&d=AfYUE3byOhRufBqM-h0Z4Q89e2zcpRgOCiqi6cXPNz0&co=222222&cmn=2e9ffc&cmo=64c454&ct=f4f4f4'></script>
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#reminders-—-访问iOS上的提醒事项数据库"><span class="nav-text">reminders — 访问iOS上的提醒事项数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#快速开始"><span class="nav-text">快速开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览已存在的提醒"><span class="nav-text">浏览已存在的提醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加新提醒"><span class="nav-text">添加新提醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加日历"><span class="nav-text">添加日历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加警报"><span class="nav-text">添加警报</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Calendar-对象"><span class="nav-text">Calendar 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calendar-属性"><span class="nav-text">Calendar 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calendar-方法"><span class="nav-text">Calendar 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reminder-对象"><span class="nav-text">Reminder 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reminder-属性"><span class="nav-text">Reminder 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reminder-方法"><span class="nav-text">Reminder 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alarm-对象"><span class="nav-text">Alarm 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alarm-属性"><span class="nav-text">Alarm 属性</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">蜀ICP备19008337号 </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SiriYang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">981k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14:52</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+  }
+
+  $(function() {
+    $.get('https://app-router.leancloud.cn/2/route?appId=' + 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI')
+      .done(function({ api_server }) {
+        var Counter = function(method, url, data) {
+          return $.ajax({
+            method: method,
+            url: `https://${api_server}/1.1${url}`,
+            headers: {
+              'X-LC-Id': 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+              'X-LC-Key': 'DxisgCV93TNxMkNrJQY64YOW',
+              'Content-Type': 'application/json',
+            },
+            data: data
+          });
+        };
+        if (CONFIG.page.isPost) {
+          const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+          if (localhost.test(document.URL)) return;
+          addCount(Counter);
+        } else {
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+        }
+      });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'jU4bqMkpFWGMMQrHgQRc7g2P-MdYXbMMI',
+    appKey: 'DxisgCV93TNxMkNrJQY64YOW',
+    placeholder: '支持Markdown语法哦！（填写昵称和邮箱以便在评论被回复时及时收到邮件通知）',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  
+  
+<script>
+  $(document).ready(function () {
+    $(".header-inner").animate({padding: "25px 0 25px"}, 1000);
+  });
+</script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-precise-range-plugin@1.3.0/moment-precise-range.min.js"></script>
+  <script>
+    function timer() {
+      var ages = moment.preciseDiff(moment(),moment(20190807,"YYYYMMDD"));
+      ages = ages.replace(/years?/, "年");
+      ages = ages.replace(/months?/, "月");
+      ages = ages.replace(/days?/, "天");
+      ages = ages.replace(/hours?/, "小时");
+      ages = ages.replace(/minutes?/, "分");
+      ages = ages.replace(/seconds?/, "秒");
+      ages = ages.replace(/\d+/g, '<span style="color:#1890ff">$&</span>');
+      div.innerHTML = `已运行 ${ages}`;
+    }
+    var div = document.createElement("div");
+
+    //插入到copyright之后
+    var copyright = document.querySelector(".copyright");
+    document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    //插入到卜蒜子之后
+    //document.querySelector(".footer-inner").appendChild(div);
+
+    timer();
+    setInterval("timer()",1000)
+  </script>
+
+
+
+
+  <script>
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = '(つェ⊂)我藏好了哦~' + OriginTitile;
+        clearTimeout(titleTime);
+      } else {
+        document.title = '(*´∇｀*) 被你发现啦~' + OriginTitile;
+        titleTime = setTimeout(function() {
+          document.title = OriginTitile;
+        }, 2000);
+      }
+    });
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+
+        
+      });
+    }
+  </script>
+
+</body>
+</html>

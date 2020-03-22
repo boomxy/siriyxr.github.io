@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Pythonista中文文档：reminders]]></title>
+    <url>%2Fposts%2F20200322114426id.html</url>
+    <content type="text"><![CDATA[Pythonista中文文档 reminders — 访问iOS上的提醒事项数据库&emsp;&emsp;reminders模块提供读/写访问iOS上的提醒事项数据库。提醒事项以Reminder类和提醒列表Calendar类进行呈现。 注意：当你第一次使用任何函数去访问你的提醒事项时，系统会自动弹出一个权限对话框。如果你拒绝访问，大多数函数会返回空数据。如果你之后改变了想法，你可以在系统设置的隐私页面设置Pythonista访问提醒事项的权限。 快速开始浏览已存在的提醒&emsp;&emsp;使用get_reminders()浏览数据库中的所有提醒事项。通过completed参数，你可以按照完成状态（是否已检查）来过滤列表中的提醒事项。 1234567891011import reminderstodo = reminders.get_reminders(completed=False)print('TODO List')print('=========')for r in todo: print('[ ] ' + r.title)done = reminders.get_reminders(completed=True)print('DONE')print('====')for r in done: print('[x] ' + r.title) 添加新提醒&emsp;&emsp;要添加新的提醒，只需创建一个Reminder对象，设置其标题，截止日期等，然后调用其Reminder.save()方法即可： 12345import remindersr = reminders.Reminder()r.title = 'Added from Pythonista'r.save()print('Reminder added') &emsp;&emsp;您可以在提醒事项应用中拥有多个提醒列表。这些列表由Calendar模块中的对象表示。如果没有明确指定，提醒将添加到默认列表/日历中。要将提醒添加到其他列表，只需通过相应Calendar创建提醒。 &emsp;&emsp;以下示例查找标题为“Pythonista”的日历，并向其添加新的提醒（如果存在）： 12345678910import remindersall_calendars = reminders.get_all_calendars()for calendar in all_calendars: if calendar.title == 'Pythonista': r = reminders.Reminder(calendar) r.title = 'New Reminder in Pythonista List' r.save() breakelse: print('Could not find calendar named "Pythonista"') 添加日历&emsp;&emsp;您还可以通过编程方式创建新的日历。本示例添加一个标题为Pythonista的日历（如果尚不存在）： 1234567891011import remindersall_calendars = reminders.get_all_calendars()for calendar in all_calendars: if calendar.title == 'Pythonista': print('Calendar "Pythonista" already exists') breakelse: new_calendar = reminders.Calendar() new_calendar.title = 'Pythonista' new_calendar.save() print('New calendar added') 添加警报&emsp;&emsp;提醒在实际提醒您某些事情（例如显示通知）时会更加有用。为此，您必须在提醒中添加一个或多个Alarm。Alarm可以在特定时间或在到达/离开某地理位置时触发。 &emsp;&emsp;首先让我们看看基于日期/时间的警报。本示例添加了一个新的提醒，该提醒会从现在开始25分钟后触发通知： 12345678910111213import remindersimport datetimer = reminders.Reminder()r.title = 'Take a break!'minutes = 25due = datetime.datetime.now() + datetime.timedelta(minutes=minutes)# 注意：这里我们将警报时间和提醒截止日期设为相同时间，但他们也可以不一样。r.due_date = duea = reminders.Alarm()a.date = duer.alarms = [a]r.save()print('You will be reminded in %i minutes.' % minutes) &emsp;&emsp;要添加基于地理位置的警报，您必须指定标题，纬度和经度。您还可以指定半径，以及进入或离开该半径时是否应触发警报： 12345678910111213import remindersr = reminders.Reminder()r.title = 'Take a selfie'a = reminders.Alarm()lat, lng = 37.332224, -122.030780radius = 500 # 单位为米title = '1 Infinite Loop'a.location = (title, lat, lng, radius)a.proximity = 'enter'r.alarms = [a]r.save() 函数reminders.get_reminders(calendar=None, completed=None) &emsp;&emsp;返回给定日历（或所有日历）中的所有提醒。 &emsp;&emsp;如果省略calendar参数或为None，则返回所有日历中的所有提醒。 &emsp;&emsp;completed 参数可以通过完成状态来过滤提醒： None （默认）：返回所有提醒 True ：仅返回已完成（已检查）的提醒 False ：仅返回尚未完成的提醒 reminders.get_all_calendars() &emsp;&emsp;返回所有可用日历（Calendar对象）的列表。日历代表提醒列表。 reminders.get_default_calendar() &emsp;&emsp;返回默认情况下提醒所添加到的日历。 reminders.get_calendar(calendar_id) &emsp;&emsp;通过唯一标识符返回特定日历。如果没有对应的日历则返回None。 reminders.delete_reminder(reminder) &emsp;&emsp;从数据库删除一个提醒。 &emsp;&emsp;如果删除成功则返回True，否则返回Fales。 reminders.delete_calendar(calendar) &emsp;&emsp;从数据库删除一个日历。 &emsp;&emsp;如果删除成功则返回True，否则返回Fales。 Calendar 对象class reminders.Calendar &emsp;&emsp;Calendar对象代表提醒列表。每个提醒都属于一个日历，你可以使用该get_reminders()函数检索特定日历的提醒。要获取新提醒的默认日历，请使用get_default_calendar()。每个日历都有一个唯一的标识符可以使你准确地（使用函数get_calendar()）检索它，无论标题是否更改。 Calendar 属性Calendar.title &emsp;&emsp;提醒列表的标题（string/unicode） Calendar.identifier &emsp;&emsp;日历的唯一标识符（只读，string）。 &emsp;&emsp;即使它的标题可能已更改，它也可以用于以后检索此特定日历。 Calendar 方法Calendar.save() &emsp;&emsp;将更改保存到数据库（仅保存日历的元数据，必须使用对象自己的Reminder.save()方法保存日历内的提醒）。 Reminder 对象class reminders.Reminder([calendar]) &emsp;&emsp;Reminder对象表示列表中的单个提醒。提醒可以具有多个附加Alarm对象，这些对象确定系统何时/何地/是否显示提醒通知。 &emsp;&emsp;提醒始终包含在Calendar代表的提醒的列表中。如果你在初始化Reminder时未指定特定Calendar，则将会使用默认日历。 Reminder 属性Reminder.alarms &emsp;&emsp;与该提醒关联的Alarm对象列表。 注意：该值表示副本/快照；除非您重新分配属性，否则就地更改列表不会更改警报。 Reminder.completed &emsp;&emsp;提醒是否已完成（检查）（boolean）。 Reminder.completion_date &emsp;&emsp;该提醒完成（检查）的日期，如果它尚未完成则为None。 Reminder.due_date &emsp;&emsp;提醒的截止日期。 注意：设置到期日期与设置警报不同。虽然提醒事项应用中显示了日期到期，但您也不会收到通知，除非您还添加了Alarm（通过设置提醒的alarms属性）。 Reminder.notes &emsp;&emsp;提醒的其他说明 （string/unicode）。 Reminder.priority &emsp;&emsp;提醒的优先级（0 =无优先级，1 =最高优先级，9 =最低优先级）。 Reminder.title &emsp;&emsp;提醒的标题（string/unicode）。 Reminder.url &emsp;&emsp;与提醒关联的URL。 Reminder 方法Reminder.save() &emsp;&emsp;保存您对数据库所做的更改（例如，在更改title或completed属性后）。 Alarm 对象class reminders.Alarm &emsp;&emsp;Alarm对象表示与提醒关联的警报。警报可以在特定时间触发，也可以在进入/离开地理位置时触发。您可以通过设置Reminder.alarms属性将Alarm与提醒相关联。 Alarm 属性Alarm.date &emsp;&emsp;触发警报的绝对日期（datetime对象）。 Alarm.location &emsp;&emsp;基于地理位置的警报的标题，坐标和半径。该位置以3元组或4元组(title, latitude, longitude[, radius])表示。默认情况下，半径设置为100m。 Alarm.proximity &emsp;&emsp;确定进入或离开指定区域时是否触发基于位置的警报。可能的值是’enter‘，’leave‘和’none‘。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pythonista</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pythonista中文文档：speech]]></title>
+    <url>%2Fposts%2F20200322104714id.html</url>
+    <content type="text"><![CDATA[Pythonista中文文档 speech — iOS上的文本语音合成 &emsp;&emsp;speech在iOS上提供语音合成和识别功能。 注意：语音识别要求系统至少为iOS 10版本。应为语音数据可能会被发送到Apple服务器进行处理，在你第一次调用 recognize()函数的时候系统会自动弹出一个隐私警告。 示例&emsp;&emsp;用不同语言朗读文本： 1234567891011121314151617import speechimport timedef finish_speaking(): # 循环直到语音合成结束 while speech.is_speaking(): time.sleep(0.1)# 美式英语:speech.say('Hello World', 'en_US')finish_speaking()# 西班牙语:speech.say('Hola mundo', 'es_ES')finish_speaking()# 德语:speech.say('Hallo Welt', 'de_DE')finish_speaking() &emsp;&emsp;将麦克风录音识别为文本（使用sound.Recorder）： 123456789101112131415161718import speechimport soundimport dialogs# 使用sound.Recorder将录音记录到文件:recorder = sound.Recorder('speech.m4a')recorder.record()# 持续录音直到按下 'Finish' 按钮:dialogs.alert('Recording...', '', 'Finish', hide_cancel_button=True)recorder.stop()try: result = speech.recognize('speech.m4a') print('=== Details ===') print(result) print('=== Transcription ===') print(result[0][0])except RuntimeError as e: print('Speech recognition failed: %s' % (e,)) 函数speech.get_synthesis_languages() &emsp;&emsp;返回所有可用于语音合成的语言/本地识别器的列表。这有助于为say()函数选择可用的language参数。 speech.get_recognition_languages() &emsp;&emsp;返回所有可用于语音识别的语言/本地识别器的列表。这有助于为recognize()函数选择可用的language参数。 speech.say(text[, language, rate]) &emsp;&emsp;使用系统中的一种文本朗读声音来朗读给定的text文本。language要选择一个 BCP-47语言或者本地代码，比如说’en-US‘。如果language参数没有给出将默认使用系统语言。 speech.stop() &emsp;&emsp;停止语音合成。 speech.is_speaking() &emsp;&emsp;如果语音合成器正在运行返回True，否则返回False。 speech.recognize(file_path[, language]) &emsp;&emsp;将给定的音频文件转换为文本。该音频文件长度不能超过一分钟。你可以使用sound.Recorder类来从麦克风录制音频文件。 &emsp;&emsp;language参数是可选的，并且应该给一个有效的本地识别器（比如de-DE或者en-US）——当前系统语言作为默认值。 &emsp;&emsp;返回值是一个翻译结果列表，按照可能性（置信度）排序。 &emsp;&emsp;列表中每一个翻译结果都是一个包含两个元素的元组： 全文以unicode编码的字符串 有关各个片段的详细信息（例如时间戳，置信度等），以字典列表的形式显示。 &emsp;&emsp;如果语音识别失败该函数将会抛出一个RuntimeError异常。如果language参数是无效的或者不支持的，将会抛出一个ValueError异常，如果音频文件无法读取将会抛出一个IOError异常。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pythonista</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Pythonista中文文档：keychain]]></title>
     <url>%2Fposts%2F20200321225039id.html</url>
-    <content type="text"><![CDATA[Pythonista中文文档 keychain-安全密码储存 keychain模块提供对安全密码存储的简单访问。 请注意，钥匙串没有在应用之间共享，例如你不能使用它来访问Safari钥匙串中存储的密码。 keychain.get_password(service, account)&emsp;&emsp;获取先前存储在钥匙串中的给定服务/帐户的密码。 keychain.set_password(service, account, password)&emsp;&emsp;将特定服务/帐户的密码保存在钥匙串中。 keychain.delete_password(service, account)&emsp;&emsp;从钥匙串中删除给定服务/帐户的密码。 keychain.reset_keychain()&emsp;&emsp;从钥匙串中删除所有数据。]]></content>
+    <content type="text"><![CDATA[Pythonista中文文档 keychain-安全密码储存 &emsp;&emsp;keychain模块提供对安全密码存储的简单访问。 &emsp;&emsp;请注意，钥匙串没有在应用之间共享，例如你不能使用它来访问Safari钥匙串中存储的密码。 keychain.get_password(service, account) &emsp;&emsp;获取先前存储在钥匙串中的给定服务/帐户的密码。 keychain.set_password(service, account, password) &emsp;&emsp;将特定服务/帐户的密码保存在钥匙串中。 keychain.delete_password(service, account) &emsp;&emsp;从钥匙串中删除给定服务/帐户的密码。 keychain.reset_keychain() &emsp;&emsp;从钥匙串中删除所有数据。]]></content>
       <categories>
         <category>计算机</category>
         <category>技术</category>
@@ -18,7 +48,7 @@
   <entry>
     <title><![CDATA[Pythonista中文文档：shortcuts]]></title>
     <url>%2Fposts%2F20200321221045id.html</url>
-    <content type="text"><![CDATA[Pythonista中文文档 shortcuts — Pythonista URL工具集 介绍&emsp;&emsp;shortcuts模块提供了适用于Pythonista URL的工具集，可用于启动应用程序以及运行或打开脚本。您也可以使用此模块启动“快捷方式”应用程序（并运行快捷方式），但对在“快捷方式”应用程序中使用的“原生” Python快捷方式计划会在将来的Pythonista版本中得到支持。 函数shortcuts.open_url(url )&emsp;&emsp;使用系统的默认应用程序作为URL的方案打开给定的URL。这等效于webbrowser.open()，但是在内存使用方面更轻巧（这使其更适合在“Today”小部件中使用）。 shortcuts.pythonista_url(path =’’，action =’run’, args = None, argv = None )&emsp;&emsp;根据文件名/路径，操作和可选参数生成一个pythonista3://...URL。 &emsp;&emsp;可选的action值为： ‘run‘ – 打开URL时将运行脚本，而无需进一步指示。 ‘open‘ – 打开URL时将打开脚本进行编辑。 ‘exec‘ – 当前脚本将作为资源代码嵌入URL中，打开这个URL将在Pythonista中显示该脚本。然后，用户可以决定是否运行它（出于安全原因，嵌入式脚本不会自动运行）。 译者注：很可惜，因为安全考虑这一点导致无法使用快捷方式的自动化实现完全自动的脚本运行，每次都要用户手动确认一下。 &emsp;&emsp;该路径应相对于“on this device”根目录，或者具有“iCloud/”前缀，并且指向到Pythonista的iCloud容器目录。 &emsp;&emsp;args可以是一个字符串，其中包含的参数将会传递给脚本的sys.argv参数。或者，您可以使用argv参数将参数作为列表传递。 shortcuts.open_shortcuts_app(name = None, shortcut_input =’’ )&emsp;&emsp;打开Apple快捷方式应用程序，并选择运行一个以name参数值命名的快捷方式。等同于webbrowser.open(&#39;shortcuts://run-shortcut?name=[name]&amp;input=shortcut_input&#39;)。]]></content>
+    <content type="text"><![CDATA[Pythonista中文文档 shortcuts — Pythonista URL工具集 介绍&emsp;&emsp;shortcuts模块提供了适用于Pythonista URL的工具集，可用于启动应用程序以及运行或打开脚本。您也可以使用此模块启动“快捷方式”应用程序（并运行快捷方式），但对在“快捷方式”应用程序中使用的“原生” Python快捷方式计划会在将来的Pythonista版本中得到支持。 函数shortcuts.open_url(url ) &emsp;&emsp;使用系统的默认应用程序作为URL的方案打开给定的URL。这等效于webbrowser.open()，但是在内存使用方面更轻巧（这使其更适合在“Today”小部件中使用）。 shortcuts.pythonista_url(path =’’，action =’run’, args = None, argv = None ) &emsp;&emsp;根据文件名/路径，操作和可选参数生成一个pythonista3://...URL。 &emsp;&emsp;可选的action值为： ‘run‘ – 打开URL时将运行脚本，而无需进一步指示。 ‘open‘ – 打开URL时将打开脚本进行编辑。 ‘exec‘ – 当前脚本将作为资源代码嵌入URL中，打开这个URL将在Pythonista中显示该脚本。然后，用户可以决定是否运行它（出于安全原因，嵌入式脚本不会自动运行）。 译者注：很可惜，因为安全考虑这一点导致无法使用快捷方式的自动化实现完全自动的脚本运行，每次都要用户手动确认一下。 &emsp;&emsp;该路径应相对于“on this device”根目录，或者具有“iCloud/”前缀，并且指向到Pythonista的iCloud容器目录。 &emsp;&emsp;args可以是一个字符串，其中包含的参数将会传递给脚本的sys.argv参数。或者，您可以使用argv参数将参数作为列表传递。 shortcuts.open_shortcuts_app(name = None, shortcut_input =’’ ) &emsp;&emsp;打开Apple快捷方式应用程序，并选择运行一个以name参数值命名的快捷方式。等同于webbrowser.open(&#39;shortcuts://run-shortcut?name=[name]&amp;input=shortcut_input&#39;)。]]></content>
       <categories>
         <category>计算机</category>
         <category>技术</category>
@@ -33,7 +63,7 @@
   <entry>
     <title><![CDATA[Pythonista中文文档：clipboard]]></title>
     <url>%2Fposts%2F20200321214419id.html</url>
-    <content type="text"><![CDATA[Pythonista中文文档 clipboard — 复制和粘贴 clipboard模块定义了两种简单的功能去读取和写入iOS上的本剪贴板（也称为粘贴板）。 例： 1234567891011121314#转换粘贴板中文字的大小写import clipboardtext = clipboard.get()if text == '': print('No text in clipboard')else: uppercase = text.upper() if uppercase != text: new_clip = uppercase else: #已经大写，转换为小写 new_clip = text.lower() clipboard.set(new_clip) print(new_clip) clipboard中的函数： clipboard.get()&emsp;&emsp;以unicode字符串形式返回剪贴板的内容。 clipboard.set(string)&emsp;&emsp;将剪贴板的内容设置为新的字符串或unicode字符串。 clipboard.get_image(idx = 0)&emsp;&emsp;从剪贴板中以PIL Image格式返回图像。 &emsp;&emsp;如果剪贴板中有多个图像，则可以使用idx参数获取给定索引处的图像。如果索引 &gt;= 剪贴板中的图像数，则返回None。 clipboard.set_image(image, format =’png’, jpeg_quality = 0.75 )&emsp;&emsp;将给定的PIL Image格式图像存储在剪贴板中。 &emsp;&emsp;format参数可以是’png‘或’jpeg‘。 &emsp;&emsp;如果format为’png‘，则会忽略jpeg_quality，否则它应为0.0到1.0之间的浮点数。]]></content>
+    <content type="text"><![CDATA[Pythonista中文文档 clipboard — 复制和粘贴 &emsp;&emsp;clipboard模块定义了两种简单的功能去读取和写入iOS上的本剪贴板（也称为粘贴板）。 例： 1234567891011121314#转换粘贴板中文字的大小写import clipboardtext = clipboard.get()if text == '': print('No text in clipboard')else: uppercase = text.upper() if uppercase != text: new_clip = uppercase else: #已经大写，转换为小写 new_clip = text.lower() clipboard.set(new_clip) print(new_clip) clipboard中的函数： clipboard.get() &emsp;&emsp;以unicode字符串形式返回剪贴板的内容。 clipboard.set(string) &emsp;&emsp;将剪贴板的内容设置为新的字符串或unicode字符串。 clipboard.get_image(idx = 0) &emsp;&emsp;从剪贴板中以PIL Image格式返回图像。 &emsp;&emsp;如果剪贴板中有多个图像，则可以使用idx参数获取给定索引处的图像。如果索引 &gt;= 剪贴板中的图像数，则返回None。 clipboard.set_image(image, format =’png’, jpeg_quality = 0.75 ) &emsp;&emsp;将给定的PIL Image格式图像存储在剪贴板中。 &emsp;&emsp;format参数可以是’png‘或’jpeg‘。 &emsp;&emsp;如果format为’png‘，则会忽略jpeg_quality，否则它应为0.0到1.0之间的浮点数。]]></content>
       <categories>
         <category>计算机</category>
         <category>技术</category>
@@ -48,7 +78,7 @@
   <entry>
     <title><![CDATA[Pythonista中文文档]]></title>
     <url>%2Fposts%2F20200321202131id.html</url>
-    <content type="text"><![CDATA[前言 &emsp;&emsp;本文档为Pythonista 3.3版本官方文档的汉化版，主要为帮助不是很擅长英文的朋友进行阅读学习。本文档主要针对Pythonista中iOS独有的模块进行汉化，第三方模块仅提及一下以便知晓目前Pythonista有哪些已经集成，具体内容请自行百度。由于工程量较大，我将利用零散时间从我常使用的模块开始逐步汉化，主要采取谷歌机翻再进行人工校对的方法，即便如此这也将是一个比较慢长的过程。汉化的过程中我会加入一些我对该模块的一些使用心得，如果你有急需想要了解的模块可以在下方留言，我会考虑优先汉化。如果在汉化的内容中有翻译错误的地方也请大家多多指正。 正文 &emsp;&emsp;欢迎！这是Pythonista的文档。它基于Python 3.6.1官方文档，并包含有关专门为Pythonista开发的其他模块的信息。 &emsp;&emsp;如果您有任何疑问，反馈或想分享您使用Pythonista所做的东西，请访问社区论坛，发送电子邮件至pythonista@omz-software.com，或在Twitter上找到我：@olemoritz。 使用Pythonista&emsp;&emsp;Pythonista的UI概述，包括一些提示和技巧。 应用程序扩展和快捷方式&emsp;&emsp;使用Pythonista脚本扩展和自动化iOS。 Pythonista模块&emsp;&emsp;以下是专门为iOS开发的功能模块。 appex — Pythonista应用扩展工具集 canvas — 矢量图像 cb — 连接到蓝牙LE外围设备 clipboard — 复制和粘贴 console — 控制台输出和各种系统服务的工具集 dialogs — 易于使用的UI对话框 contacts — 访问iOS上的联系人数据库 editor — 用于编辑Pythonista文本编辑器的功能函数 keyboard — Pythonista键盘工具集 keychain — 安全密码存储 linguistictagger — 语言分析 location — iOS上的地理位置服务 motion — iOS上的运动传感器数据 notification — iOS上的通知 objc_util — 桥接Objective-C API的工具集 photos — 访问iOS上的相册 reminders — 访问iOS上的备忘录数据库 scene — 2D游戏和动画 shortcuts — Pythonista URL工具集 sound — 音效和音乐播放 speech — iOS上的文本语音合成 twitter — iOS Twitter账户和API访问 ui — iOS原生GUI 其他信息 Pythonista URL Scheme 基础 命令行参数 Python版本 启动其他应用 应用拓展和捷径 Pythonista键盘 共享扩展表单 编辑器操作 主屏幕图标 Pythonista URL 第三方模块&emsp;&emsp;以下这些第三方模块同样集成在Pythonista中。他们并不是Python的标准库，同样也不是iOS下特有的。 bs4 — BeautifulSoup 4 Bottle: Python网站框架 Dropbox for Python evernote faker feedparser — Python的Feed解析库 Markdown markdown2 — 在Python中快速全面的实现MarkDown paramiko PIL — Python图像处理库 PyPDF2 pyminizip — 创建受密码保护的Zip文件 qrcode — 纯Python二维码生成器 Requests – HTTP协议使用 xmltodict 无文档模块&emsp;&emsp;以下这些第三方模块已集成在Pythonista中，但在app配套文档中还没有其对应的文档。&emsp;&emsp;你仍然会找到一些简短的描述和更多相关信息的链接。 arrow certifi cssselect dateutil ecdsa flask html2text html5lib httplib2 images2gif itsdangerous jinja2 markupsafe midiutil oauth2 openpyxl parsedatetime py pycparser pygments pyparsing pytest pytz reportlab simpy six sqlalchemy urllib3 wavebender werkzeug yaml 参考资料 Pythonista官方文档]]></content>
+    <content type="text"><![CDATA[前言 &emsp;&emsp;本文档为Pythonista 3.3版本官方文档的汉化版，主要为帮助不是很擅长英文的朋友进行阅读学习。本文档主要针对Pythonista中iOS独有的模块进行汉化，第三方模块仅提及一下以便知晓目前Pythonista有哪些已经集成，具体内容请自行百度。由于工程量较大，我将利用零散时间从我常使用的模块开始逐步汉化，主要采取谷歌机翻再进行人工校对的方法，即便如此这也将是一个比较慢长的过程。汉化的过程中我会加入一些我对该模块的一些使用心得，如果你有急需想要了解的模块可以在下方留言，我会考虑优先汉化。如果在汉化的内容中有翻译错误的地方也请大家多多指正。 正文 &emsp;&emsp;欢迎！这是Pythonista的文档。它基于Python 3.6.1官方文档，并包含有关专门为Pythonista开发的其他模块的信息。 &emsp;&emsp;如果您有任何疑问，反馈或想分享您使用Pythonista所做的东西，请访问社区论坛，发送电子邮件至pythonista@omz-software.com，或在Twitter上找到我：@olemoritz。 使用Pythonista&emsp;&emsp;Pythonista的UI概述，包括一些提示和技巧。 应用程序扩展和快捷方式&emsp;&emsp;使用Pythonista脚本扩展和自动化iOS。 Pythonista模块&emsp;&emsp;以下是专门为iOS开发的功能模块。 appex — Pythonista应用扩展工具集 canvas — 矢量图像 cb — 连接到蓝牙LE外围设备 clipboard — 复制和粘贴 console — 控制台输出和各种系统服务的工具集 dialogs — 易于使用的UI对话框 contacts — 访问iOS上的联系人数据库 editor — 用于编辑Pythonista文本编辑器的功能函数 keyboard — Pythonista键盘工具集 keychain — 安全密码存储 linguistictagger — 语言分析 location — iOS上的地理位置服务 motion — iOS上的运动传感器数据 notification — iOS上的通知 objc_util — 桥接Objective-C API的工具集 photos — 访问iOS上的相册 reminders — 访问iOS上的提醒事项数据库 scene — 2D游戏和动画 shortcuts — Pythonista URL工具集 sound — 音效和音乐播放 speech — iOS上的文本语音合成 twitter — iOS Twitter账户和API访问 （此模块不再在iOS 11及更高版本上工作，因为底层API已从iOS中删除。） ui — iOS原生GUI 其他信息 Pythonista URL Scheme 基础 命令行参数 Python版本 启动其他应用 应用拓展和捷径 Pythonista键盘 共享扩展表单 编辑器操作 主屏幕图标 Pythonista URL 第三方模块&emsp;&emsp;以下这些第三方模块同样集成在Pythonista中。他们并不是Python的标准库，同样也不是iOS下特有的。 bs4 — BeautifulSoup 4 Bottle: Python网站框架 Dropbox for Python evernote faker feedparser — Python的Feed解析库 Markdown markdown2 — 在Python中快速全面的实现MarkDown paramiko PIL — Python图像处理库 PyPDF2 pyminizip — 创建受密码保护的Zip文件 qrcode — 纯Python二维码生成器 Requests – HTTP协议使用 xmltodict 无文档模块&emsp;&emsp;以下这些第三方模块已集成在Pythonista中，但在app配套文档中还没有其对应的文档。&emsp;&emsp;你仍然会找到一些简短的描述和更多相关信息的链接。 arrow certifi cssselect dateutil ecdsa flask html2text html5lib httplib2 images2gif itsdangerous jinja2 markupsafe midiutil oauth2 openpyxl parsedatetime py pycparser pygments pyparsing pytest pytz reportlab simpy six sqlalchemy urllib3 wavebender werkzeug yaml 参考资料 Pythonista官方文档]]></content>
       <categories>
         <category>计算机</category>
         <category>技术</category>
@@ -1138,8 +1168,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>C/C++</tag>
         <tag>真题</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -2358,8 +2388,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2372,8 +2402,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2400,8 +2430,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2440,8 +2470,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2522,8 +2552,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2562,8 +2592,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2631,8 +2661,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2672,8 +2702,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2738,8 +2768,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2780,8 +2810,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>数学</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2897,8 +2927,8 @@
         <category>计算机组成原理</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>理论</tag>
+        <tag>Python</tag>
         <tag>计算机组成原理</tag>
       </tags>
   </entry>
