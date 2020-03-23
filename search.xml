@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Pythonista中文文档：应用程序扩展和快捷方式]]></title>
+    <url>%2Fposts%2F20200323105829id.html</url>
+    <content type="text"><![CDATA[Pythonista中文文档 应用程序扩展和快捷方式 &emsp;&emsp;本页概述了可以使用Pythonista脚本扩展iOS，其他应用和Pythonista本身的各个地方。 &emsp;&emsp;大多数功能可以通过点击编辑器中的“扳手”按钮，然后选择“Shortcuts”进行可以访问。 Pythonista键盘&emsp;&emsp;Pythonista键盘是一个自定义的屏幕键盘，您可以在具有可编辑文本的任何应用程序中使用。键盘包含一个Python解释器，因此您可以运行用于操纵文本的脚本，而无需启动主Pythonista应用程序。脚本可以在应用程序中插入文本，进行选择，甚至显示完全自定义的用户界面。 &emsp;&emsp;请注意，Pythonista键盘并非旨在取代您的所有写作的系统键盘，它更像是表情包键盘，即您通常会短暂切换到该键盘以运行脚本，然后再切换回系统键盘（或任何其他自定义键盘）来完成大部分输入操作。尽管键盘确实包含标准的QWERTY布局，但没有任何类型的自动更正或键入建议，因此它实际上不适合用于长文本输入。 &emsp;&emsp;为了让您大致了解键盘的功能，初始内置了几个样例脚本。 如何使用 &emsp;&emsp;要开始使用键盘，请点击并按住系统键盘上的“地球”键，然后选择“键盘设置...”。从那里，选择“键盘&gt;添加新键盘...”。您应该在可用键盘列表中找到“Pythonista”。 &emsp;&emsp;添加键盘后，您可能还希望启用“完全访问”选项，否则脚本将无法使用某些功能（例如，编写可被主应用读取的文件或访问网络）。不过，通常可以在未启用完全访问权限的情况下使用键盘。 &emsp;&emsp;启用键盘后，您可以随时使用“地球”键切换到该键盘。按住地球键时，您可以直接切换到任何键盘（无需通过点击来遍历所有键盘）。 &emsp;&emsp;通常，您可以执行大多数在主应用程序中运行的脚本所执行的操作，但是也有一些限制： 自定义用户界面仅在键盘内运行，无法覆盖整个屏幕。它们在显示视图的方式上也受到更多限制。 通常，资源也更加有限，如果脚本使用过多的内存（即使脚本在主应用程序中运行正常），键盘也可能“崩溃”。 提示： 点击并按住脚本快捷方式可编辑脚本或删除该快捷方式。 点击绿色键，将脚本快捷方式行扩展到整个键盘。这也将扩展该视图中显示的所有用户界面。 点击并按住地球键可直接切换到其他键盘，而无需浏览所有其他键盘。 keyboard模块包含用于处理文本输入和键盘的函数。您可以使用它来插入文本，移动光标，获取选定的文本等等。 Python标准库包含许多用于处理和转换文本的模块，在自定义键盘中使用时可能会很有趣。查看Python标准文档的文字处理服务页面以获取概述。 查看内置的示例脚本，以了解使用可编程脚本键盘能做哪些事情。 更多信息 keyboard模块 ui模块 共享扩展表单&emsp;&emsp;使用Pythonista共享扩展表单，您可以从支持标准iOS共享表单的其他应用程序（例如Safari，相册，备忘录）运行脚本，同样也包括第三方应用程序（包括Pythonista本身）。 &emsp;&emsp;您的脚本可以访问共享表单的输入数据，例如Safari中的URL或相册中的图像。 如何使用 &emsp;&emsp;要启用Pythonista共享扩展表单，只需在受支持的应用程序中共享某些内容，例如Safari或Pythonista本身。在动作列表中向下滚动（或在iOS 12及更早版本上侧滚）以找到“Run Pythonista Script”操作。如果尚未在列表中，请点击“更多...”（在iOS 12上）或“编辑操作...”（在iOS 13+上）。 共享表单脚本的提示 您可以使用appex模块中的各种功能来访问共享表单的输入数据，例如appex.get_url()，获取URL（例如，在Safari中），appex.get_text()获取文本（例如，备忘录），appex.get_image()获取共享照片等。 您可以使用appex.finish()功能以编程方式关闭共享表单。 共享扩展表单包含一个交互式控制台，因此您也可以交互式地处理输入数据，而无需编写完整的脚本。 如果要处理共享扩展表单中的图像，可以使用PIL（用appex.get_image()）或ui（用appex.get_ui_image()）。虽然PIL是跨平台的，但ui模块提供了更高质量的矢量绘图，并且通常更轻便。 与所有应用程序扩展一样，运行资源比主应用程序更受限制（由于内存限制，这很可能导致“崩溃”），并且共享扩展表单程序在单独的进程中运行。某些模块仅在主应用程序中受支持，例如editor模块。 更多信息 appex模块 clipboard模块 ui模块 PIL模块 编辑器动作&emsp;&emsp;您可以点击“扳手”按钮弹出编辑器操作的扩展窗口，因此您可以在编辑代码时运行脚本或查看其他文件。 &emsp;&emsp;每个编辑器操作可以具有自定义图标/颜色，并且您可以从同一脚本创建多个操作而传递不同的命令行参数。 &emsp;&emsp;编辑器操作对于使用editor模块的脚本（用于为文本编辑器编写脚本）特别有用，但是它们也可以是您希望快速访问的任何内容。 &emsp;&emsp;“Reset Environment”选项决定在运行脚本之前是否删除全局变量等。通常，在运行脚本之前会重置运行时环境，但是如果编辑器操作与调试相关，则将变量与最后运行的脚本保持一致可能会很有用。 更多信息 editor模块 dialogs模块 主屏幕图标 &emsp;&emsp;这使您可以添加自定义主屏幕图标以启动Pythonista脚本。从技术上讲，这些主屏幕图标只是Safari书签，但它们确实可以离线工作。 &emsp;&emsp;在iOS 13及更高版本上，您可能想使用快捷指令应用程序中的主屏幕快捷指令作为替代。您可以从快捷指令应用程序通过打开pythonista://URL来启动Pythonista （请参见下文）。 Pythonista URL&emsp;&emsp;使用Pythonista URL生成器，您可以轻松生成用于从其他应用程序启动或打开脚本的pythonista3://URL。您还可以生成带有嵌入URL的二维码，可以通过iOS相机应用程序对其进行扫描来触发执行。 &emsp;&emsp;Pythonista的URL方案支持允许各种自动化，包括从快捷指令应用程序或第三方自动化工具启动脚本。 &emsp;&emsp;有关如何使用Pythonista URL的更多信息，请参阅Pythonista URL方案参考。 &emsp;&emsp;您还可以使用该shortcuts模块以编程方式生成Pythonista URL 。 更多信息 webbrowser模块 shortcuts模块 Pythonista URL方案]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pythonista</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Pythonista中文文档：使用Pythonista]]></title>
     <url>%2Fposts%2F20200322190109id.html</url>
     <content type="text"><![CDATA[Pythonista中文文档 使用Pythonista &emsp;&emsp;此页面概述了Pythonista的用户界面，还包含一些有用的提示和技巧，可帮助你充分利用它。 &emsp;&emsp;Pythonista分为三个面板：脚本库，代码编辑器和交互式控制台，其中还包含文档查看器。你可以左右滑动手势在这些面板之间切换。 脚本库&emsp;&emsp;脚本库显示你编写的所有脚本以及作为示例包含的脚本。你可以将它们作为文件名列表或代码片段预览进行查看。可以通过点击...按钮更改查看模式。 &emsp;&emsp;要创建新脚本，请点击文件浏览器底部的+按钮。这将打开模板选择器以选择文件类型及其名称。 &emsp;&emsp;要删除脚本，或将其移动到其他文件夹，请点击Edit按钮或使用拖放功能。删除的脚本将移到特殊的Trash文件夹，你可以从那里还原或永久删除它们。 &emsp;&emsp;脚本库还显示非Python文件，例如，脚本创建或使用的数据文件。对于许多文件类型，可以显示预览，也可以在设备上的其他应用程序中打开它们。 &emsp;&emsp;提示： 你可以通过在“File Templates” 文件夹中创建文件来添加自己的文件模板。 可以从“External Files”分区访问来自其他应用程序（或云提供商）的文件。Pythonista支持就地编辑其他应用程序中的文件，你还可以集成其他应用程序（例如Working Copy）中的整个文件夹（例如Git存储库）。 脚本库支持拖放操作来移动文件（需要iOS 12+）。 你可以将文件和文件夹添加到“Favorites” 部分，以便从侧栏快速访问。 在文件上向右滑动可在新标签页中将其打开，或将其标记为收藏夹以便快速访问。 如果连接了硬件键盘，则可以使用方向键来导航浏览脚本库（回车键来进行选择）。 交互式控制台&emsp;&emsp;交互式提示是使用Python入门的最简单方法。每次输入一行代码，都会立即执行该代码，因此你可以获得快速反馈并可以尝试语法。即使你（几乎）对Python一无所知，你也可以将控制台用作功能强大的计算器。 &emsp;&emsp;你可以使用左滑动手势随时进入控制台。该区域还用于你运行的所有脚本的文本输出以及键盘输入。 &emsp;&emsp;输入代码时，系统会有自动补全提示。 &emsp;&emsp;控制台的输出区域也可以显示图像，例如在使用PIL（Python Imaging Library）模块或matplotlib时。 &emsp;&emsp;提示： Pythonista特定的console模块允许你修改控制台的输出字体，颜色，并以编程方式清除文本输出。 点击并按住^按钮以清除控制台的历史记录。 点击控制台的标题以切换解释器（2.7或3.x）或复制输出中的所有文本。 右上角的(i)按钮可切换对象检查器。通过浏览对象层次结构树，你可以直观地检查变量及其属性。检查器还可以预览某些类型的图像。 点击并按住“clear”按钮以重置全局变量，导入的模块等。 通过点击“拆分屏幕”按钮，可以在编辑器旁边以紧凑的形式显示控制台。 编辑器&emsp;&emsp;如果你以前使用过任何编程编辑器，则可能会在Pythonista中感到宾至如归。在大多数情况下，编辑器的行为与iOS上的任何其他文本区域非常相似，但是有些附加功能一开始可能并不明显。 &emsp;&emsp;首先，键盘包含带有特殊字符的附加键，这些键对于编程非常有用。这些附加键也可以用作手势区域：你可以用手指在它们上滑动以移动光标，这使精确定位更加容易。 &emsp;&emsp;要浏览复杂的脚本，你可以点击屏幕顶部的脚本名称，以弹出所有函数、类和方法。你也可以从此弹出窗口重命名文件。 &emsp;&emsp;使用scene、ui或sound模块时，可以使用右下角的(+)按钮插入内置图像，声音效果和颜色的名称。 &emsp;&emsp;编辑器的一个非常强大的功能是它本身是可编程的。你可以使用editor模块替换文本，定位光标等。然后可以将自己的脚本添加到动作（“扳手”）菜单，以便在处理代码时可以直接从编辑器中运行它们。 &emsp;&emsp;点击编辑器操作菜单中的“edit”按钮以添加自己的脚本。 &emsp;&emsp;请查看有关该editor模块的文档，以获取一些有趣的示例。 &emsp;&emsp;提示： 用两根手指点击以选择整行代码。 颜色值（string，例如’#ff00ff‘）可以使用可视颜色选择器进行编辑。只需将光标放在颜色值上以显示色样，点击它即可调整颜色。 点击右下角的(+)按钮（在编辑时）以插入颜色，图像，字体或声音效果名称。这主要是使用于ui、scene以及PIL模块，但也可能对web开发很有帮助。 选择一个单词后，使用“Highlight”菜单项可以快速查看脚本中使用了变量名的所有位置。 点击脚本标题时出现的函数列表可以通过简单地输入来过滤。如果键盘不可见时显示列表，则可以向下拖动以显示过滤器输入框。 外部键盘&emsp;&emsp;如果你的iOS设备连接了外部（例如蓝牙）键盘，则几乎可以使用键盘快捷键来进行Pythonista导航。 &emsp;&emsp;随时按住Cmd（⌘）键以显示可用快捷键列表。某些快捷方式仅在某些模式下可用，例如在编辑代码时或在控制台中。 提示：在大多数列表中，Pythonista支持使用方向键进行导航，例如，当你按Cmd + L显示脚本的轮廓时，可以使用向上/向下键跳至功能，并按enter确认选择。 &emsp;&emsp;通用键盘快捷键（这些功能可在iOS的所有文本区域中使用）： Command + X – 剪切 Command + C – 复制 Command + V – 粘贴 Command + Z – 撤消 Command + Shift + Z – 重做 Command + A – 全选 &emsp;&emsp;Pythonista的一些键盘快捷键： Command + R – 运行 Command + L – 显示函数列表（你可以使用向上/向下方向键在函数列表中导航并返回） Command + D – 插入代码段 Command + J – 显示/隐藏控制台面板 Command + return – 将焦点设置于编辑器 Command + F – 搜索 Command + G – 显示下一个搜索结果 Command + Shift + G – 显示上一个搜索结果 Command + K – 清除控制台输出 应用程序扩展和快捷方式&emsp;&emsp;Pythonista包含各种应用程序扩展，可与其他应用程序和部分iOS集成。 &emsp;&emsp;你可以在任何使用标准系统共享表的应用程序中使用共享扩展来运行脚本。自定义键盘扩展使你可以在带有文本输入的任何应用程序中运行脚本。Pythonista URL可用于在其他应用程序（例如，快捷指令应用程序）中的自动启动脚本。 &emsp;&emsp;了解更多：应用程序扩展和快捷方式]]></content>
@@ -93,7 +108,7 @@
   <entry>
     <title><![CDATA[Pythonista中文文档]]></title>
     <url>%2Fposts%2F20200321202131id.html</url>
-    <content type="text"><![CDATA[前言 &emsp;&emsp;本文档为Pythonista 3.3版本官方文档的汉化版，主要为帮助不是很擅长英文的朋友进行阅读学习。本文档主要针对Pythonista中iOS独有的模块进行汉化，第三方模块仅提及一下以便知晓目前Pythonista有哪些已经集成，具体内容请自行百度。由于工程量较大，我将利用零散时间从我常使用的模块开始逐步汉化，主要采取谷歌机翻再进行人工校对的方法，即便如此这也将是一个比较慢长的过程。汉化的过程中我会加入一些我对该模块的一些使用心得，如果你有急需想要了解的模块可以在下方留言，我会考虑优先汉化。如果在汉化的内容中有翻译错误的地方也请大家多多指正。 正文 &emsp;&emsp;欢迎！这是Pythonista的文档。它基于Python 3.6.1官方文档，并包含有关专门为Pythonista开发的其他模块的信息。 &emsp;&emsp;如果您有任何疑问，反馈或想分享您使用Pythonista所做的东西，请访问社区论坛，发送电子邮件至pythonista@omz-software.com，或在Twitter上找到我：@olemoritz。 使用Pythonista&emsp;&emsp;Pythonista的UI概述，包括一些提示和技巧。 应用程序扩展和快捷方式&emsp;&emsp;使用Pythonista脚本扩展和自动化iOS。 Pythonista模块&emsp;&emsp;以下是专门为iOS开发的功能模块。 appex — Pythonista应用扩展工具集 canvas — 矢量图像 cb — 连接到蓝牙LE外围设备 clipboard — 复制和粘贴 console — 控制台输出和各种系统服务的工具集 dialogs — 易于使用的UI对话框 contacts — 访问iOS上的联系人数据库 editor — 用于编辑Pythonista文本编辑器的功能函数 keyboard — Pythonista键盘工具集 keychain — 安全密码存储 linguistictagger — 语言分析 location — iOS上的地理位置服务 motion — iOS上的运动传感器数据 notification — iOS上的通知 objc_util — 桥接Objective-C API的工具集 photos — 访问iOS上的相册 reminders — 访问iOS上的提醒事项数据库 scene — 2D游戏和动画 shortcuts — Pythonista URL工具集 sound — 音效和音乐播放 speech — iOS上的文本语音合成 twitter — iOS Twitter账户和API访问 （此模块不再在iOS 11及更高版本上工作，因为底层API已从iOS中删除。） ui — iOS原生GUI 其他信息 Pythonista URL Scheme 基础 命令行参数 Python版本 启动其他应用 应用拓展和捷径 Pythonista键盘 共享扩展表单 编辑器操作 主屏幕图标 Pythonista URL 第三方模块&emsp;&emsp;以下这些第三方模块同样集成在Pythonista中。他们并不是Python的标准库，同样也不是iOS下特有的。 bs4 — BeautifulSoup 4 Bottle: Python网站框架 Dropbox for Python evernote faker feedparser — Python的Feed解析库 Markdown markdown2 — 在Python中快速全面的实现MarkDown paramiko PIL — Python图像处理库 PyPDF2 pyminizip — 创建受密码保护的Zip文件 qrcode — 纯Python二维码生成器 Requests – HTTP协议使用 xmltodict 无文档模块&emsp;&emsp;以下这些第三方模块已集成在Pythonista中，但在app配套文档中还没有其对应的文档。&emsp;&emsp;你仍然会找到一些简短的描述和更多相关信息的链接。 arrow certifi cssselect dateutil ecdsa flask html2text html5lib httplib2 images2gif itsdangerous jinja2 markupsafe midiutil oauth2 openpyxl parsedatetime py pycparser pygments pyparsing pytest pytz reportlab simpy six sqlalchemy urllib3 wavebender werkzeug yaml 参考资料 Pythonista官方文档]]></content>
+    <content type="text"><![CDATA[前言 &emsp;&emsp;本文档为Pythonista 3.3版本官方文档的汉化版，主要为帮助不是很擅长英文的朋友进行阅读学习。本文档主要针对Pythonista中iOS独有的模块进行汉化，第三方模块仅提及一下以便知晓目前Pythonista有哪些已经集成，具体内容请自行百度。由于工程量较大，我将利用零散时间从我常使用的模块开始逐步汉化，主要采取谷歌机翻再进行人工校对的方法，即便如此这也将是一个比较慢长的过程。汉化的过程中我会加入一些我对该模块的一些使用心得，如果你有急需想要了解的模块可以在下方留言，我会考虑优先汉化。如果在汉化的内容中有翻译错误的地方也请大家多多指正。 正文 &emsp;&emsp;欢迎！这是Pythonista的文档。它基于Python 3.6.1官方文档，并包含有关专门为Pythonista开发的其他模块的信息。 &emsp;&emsp;如果您有任何疑问，反馈或想分享您使用Pythonista所做的东西，请访问社区论坛，发送电子邮件至pythonista@omz-software.com，或在Twitter上找到我：@olemoritz。 使用Pythonista&emsp;&emsp;Pythonista的UI概述，包括一些提示和技巧。 应用程序扩展和快捷方式&emsp;&emsp;使用Pythonista脚本扩展和自动化iOS。 Pythonista模块&emsp;&emsp;以下是专门为iOS开发的功能模块。 appex — Pythonista应用扩展工具集 canvas — 矢量图像 cb — 连接到蓝牙LE外围设备 clipboard — 复制和粘贴 console — 控制台输出和各种系统服务的工具集 dialogs — 易于使用的UI对话框 contacts — 访问iOS上的联系人数据库 editor — 用于编辑Pythonista文本编辑器的功能函数 keyboard — Pythonista键盘工具集 keychain — 安全密码存储 linguistictagger — 语言分析 location — iOS上的地理位置服务 motion — iOS上的运动传感器数据 notification — iOS上的通知 objc_util — 桥接Objective-C API的工具集 photos — 访问iOS上的相册 reminders — 访问iOS上的提醒事项数据库 scene — 2D游戏和动画 shortcuts — Pythonista URL工具集 sound — 音效和音乐播放 speech — iOS上的文本语音合成 twitter — iOS Twitter账户和API访问 （此模块不再在iOS 11及更高版本上工作，因为底层API已从iOS中删除。） ui — iOS原生GUI 其他信息 Pythonista URL方案 基础 命令行参数 Python版本 启动其他应用 第三方模块&emsp;&emsp;以下这些第三方模块同样集成在Pythonista中。他们并不是Python的标准库，同样也不是iOS下特有的。 bs4 — BeautifulSoup 4 Bottle: Python网站框架 Dropbox for Python evernote faker feedparser — Python的Feed解析库 Markdown markdown2 — 在Python中快速全面的实现MarkDown paramiko PIL — Python图像处理库 PyPDF2 pyminizip — 创建受密码保护的Zip文件 qrcode — 纯Python二维码生成器 Requests – HTTP协议使用 xmltodict 无文档模块&emsp;&emsp;以下这些第三方模块已集成在Pythonista中，但在app配套文档中还没有其对应的文档。&emsp;&emsp;你仍然会找到一些简短的描述和更多相关信息的链接。 arrow certifi cssselect dateutil ecdsa flask html2text html5lib httplib2 images2gif itsdangerous jinja2 markupsafe midiutil oauth2 openpyxl parsedatetime py pycparser pygments pyparsing pytest pytz reportlab simpy six sqlalchemy urllib3 wavebender werkzeug yaml 参考资料 Pythonista官方文档]]></content>
       <categories>
         <category>计算机</category>
         <category>技术</category>
@@ -147,7 +162,7 @@
   <entry>
     <title><![CDATA[片单]]></title>
     <url>%2Fposts%2F20200317113125id.html</url>
-    <content type="text"><![CDATA[电影 动漫 电视剧 纪录片 65 29 31 2 20202020.03.20 李尸王朝：第一季、第二季 2020.03.18 恶魔城：第三季 2020.03.14 恶魔城：第一季、第二季 2020.03.10 怪诞小镇：第一季 神探伽利略：第一季 我的三体之章北海传 穷豪旅游记：第一季、第二季 2020.03.06 天使降临到我身边 2020.03.2 我们的父辈 2020.02.17 仁医 2020.02.16 1917 2020.02.11 决战中途岛 急速车王 利刃出鞘 2020.02.10 乔乔的异想世界 末代皇帝 2020.02.08 高堡奇人 2020.01.10 曼达洛人：第一季 2020.01.02 瑞克和莫迪：第四季 20192019.08.11 黑袍纠察队：第一季 2019.08.02 黄石：第一季、第二季 2019.05.18 切尔诺贝利 2019.04.15 权力的游戏：第八季 2019.03.20 爱.死亡和机器人 2019.02.07 流浪地球 猎魔人：第一季 这个勇者明明超强却过分谨慎 动物狂想曲：第一季 人生一串：第一季 刀剑神域:爱丽丝篇 异界战争 我的英雄学院 轮到你了 龙马传 真田丸 青春猪头少年不会梦到怀梦美少女 青春猪头少年不会梦到兔女郎学姐 辉夜大小姐想让我告白~天才们的恋爱头脑战~ 鬼灭之刃 食戟之灵 灵能百分百：第一季、第二季 约定的梦幻岛：第一季 关于我转生成史莱姆这件事：第一季 多罗罗 老友记：第一季~第五季 李狗嗨 半泽直树 龙樱 死亡笔记 南方公园 哈利波特：第一部~第七部 20182018.10.05 蚁人2：黄蜂女现身 2018.08.07 小丑回魂 2018.08.05 恐怖游轮 闪灵 2018.07.31 红辣椒 未麻的部屋 2018.07.29 达拉斯买家俱乐部 2018.07.13 我不是药神 2018.05.05 恋爱回旋 2018.04.30 西部世界：第二季 2018.04.03 华盛顿邮报 2018.04.02 相对宇宙：第一季 2018.03.29 马戏之王 工作细胞 埃罗芒阿老师 我的妹妹不可能这么可爱 后街女孩 中二病也要谈恋爱 小林家的龙女仆 女神异闻录 永生之酒 新世纪福音战士 干物妹小埋 20172017.12.27 大鱼 2017.12.23 荒岛余生 2017.12.03 王牌特工2：黄金圈 2017.10.13 我们的生活：第一季、第二季 猩球崛起3：终极之战 2017.09.26 人生密密缝 2017.08.31 二手雄狮 逃出绝命镇 迷雾 2017.08.30 王牌保镖 2017.08.25 极盗车神 2017.07.31 战狼2 2017.01.08 血战钢锯岭 2017.01.07 星球大战外传：侠盗一号 逃避可耻但有用 四重奏 新参者 非自然死亡 IT狂人 黑镜 西部世界：第一季 20162016.09.02 星际迷航3：超越星辰 2016.08.29 谍影重重5 2016.08.26 冰川时代5：星际碰撞 2016.08.02 爱宠大机密 2016.07.22 绝地逃亡 2016.06.26 独立日：卷土重来 2016.06.09 魔兽 2016.06.08 X战警：天启 2016.03.04 疯狂动物城 2016.01.23 功夫熊猫3 神探夏洛克 绝命毒师 绝命律师 纸牌屋 权力的游戏：第一季~第七季 20152015.11.29 火星救援 2015.07.17 西游记之大圣归来 2015.05.16 复仇者联盟2 2015.04.04 王牌特工：特工学院 2015.01.23 霍比特人：五军之战 20142014.11.15 马达加斯加的企鹅 星际穿越 2014.10.10 银河护卫队 2014.08.14 驯龙高手2 2014.07.03 变形金刚4：绝迹重生 2014.06.06 明日边缘 2014.05.24 X战警：逆转未来 2014.05.10 超凡蜘蛛侠2 2014.05.01 催眠大师 2014.04.30 同桌的你 2014.04.25 里约大冒险2 2014.04.05 美国队长2]]></content>
+    <content type="text"><![CDATA[电影 动漫 电视剧 纪录片 65 30 31 2 20202020.03.23 异度入侵 2020.03.20 李尸王朝：第一季、第二季 2020.03.18 恶魔城：第三季 2020.03.14 恶魔城：第一季、第二季 2020.03.10 怪诞小镇：第一季 神探伽利略：第一季 我的三体之章北海传 穷豪旅游记：第一季、第二季 2020.03.06 天使降临到我身边 2020.03.2 我们的父辈 2020.02.17 仁医 2020.02.16 1917 2020.02.11 决战中途岛 急速车王 利刃出鞘 2020.02.10 乔乔的异想世界 末代皇帝 2020.02.08 高堡奇人 2020.01.10 曼达洛人：第一季 2020.01.02 瑞克和莫迪：第四季 20192019.08.11 黑袍纠察队：第一季 2019.08.02 黄石：第一季、第二季 2019.05.18 切尔诺贝利 2019.04.15 权力的游戏：第八季 2019.03.20 爱.死亡和机器人 2019.02.07 流浪地球 猎魔人：第一季 这个勇者明明超强却过分谨慎 动物狂想曲：第一季 人生一串：第一季 刀剑神域:爱丽丝篇 异界战争 我的英雄学院 轮到你了 龙马传 真田丸 青春猪头少年不会梦到怀梦美少女 青春猪头少年不会梦到兔女郎学姐 辉夜大小姐想让我告白~天才们的恋爱头脑战~ 鬼灭之刃 食戟之灵 灵能百分百：第一季、第二季 约定的梦幻岛：第一季 关于我转生成史莱姆这件事：第一季 多罗罗 老友记：第一季~第五季 李狗嗨 半泽直树 龙樱 死亡笔记 南方公园 哈利波特：第一部~第七部 20182018.10.05 蚁人2：黄蜂女现身 2018.08.07 小丑回魂 2018.08.05 恐怖游轮 闪灵 2018.07.31 红辣椒 未麻的部屋 2018.07.29 达拉斯买家俱乐部 2018.07.13 我不是药神 2018.05.05 恋爱回旋 2018.04.30 西部世界：第二季 2018.04.03 华盛顿邮报 2018.04.02 相对宇宙：第一季 2018.03.29 马戏之王 工作细胞 埃罗芒阿老师 我的妹妹不可能这么可爱 后街女孩 中二病也要谈恋爱 小林家的龙女仆 女神异闻录 永生之酒 新世纪福音战士 干物妹小埋 20172017.12.27 大鱼 2017.12.23 荒岛余生 2017.12.03 王牌特工2：黄金圈 2017.10.13 我们的生活：第一季、第二季 猩球崛起3：终极之战 2017.09.26 人生密密缝 2017.08.31 二手雄狮 逃出绝命镇 迷雾 2017.08.30 王牌保镖 2017.08.25 极盗车神 2017.07.31 战狼2 2017.01.08 血战钢锯岭 2017.01.07 星球大战外传：侠盗一号 逃避可耻但有用 四重奏 新参者 非自然死亡 IT狂人 黑镜 西部世界：第一季 20162016.09.02 星际迷航3：超越星辰 2016.08.29 谍影重重5 2016.08.26 冰川时代5：星际碰撞 2016.08.02 爱宠大机密 2016.07.22 绝地逃亡 2016.06.26 独立日：卷土重来 2016.06.09 魔兽 2016.06.08 X战警：天启 2016.03.04 疯狂动物城 2016.01.23 功夫熊猫3 神探夏洛克 绝命毒师 绝命律师 纸牌屋 权力的游戏：第一季~第七季 20152015.11.29 火星救援 2015.07.17 西游记之大圣归来 2015.05.16 复仇者联盟2 2015.04.04 王牌特工：特工学院 2015.01.23 霍比特人：五军之战 20142014.11.15 马达加斯加的企鹅 星际穿越 2014.10.10 银河护卫队 2014.08.14 驯龙高手2 2014.07.03 变形金刚4：绝迹重生 2014.06.06 明日边缘 2014.05.24 X战警：逆转未来 2014.05.10 超凡蜘蛛侠2 2014.05.01 催眠大师 2014.04.30 同桌的你 2014.04.25 里约大冒险2 2014.04.05 美国队长2]]></content>
       <categories>
         <category>生活</category>
         <category>影视</category>
@@ -1183,8 +1198,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>真题</tag>
         <tag>C/C++</tag>
+        <tag>真题</tag>
       </tags>
   </entry>
   <entry>
@@ -2403,8 +2418,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2417,8 +2432,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2445,8 +2460,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2485,8 +2500,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2567,8 +2582,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2607,8 +2622,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2676,8 +2691,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2717,8 +2732,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2783,8 +2798,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2825,8 +2840,8 @@
       </categories>
       <tags>
         <tag>考研</tag>
-        <tag>数学</tag>
         <tag>真题</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2942,8 +2957,8 @@
         <category>计算机组成原理</category>
       </categories>
       <tags>
-        <tag>理论</tag>
         <tag>Python</tag>
+        <tag>理论</tag>
         <tag>计算机组成原理</tag>
       </tags>
   </entry>
