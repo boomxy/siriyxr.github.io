@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Pythonista中文文档：keyboard]]></title>
+    <url>%2Fposts%2F20200324210931id.html</url>
+    <content type="text"><![CDATA[Pythonista中文文档 keyboard — Pythonista键盘工具集 简介&emsp;&emsp;keyboard模块提供了用于扩展自定义Pythonista键盘（“PyKeys”）的各种功能。 &emsp;&emsp;Pythonista键盘是一个自定义的屏幕键盘，您可以在iOS上几乎任何可以编辑文本的应用程序中使用。您可以使用自己的脚本来扩展此键盘，例如，用于插入文本片段，甚至在QWERTY键盘中或上方提供完全自定义的UI（ui.View）。此自定义UI可以显示其他按钮等，并且还可以对文档中的更改或选择做出反应。 &emsp;&emsp;如果您为键盘脚本实现了自定义视图/ UI，则在某些与文本输入相关的事件发生时，也可以通过用户移动光标或使用内置QWERTY布局上的键来得到通知。为此，可以在自定义ui.View子类中实现以下任何回调方法： 123456789101112131415161718192021222324import keyboardimport uifrom datetime import datetimefrom random import uniformclass MyView (ui.View): def __init__(self, *args, **kwargs): self.label = ui.Label(frame=self.bounds, flex='wh') self.add_subview(self.label) super().__init__(*args, **kwargs) def kb_should_insert(self, text): self.label.text = f'Insert: &#123;text&#125;' # 你可以在这里修改插入文本: return text def kb_text_changed(self): self.background_color = (uniform(0.5, 1.0), uniform(0.5, 1.0), uniform(0.5, 1.0)) def kb_should_delete(self): return Truev = MyView()keyboard.set_view(v) &emsp;&emsp;自定义键盘UI的各种示例随Pythonista一起包含在Examples&gt;Keyboard文件夹中。 注意:您可以在Pythonista快捷方式页面上找到有关如何启用和使用键盘的更多信息。 函数keyboard.backspace(times=1) &emsp;&emsp;向后删除当前文档（模拟退格键）。本次参数确定有多少个字符，在一次被删除。 keyboard.get_appearance() &emsp;&emsp;返回键盘的当前外观（’dark‘或’light‘）。 keyboard.get_document_id() &emsp;&emsp;返回键盘正在键入的当前文档的唯一标识符（UUID）。该标识符是任意/随机的，不包含有关文档的任何信息，但是您可以使用它来检测用户何时键入其他文档。 keyboard.get_input_context() &emsp;&emsp;返回两个字符串的一个2元组，其为紧接在光标之前和之后的文本。 keyboard.get_selected_text() &emsp;&emsp;返回当前选择的文本。如果没有选择文本，则为空字符串。 警告:如果选择了两行以上或大约1000个字符，则该函数的返回值将在中间被截断。不幸的是，从技术上讲不可能阻止这种情况（这是系统限制），并且也无法检测到截断。如果所选文本包含多行，则通常不应使用此函数的返回值替换所选文本。 keyboard.get_text_replacements() &emsp;&emsp;返回您在全局键盘设置中定义的文本替换列表（设置应用：通用&gt;键盘&gt;文本替换）。每个文本替换都是两个字符串（短语，快捷方式）的元组。 &emsp;&emsp;仅在Pythonista键盘中运行时才支持此功能。在其他情况下，返回None。 keyboard.has_full_access() &emsp;&emsp;如果为键盘启用了“完全访问”选项，则返回True，否则返回False。 &emsp;&emsp;许多事情都需要“完全访问”，例如，任何网络访问，剪贴板，将文件写入主应用程序。 keyboard.has_text() &emsp;&emsp;如果键盘正在编辑的文档（文本字段）包含任何文本，则返回True；如果为空，则返回False。 keyboard.insert_text(text) &emsp;&emsp;在键盘正在编辑的当前文档（文本字段）中插入文本。 keyboard.is_keyboard() &emsp;&emsp;如果脚本在自定义Pythonista键盘中运行，则返回True，否则返回False。 &emsp;&emsp;可以将这些脚本用于行为不同的脚本，具体取决于它们是在键盘上运行还是在主应用程序中运行。 keyboard.move_cursor(offset) &emsp;&emsp;将光标移动指定的偏移量（正整数或负整数）。 keyboard.play_input_click() &emsp;&emsp;播放输入点击声音（如果用户启用了此声音）（可以在全局键盘设置中关闭输入点击声音），并且设备不为静音。 keyboard.set_view(view=None, mode=’current’) &emsp;&emsp;将自定义ui.View设置为键盘的UI,可以在QWERTY布局上方（mode = &#39;minimized&#39;）或填充键盘的大部分区域（mode = &#39;expanded&#39;）。使用mode = &#39;current&#39;时，保持活动模式（您可以通过点击绿色的“快捷方式”键手动切换）。 &emsp;&emsp;您可以给view传None以关闭当前视图。 &emsp;&emsp;请参见简介以了解更多回调函数的信息，使你可以在自定义UI中实现以获取有关文本输入事件的通知。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pythonista</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pythonista中文文档：location]]></title>
+    <url>%2Fposts%2F20200324202150id.html</url>
+    <content type="text"><![CDATA[Pythonista中文文档 location — iOS上的地理位置服务 &emsp;&emsp;location模块允许你在iOS上访问地理位置数据（例如GPS）。此外，你可以使用location模块将地址转换为坐标，反之亦然（地理编码和反向地理编码）。 注意：首次使用此模块时，将显示系统弹出的权限警报。除非你授予应用访问你的位置的权限，否则大多数功能都不会返回有意义的结果。 &emsp;&emsp;location模块中的功能： location.get_location() &emsp;&emsp;返回最近获取的位置数据。返回值是一个包含各种数字的字典，这些数字描述了当前位置（最重要的是“经度”，“纬度”和“时间戳”）。该字典可用作该reverse_geocode()函数的参数。如果尚未获取位置数据（或你尚未授权该应用程序），则返回值可能为None。 location.start_updates() &emsp;&emsp;开始更新位置数据。应该在使用get_location()之前调用它。为了节省电量，建议你在不再需要位置数据时调用stop_updates()。 location.stop_updates() &emsp;&emsp;停止更新位置数据。 location.geocode(address) &emsp;&emsp;尝试将地址字典转换为地理坐标。返回值是可能坐标的列表（如果未找到结果，则可以为空）。列表中的每个条目都是带有“经度”和“纬度”键的字典。 例： 1234import locationaddress_dict = &#123;'Street': 'Infinite Loop', 'City': 'Cupertino', 'Country': 'USA'&#125;results = location.geocode(address_dict)print(results) location.render_map_snapshot(lat, lng, width=1000, height=1000, map_type=’standard’, show_poi=True, img_width=240, img_height=240, img_scale=0) &emsp;&emsp;渲染/下载给定地图区域的快照图像（使用Apple Maps框架）。 &emsp;&emsp;lat和lng参数决定了地图中心的纬度和经度。width和height（以米为单位）间接设置地图的比例因子。map_type可以是’standard‘，’satellite‘或’hybrid‘。 &emsp;&emsp;返回值是一个ui.Image具有给定的大小（img_width / img_height）和比例（默认为0，即当前设备的屏幕比例）。 例： 123import locationimg = location.render_map_snapshot(48.8582, 2.2945, map_type='satellite', img_width=512, img_height=512)img.show() location.reverse_geocode(location) &emsp;&emsp;尝试将位置（经度/纬度）转换为人类可读的地址。location参数应该是包含关于“经度”和“纬度”值的字典。返回值是可能的地址字典的列表（通常只有一个）。 例： 1234import locationcoordinates = &#123;'latitude': 37.331684, 'longitude': -122.030758&#125;results = location.reverse_geocode(coordinates)print(results) location.is_authorized() &emsp;&emsp;如果当前允许访问位置数据，则返回True，否则返回False（例如，如果尚未显示权限对话框，或者由于父母控制而拒绝访问）。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pythonista</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pythonista中文文档：motion]]></title>
+    <url>%2Fposts%2F20200324200906id.html</url>
+    <content type="text"><![CDATA[Pythonista中文文档 motion — iOS上的运动传感器数据 &emsp;&emsp;motion模块允许您访问iOS设备的运动传感器数据（加速度计，陀螺仪，磁力计）。 &emsp;&emsp;motion模块中的功能： motion.start_updates() &emsp;&emsp;开始监视设备的运动传感器。您应该通过调用stop_updates()来权衡该模块的使用，以延长电池寿命。所有的get...函数都要求您start_updates()先调用，否则，将不返回任何有意义的数据。 motion.stop_updates() &emsp;&emsp;停止监视设备的运动传感器。 motion.get_gravity() &emsp;&emsp;返回重力向量（x，y，z）。 motion.get_user_acceleration() &emsp;&emsp;返回用户给设备的加速度。总加速度等于从get_gravity()中返回的重力矢量加上用户加速度。 motion.get_attitude() &emsp;&emsp;返回设备的姿态（滚动，俯仰，偏航）。 motion.get_magnetic_field() &emsp;&emsp;返回相对于设备的磁场矢量（x，y，z，精度）。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pythonista</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pythonista中文文档：linguistictagger]]></title>
+    <url>%2Fposts%2F20200324194238id.html</url>
+    <content type="text"><![CDATA[Pythonista中文文档 linguistictagger — 语言分析 &emsp;&emsp;linguistictagger模块可用于对自然语言文本进行分割，并用信息（例如词性）进行标记。 &emsp;&emsp;这个模块只提供了一个功能： linguistictagger.tag_string(string, scheme) &emsp;&emsp;根据方案标记给定的字符串。查询有效的方案常量，请参见下文。 &emsp;&emsp;返回值是一个三元组的列表，每个三元组由标签，带标签的子字符串和原始字符串中子字符串的范围组成·。 例： 123456import linguistictagger as lttext = 'Python is pretty awesome.'results = lt.tag_string(text, lt.SCHEME_LEXICAL_CLASS)for tag, substring, range in results: if tag != 'Whitespace': print(substring + ": " + tag) 输出： 12345Python: Nounis: Verbpretty: Adverbawesome: Adjective.: SentenceTerminator 常量linguistictagger.SCHEME_TOKEN_TYPE&emsp;&emsp;根据标记的大致类型对标记进行分类：单词，标点符号，空格等。 linguistictagger.SCHEME_LEXICAL_CLASS&emsp;&emsp;根据类别对标记进行分类：词的词性，标点符号的类型或空格等。 linguistictagger.SCHEME_NAME_TYPE&emsp;&emsp;根据标记是否属于各种类型的命名实体进行分类。 linguistictagger.SCHEME_NAME_TYPE_OR_LEXICAL_CLASS&emsp;&emsp;这个标签方案如下：对名称按照SCHEME_NAME_TYPE执行然后剩下的其他标记按照SCHEME_LEXICAL_CLASS执行。 linguistictagger.SCHEME_LEMMA&emsp;&emsp;提供单词的词干形式（如果已知）。 linguistictagger.SCHEME_LANGUAGE&emsp;&emsp;该标记方案根据标记的语言标记标记。标签值将是标准语言的缩写，例如“en”，“fr”，“de”等。请注意，标签生成器通常会尝试在整个句子或段落的级别上确定文本的语言，而不是逐字逐句地字。 linguistictagger.SCHEME_SCRIPT&emsp;&emsp;此标签方案根据标记的脚本来进行标记。标签值将是标准脚本缩写，例如“Latn”，“Cyrl”，“Jpan”，“Hans”，“Hant”等。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>技术</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pythonista</tag>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Pythonista中文文档：Pythonista URL Scheme]]></title>
     <url>%2Fposts%2F20200324115253id.html</url>
     <content type="text"><![CDATA[Pythonista中文文档 Pythonista URL Scheme &emsp;&emsp;可以使用自定义pythonista://URL Scheme从其他应用程序启动Pythonista。 提示：你可以使用集成的URL和二维码生成器轻松生成pythonista3://URL。在编辑脚本时点击“扳手”图标，然后选择“Shortcuts”开始使用。另请参阅：应用程序扩展和快捷方式。 基础 打开应用程序： &emsp;&emsp;直接使用pythonista://不带任何其他参数即可打开应用程序而不执行任何其他操作。 打开脚本进行编辑： &emsp;&emsp;使用pythonista://MyScript.py在编辑器打开一个脚本。默认情况下，脚本路径是相对于Pythonista的本地文档文件夹的。添加?root=icloud或使用类似于iCloud/MyScript.py使路径相对于Pythonista的iCloud文件夹的路径。 从库中运行脚本： &emsp;&emsp;使用pythonista://MyScript.py?action=run用于运行一个在你库里的脚本。默认情况下，脚本路径是相对于Pythonista的本地文档文件夹的。添加?root=icloud以使路径相对于Pythonista的iCloud文件夹。 执行一段Python代码： &emsp;&emsp;使用pythonista://?exec=&lt;your code&gt;运行被直接嵌入URL的python代码。请注意，在实际执行代码之前，始终向用户请求确认。 &emsp;&emsp;在Pythonista 3.x中，你可以通过在第一行中添加“#!”（例如#! python2或#! python3）来指定代码应在Python 3还是Python 2.7中运行。 注意：在Pythonista 3.x中，你可以使用pythonista3://代替pythonista://。在Pythonista 2（从2.1开始）中，你可以使用pythonista2://。如果要定位特定版本的应用程序，请使用这些方案。如果同时安装了两个应用程序，则不确定哪个应用程序会处理pythonista://URL。 命令行参数&emsp;&emsp;使用action=run参数时（请参见上文），可以通过两种方式将命令行参数传递给脚本： 方法1：一个args参数 &emsp;&emsp;例： pythonista://MyScript?action=run&amp;args=foo%20bar &emsp;&emsp;当你传递一个带args URL参数的字符串，该字符串以空格分开（空格在这里被编码为%20），并且sys.argv在这个例子中会被赋值为[&lt;script_path&gt;, &#39;foo&#39;, &#39;bar&#39;]。 &emsp;&emsp;如果要传递包含空格的参数，则必须将其括在双引号中（就像在经典shell中一样）。 &emsp;&emsp;这基本上与长按运行按钮来运行脚本相同。 方法2：多个argv参数 &emsp;&emsp;例： pythonista://MyScript?action=run&amp;argv=foo&amp;argv=bar &emsp;&emsp;使用多个都名为argv的参数，这样你就不必担心引用包含空格的参数。每个参数对应于sys.argv中的一个元素。 &emsp;&emsp;如果URL至少包含一个argv参数，则args将被忽略。 Python版本&emsp;&emsp;Pythonista 3支持两种不同的Python解释器：2.7和3.5。如果要使用特定的解释器来运行脚本，则可以使用version=[2|3]或py=[2|3]参数。在Pythonista 2（仅支持Python 2.7）中将忽略此参数。 &emsp;&emsp;如果使用该version参数，则它会覆盖默认解释器设置以及脚本本身中可能定义的所有版本设定。 启动其他应用程序&emsp;&emsp;如果你在Pythonista中打开其他应用程序，则可以使用webbrowser或shortcuts模块执行此操作。 &emsp;&emsp;例如，要打开Twitter应用程序，可以使用以下代码： 12import webbrowserwebbrowser.open('twitter://') 或： 12import shortcutsshortcuts.open_url('twitter://')]]></content>
@@ -165,7 +225,7 @@
   <entry>
     <title><![CDATA[游戏消费统计]]></title>
     <url>%2Fposts%2F20200317170536id.html</url>
-    <content type="text"><![CDATA[总计：3536.23 2020总计：24 名称 价格 平台 日期 桥梁工程师传送门 24 iOS 2020.03.10 2019总计：86 名称 价格 平台 沉默大陆 1 iOS 月圆之夜 26 iOS 掠食dlc 15 steam 德军总部旧血脉/新秩序 32 steam 迷你地铁 6 iOS 晶体管 6 iOS 2018总计：1580.43 名称 价格 平台 奇异人生 17 steam 迈阿密热线1，2 17 steam 看门狗2 84 steam Manhunt、GTA:VC、GTA3、MaxPayne 6.32 steam Five Nights at Freddy’s:Sister Location、Goat Simulator、Hacknet 6.29 steam 毁灭战士4 33 steam 空洞骑士 31 steam Karakara 6.32 steam 刺客信条：起源 166 steam 热血无赖 13 steam 光之子 23 steam 雷曼传奇 29 steam 勇敢的心：世界大战 23 steam 南方公园：真理之杖 32 steam 火炬之光2 17 steam 双子传说 9 steam 奇艺人生：风暴前夕 48 steam 刺客信条：起源 季票 117 steam Mirror 6 steam 影子战术：将军之刃 49 steam FEZ 7 steam 围攻 37 steam 彩虹六号 86 steam redout 46 steam 古墓丽影：崛起 48 steam 古墓丽影9（礼物） 13 steam 神界原罪 27 steam 星露谷物语（礼物） 38 steam DMC:鬼泣、勿忘我 7 steam 生生不息 8 steam 奥日与黑暗森林 33 steam 黑魂3机票（礼物） 67 steam 生化危机7黄金版（礼物） 103 steam 太吾绘卷 49.5 steam HITMAN机票 16 steam 昆特牌：王权的陨落 128 steam Mirror_DLC 5 steam 古剑奇谭3 99 WeGame 2016-2017总计：1845.8 名称 价格 平台 Overwatch 198 战网 pal5q 50 steam INSIDE 68 steam Portal Bundle 78 steam Trinelogy 25 steam Don’t Starve MEGA PACK 86 steam Mass Effect Collection 25 steam Hyperspace Pack 1 steam Hook 6 steam Zenge 6 steam klocki 6 steam Art Appreciation Pack 1 steam The Witcher Trilogy 85 steam Hexcells 4 steam Grow Home &amp; Grow Up 47 steam Zup! 5 steam Developer Alliance Bundle 4 steam limbo 7 steam Left 4 Dead Bundle 23 steam Super Meat Boy 4 steam Tom Clancy’s Splinter Cell Blacklist Deluxe Edition 32 steam Labyronia Bundle 1 steam Space Pilgrim Episode IV:Sol 1 steam To The Moon Game and Soundtrack Bundle 6 steam The Stanley Parable 9 steam Punch Club 4 steam Mark of the Ninja:Special Edition 15 steam Tomb Raider GOTY Edition 22 steam The Witcher 3:Wild Hunt-Expansion Pass 78 steam ZUP!2 4 steam Reigns 5 steam Euro Truck Simulator2 24 steam Alan Wake Franchise 11 steam Dead Cells 55 steam Metro Redux Bundle 19 steam Victor Vran 17 steam This War Of Mine 14 steam Dishonored 9 steam Transistor+Soundtrack 7 steam Fallout4 49 steam Bastion 8 steam Valve Complete Pack 48 steam “九头蛇大行动”通行证 41 steam Material Girl 6 steam Dollar Ultra Bundle Reloaded 6.8 steam Euro Truck Simulator2（礼物） 24 steam Firewatch Soundtrack Edition 18 steam Saints Row IV:Game of the Century Edition 11 steam Bioshock Infinite+Season Pass 47 steam 古剑奇谭1，2 23 steam 绝地求生大逃杀 98 steam HITMAN 56 steam Shank2 4 steam Planet Coaster 55 steam 黑魂3 135 steam 寻找天堂 32 steam 星露谷物语 32 steam 欧卡2DLC 47 steam 掠食 50 steam]]></content>
+    <content type="text"><![CDATA[总计：3537.23 2020总计：25 名称 价格 平台 日期 王国保卫战：复仇 1 iOS 2020.03.24 桥梁工程师传送门 24 iOS 2020.03.10 2019总计：86 名称 价格 平台 沉默大陆 1 iOS 月圆之夜 26 iOS 掠食dlc 15 steam 德军总部旧血脉/新秩序 32 steam 迷你地铁 6 iOS 晶体管 6 iOS 2018总计：1580.43 名称 价格 平台 奇异人生 17 steam 迈阿密热线1，2 17 steam 看门狗2 84 steam Manhunt、GTA:VC、GTA3、MaxPayne 6.32 steam Five Nights at Freddy’s:Sister Location、Goat Simulator、Hacknet 6.29 steam 毁灭战士4 33 steam 空洞骑士 31 steam Karakara 6.32 steam 刺客信条：起源 166 steam 热血无赖 13 steam 光之子 23 steam 雷曼传奇 29 steam 勇敢的心：世界大战 23 steam 南方公园：真理之杖 32 steam 火炬之光2 17 steam 双子传说 9 steam 奇艺人生：风暴前夕 48 steam 刺客信条：起源 季票 117 steam Mirror 6 steam 影子战术：将军之刃 49 steam FEZ 7 steam 围攻 37 steam 彩虹六号 86 steam redout 46 steam 古墓丽影：崛起 48 steam 古墓丽影9（礼物） 13 steam 神界原罪 27 steam 星露谷物语（礼物） 38 steam DMC:鬼泣、勿忘我 7 steam 生生不息 8 steam 奥日与黑暗森林 33 steam 黑魂3机票（礼物） 67 steam 生化危机7黄金版（礼物） 103 steam 太吾绘卷 49.5 steam HITMAN机票 16 steam 昆特牌：王权的陨落 128 steam Mirror_DLC 5 steam 古剑奇谭3 99 WeGame 2016-2017总计：1845.8 名称 价格 平台 Overwatch 198 战网 pal5q 50 steam INSIDE 68 steam Portal Bundle 78 steam Trinelogy 25 steam Don’t Starve MEGA PACK 86 steam Mass Effect Collection 25 steam Hyperspace Pack 1 steam Hook 6 steam Zenge 6 steam klocki 6 steam Art Appreciation Pack 1 steam The Witcher Trilogy 85 steam Hexcells 4 steam Grow Home &amp; Grow Up 47 steam Zup! 5 steam Developer Alliance Bundle 4 steam limbo 7 steam Left 4 Dead Bundle 23 steam Super Meat Boy 4 steam Tom Clancy’s Splinter Cell Blacklist Deluxe Edition 32 steam Labyronia Bundle 1 steam Space Pilgrim Episode IV:Sol 1 steam To The Moon Game and Soundtrack Bundle 6 steam The Stanley Parable 9 steam Punch Club 4 steam Mark of the Ninja:Special Edition 15 steam Tomb Raider GOTY Edition 22 steam The Witcher 3:Wild Hunt-Expansion Pass 78 steam ZUP!2 4 steam Reigns 5 steam Euro Truck Simulator2 24 steam Alan Wake Franchise 11 steam Dead Cells 55 steam Metro Redux Bundle 19 steam Victor Vran 17 steam This War Of Mine 14 steam Dishonored 9 steam Transistor+Soundtrack 7 steam Fallout4 49 steam Bastion 8 steam Valve Complete Pack 48 steam “九头蛇大行动”通行证 41 steam Material Girl 6 steam Dollar Ultra Bundle Reloaded 6.8 steam Euro Truck Simulator2（礼物） 24 steam Firewatch Soundtrack Edition 18 steam Saints Row IV:Game of the Century Edition 11 steam Bioshock Infinite+Season Pass 47 steam 古剑奇谭1，2 23 steam 绝地求生大逃杀 98 steam HITMAN 56 steam Shank2 4 steam Planet Coaster 55 steam 黑魂3 135 steam 寻找天堂 32 steam 星露谷物语 32 steam 欧卡2DLC 47 steam 掠食 50 steam]]></content>
       <categories>
         <category>生活</category>
         <category>游戏</category>
